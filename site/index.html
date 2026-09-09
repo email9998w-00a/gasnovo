@@ -57,9 +57,9 @@
       --navy-2:#182747;
       --paper:#f7f4ee;
       --white:#fff;
-      --ember:#e0590f;
-      --ember-dark:#b8430a;
-      --ember-tint:#fdece0;
+      --blue:#1769d1;
+      --blue-dark:#0d47a1;
+      --blue-tint:#e8f1ff;
       --steel:#57647a;
       --line:#e6dfd0;
       --line-dark:rgba(255,255,255,.14);
@@ -86,10 +86,10 @@
     /* Buttons */
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-weight:800;text-decoration:none;padding:16px 24px;min-height:54px;transition:transform .15s var(--ease),background .15s,box-shadow .15s;white-space:nowrap;font-size:.98rem}
     .btn:active{transform:scale(.97)}
-    .btn-primary{background:var(--ember);color:#fff;box-shadow:0 12px 26px rgba(224,89,15,.28)}
-    .btn-primary:hover{background:var(--ember-dark);transform:translateY(-2px)}
+    .btn-primary{background:var(--blue);color:#fff;box-shadow:0 12px 26px rgba(23,105,209,.28);font-weight:900}
+    .btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 14px 30px rgba(13,71,161,.32)}
     .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line);font-weight:800;padding:14px 22px;border-radius:12px;text-decoration:none;transition:border-color .15s,transform .15s}
-    .btn-ghost:hover{border-color:var(--ember);transform:translateY(-2px)}
+    .btn-ghost:hover{border-color:var(--blue);transform:translateY(-2px)}
     .btn-block{width:100%}
 
     /* Status badge (real, time-based) */
@@ -110,12 +110,12 @@
     .nav{position:sticky;top:0;z-index:30;background:rgba(247,244,238,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px}
     .brand{display:flex;align-items:center;gap:12px;min-width:0;text-decoration:none}
-    .brand-mark{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:12px;background:linear-gradient(155deg,var(--ember),var(--ember-dark));color:#fff;font-family:'Archivo',sans-serif;font-weight:900;font-size:.95rem}
+    .brand-mark{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:12px;background:linear-gradient(155deg,var(--blue),var(--blue-dark));color:#fff;font-family:'Archivo',sans-serif;font-weight:900;font-size:.95rem}
     .brand-text strong{display:block;font-size:1.02rem;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .brand-text small{display:block;color:var(--steel);font-size:.74rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .nav-links{display:flex;align-items:center;gap:26px;font-size:.9rem;font-weight:700;color:var(--steel)}
     .nav-links a{text-decoration:none}
-    .nav-links a:hover{color:var(--ember)}
+    .nav-links a:hover{color:var(--blue)}
     .nav-cta-short{display:none}
 
     /* Hero */
@@ -169,7 +169,7 @@
     .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
     .product{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;transition:transform .18s var(--ease),box-shadow .18s}
     .product:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm)}
-    .product-tag{display:inline-flex;align-self:flex-start;background:var(--ember-tint);color:var(--ember-dark);font-weight:800;font-size:.72rem;padding:4px 10px;border-radius:999px;margin-bottom:14px}
+    .product-tag{display:inline-flex;align-self:flex-start;background:var(--blue-tint);color:var(--blue-dark);font-weight:800;font-size:.72rem;padding:4px 10px;border-radius:999px;margin-bottom:14px}
     .product-weight{display:flex;align-items:baseline;gap:5px;margin-bottom:6px}
     .product-weight strong{font-family:'Archivo',sans-serif;font-size:2.4rem;font-weight:900;color:var(--navy);line-height:1}
     .product-weight span{font-weight:700;color:var(--steel);font-size:.95rem}
@@ -178,7 +178,7 @@
     .product-price{display:flex;justify-content:space-between;align-items:end;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
     .product-price .from{display:block;font-size:.7rem;color:var(--steel)}
     .product-price strong{font-size:1.2rem;color:var(--navy);font-family:'Archivo',sans-serif}
-    .product-link{color:var(--ember);font-weight:800;font-size:.86rem;text-decoration:none;display:inline-block;margin-top:14px}
+    .product-link{color:var(--blue-dark);font-weight:800;font-size:.86rem;text-decoration:none;display:inline-block;margin-top:14px}
     .product-link:hover{text-decoration:underline}
 
     .section-action{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
@@ -211,19 +211,19 @@
     .checks li{display:flex;gap:12px;align-items:flex-start;color:#3c4657;font-size:.92rem}
     .checks li svg{flex:none;width:22px;height:22px;color:var(--green);margin-top:1px}
     .contact-line{color:var(--steel);font-size:.88rem;margin:22px 0 0}
-    .contact-line a{color:var(--ember);font-weight:700;text-decoration:none}
+    .contact-line a{color:var(--blue-dark);font-weight:700;text-decoration:none}
     .contact-line a:hover{text-decoration:underline}
     .company{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
     .company div{background:var(--paper);border-radius:12px;padding:14px}
     .company small{display:block;color:var(--steel);font-size:.72rem;font-weight:700}
     .company span,.company a{display:block;font-weight:800;font-size:.9rem;margin-top:4px;overflow-wrap:anywhere;text-decoration:none}
-    .company a{color:var(--ember)}
+    .company a{color:var(--blue-dark)}
 
     /* FAQ */
     .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .faq{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden}
     .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:15px;text-align:left;padding:19px 20px;font-weight:800;color:var(--navy);font-size:.94rem}
-    .faq-q .chev{flex:none;width:20px;height:20px;color:var(--ember);transition:transform .2s var(--ease)}
+    .faq-q .chev{flex:none;width:20px;height:20px;color:var(--blue);transition:transform .2s var(--ease)}
     .faq.open .faq-q .chev{transform:rotate(180deg)}
     .faq-answer{max-height:0;overflow:hidden;transition:max-height .25s var(--ease)}
     .faq-answer p{padding:0 20px 20px;margin:0;color:var(--steel);font-size:.9rem}
@@ -304,7 +304,7 @@
 <body>
   <div class="topbar">
     <div class="container">
-      <a href="/vejasite" data-cta="topbar" aria-label="Ver valor total no meu endereço">Ver se atendemos seu endereço e o valor total</a>
+      <a href="/vejasite" data-cta="topbar" aria-label="Consultar atendimento e valor total">Consultar atendimento e valor total →</a>
     </div>
   </div>
 
@@ -319,7 +319,7 @@
         <a href="#produtos">Produtos</a>
         <a href="#duvidas">Dúvidas frequentes</a>
       </div>
-      <a class="btn btn-primary" href="/vejasite" data-cta="nav" style="padding:12px 18px;min-height:0"><span class="nav-cta-full">Ver valor total</span><span class="nav-cta-short">Ver valor</span></a>
+      <a class="btn btn-primary" href="/vejasite" data-cta="nav" style="padding:12px 18px;min-height:0"><span class="nav-cta-full">Consultar valor</span><span class="nav-cta-short">Consultar</span></a>
     </div>
   </nav>
 
@@ -349,7 +349,7 @@
           <h1>Gás em casa, com o valor certo antes de fechar.</h1>
           <p class="hero-lead">Informe seu endereço na próxima página e veja na hora se atendemos sua região: disponibilidade, prazo, taxa de entrega e valor total — antes de qualquer decisão.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/vejasite" data-cta="hero-primary" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+            <a class="btn btn-primary" href="/vejasite" data-cta="hero-primary" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
             <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
           </div>
           <ul class="hero-benefits">
@@ -383,7 +383,7 @@
     <div class="quick-action" aria-label="Ação principal">
       <div class="container quick-action-inner">
         <span>Quer verificar se atendemos seu endereço? <span class="status-badge" data-status style="margin-left:4px">&nbsp;</span></span>
-        <a class="btn btn-primary" href="/vejasite" data-cta="quick-action" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+        <a class="btn btn-primary" href="/vejasite" data-cta="quick-action" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
       </div>
     </div>
 
@@ -431,7 +431,7 @@
         </div>
         <div class="section-action">
           <p>Pronto para verificar seu endereço?</p>
-          <a class="btn btn-primary" href="/vejasite" data-cta="products-footer" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="products-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
         </div>
       </div>
     </section>
@@ -458,7 +458,7 @@
           </div>
         </div>
         <div class="steps-action">
-          <a class="btn btn-primary" href="/vejasite" data-cta="steps-footer" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="steps-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
         </div>
       </div>
     </section>
@@ -474,7 +474,7 @@
           <span>COMERCIO DE GAS LTDA · CNPJ 45.846.492/0003-30</span>
           <span>Revenda independente · São Paulo/SP</span>
           <span class="status-badge" data-status style="margin-top:10px">&nbsp;</span>
-          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
           <small>Disponibilidade e condições podem variar conforme endereço e estoque.</small>
         </div>
       </div>
@@ -541,7 +541,7 @@
         </div>
         <div class="section-action">
           <p>Ainda com dúvidas sobre o seu endereço?</p>
-          <a class="btn btn-primary" href="/vejasite" data-cta="faq-footer" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="faq-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
         </div>
       </div>
     </section>
