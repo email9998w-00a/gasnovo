@@ -142,6 +142,7 @@
     .ticket-divider::before{left:-11px}
     .ticket-divider::after{right:-11px}
     .ticket-bottom{padding:22px 26px 26px;display:flex;flex-direction:column;gap:16px}
+    .ticket-bottom .btn{box-shadow:0 12px 24px rgba(18,87,166,.24)}
     .hero-grid > div:not(.ticket){width:min(760px,100%);justify-self:center}
 
     /* Trust row */
@@ -258,10 +259,10 @@
       .brand-mark{width:36px;height:36px;font-size:.8rem;border-radius:10px}
       .brand-text strong{font-size:.82rem}
       .brand-text small{font-size:.62rem}
-      .hero{min-height:calc(100svh - 108px);padding:12px 0 18px;display:flex;align-items:stretch}
+      .hero{min-height:calc(100vh - 108px);min-height:calc(100svh - 108px);padding:12px 0 18px;display:flex;align-items:stretch}
       .hero-grid{width:100%;gap:0;display:flex;flex-direction:column;align-items:stretch}
       .hero-grid > div:not(.ticket){width:100%}
-      .ticket{width:100%;max-width:none;border-radius:16px;min-height:calc(100svh - 138px);display:flex;flex-direction:column;justify-content:space-between}
+      .ticket{width:100%;max-width:none;border-radius:16px;min-height:calc(100vh - 138px);min-height:calc(100svh - 138px);display:flex;flex-direction:column;justify-content:space-between}
       .ticket-top{padding:10px 14px 0}
       .ticket-photo{height:clamp(190px,36svh,300px)}
       .ticket-photo img{height:100%;width:min(230px,76%)}
@@ -269,11 +270,11 @@
       .ticket-caption > span:first-child{min-width:0}
       .ticket-caption .label{font-size:.67rem;line-height:1.2}
       .ticket-caption .price{font-size:1.2rem;line-height:1.15}
-      .ticket-caption .status-badge{font-size:.7rem;white-space:nowrap}
+      .ticket-caption .status-badge{font-size:.64rem;white-space:nowrap}
       .ticket-divider{margin:0 -14px}
       .ticket-bottom{padding:16px 14px 18px;gap:10px}
       .ticket-bottom p{font-size:.75rem!important;line-height:1.35}
-      .ticket-bottom .btn{min-height:50px;font-size:.94rem}
+      .ticket-bottom .btn{min-height:54px;font-size:.94rem}
       .hero h1{font-size:clamp(2rem,9vw,2.35rem);line-height:1.06}
       .hero-lead{font-size:.96rem;line-height:1.55;margin:16px 0 22px}
       .hero-actions{gap:10px}
