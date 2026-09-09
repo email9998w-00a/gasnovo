@@ -57,9 +57,9 @@
       --navy-2:#182747;
       --paper:#f7f4ee;
       --white:#fff;
-      --ember:#e0590f;
-      --ember-dark:#b8430a;
-      --ember-tint:#fdece0;
+      --ember:#1257a6;
+      --ember-dark:#0b3d7a;
+      --ember-tint:#e8f1ff;
       --steel:#57647a;
       --line:#e6dfd0;
       --line-dark:rgba(255,255,255,.14);
@@ -81,12 +81,12 @@
     img{max-width:100%;display:block}
     .container{width:min(1120px,calc(100% - 40px));margin:auto}
     .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-    :focus-visible{outline:3px solid rgba(224,89,15,.45);outline-offset:3px;border-radius:6px}
+    :focus-visible{outline:3px solid rgba(18,87,166,.45);outline-offset:3px;border-radius:6px}
 
     /* Buttons */
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-weight:800;text-decoration:none;padding:16px 24px;min-height:54px;transition:transform .15s var(--ease),background .15s,box-shadow .15s;white-space:nowrap;font-size:.98rem}
     .btn:active{transform:scale(.97)}
-    .btn-primary{background:var(--ember);color:#fff;box-shadow:0 12px 26px rgba(224,89,15,.28)}
+    .btn-primary{background:var(--ember);color:#fff;box-shadow:0 12px 26px rgba(18,87,166,.28)}
     .btn-primary:hover{background:var(--ember-dark);transform:translateY(-2px)}
     .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line);font-weight:800;padding:14px 22px;border-radius:12px;text-decoration:none;transition:border-color .15s,transform .15s}
     .btn-ghost:hover{border-color:var(--ember);transform:translateY(-2px)}
@@ -124,7 +124,7 @@
     .hero h1{font-size:clamp(2.3rem,4.6vw,3.6rem);line-height:1.05;color:var(--navy);max-width:600px}
     .hero-lead{font-size:1.12rem;color:var(--steel);max-width:520px;margin:20px 0 28px}
     .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-    .hero-actions .btn-primary{min-width:330px}
+    .hero-actions .btn-primary{min-width:330px;font-size:1rem}
     .hero-benefits{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;margin:26px 0 0;color:#3c4657;font-size:.9rem;font-weight:600}
     .hero-benefits li{display:flex;gap:10px;align-items:flex-start}
     .hero-benefits svg{flex:none;width:19px;height:19px;color:var(--green);margin-top:1px}
@@ -142,6 +142,7 @@
     .ticket-divider::before{left:-11px}
     .ticket-divider::after{right:-11px}
     .ticket-bottom{padding:22px 26px 26px;display:flex;flex-direction:column;gap:16px}
+    .hero-grid > div:not(.ticket){width:min(760px,100%);justify-self:center}
 
     /* Trust row */
     .trust{background:var(--navy);color:#fff}
@@ -257,11 +258,26 @@
       .brand-mark{width:36px;height:36px;font-size:.8rem;border-radius:10px}
       .brand-text strong{font-size:.82rem}
       .brand-text small{font-size:.62rem}
-      .hero{padding:36px 0 32px}
-      .hero h1{font-size:2.15rem}
-      .hero-lead{font-size:1rem}
+      .hero{padding:24px 0 30px}
+      .hero-grid{gap:26px}
+      .hero-grid > div:not(.ticket){width:100%}
+      .ticket{width:100%;border-radius:16px}
+      .ticket-top{padding:16px 16px 0}
+      .ticket-photo{height:170px}
+      .ticket-photo img{height:170px;width:min(210px,78%)}
+      .ticket-caption{align-items:flex-start;flex-direction:column;gap:10px;padding-bottom:16px}
+      .ticket-caption .label{font-size:.72rem}
+      .ticket-caption .price{font-size:1.35rem}
+      .ticket-divider{margin:0 -16px}
+      .ticket-bottom{padding:16px}
+      .ticket-bottom p{font-size:.8rem!important}
+      .hero h1{font-size:clamp(2rem,9vw,2.35rem);line-height:1.06}
+      .hero-lead{font-size:.96rem;line-height:1.55;margin:16px 0 22px}
+      .hero-actions{gap:10px}
       .hero-actions .btn-primary{min-width:0;width:100%}
       .hero-actions .btn-ghost{width:100%}
+      .hero-benefits{gap:9px;margin-top:22px;font-size:.84rem}
+      .hero-note{font-size:.76rem;line-height:1.45;margin-top:16px}
       .trust-grid,.step-grid,.faq-grid{grid-template-columns:1fr}
       .trust-item{border-right:0;border-bottom:1px solid var(--line-dark)}
       section{padding:56px 0}
@@ -288,7 +304,7 @@
 <body>
   <div class="topbar">
     <div class="container">
-      <a href="/vejasite" data-cta="topbar" aria-label="Ver valor total no meu endereço">Ver se atendemos seu endereço e o valor total</a>
+      <a href="/vejasite" data-cta="topbar" aria-label="Consultar valor total">Consultar atendimento e valor total</a>
     </div>
   </div>
 
@@ -303,7 +319,7 @@
         <a href="#produtos">Produtos</a>
         <a href="#duvidas">Dúvidas frequentes</a>
       </div>
-      <a class="btn btn-primary" href="/vejasite" data-cta="nav" style="padding:12px 18px;min-height:0"><span class="nav-cta-full">Ver valor total</span><span class="nav-cta-short">Ver valor</span></a>
+      <a class="btn btn-primary" href="/vejasite" data-cta="nav" style="padding:12px 18px;min-height:0"><span class="nav-cta-full">Consultar valor</span><span class="nav-cta-short">Consultar valor</span></a>
     </div>
   </nav>
 
@@ -323,7 +339,7 @@
           <div class="ticket-divider"></div>
           <div class="ticket-bottom">
             <p style="margin:0;color:var(--steel);font-size:.86rem">O valor total, com taxa de entrega, aparece antes de qualquer confirmação.</p>
-            <a class="btn btn-primary btn-block" href="/vejasite" data-cta="hero-ticket" aria-label="Ver disponibilidade e valor total para este produto">Ver disponibilidade agora</a>
+            <a class="btn btn-primary btn-block" href="/vejasite" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total do Gás P13">Consultar valor total</a>
           </div>
         </div>
 
@@ -331,7 +347,7 @@
           <h1>Gás em casa, com o valor certo antes de fechar.</h1>
           <p class="hero-lead">Informe seu endereço na próxima página e veja na hora se atendemos sua região: disponibilidade, prazo, taxa de entrega e valor total — antes de qualquer decisão.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/vejasite" data-cta="hero-primary" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+            <a class="btn btn-primary" href="/vejasite" data-cta="hero-primary" aria-label="Consultar disponibilidade e valor total no meu endereço">Consultar valor total</a>
             <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
           </div>
           <ul class="hero-benefits">
@@ -364,7 +380,7 @@
     <div class="quick-action" aria-label="Ação principal">
       <div class="container quick-action-inner">
         <span>Quer verificar se atendemos seu endereço? <span class="status-badge" data-status style="margin-left:4px">&nbsp;</span></span>
-        <a class="btn btn-primary" href="/vejasite" data-cta="quick-action" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+        <a class="btn btn-primary" href="/vejasite" data-cta="quick-action" aria-label="Consultar valor total">Consultar valor total</a>
       </div>
     </div>
 
@@ -383,7 +399,7 @@
             <h3>Botijão P13</h3>
             <p>O mais usado em residências. Consulte modalidade e valor total para o seu endereço.</p>
             <div class="product-price"><div><span class="from">A partir de</span><strong>R$ 89,90</strong></div></div>
-            <a class="product-link" href="/vejasite" data-cta="product-p13" aria-label="Ver valor total do botijão P13">Ver valor total →</a>
+            <a class="product-link" href="/vejasite" data-cta="product-p13" aria-label="Ver valor total do botijão P13">Consultar valor →</a>
           </article>
           <article class="product">
             <span class="product-tag">GLP</span>
@@ -391,7 +407,7 @@
             <h3>Botijão P20</h3>
             <p>Indicado para maior consumo. Consulte aplicação, disponibilidade e valor total.</p>
             <div class="product-price"><div><span class="from">A partir de</span><strong>R$ 189,90</strong></div></div>
-            <a class="product-link" href="/vejasite" data-cta="product-p20" aria-label="Ver valor total do botijão P20">Ver valor total →</a>
+            <a class="product-link" href="/vejasite" data-cta="product-p20" aria-label="Ver valor total do botijão P20">Consultar valor →</a>
           </article>
           <article class="product">
             <span class="product-tag">GLP</span>
@@ -399,7 +415,7 @@
             <h3>Botijão P45</h3>
             <p>Uso comercial ou consumo elevado. Consulte disponibilidade e valor total.</p>
             <div class="product-price"><div><span class="from">A partir de</span><strong>R$ 395,90</strong></div></div>
-            <a class="product-link" href="/vejasite" data-cta="product-p45" aria-label="Ver valor total do botijão P45">Ver valor total →</a>
+            <a class="product-link" href="/vejasite" data-cta="product-p45" aria-label="Ver valor total do botijão P45">Consultar valor →</a>
           </article>
           <article class="product">
             <span class="product-tag">GLP</span>
@@ -407,12 +423,12 @@
             <h3>Botijão P5</h3>
             <p>Compacto e portátil. Consulte disponibilidade, modalidade e valor total.</p>
             <div class="product-price"><div><span class="from">A partir de</span><strong>R$ 69,90</strong></div></div>
-            <a class="product-link" href="/vejasite" data-cta="product-p5" aria-label="Ver valor total do botijão P5">Ver valor total →</a>
+            <a class="product-link" href="/vejasite" data-cta="product-p5" aria-label="Ver valor total do botijão P5">Consultar valor →</a>
           </article>
         </div>
         <div class="section-action">
           <p>Pronto para verificar seu endereço?</p>
-          <a class="btn btn-primary" href="/vejasite" data-cta="products-footer" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="products-footer" aria-label="Consultar valor total">Consultar valor total</a>
         </div>
       </div>
     </section>
@@ -439,7 +455,7 @@
           </div>
         </div>
         <div class="steps-action">
-          <a class="btn btn-primary" href="/vejasite" data-cta="steps-footer" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="steps-footer" aria-label="Consultar valor total">Consultar valor total</a>
         </div>
       </div>
     </section>
@@ -455,7 +471,7 @@
           <span>COMERCIO DE GAS LTDA · CNPJ 45.846.492/0003-30</span>
           <span>Revenda independente · São Paulo/SP</span>
           <span class="status-badge" data-status style="margin-top:10px">&nbsp;</span>
-          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Consultar valor total">Consultar valor total</a>
           <small>Disponibilidade e condições podem variar conforme endereço e estoque.</small>
         </div>
       </div>
@@ -522,7 +538,7 @@
         </div>
         <div class="section-action">
           <p>Ainda com dúvidas sobre o seu endereço?</p>
-          <a class="btn btn-primary" href="/vejasite" data-cta="faq-footer" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="faq-footer" aria-label="Consultar valor total">Consultar valor total</a>
         </div>
       </div>
     </section>
@@ -568,7 +584,7 @@
   </footer>
 
   <div class="mobile-cta">
-    <a class="btn btn-primary" href="/vejasite" data-cta="mobile-sticky" aria-label="Ver valor total no meu endereço">Ver valor total no meu endereço</a>
+        <a class="btn btn-primary" href="/vejasite" data-cta="mobile-sticky" aria-label="Consultar disponibilidade e valor total no meu endereço">Consultar valor total</a>
   </div>
 
   <noscript>
