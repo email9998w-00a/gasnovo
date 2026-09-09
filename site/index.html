@@ -258,20 +258,20 @@
       .brand-mark{width:36px;height:36px;font-size:.8rem;border-radius:10px}
       .brand-text strong{font-size:.82rem}
       .brand-text small{font-size:.62rem}
-      .hero{padding:16px 0 26px}
-      .hero-grid{gap:20px}
+      .hero{min-height:calc(100svh - 108px);padding:12px 0 18px;display:flex;align-items:stretch}
+      .hero-grid{width:100%;gap:0;display:flex;flex-direction:column;align-items:stretch}
       .hero-grid > div:not(.ticket){width:100%}
-      .ticket{width:min(100%,380px);border-radius:16px}
+      .ticket{width:100%;max-width:none;border-radius:16px;min-height:calc(100svh - 138px);display:flex;flex-direction:column;justify-content:space-between}
       .ticket-top{padding:10px 14px 0}
-      .ticket-photo{height:116px}
-      .ticket-photo img{height:116px;width:min(150px,70%)}
+      .ticket-photo{height:clamp(190px,36svh,300px)}
+      .ticket-photo img{height:100%;width:min(230px,76%)}
       .ticket-caption{align-items:center;flex-direction:row;gap:8px;padding-bottom:11px}
       .ticket-caption > span:first-child{min-width:0}
       .ticket-caption .label{font-size:.67rem;line-height:1.2}
       .ticket-caption .price{font-size:1.2rem;line-height:1.15}
       .ticket-caption .status-badge{font-size:.7rem;white-space:nowrap}
       .ticket-divider{margin:0 -14px}
-      .ticket-bottom{padding:12px 14px 14px;gap:10px}
+      .ticket-bottom{padding:16px 14px 18px;gap:10px}
       .ticket-bottom p{font-size:.75rem!important;line-height:1.35}
       .ticket-bottom .btn{min-height:50px;font-size:.94rem}
       .hero h1{font-size:clamp(2rem,9vw,2.35rem);line-height:1.06}
