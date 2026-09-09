@@ -73,7 +73,7 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
-    body{margin:0;font-family:'Public Sans',ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+    body{margin:0;font-family:'Public Sans',ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
     h1,h2,h3{font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;font-weight:900;letter-spacing:-.02em;margin:0}
     a{color:inherit}
     button,input,select{font:inherit}
@@ -223,6 +223,7 @@
     .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .faq{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden}
     .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:15px;text-align:left;padding:19px 20px;font-weight:800;color:var(--navy);font-size:.94rem}
+    .faq-q span{min-width:0;overflow-wrap:anywhere}
     .faq-q .chev{flex:none;width:20px;height:20px;color:var(--blue);transition:transform .2s var(--ease)}
     .faq.open .faq-q .chev{transform:rotate(180deg)}
     .faq-answer{max-height:0;overflow:hidden;transition:max-height .25s var(--ease)}
@@ -274,10 +275,12 @@
       .ticket-bottom{padding:20px 22px 22px;gap:14px}
       .p13-cta{width:100%;margin:10px auto 0}
       .p13-cta .btn{width:100%;min-height:50px;padding:13px 16px}
+      .ticket-caption>span:first-child{min-width:0;overflow-wrap:anywhere}
       .hero-grid > div:not(.ticket):not(.p13-cta){padding-top:clamp(72px,12vh,108px)}
       .hero h1{font-size:clamp(2rem,9vw,2.35rem);line-height:1.04}
       .hero-lead{font-size:.98rem;line-height:1.5;margin:16px 0 22px}
       .hero-actions{gap:10px}
+      .btn{white-space:normal;text-align:center;line-height:1.25;overflow-wrap:anywhere}
       .hero-actions .btn-primary{min-width:0;width:100%}
       .hero-actions .btn-ghost{width:100%}
       .trust-grid,.step-grid,.faq-grid{grid-template-columns:1fr}
