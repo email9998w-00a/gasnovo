@@ -248,8 +248,18 @@
     .footer .brand-text small{color:#93a3c0}
     .footer-bottom{border-top:1px solid var(--line-dark);margin-top:38px;padding-top:18px;color:#6f81a0;font-size:.75rem;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
 
-    /* Mobile sticky CTA */
+    /* Mobile sticky CTA: facilita o avanço após a rolagem sem competir com o hero */
     .mobile-cta{display:none}
+    .mobile-cta .btn{width:100%;min-height:50px;padding:13px 16px}
+    @media(max-width:620px){
+      body{padding-bottom:76px}
+      .mobile-cta{
+        position:fixed;left:0;right:0;bottom:0;z-index:40;display:block;
+        padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+        background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+        border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(16,26,46,.12)
+      }
+    }
 
     @media(max-width:960px){
       .hero-grid,.two-col,.reassurance-grid{grid-template-columns:1fr}
@@ -282,7 +292,8 @@
       .p13-cta .btn{width:100%;min-height:50px;padding:13px 16px}
       .ticket-caption>span:first-child{min-width:0;overflow-wrap:anywhere}
       .ticket-caption>.status-badge{font-size:.7rem;max-width:42%;line-height:1.25}
-      .hero-grid > div:not(.ticket):not(.p13-cta){padding-top:clamp(72px,12vh,108px)}
+      /* Mantém título e CTA imediatamente visíveis no celular */
+      .hero-grid > div:not(.ticket):not(.p13-cta){padding-top:0}
       .hero h1{font-size:clamp(2rem,9vw,2.35rem);line-height:1.04}
       .hero-lead{font-size:.98rem;line-height:1.5;margin:16px 0 22px}
       .hero-actions{gap:10px}
@@ -526,27 +537,27 @@
         </div>
         <div class="faq-grid">
           <div class="faq">
-            <button class="faq-q" aria-expanded="false"><span>Vocês entregam no meu endereço?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <button class="faq-q" type="button" aria-expanded="false"><span>Vocês entregam no meu endereço?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
             <div class="faq-answer"><p>A área atendida depende do endereço informado. Consulte para confirmar se há atendimento na sua região antes de decidir.</p></div>
           </div>
           <div class="faq">
-            <button class="faq-q" aria-expanded="false"><span>O preço mostrado é o valor final?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <button class="faq-q" type="button" aria-expanded="false"><span>O preço mostrado é o valor final?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
             <div class="faq-answer"><p>Não. Os valores exibidos são referências sem entrega. O valor total, com taxa de entrega e eventuais serviços, aparece na consulta antes da confirmação.</p></div>
           </div>
           <div class="faq">
-            <button class="faq-q" aria-expanded="false"><span>Existe compromisso de compra ao consultar?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <button class="faq-q" type="button" aria-expanded="false"><span>Existe compromisso de compra ao consultar?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
             <div class="faq-answer"><p>Não. A consulta apenas mostra as condições disponíveis para o seu endereço. Você decide se quer seguir depois de ver tudo.</p></div>
           </div>
           <div class="faq">
-            <button class="faq-q" aria-expanded="false"><span>Preciso ter o botijão vazio para troca?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <button class="faq-q" type="button" aria-expanded="false"><span>Preciso ter o botijão vazio para troca?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
             <div class="faq-answer"><p>Depende da modalidade disponível na sua região. Essa e outras condições de troca são informadas na consulta.</p></div>
           </div>
           <div class="faq">
-            <button class="faq-q" aria-expanded="false"><span>Quais formas de pagamento são aceitas?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <button class="faq-q" type="button" aria-expanded="false"><span>Quais formas de pagamento são aceitas?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
             <div class="faq-answer"><p>As formas de pagamento disponíveis variam por região e são apresentadas junto com o valor total antes da confirmação.</p></div>
           </div>
           <div class="faq">
-            <button class="faq-q" aria-expanded="false"><span>Quanto tempo leva para saber se atendem minha região?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <button class="faq-q" type="button" aria-expanded="false"><span>Quanto tempo leva para saber se atendem minha região?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
             <div class="faq-answer"><p>A consulta é imediata: basta informar o endereço na próxima página para ver o resultado.</p></div>
           </div>
         </div>
@@ -557,6 +568,10 @@
       </div>
     </section>
   </main>
+
+  <div class="mobile-cta" aria-label="Ação principal no celular">
+    <a class="btn btn-primary" href="/vejasite" data-cta="mobile-sticky" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+  </div>
 
   <footer class="footer">
     <div class="container footer-grid">
@@ -604,17 +619,33 @@
   </noscript>
 
   <script>
-    // Click tracking for every path to /vejasite, tagged by which CTA was used
+    // Mensuração de intenção: conversão principal recomendada = carregamento de /vejasite.
+    // O clique fica como evento secundário para diagnóstico e não deve ser contado
+    // junto com a visualização do destino como duas conversões primárias.
     document.querySelectorAll('a[href="/vejasite"]').forEach(function(link){
       link.addEventListener('click', function(){
-        if (typeof gtag === 'function') {
-          gtag('event', 'destination_click', {
-            event_category: 'engagement',
-            event_label: link.getAttribute('data-cta') || 'vejasite'
-          });
-        }
+        trackAdsConversion(link);
+        if (typeof gtag !== 'function') return;
+        gtag('event', 'destination_click', {
+          event_category: 'engagement',
+          event_label: link.getAttribute('data-cta') || 'vejasite',
+          destination: '/vejasite',
+          transport_type: 'beacon'
+        });
       });
     });
+
+    // Para usar uma conversão direta do Google Ads, preencha o label real fornecido
+    // pelo Google Ads. Deixe vazio se a conversão for importada do GA4 ou baseada
+    // no carregamento da página de destino.
+    var GOOGLE_ADS_CONVERSION_LABEL = '';
+    function trackAdsConversion(link){
+      if (!GOOGLE_ADS_CONVERSION_LABEL || typeof gtag !== 'function') return;
+      gtag('event', 'conversion', {
+        send_to: 'AW-18430848378/' + GOOGLE_ADS_CONVERSION_LABEL,
+        event_callback: function(){ window.location.href = link.href; }
+      });
+    }
 
     // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(function(btn){
