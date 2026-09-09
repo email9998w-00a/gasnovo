@@ -113,16 +113,16 @@
 
     /* Nav */
     .nav{position:sticky;top:0;z-index:30;background:rgba(247,244,238,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px}
-    .brand{display:flex;align-items:center;gap:12px;min-width:0;text-decoration:none}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 auto;text-decoration:none}
     .brand-mark{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:12px;background:linear-gradient(155deg,var(--blue),var(--blue-dark));color:#fff;font-family:'Archivo',sans-serif;font-weight:900;font-size:.95rem}
     .brand-text strong{display:block;font-size:1.02rem;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .brand-text small{display:block;color:var(--steel);font-size:.74rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .nav-links{display:flex;align-items:center;gap:26px;font-size:.9rem;font-weight:700;color:var(--steel)}
+    .nav-links{display:flex;align-items:center;gap:22px;flex:0 0 auto;font-size:.9rem;font-weight:700;color:var(--steel)}
     .nav-links a{text-decoration:none}
     .nav-links a:hover{color:var(--blue)}
     .nav-cta-short{display:none}
-    .nav-cta{font-size:.9rem}
+    .nav-cta{font-size:.9rem;flex:0 0 auto;max-width:230px}
 
     /* Hero */
     .hero{padding:64px 0 56px;background:var(--paper);border-bottom:1px solid var(--line)}
@@ -153,6 +153,8 @@
     .ticket-divider::after{right:-11px}
     .ticket-bottom{padding:22px 26px 26px;display:flex;flex-direction:column;gap:16px}
     .ticket-disclaimer{margin:0;color:var(--steel);font-size:.86rem}
+    .free-delivery{display:inline-flex;align-items:center;gap:7px;background:#e7f7ef;color:#147346;border:1px solid #b9e8ce;border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:900;line-height:1.2}
+    .free-delivery::before{content:"✓";display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem}
     .p13-cta{grid-area:cta;width:100%;margin:0 auto}
     .p13-cta .btn{box-shadow:0 14px 30px rgba(23,105,209,.24)}
     .cta-note{display:block;color:var(--steel);font-size:.78rem;text-align:center;margin-top:9px}
@@ -280,6 +282,10 @@
       .footer-grid{grid-template-columns:1fr 1fr}
       .nav-links{display:none}
     }
+    @media(max-width:1120px){
+      .nav-links{display:none}
+      .nav-cta{max-width:210px}
+    }
     @media(max-width:620px){
       .container{width:min(100% - 28px,1120px)}
       .topbar{font-size:.74rem;line-height:1.35}
@@ -289,6 +295,9 @@
       .brand-text strong{font-size:.82rem}
       .brand-text small{font-size:.62rem}
       .nav > .container > .btn{padding:10px 12px;font-size:.78rem;border-radius:10px}
+      .nav-cta{max-width:none;flex:0 0 auto}
+      .nav-cta-full{display:none}
+      .nav-cta-short{display:inline}
       .hero{padding:28px 0 34px}
       .hero-grid{gap:24px}
       .hero-grid > .ticket{width:100%}
@@ -370,7 +379,8 @@
           </div>
           <div class="ticket-divider"></div>
           <div class="ticket-bottom">
-            <p class="ticket-disclaimer">O valor total, incluindo a entrega, aparece antes da confirmação.</p>
+            <span class="free-delivery">Entrega grátis em todos os endereços atendidos</span>
+            <p class="ticket-disclaimer">O valor total e as condições do produto aparecem antes da confirmação.</p>
           </div>
         </div>
         <div class="p13-cta">
@@ -402,7 +412,7 @@
       <div class="container trust-grid">
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 12.5L12.5 20a2 2 0 0 1-2.83 0l-6.67-6.67a2 2 0 0 1 0-2.83L10.5 3H19a1 1 0 0 1 1 1v8.5z"/><circle cx="15" cy="8" r="1.4" fill="currentColor" stroke="none"/></svg>
-          <div><strong>Preço aberto</strong><span>O valor do produto aparece separado da taxa de entrega e de serviços adicionais.</span></div>
+          <div><strong>Entrega grátis</strong><span>Entrega grátis para todos os endereços atendidos e produtos disponíveis.</span></div>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-7.1 7-12a7 7 0 1 0-14 0c0 4.9 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
@@ -428,7 +438,7 @@
           <div>
             <span class="eyebrow">Produtos e condições</span>
             <h2 class="section-title">Escolha o tamanho e consulte seu endereço</h2>
-            <p class="section-copy">Preços de referência, sem entrega. A disponibilidade, a modalidade e o valor total são confirmados para o seu endereço na próxima etapa.</p>
+            <p class="section-copy">Preços de referência com entrega grátis. A disponibilidade, a modalidade e as condições do produto são confirmadas para o seu endereço na próxima etapa.</p>
           </div>
         </div>
         <div class="product-grid">
@@ -437,7 +447,7 @@
             <div class="product-weight"><strong>13</strong><span>kg</span></div>
             <h3>Botijão P13</h3>
             <p>O mais usado em residências. Consulte modalidade e valor total para o seu endereço.</p>
-            <div class="product-price"><div><span class="from">A partir de</span><strong>R$ 89,90</strong></div></div>
+            <div class="product-price"><div><span class="from">A partir de · entrega grátis</span><strong>R$ 89,90</strong></div></div>
             <a class="product-link" href="/vejasite" data-cta="product-p13" aria-label="Ver valor total do botijão P13">Ver valor total →</a>
           </article>
           <article class="product">
@@ -445,7 +455,7 @@
             <div class="product-weight"><strong>20</strong><span>kg</span></div>
             <h3>Botijão P20</h3>
             <p>Indicado para maior consumo. Consulte aplicação, disponibilidade e valor total.</p>
-            <div class="product-price"><div><span class="from">A partir de</span><strong>R$ 189,90</strong></div></div>
+            <div class="product-price"><div><span class="from">A partir de · entrega grátis</span><strong>R$ 189,90</strong></div></div>
             <a class="product-link" href="/vejasite" data-cta="product-p20" aria-label="Ver valor total do botijão P20">Ver valor total →</a>
           </article>
           <article class="product">
@@ -453,7 +463,7 @@
             <div class="product-weight"><strong>45</strong><span>kg</span></div>
             <h3>Botijão P45</h3>
             <p>Uso comercial ou consumo elevado. Consulte disponibilidade e valor total.</p>
-            <div class="product-price"><div><span class="from">A partir de</span><strong>R$ 395,90</strong></div></div>
+            <div class="product-price"><div><span class="from">A partir de · entrega grátis</span><strong>R$ 395,90</strong></div></div>
             <a class="product-link" href="/vejasite" data-cta="product-p45" aria-label="Ver valor total do botijão P45">Ver valor total →</a>
           </article>
           <article class="product">
@@ -461,7 +471,7 @@
             <div class="product-weight"><strong>5</strong><span>kg</span></div>
             <h3>Botijão P5</h3>
             <p>Compacto e portátil. Consulte disponibilidade, modalidade e valor total.</p>
-            <div class="product-price"><div><span class="from">A partir de</span><strong>R$ 69,90</strong></div></div>
+            <div class="product-price"><div><span class="from">A partir de · entrega grátis</span><strong>R$ 69,90</strong></div></div>
             <a class="product-link" href="/vejasite" data-cta="product-p5" aria-label="Ver valor total do botijão P5">Ver valor total →</a>
           </article>
         </div>
@@ -507,11 +517,12 @@
           <h2 class="section-title">Você confere as condições antes de decidir.</h2>
           <p class="section-copy">Na próxima página, você informa o endereço e confere se há atendimento, a disponibilidade, o prazo, a taxa de entrega e o valor total. A consulta não confirma automaticamente uma compra.</p>
         </div>
-        <div class="reassurance-panel">
-          <strong>Atendimento identificado</strong>
-          <span>COMERCIO DE GAS LTDA · CNPJ 45.846.492/0003-30</span>
-          <span>Revenda independente · São Paulo/SP</span>
-          <span class="status-badge" data-status style="margin-top:10px">&nbsp;</span>
+          <div class="reassurance-panel">
+            <strong>Atendimento identificado</strong>
+            <span>COMERCIO DE GAS LTDA · CNPJ 45.846.492/0003-30</span>
+            <span>Revenda independente · São Paulo/SP</span>
+            <span class="free-delivery" style="margin-top:12px">Entrega grátis em todos os produtos</span>
+            <span class="status-badge" data-status style="margin-top:10px">&nbsp;</span>
           <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
           <small>Disponibilidade e condições podem variar conforme endereço e estoque.</small>
         </div>
