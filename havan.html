@@ -117,6 +117,8 @@ input,select{font:inherit}
 
 .address-fields{display:none;margin-top:12px}
 .address-fields.is-visible{display:block}
+.address-number-fields{display:none;margin-top:12px}
+.address-number-fields.is-visible{display:block}
 
 /* ---- Entrega ---- */
 .shipping-card{display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
@@ -305,21 +307,26 @@ input,select{font:inherit}
           <input id="bairro" type="text" autocomplete="address-line2" placeholder="Seu bairro">
           <div class="msg">Informe o bairro.</div>
         </div>
+        <div class="field">
+          <label for="rua">Rua / Logradouro <span class="required-mark">*</span></label>
+          <input id="rua" type="text" autocomplete="address-line1" placeholder="Nome da rua">
+          <div class="msg">Informe a rua.</div>
+        </div>
+      </div>
+      <!-- O CEP nunca traz o número da residência (o ViaCEP não retorna esse
+           dado) — por isso este bloco fica sempre visível, mesmo quando o
+           resto do endereço já foi recolhido no resumo. -->
+      <div class="address-number-fields" id="addressNumberFields">
         <div class="row">
-          <div class="field">
-            <label for="rua">Rua / Logradouro <span class="required-mark">*</span></label>
-            <input id="rua" type="text" autocomplete="address-line1" placeholder="Nome da rua">
-            <div class="msg">Informe a rua.</div>
-          </div>
           <div class="field w-num">
             <label for="numero">Número <span class="required-mark">*</span></label>
             <input id="numero" type="text" inputmode="numeric" autocomplete="address-line1" placeholder="Nº">
-            <div class="msg">Nº</div>
+            <div class="msg">Informe o número.</div>
           </div>
-        </div>
-        <div class="field">
-          <label for="compl">Complemento <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
-          <input id="compl" type="text" placeholder="Apto, bloco, referência">
+          <div class="field">
+            <label for="compl">Complemento <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+            <input id="compl" type="text" placeholder="Apto, bloco, referência">
+          </div>
         </div>
       </div>
       <div class="shipping-card" id="shippingCard" aria-live="polite">
@@ -563,6 +570,7 @@ function resetAddressState() {
   updateTotals();
   document.getElementById('addressFields').classList.remove('is-visible');
   document.getElementById('addressSummary').classList.remove('is-visible');
+  document.getElementById('addressNumberFields').classList.remove('is-visible');
   document.getElementById('shippingCard').classList.remove('is-visible');
   document.getElementById('personalCard').classList.remove('is-visible');
   document.getElementById('paymentCard').classList.remove('is-visible');
@@ -611,6 +619,9 @@ async function buscarEnderecoPorCep() {
     cepStatus.innerHTML = '<svg class="status-icon" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Endereço localizado</strong><small>Confira e escolha a entrega.</small></span>';
     cepStatus.className = 'field-status success';
     if (j.logradouro && j.bairro) { renderAddressSummary(); } else { document.getElementById('addressFields').classList.add('is-visible'); }
+    // O número nunca vem do CEP — este campo fica visível sempre que o
+    // endereço é localizado, resumido ou não.
+    document.getElementById('addressNumberFields').classList.add('is-visible');
     document.getElementById('numero').focus({ preventScroll: true });
     document.getElementById('shippingCard').classList.add('is-visible');
   } catch (e) {
