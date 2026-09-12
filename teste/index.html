@@ -1123,14 +1123,15 @@
     .variant-card.is-loading .variant-copy,
     .variant-card.is-loading .variant-weight { opacity: .82; }
     .price-box.is-updating {
-      animation: priceRefresh .34s ease-out;
+      animation: none;
+      opacity: .88;
     }
     .gallery-frame.is-updating {
       animation: galleryRefresh .34s ease-out;
     }
     @keyframes priceRefresh {
-      0% { opacity: .72; transform: translateY(2px); }
-      100% { opacity: 1; transform: translateY(0); }
+      from { opacity: .88; }
+      to { opacity: 1; }
     }
     @keyframes galleryRefresh {
       0% { opacity: .78; }
@@ -1433,6 +1434,29 @@
       .mobile-cta-price { font-size: 14px; }
       .mobile-cta .btn { padding-inline: 8px; font-size: 11px; }
     }
+
+    /* Troca de variante: feedback localizado, rápido e sem desbotar a interface. */
+    .variant-card {
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+    }
+    .variant-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px transparent;
+      pointer-events: none;
+      transition: box-shadow .2s ease;
+    }
+    .variant-card.is-selected::before { box-shadow: inset 0 0 0 1px rgba(18,59,99,.16); }
+    .variant-card .variant-check { transition: background-color .18s ease, border-color .18s ease, color .18s ease; }
+    .variant-card .variant-copy { transition: opacity .18s ease; }
+    .product-info.is-switching .price-box,
+    .product-info.is-switching .gallery-frame { opacity: .88; transition: opacity .16s ease; }
+    .product-info:not(.is-switching) .price-box,
+    .product-info:not(.is-switching) .gallery-frame { opacity: 1; transition: opacity .16s ease; }
 
   </style>
 </head>
@@ -1773,11 +1797,6 @@
         productInfo?.classList.add('is-switching');
         $('#mainCta')?.classList.add('is-switching');
         $('#mobileCta')?.classList.add('is-switching');
-        $$('.variant-card', variantGrid).forEach((card) => {
-          card.disabled = true;
-          card.setAttribute('aria-disabled', 'true');
-          card.classList.add('is-loading');
-        });
         actionButtons.forEach((button) => {
           button.disabled = true;
           button.setAttribute('aria-disabled', 'true');
@@ -1786,21 +1805,11 @@
         updateProductView();
         const updatedGrid = $('#variantGrid');
         updatedGrid?.setAttribute('aria-busy', 'true');
-        $$('.variant-card', updatedGrid).forEach((card) => {
-          card.disabled = true;
-          card.setAttribute('aria-disabled', 'true');
-          card.classList.add('is-loading');
-        });
         variantSwitchTimer = setTimeout(() => {
           productInfo?.classList.remove('is-switching');
           $('#mainCta')?.classList.remove('is-switching');
           $('#mobileCta')?.classList.remove('is-switching');
           updatedGrid?.setAttribute('aria-busy', 'false');
-          $$('.variant-card', updatedGrid).forEach((card) => {
-            card.disabled = false;
-            card.removeAttribute('aria-disabled');
-            card.classList.remove('is-loading');
-          });
           actionButtons.forEach((button) => {
             button.disabled = false;
             button.removeAttribute('aria-disabled');
