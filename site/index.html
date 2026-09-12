@@ -344,27 +344,23 @@
       .quick-action-inner .btn{width:100%}
     }
 
-    /* Hero direto: reduz friccao apenas no primeiro contato; informacoes completas permanecem abaixo. */
-    .hero-direct{padding:42px 0 40px;background:linear-gradient(135deg,#f7f4ee 0%,#edf4ff 100%)}
-    .hero-direct-inner{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:55px;align-items:center;max-width:920px}
-    .hero-direct-copy{max-width:610px}
-    .hero-direct h1{font-size:clamp(2.35rem,5vw,3.8rem);line-height:1.02;margin-top:12px}
-    .hero-direct .hero-lead{font-size:1.12rem;margin:17px 0 22px;color:var(--steel)}
-    .hero-direct-btn{min-width:300px;font-size:1.02rem}
-    .hero-direct-trust{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:17px;color:#3c4657;font-size:.78rem;font-weight:700}
-    .hero-direct-product{background:#fff;border:1px solid rgba(16,26,46,.06);border-radius:20px;padding:17px;box-shadow:var(--shadow-sm);text-align:center}
-    .hero-direct-product img{height:170px;width:100%;object-fit:contain;filter:drop-shadow(0 13px 11px rgba(16,26,46,.14));margin-bottom:7px}
-    .hero-direct-product strong{display:block;color:var(--navy);font:900 1.05rem Archivo,sans-serif}
-    .hero-direct-product span{display:block;color:var(--steel);font-size:.76rem;margin-top:3px}
-    @media(max-width:960px){.hero-direct{padding:34px 0}.hero-direct-inner{grid-template-columns:1fr;gap:22px;max-width:620px}.hero-direct-product{display:none}.hero-direct-copy{max-width:none}}
+    /* Revisao final de conversao: primeiro viewport direto, leve e com uma acao principal. */
+    .hero-direct{padding:54px 0 50px;background:linear-gradient(135deg,#f7f4ee 0%,#edf4ff 100%)}
+    .hero-direct-inner{max-width:760px;text-align:center}
+    .hero-direct-copy{max-width:680px;margin:0 auto}
+    .hero-direct h1{font-size:clamp(2.45rem,5.4vw,4rem);line-height:1.02;margin-top:12px}
+    .hero-direct .hero-lead{font-size:1.12rem;line-height:1.5;margin:18px auto 24px;color:var(--steel);max-width:620px}
+    .hero-direct-btn{min-width:320px;font-size:1.03rem}
+    .hero-direct .cta-note{display:block;margin-top:9px}
+    .hero-direct-trust{display:flex;justify-content:center;flex-wrap:wrap;gap:7px 20px;margin-top:19px;color:#3c4657;font-size:.8rem;font-weight:700}
+    .hero-direct-trust span{white-space:nowrap}
     @media(max-width:620px){
-      .hero-direct{padding:25px 0 28px}
-      .hero-direct-inner{gap:0}
-      .hero-direct h1{font-size:clamp(2.05rem,10vw,2.55rem);line-height:1.03}
-      .hero-direct .hero-lead{font-size:1rem;line-height:1.42;margin:13px 0 18px}
-      .hero-direct-btn{width:100%;min-width:0;min-height:54px}
-      .hero-direct .cta-note{text-align:center;margin-top:8px}
-      .hero-direct-trust{display:grid;gap:5px;margin-top:14px;font-size:.75rem}
+      .hero-direct{padding:34px 0 32px}
+      .hero-direct-inner{width:min(100% - 28px,1120px)}
+      .hero-direct h1{font-size:clamp(2.2rem,10.6vw,2.8rem);line-height:1.02}
+      .hero-direct .hero-lead{font-size:1rem;line-height:1.45;margin:14px auto 19px}
+      .hero-direct-btn{width:100%;min-width:0;min-height:56px}
+      .hero-direct-trust{display:grid;justify-content:stretch;text-align:left;gap:5px;margin-top:15px;font-size:.76rem}
       .hero-direct-trust span:nth-child(2){display:none}
     }
 
@@ -396,16 +392,12 @@
     <section class="hero hero-direct" id="inicio">
       <div class="container hero-direct-inner">
         <div class="hero-direct-copy">
-          <span class="eyebrow">Consulta rápida</span>
-          <h1>Consulte a entrega de gás no seu endereço.</h1>
-          <p class="hero-lead">Veja disponibilidade, prazo e valor do produto antes de decidir.</p>
+          <span class="eyebrow">Consulta rápida e gratuita</span>
+          <h1>Veja se entregamos no seu endereço.</h1>
+          <p class="hero-lead">Informe seu endereço e confira disponibilidade, prazo e valor do produto antes de decidir.</p>
           <a class="btn btn-primary hero-direct-btn" href="/vejasite" data-cta="hero-direct" aria-label="Ver disponibilidade e valor do produto">Ver disponibilidade agora <span aria-hidden="true">→</span></a>
-          <span class="cta-note">Consulta gratuita · sem compromisso de compra</span>
+          <span class="cta-note">Sem compromisso de compra · resultado na próxima etapa</span>
           <div class="hero-direct-trust"><span>✓ Entrega 100% gratuita nos endereços atendidos</span><span>✓ Condições exibidas antes da confirmação</span></div>
-        </div>
-        <div class="hero-direct-product" aria-label="Produto em destaque">
-          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png" alt="Botijão de gás GLP P13 de 13 kg" width="300" height="300" fetchpriority="high">
-          <div><strong>Botijão P13</strong><span>Valor de referência: R$ 89,90</span></div>
         </div>
       </div>
     </section>
