@@ -773,7 +773,7 @@
       font-weight: 600;
     }
     .variant-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 8px;
     }
     .variant-card,
@@ -885,6 +885,74 @@
       .current-price { gap: 5px; }
       .shipping-preview { align-items: flex-start; }
       .tabs { gap: 23px; }
+    }
+    /* ===== Variantes: leitura confortável sem sobrecarga ===== */
+    .choice-box { margin-top: 16px; margin-bottom: 15px; }
+    .choice-heading { margin-bottom: 9px; }
+    .choice-heading strong { font-size: 13px; }
+    .choice-heading span { color: #617482; font-size: 10px; }
+    .variant-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+    .variant-card, .variant-card.is-selected {
+      position: relative;
+      min-height: 54px;
+      justify-content: flex-start;
+      padding: 9px 12px;
+      border: 1px solid #cedbe4;
+      border-radius: 9px;
+      background: #fff;
+      text-align: left;
+      box-shadow: none;
+      transition: border-color .16s ease, background-color .16s ease, box-shadow .16s ease;
+    }
+    .variant-card:hover {
+      border-color: #8da9bd;
+      background: #fbfdfe;
+      transform: none;
+    }
+    .variant-card.is-selected {
+      border-color: #2a638a;
+      background: #f1f7fa;
+      box-shadow: inset 3px 0 0 #2a638a;
+    }
+    .variant-copy { padding-left: 1px; }
+    .variant-name {
+      color: #263947;
+      font-size: 11px;
+      line-height: 1.25;
+    }
+    .variant-card.is-selected .variant-name { color: #174b70; }
+    .variant-weight {
+      margin-top: 2px;
+      color: #6a7c89;
+      font-size: 9px;
+    }
+    .variant-card.is-selected .variant-weight { color: #456b82; }
+    .variant-card.is-selected::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      width: 16px;
+      height: 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #2a638a;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      transform: translateY(-50%);
+    }
+    @media (max-width: 620px) {
+      .choice-box { margin-top: 14px; }
+      .variant-grid { gap: 6px; }
+      .variant-card, .variant-card.is-selected { min-height: 52px; padding: 8px 11px; }
+      .variant-name { font-size: 10px; }
+      .variant-weight { font-size: 9px; }
+      .variant-card.is-selected::after { right: 8px; }
     }
   </style>
 </head>
@@ -1104,6 +1172,12 @@
           'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062474227/cFUWVTKpeVkZvqXt.webp',
           'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062474227/EBRpbffdLnXqDYZL.webp',
           'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062474227/JZsTpjEzztBYtWYW.webp'
+        ] },
+        { id: 'Cookies & Cream', name: 'Cookies & Cream', weight: 450, price: 104.90, oldPrice: 205.60, images: [
+          'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062474227/xbyveckgqnrlKoIW.webp',
+          'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062474227/HgqWrJzVOUcxlRJS.webp',
+          'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062474227/FhrhcZbdDWvVUVpg.webp',
+          'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062474227/nNBPFOZeHGEHhNft.webp'
         ] }
       ];
 
