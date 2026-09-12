@@ -266,15 +266,13 @@
       .cart-trigger { min-height: 38px; padding: 7px 10px; font-size: 12px; }
       .breadcrumbs { padding: 14px 0 7px; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .product-shell { padding-bottom: 40px; }
-      h1 { font-size: 28px; }
-      .positioning { font-size: 14px; }
+      h1 { font-size: 25px; }
+      .positioning { font-size: 13px; }
       .variant-grid { grid-template-columns: 1fr 1fr; gap: 7px; }
       .variant-card { min-height: 56px; padding: 8px; gap: 7px; }
       .variant-card.is-selected { padding: 7px; }
       .variant-name { font-size: 11px; }
       .variant-weight { font-size: 10px; }
-      .benefits { grid-template-columns: 1fr 1fr; }
-      .benefit:last-child { grid-column: 1 / -1; }
       .cta-group { grid-template-columns: 1fr; }
       .btn-secondary { order: 2; }
       .shipping-preview { margin-bottom: 2px; }
@@ -293,21 +291,58 @@
       .cart-drawer { width: 100%; }
       .cart-header, .cart-section, .cart-footer { padding-right: 16px; padding-left: 16px; }
     }
-    /* Ajustes finais de composição: uma hierarquia visual única e sem ruído. */
-    .product-shell { gap: clamp(40px, 5vw, 64px); }
-    .product-info { max-width: 520px; }
-    .gallery-frame, .choice-box, .price-box, .shipping-preview { border-radius: 12px; }
-    .gallery-frame { box-shadow: 0 10px 24px rgba(18,59,102,.06); }
-    .choice-box { background: #fff; box-shadow: 0 2px 8px rgba(18,59,102,.04); }
-    .choice-heading span { background: transparent; padding: 0; color: var(--muted); font-weight: 600; }
-    .variant-card { min-height: 58px; }
-    .price-box { margin-top: 14px; margin-bottom: 14px; box-shadow: 0 5px 16px rgba(18,59,102,.05); }
-    .current-price { font-size: clamp(32px, 3.7vw, 38px); }
-    .cta-group { margin-top: 14px; }
-    .btn-primary { min-height: 56px; font-size: 14px; }
-    .btn-secondary { min-height: 56px; }
-    .benefits { margin: 14px 0 0; }
-    .shipping-preview { margin-top: 12px; }
+    /* Composição compacta: foco no produto, oferta e ação principal. */
+    .product-shell { grid-template-columns: minmax(0, 1fr) minmax(320px, .78fr); gap: clamp(32px, 4.5vw, 56px); padding-top: 12px; }
+    .gallery { max-width: 590px; }
+    .gallery-frame { border: 1px solid #e2e8ee; border-radius: 12px; background: #fafbfc; box-shadow: none; }
+    .gallery-slide { padding: clamp(16px, 3.5vw, 42px); }
+    .gallery-slide img { filter: none; }
+    .gallery-hint { padding-bottom: 11px; font-size: 10px; }
+    .gallery-dots { min-height: 24px; margin-top: 6px; gap: 7px; }
+    .gallery-dot { width: 7px; height: 7px; }
+    .product-info { max-width: 460px; padding-top: 2px; }
+    .badge-row { gap: 6px; margin-bottom: 12px; }
+    .badge { padding: 5px 8px; font-size: 9px; }
+    h1 { margin-bottom: 8px; font-size: clamp(25px, 2.8vw, 36px); line-height: 1.12; }
+    .positioning { font-size: 13px; line-height: 1.55; }
+    .rating-row { gap: 7px; margin: 12px 0 17px; font-size: 11px; }
+    .choice-box { margin-bottom: 12px; padding: 12px; border-radius: 10px; box-shadow: none; }
+    .choice-heading { margin-bottom: 8px; }
+    .choice-heading strong { font-size: 13px; }
+    .choice-heading span { font-size: 10px; }
+    .variant-grid { gap: 6px; }
+    .variant-card { min-height: 52px; gap: 7px; padding: 8px; border-radius: 8px; }
+    .variant-card.is-selected { padding: 7px; box-shadow: none; }
+    .variant-name { font-size: 11px; }
+    .variant-weight { margin-top: 2px; font-size: 10px; }
+    .price-box { margin: 12px 0; padding: 14px 15px; border-radius: 10px; box-shadow: none; }
+    .old-price { font-size: 11px; }
+    .discount { font-size: 10px; }
+    .current-price { font-size: clamp(28px, 3.3vw, 34px); }
+    .pix-label { padding: 3px 6px; font-size: 11px; }
+    .installments { margin-top: 4px; font-size: 11px; }
+    .unit-price { margin-top: 4px; font-size: 10px; }
+    .cta-group { grid-template-columns: 1fr .9fr; gap: 7px; margin-top: 12px; }
+    .btn, .btn-primary, .btn-secondary { min-height: 48px; padding: 10px 11px; border-radius: 8px; font-size: 12px; }
+    .purchase-note { margin-top: 7px; font-size: 9px; }
+    .shipping-preview { gap: 8px; margin-top: 10px; padding: 10px 11px; border-radius: 9px; box-shadow: none; }
+    .shipping-preview-icon { flex-basis: 28px; width: 28px; height: 28px; font-size: 11px; }
+    .shipping-preview strong { font-size: 11px; }
+    .shipping-preview span { margin-top: 2px; font-size: 10px; line-height: 1.35; }
+
+    @media (max-width: 860px) {
+      .product-shell { grid-template-columns: 1fr; gap: 25px; padding-top: 8px; }
+      .gallery { max-width: none; }
+      .product-info { max-width: none; padding-top: 0; }
+    }
+    @media (max-width: 620px) {
+      .product-shell { padding-bottom: 40px; }
+      h1 { font-size: 25px; }
+      .positioning { font-size: 13px; }
+      .cta-group { grid-template-columns: 1fr; }
+      .btn-secondary { order: 2; }
+      .shipping-preview { margin-bottom: 2px; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
@@ -612,12 +647,6 @@
             <button class="btn btn-secondary" id="addToCart" type="button"><i class="fa-solid fa-cart-plus" aria-hidden="true"></i> Adicionar ao carrinho</button>
           </div>
           <p class="purchase-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Checkout seguro · seus dados permanecem protegidos.</p>
-
-          <div class="benefits" aria-label="Benefícios da compra">
-            <div class="benefit"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>Produto original</span></div>
-            <div class="benefit"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Pagamento protegido</span></div>
-            <div class="benefit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Pedido rastreado</span></div>
-          </div>
 
           <div class="shipping-preview">
             <div class="shipping-preview-icon"><i class="fa-solid fa-truck" aria-hidden="true"></i></div>
