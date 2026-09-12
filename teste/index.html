@@ -1284,6 +1284,98 @@
       .gallery-frame { box-shadow: 0 5px 16px rgba(18,59,102,.06); }
       .reviews-section, .faq-section { padding: 40px 0; }
     }
+
+    /* Refinamento mobile: hierarquia de leitura, ritmo e conforto de toque. */
+    @media (max-width: 620px) {
+      :root { --mobile-gutter: 16px; }
+      .container { width: min(100% - (var(--mobile-gutter) * 2), 520px); }
+      .announcement { min-height: 28px; padding: 6px 12px; font-size: 9px; line-height: 1.25; }
+      .header-row { min-height: 58px; gap: 12px; }
+      .logo { font-size: 20px; letter-spacing: .07em; }
+      .cart-trigger { min-height: 40px; padding: 8px 10px; border-radius: 9px; font-size: 11px; }
+      .cart-trigger i { font-size: 13px; }
+      .cart-count { min-width: 19px; height: 19px; font-size: 10px; }
+      .breadcrumbs { padding: 13px 0 8px; font-size: 10px; }
+      .product-shell { gap: 20px; padding-top: 4px; padding-bottom: 30px; }
+      .gallery { margin-inline: -2px; }
+      .gallery-frame { border-radius: 14px; }
+      .gallery-slide { aspect-ratio: 1 / .94; padding: 18px 22px 14px; }
+      .gallery-hint { padding: 0 10px 10px; font-size: 9px; }
+      .gallery-dots { min-height: 24px; margin-top: 4px; }
+      .product-info { padding: 0; }
+      .badge-row { gap: 5px; margin-bottom: 10px; }
+      .badge { padding: 5px 7px; font-size: 9px; }
+      h1 { max-width: 100%; margin-bottom: 8px; font-size: clamp(25px, 7.2vw, 30px); line-height: 1.1; letter-spacing: -.04em; }
+      .positioning { font-size: 12px; line-height: 1.55; }
+      .rating-row { gap: 6px; margin: 11px 0 15px; font-size: 11px; }
+      .choice-box { margin-bottom: 11px; padding: 12px; border-radius: 12px; }
+      .choice-heading { align-items: center; margin-bottom: 9px; }
+      .choice-heading strong { font-size: 13px; }
+      .choice-heading span { padding: 3px 6px; font-size: 9px; }
+      .variant-grid { gap: 6px; }
+      .variant-card { min-height: 56px; padding: 8px 7px; border-radius: 9px; }
+      .variant-card.is-selected { padding: 7px 6px; box-shadow: 0 0 0 2px rgba(18,59,99,.1); }
+      .variant-check { flex-basis: 16px; width: 16px; height: 16px; font-size: 8px; }
+      .variant-name { font-size: 10px; }
+      .variant-weight { margin-top: 2px; font-size: 9px; }
+      .price-box { margin: 11px 0; padding: 13px 14px; border-radius: 12px; }
+      .old-price-row { margin-bottom: 4px; }
+      .old-price { font-size: 10px; }
+      .discount { padding: 3px 6px; font-size: 9px; }
+      .current-price { font-size: clamp(30px, 9vw, 36px); }
+      .pix-label { margin-left: 3px; padding: 3px 5px; font-size: 10px; }
+      .installments { margin-top: 4px; font-size: 10px; }
+      .unit-price { margin-top: 3px; font-size: 9px; }
+      .cta-group { gap: 8px; margin-top: 13px; }
+      .btn, .btn-primary, .btn-secondary { min-height: 50px; border-radius: 9px; font-size: 12px; }
+      .cta-group .btn-primary { order: 1; }
+      .cta-group .btn-secondary { order: 2; }
+      .purchase-note { margin-top: 7px; font-size: 9px; line-height: 1.35; }
+      .decision-points { gap: 4px; margin-top: 8px; font-size: 9px; line-height: 1.3; }
+      .shipping-preview { gap: 9px; margin-top: 11px; padding: 11px 12px; border-radius: 10px; }
+      .shipping-preview-icon { flex-basis: 28px; width: 28px; height: 28px; font-size: 11px; }
+      .shipping-preview strong { font-size: 11px; line-height: 1.25; }
+      .shipping-preview span { margin-top: 3px; font-size: 9px; line-height: 1.4; }
+      .details { margin-top: 0; }
+      .tabs { gap: 24px; }
+      .tab-button { min-height: 50px; padding: 13px 0; font-size: 12px; }
+      .tab-panel { padding: 28px 0 34px; }
+      .tab-panel h2 { margin-bottom: 11px; font-size: 21px; line-height: 1.2; }
+      .tab-panel p, .tab-panel li { font-size: 12px; line-height: 1.65; }
+      .highlight-grid { gap: 8px; margin-top: 18px; }
+      .highlight-card { min-height: 0; padding: 14px; border-radius: 10px; }
+      .highlight-card h3 { margin: 8px 0 4px; font-size: 13px; }
+      .highlight-card p { font-size: 11px; }
+      .reviews-section, .faq-section { padding: 38px 0; }
+      .reviews-header { margin-bottom: 22px; }
+      .reviews-header > div:first-child { margin-bottom: 22px !important; }
+      .reviews-header h2, .section-heading h2 { font-size: 24px; line-height: 1.2; }
+      .overall-rating { gap: 10px; }
+      .stars-large { font-size: 20px; }
+      .total-reviews-count { font-size: 11px; }
+      .review-grid, .reviews-grid { gap: 10px; }
+      .review-card { padding: 15px; border-radius: 11px; }
+      .faq-question { min-height: 58px; padding: 15px 0; font-size: 13px; }
+      .faq-answer { padding: 0 22px 15px 0; }
+      .faq-answer p { font-size: 12px; }
+      footer { padding: 34px 0 22px; }
+      .footer-grid { gap: 22px; }
+      .mobile-cta { right: 10px; bottom: calc(8px + env(safe-area-inset-bottom)); left: 10px; min-height: 58px; gap: 10px; padding: 8px 9px; border-radius: 12px; }
+      .mobile-cta-info { min-width: 74px; }
+      .mobile-cta-label { margin-bottom: 2px; font-size: 8px; }
+      .mobile-cta-price { font-size: 14px; }
+      .mobile-cta .btn { min-height: 42px; padding: 9px 11px; font-size: 11px; }
+      body:has(.mobile-cta.is-visible) { padding-bottom: 78px; }
+    }
+    @media (max-width: 370px) {
+      .container { width: calc(100% - 24px); }
+      .cart-trigger span:not(.cart-count) { display: none; }
+      .header-links { gap: 8px; }
+      .gallery-slide { padding-inline: 16px; }
+      .variant-name { font-size: 9px; }
+      .decision-points { font-size: 8px; }
+      .mobile-cta .btn { padding-inline: 9px; }
+    }
   </style>
 </head>
 <body>
