@@ -94,6 +94,11 @@ input,select{font:inherit}
 .row{display:flex;flex-wrap:wrap;gap:10px}
 .row .field{flex:1 1 100%}
 .w-num{max-width:none}
+.row-compact{display:flex;gap:10px}
+.row-compact .field{margin-bottom:12px;min-width:0}
+.row-compact .field.w-num{flex:0 0 84px}
+.row-compact .field.w-num input{text-align:center;padding-inline:6px}
+.row-compact .field:not(.w-num){flex:1 1 auto}
 .privacy-note{display:flex;align-items:center;gap:6px;margin:-2px 0 12px;color:#7b8b95;font-size:.7rem;line-height:1.4}
 .privacy-note .ico{width:13px;height:13px;color:var(--success);flex:none}
 
@@ -317,11 +322,11 @@ input,select{font:inherit}
            dado) — por isso este bloco fica sempre visível, mesmo quando o
            resto do endereço já foi recolhido no resumo. -->
       <div class="address-number-fields" id="addressNumberFields">
-        <div class="row">
+        <div class="row-compact">
           <div class="field w-num">
-            <label for="numero">Número <span class="required-mark">*</span></label>
-            <input id="numero" type="text" inputmode="numeric" autocomplete="address-line1" placeholder="Nº">
-            <div class="msg">Informe o número.</div>
+            <label for="numero">Nº <span class="required-mark">*</span></label>
+            <input id="numero" type="text" inputmode="numeric" autocomplete="address-line1" placeholder="Nº" maxlength="6">
+            <div class="msg">Nº</div>
           </div>
           <div class="field">
             <label for="compl">Complemento <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
@@ -620,9 +625,9 @@ async function buscarEnderecoPorCep() {
     cepStatus.className = 'field-status success';
     if (j.logradouro && j.bairro) { renderAddressSummary(); } else { document.getElementById('addressFields').classList.add('is-visible'); }
     // O número nunca vem do CEP — este campo fica visível sempre que o
-    // endereço é localizado, resumido ou não.
+    // endereço é localizado, resumido ou não. Não colocamos foco automático
+    // nele para não atrapalhar quem ainda está lendo a tela.
     document.getElementById('addressNumberFields').classList.add('is-visible');
-    document.getElementById('numero').focus({ preventScroll: true });
     document.getElementById('shippingCard').classList.add('is-visible');
   } catch (e) {
     const elapsed = performance.now() - startedAt;
