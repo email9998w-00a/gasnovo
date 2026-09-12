@@ -6,6 +6,10 @@
   <meta name="description" content="Informe seu endereço e veja na hora se atendemos sua região, a disponibilidade, o prazo e as condições do produto com entrega 100% gratuita, sem taxa de entrega ou cobrança adicional relacionada à entrega.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#101a2e">
+  <meta name="robots" content="index,follow">
+
+  <!-- Destino principal: altere apenas esta constante caso a próxima etapa mude. -->
+  <script>window.DESTINATION_PATH = '/vejasite';</script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18430848378"></script>
@@ -86,6 +90,14 @@
     .container{width:min(1120px,calc(100% - 40px));margin:auto}
     .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
     :focus-visible{outline:3px solid rgba(23,105,209,.45);outline-offset:3px;border-radius:6px}
+
+    .conversion-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--blue-dark);font-size:.8rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
+    .conversion-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(28,143,90,.12)}
+    .hero-copy{max-width:590px}
+    .hero .hero-lead{max-width:500px}
+    .hero .hero-benefits{gap:8px}
+    .hero .hero-note{font-size:.76rem}
+    @media(max-width:960px){.hero-copy{max-width:620px;margin:auto}.hero-grid > .ticket{margin:auto}.hero-grid > .p13-cta{max-width:520px;margin:auto}}
 
     /* Buttons */
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-weight:800;text-decoration:none;padding:16px 24px;min-height:54px;transition:transform .15s var(--ease),background .15s,box-shadow .15s;white-space:nowrap;font-size:.98rem}
@@ -268,13 +280,14 @@
     .mobile-cta{display:none}
     .mobile-cta .btn{width:100%;min-height:50px;padding:13px 16px}
     @media(max-width:620px){
-      body{padding-bottom:76px}
+      body{padding-bottom:84px}
       .mobile-cta{
         position:fixed;left:0;right:0;bottom:0;z-index:40;display:block;
-        padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+        padding:9px 12px calc(9px + env(safe-area-inset-bottom));
         background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
         border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(16,26,46,.12)
       }
+      .mobile-cta .btn{min-height:52px;font-size:.92rem}
     }
 
     @media(max-width:960px){
@@ -290,44 +303,53 @@
       .nav-cta{max-width:210px}
     }
     @media(max-width:620px){
-      .container{width:min(100% - 28px,1120px)}
+      .container{width:min(100% - 32px,1120px)}
       .topbar{font-size:.74rem;line-height:1.35}
       .topbar .container{padding:8px 0}
-      .nav-inner{min-height:66px;padding:8px 0;gap:10px}
+      .nav-inner{min-height:64px;padding:7px 0;gap:8px}
       .brand-mark{width:36px;height:36px;font-size:.8rem;border-radius:10px}
       .brand-text strong{font-size:.82rem}
       .brand-text small{font-size:.62rem}
-      .nav > .container > .btn{padding:10px 12px;font-size:.78rem;border-radius:10px}
+      .nav > .container > .btn{padding:9px 10px;font-size:.76rem;border-radius:10px}
       .nav-cta{max-width:none;flex:0 0 auto}
       .nav-cta-full{display:none}
       .nav-cta-short{display:inline}
-      .hero{padding:28px 0 34px}
-      .hero-grid{gap:24px}
+      .hero{padding:24px 0 32px}
+      .hero-grid{grid-template-areas:"copy" "ticket" "cta";gap:20px}
       .hero-grid > .ticket{width:100%}
-      .ticket-top{padding:22px 22px 0}
-      .ticket-photo,.ticket-photo img{height:238px}
-      .ticket-photo img{width:min(270px,82%)}
-      .ticket-caption{align-items:center;padding-bottom:16px;gap:8px}
-      .ticket-caption .label{font-size:.7rem;line-height:1.3}
+      .hero-copy{width:100%;padding:0!important}
+      .conversion-kicker{font-size:.7rem;margin-bottom:10px}
+      .hero h1{font-size:clamp(1.95rem,9.4vw,2.3rem);line-height:1.06;letter-spacing:-.03em}
+      .hero-lead{font-size:.96rem;line-height:1.48;margin:14px 0 18px}
+      .hero-actions{display:none}
+      .hero-cta-note{display:none}
+      .hero-benefits{gap:7px;margin-top:18px;font-size:.82rem}
+      .hero-benefits svg{width:17px;height:17px}
+      .hero-note{font-size:.72rem;line-height:1.4;margin-top:16px}
+      .ticket-top{padding:18px 18px 0}
+      .ticket-photo,.ticket-photo img{height:190px}
+      .ticket-photo img{width:min(220px,76%)}
+      .ticket-caption{align-items:center;padding-bottom:14px;gap:8px}
+      .ticket-caption .label{font-size:.68rem;line-height:1.28}
       .ticket-caption .price{font-size:1.4rem}
-      .ticket-divider{margin:0 -22px}
-      .ticket-bottom{padding:20px 22px 22px;gap:14px}
+      .ticket-divider{margin:0 -18px}
+      .ticket-bottom{padding:16px 18px 18px;gap:11px}
+      .free-delivery{font-size:.72rem;padding:6px 9px}
+      .ticket-disclaimer{font-size:.77rem;line-height:1.4}
       .p13-cta{width:100%;margin:0 auto}
-      .p13-cta .btn{width:100%;min-height:50px;padding:13px 16px}
+      .p13-cta .btn{width:100%;min-height:52px;padding:13px 14px;font-size:.92rem}
+      .cta-note{font-size:.72rem;line-height:1.35}
       .ticket-caption>span:first-child{min-width:0;overflow-wrap:anywhere}
       .ticket-caption>.status-badge{font-size:.7rem;max-width:42%;line-height:1.25}
-      /* Mantém título e CTA imediatamente visíveis no celular */
-      .hero-grid > div:not(.ticket):not(.p13-cta){padding-top:0}
-      .hero h1{font-size:clamp(2rem,9vw,2.35rem);line-height:1.04}
-      .hero-lead{font-size:.98rem;line-height:1.5;margin:16px 0 22px}
-      .hero-actions{gap:10px}
       .btn{white-space:normal;text-align:center;line-height:1.25;overflow-wrap:anywhere}
-      .hero-actions .btn-primary{min-width:0;width:100%}
-      .hero-actions .btn-ghost{width:100%}
       .trust-grid,.step-grid,.faq-grid{grid-template-columns:1fr}
-      .trust-item{border-right:0;border-bottom:1px solid var(--line-dark)}
-      section{padding:56px 0}
+      .trust-item{padding:20px 0;border-right:0;border-bottom:1px solid var(--line-dark)}
+      .trust-item strong{font-size:.88rem}
+      .trust-item span{font-size:.78rem;line-height:1.42}
+      section{padding:48px 0}
       .section-head{display:block}
+      .section-title{font-size:1.72rem;line-height:1.1}
+      .section-copy{font-size:.88rem;line-height:1.5}
       .product-grid{grid-template-columns:1fr;gap:12px}
       .product{padding:18px}
       .product-weight strong{font-size:2.1rem}
@@ -339,7 +361,7 @@
       .section-action{display:block;text-align:center}
       .section-action p{margin-bottom:14px}
       .section-action .btn,.steps-action .btn{width:100%}
-      .quick-action-inner{display:block;padding:18px 0}
+      .quick-action-inner{display:block;padding:16px 0}
       .quick-action-inner span{display:block;margin-bottom:12px}
       .quick-action-inner .btn{width:100%}
     }
@@ -383,21 +405,22 @@
           <div class="ticket-divider"></div>
           <div class="ticket-bottom">
             <span class="free-delivery">Entrega 100% gratuita nos endereços atendidos</span>
-            <p class="ticket-disclaimer">O valor do produto e as condições aparecem antes da confirmação. A entrega é 100% gratuita, sem taxa adicional.</p>
+            <p class="ticket-disclaimer">Veja o valor e as condições antes de confirmar. Sem taxa de entrega.</p>
           </div>
         </a>
         <div class="p13-cta">
-          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total para este produto">Consultar disponibilidade e valor total →</a>
-          <span class="cta-note">Consulta gratuita · sem compromisso</span>
+          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total para este produto">Ver disponibilidade agora →</a>
+          <span class="cta-note">Leva menos de 1 minuto · sem compromisso</span>
           <span class="cta-note">Consulte também a <a href="politica-privacidade.html">Política de privacidade</a>.</span>
         </div>
 
         <div class="hero-copy">
+          <span class="conversion-kicker">Consulta rápida · sem compromisso</span>
           <span class="eyebrow">Entrega de gás</span>
-          <h1>Consulte o valor do produto antes de pedir — entrega 100% gratuita.</h1>
-          <p class="hero-lead">Informe seu endereço e veja rapidamente se atendemos sua região, o prazo, a disponibilidade e as condições do produto. A entrega é 100% gratuita, sem taxa adicional, e a consulta não gera compromisso de compra.</p>
+          <h1>Veja se entregamos no seu endereço em poucos segundos.</h1>
+          <p class="hero-lead">Informe seu endereço e veja o valor, a disponibilidade e o prazo antes de decidir. A consulta é gratuita e não confirma uma compra.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/vejasite" data-cta="hero-primary" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+            <a class="btn btn-primary" href="/vejasite" data-cta="hero-primary" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
             <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
           </div>
           <span class="cta-note hero-cta-note">Veja disponibilidade, prazo, valor do produto e condições antes de decidir.</span>
@@ -431,8 +454,8 @@
 
     <div class="quick-action" aria-label="Ação principal">
       <div class="container quick-action-inner">
-        <span>Confira se entregamos no seu endereço <span class="status-badge" data-status style="margin-left:4px">&nbsp;</span></span>
-        <a class="btn btn-primary" href="/vejasite" data-cta="quick-action" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+        <span>Confira seu endereço agora <span class="status-badge" data-status style="margin-left:4px">&nbsp;</span></span>
+        <a class="btn btn-primary" href="/vejasite" data-cta="quick-action" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
       </div>
     </div>
 
@@ -445,7 +468,7 @@
             <p class="section-copy">Preços de referência. A entrega é totalmente gratuita nos endereços atendidos, sem taxa de entrega ou cobrança adicional relacionada à entrega. A disponibilidade, a modalidade e as condições do produto são confirmadas para o seu endereço na próxima etapa.</p>
           </div>
         </div>
-        <p class="section-copy" style="margin:-16px 0 24px">Os valores exibidos são referências do produto e podem variar conforme disponibilidade, modalidade e condições comerciais. A entrega é sempre 100% gratuita nos endereços atendidos, sem taxa de entrega ou cobrança adicional relacionada à entrega.</p>
+        
         <div class="product-grid">
           <article class="product">
             <span class="product-tag">GLP</span>
@@ -453,7 +476,7 @@
             <h3>Botijão P13</h3>
             <p>O mais usado em residências. Consulte disponibilidade, modalidade e condições para o seu endereço.</p>
             <div class="product-price"><div><span class="from">A partir de · entrega 100% gratuita</span><strong>R$ 89,90</strong></div></div>
-            <a class="product-link" href="/vejasite" data-cta="product-p13" aria-label="Ver valor total do botijão P13">Ver valor total →</a>
+            <a class="product-link" href="/vejasite" data-cta="product-p13" aria-label="Ver valor total do botijão P13">Consultar agora →</a>
           </article>
           <article class="product">
             <span class="product-tag">GLP</span>
@@ -461,7 +484,7 @@
             <h3>Botijão P20</h3>
             <p>Indicado para maior consumo. Consulte aplicação, disponibilidade e condições de entrega.</p>
             <div class="product-price"><div><span class="from">A partir de · entrega 100% gratuita</span><strong>R$ 189,90</strong></div></div>
-            <a class="product-link" href="/vejasite" data-cta="product-p20" aria-label="Ver valor total do botijão P20">Ver valor total →</a>
+            <a class="product-link" href="/vejasite" data-cta="product-p20" aria-label="Ver valor total do botijão P20">Consultar agora →</a>
           </article>
           <article class="product">
             <span class="product-tag">GLP</span>
@@ -469,7 +492,7 @@
             <h3>Botijão P45</h3>
             <p>Uso comercial ou consumo elevado. Consulte disponibilidade e condições para o seu endereço.</p>
             <div class="product-price"><div><span class="from">A partir de · entrega 100% gratuita</span><strong>R$ 395,90</strong></div></div>
-            <a class="product-link" href="/vejasite" data-cta="product-p45" aria-label="Ver valor total do botijão P45">Ver valor total →</a>
+            <a class="product-link" href="/vejasite" data-cta="product-p45" aria-label="Ver valor total do botijão P45">Consultar agora →</a>
           </article>
           <article class="product">
             <span class="product-tag">GLP</span>
@@ -477,12 +500,12 @@
             <h3>Botijão P5</h3>
             <p>Compacto e portátil. Consulte disponibilidade, modalidade e condições de entrega.</p>
             <div class="product-price"><div><span class="from">A partir de · entrega 100% gratuita</span><strong>R$ 69,90</strong></div></div>
-            <a class="product-link" href="/vejasite" data-cta="product-p5" aria-label="Ver valor total do botijão P5">Ver valor total →</a>
+            <a class="product-link" href="/vejasite" data-cta="product-p5" aria-label="Ver valor total do botijão P5">Consultar agora →</a>
           </article>
         </div>
         <div class="section-action">
           <p>Pronto para verificar seu endereço?</p>
-          <a class="btn btn-primary" href="/vejasite" data-cta="products-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="products-footer" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
         </div>
       </div>
     </section>
@@ -510,7 +533,7 @@
           </div>
         </div>
         <div class="steps-action">
-          <a class="btn btn-primary" href="/vejasite" data-cta="steps-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="steps-footer" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
         </div>
       </div>
     </section>
@@ -528,7 +551,7 @@
             <span>Revenda independente · São Paulo/SP</span>
             <span class="free-delivery" style="margin-top:12px">Entrega 100% gratuita em todos os produtos</span>
             <span class="status-badge" data-status style="margin-top:10px">&nbsp;</span>
-          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
           <small>Disponibilidade e condições podem variar conforme endereço e estoque.</small>
         </div>
       </div>
@@ -597,14 +620,14 @@
         </div>
         <div class="section-action">
           <p>Ainda com dúvidas sobre o seu endereço?</p>
-          <a class="btn btn-primary" href="/vejasite" data-cta="faq-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="faq-footer" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
         </div>
       </div>
     </section>
   </main>
 
   <div class="mobile-cta" aria-label="Ação principal no celular">
-    <a class="btn btn-primary" href="/vejasite" data-cta="mobile-sticky" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+    <a class="btn btn-primary" href="/vejasite" data-cta="mobile-sticky" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
   </div>
 
   <footer class="footer">
@@ -653,40 +676,29 @@
   </noscript>
 
   <script>
-    // O carregamento de /vejasite deve ser a conversão principal recomendada.
-    // Este evento de clique é secundário e serve para diagnosticar a intenção.
-    var GOOGLE_ADS_CONVERSION_LABEL = '';
-    document.querySelectorAll('a[href="/vejasite"]').forEach(function(link){
-      link.addEventListener('click', function(event){
-        if (typeof gtag !== 'function') return;
-        var cta = link.getAttribute('data-cta') || 'vejasite';
-        gtag('event', 'destination_click', {
-          event_category: 'engagement',
-          event_label: cta,
-          destination: '/vejasite',
-          transport_type: 'beacon'
-        });
-        if (!GOOGLE_ADS_CONVERSION_LABEL) return;
-        event.preventDefault();
-        var navigated = false;
-        var go = function(){ if (!navigated) { navigated = true; window.location.href = link.href; } };
-        gtag('event', 'conversion', {
-          send_to: 'AW-18430848378/' + GOOGLE_ADS_CONVERSION_LABEL,
-          event_callback: go
-        });
-        window.setTimeout(go, 700);
+    // O clique nunca fica dependente do Google Ads. O rastreamento é assíncrono e opcional.
+    (function(){
+      var destination = new URL(window.DESTINATION_PATH || '/vejasite', window.location.origin).href;
+      document.querySelectorAll('a[href="/vejasite"]').forEach(function(link){
+        link.href = destination;
+        link.addEventListener('click', function(){
+          if (typeof gtag !== 'function') return;
+          gtag('event', 'destination_click', {
+            event_category: 'engagement',
+            event_label: link.getAttribute('data-cta') || 'destination',
+            destination: destination,
+            transport_type: 'beacon'
+          });
+        }, {passive:true});
       });
-    });
+    })();
 
     document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]').forEach(function(link){
       link.addEventListener('click', function(){
-        if (typeof gtag === 'function') {
-          gtag('event', 'contact_click', {contact_method: link.href.split(':')[0]});
-        }
-      });
+        if (typeof gtag === 'function') gtag('event', 'contact_click', {contact_method: link.href.split(':')[0]});
+      }, {passive:true});
     });
 
-    // FAQ accordion
     document.querySelectorAll('.faq-q').forEach(function(btn){
       btn.addEventListener('click', function(){
         var faq = btn.closest('.faq');
@@ -695,22 +707,15 @@
       });
     });
 
-    // Real, timezone-correct open/closed status (America/Sao_Paulo), not a fabricated indicator
     function currentSPHour(){
-      try {
-        var fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', hour: '2-digit', hour12: false });
-        return parseInt(fmt.format(new Date()), 10);
-      } catch (e) {
-        return new Date().getHours();
-      }
+      try { return parseInt(new Intl.DateTimeFormat('en-US', {timeZone:'America/Sao_Paulo', hour:'2-digit', hour12:false}).format(new Date()), 10); }
+      catch(e) { return new Date().getHours(); }
     }
     function updateStatusBadges(){
-      var hour = currentSPHour();
-      var open = hour >= 7 && hour < 23;
+      var open = currentSPHour() >= 7 && currentSPHour() < 23;
       document.querySelectorAll('[data-status]').forEach(function(el){
-        el.innerHTML = '<span class="dot"></span>' + (open ? 'Aberto agora · atende até 23h' : 'Fechado agora · reabre às 7h');
-        el.classList.toggle('is-open', open);
-        el.classList.toggle('is-closed', !open);
+        el.innerHTML = '<span class="dot"></span>' + (open ? 'Atendimento disponível' : 'Reabre às 7h');
+        el.classList.toggle('is-open', open); el.classList.toggle('is-closed', !open);
       });
     }
     updateStatusBadges();
