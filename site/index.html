@@ -97,6 +97,19 @@
     .hero .hero-lead{max-width:500px}
     .hero .hero-benefits{gap:8px}
     .hero .hero-note{font-size:.76rem}
+    /* Modo de foco: nesta página existe um único próximo passo. */
+    .topbar,.hero-actions,.quick-action,#produtos,#como-funciona,#empresa,#condicoes,#duvidas{display:none}
+    .nav-links,.nav-cta{display:none}
+    .hero{padding-top:38px;padding-bottom:42px}
+    .hero-copy{max-width:520px}
+    .hero-copy .hero-lead{margin-bottom:18px}
+    .hero-benefits{margin-top:20px}
+    .trust-item{padding-top:20px;padding-bottom:20px}
+    .footer{padding-top:28px}
+    .footer-grid{grid-template-columns:1fr}
+    .footer-grid>div:not(:first-child){display:none}
+    .footer-grid>div:first-child p{max-width:700px;font-size:.76rem}
+    .footer-bottom{margin-top:20px}
     @media(max-width:960px){.hero-copy{max-width:620px;margin:auto}.hero-grid > .ticket{margin:auto}.hero-grid > .p13-cta{max-width:520px;margin:auto}}
 
     /* Buttons */
@@ -285,8 +298,11 @@
         position:fixed;left:0;right:0;bottom:0;z-index:40;display:block;
         padding:9px 12px calc(9px + env(safe-area-inset-bottom));
         background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
-        border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(16,26,46,.12)
+        border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(16,26,46,.12);
+        opacity:0;visibility:hidden;pointer-events:none;transform:translateY(110%);
+        transition:opacity .2s ease,visibility .2s ease,transform .2s ease
       }
+      .mobile-cta.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
       .mobile-cta .btn{min-height:52px;font-size:.92rem}
     }
 
@@ -719,6 +735,18 @@
       });
     }
     updateStatusBadges();
+
+    // Evita dois CTAs concorrendo no primeiro viewport: o fixo só aparece
+    // quando o botão principal do bloco P13 deixa de estar visível.
+    (function(){
+      var sticky = document.querySelector('.mobile-cta');
+      var firstCta = document.querySelector('.p13-cta .btn');
+      if (!sticky || !firstCta || !('IntersectionObserver' in window)) return;
+      var observer = new IntersectionObserver(function(entries){
+        sticky.classList.toggle('is-visible', !entries[0].isIntersecting);
+      }, {threshold:0.15, rootMargin:'0px 0px -8px 0px'});
+      observer.observe(firstCta);
+    })();
   </script>
 </body>
 </html>
