@@ -2045,13 +2045,15 @@ https://http2.mlstatic.com/D_NQ_NP_2X_748828-MLA97709975419_112025-F.webp
 
       function setupMobileCta() {
         const cta = $('#mobileCta');
-        if (!('IntersectionObserver' in window)) return;
+        const mainCta = $('#mainCta');
+        if (!mainCta || !('IntersectionObserver' in window)) return;
         const observer = new IntersectionObserver(([entry]) => {
-          const shouldShow = !entry.isIntersecting && window.matchMedia('(max-width: 620px)').matches;
+          const hasPassedMainCta = !entry.isIntersecting && entry.boundingClientRect.bottom < 0;
+          const shouldShow = hasPassedMainCta && window.matchMedia('(max-width: 620px)').matches;
           cta.classList.toggle('is-visible', shouldShow);
           cta.setAttribute('aria-hidden', String(!shouldShow));
         }, { threshold: 0.05 });
-        observer.observe($('#mainCta'));
+        observer.observe(mainCta);
       }
 
       $('#addToCart').addEventListener('click', addSelectedVariant);
