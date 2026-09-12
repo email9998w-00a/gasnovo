@@ -293,6 +293,22 @@
       .cart-drawer { width: 100%; }
       .cart-header, .cart-section, .cart-footer { padding-right: 16px; padding-left: 16px; }
     }
+    /* Ajustes finais de composição: uma hierarquia visual única e sem ruído. */
+    .product-shell { gap: clamp(40px, 5vw, 64px); }
+    .product-info { max-width: 520px; }
+    .gallery-frame, .choice-box, .price-box, .shipping-preview { border-radius: 12px; }
+    .gallery-frame { box-shadow: 0 10px 24px rgba(18,59,102,.06); }
+    .choice-box { background: #fff; box-shadow: 0 2px 8px rgba(18,59,102,.04); }
+    .choice-heading span { background: transparent; padding: 0; color: var(--muted); font-weight: 600; }
+    .variant-card { min-height: 58px; }
+    .price-box { margin-top: 14px; margin-bottom: 14px; box-shadow: 0 5px 16px rgba(18,59,102,.05); }
+    .current-price { font-size: clamp(32px, 3.7vw, 38px); }
+    .cta-group { margin-top: 14px; }
+    .btn-primary { min-height: 56px; font-size: 14px; }
+    .btn-secondary { min-height: 56px; }
+    .benefits { margin: 14px 0 0; }
+    .shipping-preview { margin-top: 12px; }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
@@ -591,21 +607,21 @@
             <div class="unit-price" id="unitPrice">R$ 17,48 por 100 g</div>
           </div>
 
-          <div class="benefits" aria-label="Benefícios da compra">
-            <div class="benefit"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>Produto original</span></div>
-            <div class="benefit"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Pagamento protegido</span></div>
-            <div class="benefit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Rastreio do pedido</span></div>
-          </div>
-
           <div class="cta-group" id="mainCta">
             <button class="btn btn-primary" id="buyNow" type="button"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Comprar agora</button>
             <button class="btn btn-secondary" id="addToCart" type="button"><i class="fa-solid fa-cart-plus" aria-hidden="true"></i> Adicionar ao carrinho</button>
           </div>
-          <p class="purchase-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Seus dados são protegidos durante a compra.</p>
+          <p class="purchase-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Checkout seguro · seus dados permanecem protegidos.</p>
+
+          <div class="benefits" aria-label="Benefícios da compra">
+            <div class="benefit"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>Produto original</span></div>
+            <div class="benefit"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Pagamento protegido</span></div>
+            <div class="benefit"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Pedido rastreado</span></div>
+          </div>
 
           <div class="shipping-preview">
             <div class="shipping-preview-icon"><i class="fa-solid fa-truck" aria-hidden="true"></i></div>
-            <div><strong>Frete e prazo calculados no carrinho</strong><span>Escolha sua opção e informe o CEP para ver as condições de entrega antes de finalizar.</span></div>
+            <div><strong>Frete e prazo calculados no carrinho</strong><span>Informe o CEP para consultar as condições de entrega antes de finalizar.</span></div>
           </div>
         </div>
       </section>
