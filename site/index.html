@@ -343,169 +343,12 @@
       .quick-action-inner span{display:block;margin-bottom:12px}
       .quick-action-inner .btn{width:100%}
     }
-
-    /* Revisao final de conversao: primeiro viewport direto, leve e com uma acao principal. */
-    .hero-direct{padding:54px 0 50px;background:linear-gradient(135deg,#f7f4ee 0%,#edf4ff 100%)}
-    .hero-direct-inner{max-width:760px;text-align:center}
-    .hero-direct-copy{max-width:680px;margin:0 auto}
-    .hero-direct h1{font-size:clamp(2.45rem,5.4vw,4rem);line-height:1.02;margin-top:12px}
-    .hero-direct .hero-lead{font-size:1.12rem;line-height:1.5;margin:18px auto 24px;color:var(--steel);max-width:620px}
-    .hero-direct-btn{min-width:320px;font-size:1.03rem}
-    .hero-direct .cta-note{display:block;margin-top:9px}
-    .hero-direct-trust{display:flex;justify-content:center;flex-wrap:wrap;gap:7px 20px;margin-top:19px;color:#3c4657;font-size:.8rem;font-weight:700}
-    .hero-direct-trust span{white-space:nowrap}
-    @media(max-width:620px){
-      .hero-direct{padding:34px 0 32px}
-      .hero-direct-inner{width:min(100% - 28px,1120px)}
-      .hero-direct h1{font-size:clamp(2.2rem,10.6vw,2.8rem);line-height:1.02}
-      .hero-direct .hero-lead{font-size:1rem;line-height:1.45;margin:14px auto 19px}
-      .hero-direct-btn{width:100%;min-width:0;min-height:56px}
-      .hero-direct-trust{display:grid;justify-content:stretch;text-align:left;gap:5px;margin-top:15px;font-size:.76rem}
-      .hero-direct-trust span:nth-child(2){display:none}
-    }
-
-
-    /* Mobile final: primeiro viewport enxuto, sem sobreposicoes e com toque confortavel. */
-    @media(max-width:620px){
-      html{scroll-padding-top:64px}
-      body{padding-bottom:82px;overflow-x:hidden}
-      .wrap,.container{width:calc(100% - 28px);max-width:none}
-      .topbar{font-size:.7rem;line-height:1.25;padding:7px 10px}
-      .nav-inner{min-height:60px;padding:7px 0;gap:8px}
-      .brand{gap:8px;min-width:0}
-      .brand-mark{width:34px;height:34px;border-radius:9px;font-size:.76rem}
-      .brand-text strong{font-size:.76rem;line-height:1.1}
-      .brand-text small{font-size:.59rem;line-height:1.15}
-      .nav-cta{padding:9px 11px!important;font-size:.73rem!important;min-height:38px!important;border-radius:9px!important;white-space:nowrap}
-      .hero-direct{padding:27px 0 24px;min-height:0}
-      .hero-direct-inner{width:calc(100% - 28px);display:block}
-      .hero-direct-copy{width:100%;margin:0;text-align:left}
-      .hero-direct .eyebrow{font-size:.68rem;margin-bottom:1px}
-      .hero-direct h1{font-size:clamp(2rem,10.4vw,2.55rem);line-height:1.02;letter-spacing:-.04em;margin-top:9px;max-width:100%}
-      .hero-direct .hero-lead{font-size:.94rem;line-height:1.42;margin:13px 0 17px;max-width:100%}
-      .hero-direct-btn{display:flex;width:100%;min-width:0;min-height:56px;padding:15px 14px;font-size:.98rem;border-radius:11px}
-      .hero-direct .cta-note{display:block;text-align:center;font-size:.72rem;line-height:1.3;margin-top:8px}
-      .hero-direct-trust{display:grid;justify-content:stretch;gap:5px;margin-top:15px;font-size:.73rem;line-height:1.35}
-      .hero-direct-trust span{white-space:normal}
-      .hero-direct-trust span:nth-child(2){display:none}
-      .trust-grid{grid-template-columns:1fr}
-      .trust-item{padding:14px 2px;gap:9px}
-      .trust-item svg{width:22px;height:22px}
-      .trust-item strong{font-size:.82rem}
-      .trust-item span{font-size:.74rem;line-height:1.35}
-      section{padding:42px 0}
-      .section-head{margin-bottom:21px}
-      .eyebrow{font-size:.68rem}
-      .section-title{font-size:1.65rem;line-height:1.08}
-      .section-copy{font-size:.86rem;line-height:1.48}
-      .quick-action{display:none}
-      .product-grid{grid-template-columns:1fr;gap:10px}
-      .product{padding:16px;border-radius:13px}
-      .product-weight strong{font-size:2rem}
-      .product-link{min-height:42px;padding:9px 0;align-self:flex-start}
-      .step-grid{grid-template-columns:1fr;gap:10px;margin-top:20px}
-      .step{padding:17px;border-radius:13px}
-      .step-num{width:31px;height:31px;margin-bottom:11px}
-      .step p{font-size:.82rem;line-height:1.42}
-      .reassurance-panel,.info-panel{padding:20px;border-radius:15px}
-      .two-col,.reassurance-grid{gap:24px}
-      .faq-grid{grid-template-columns:1fr;gap:9px}
-      .faq-q{padding:16px;font-size:.86rem;min-height:54px}
-      .faq-answer p{padding:0 16px 16px;font-size:.83rem;line-height:1.48}
-      .section-action{margin-top:25px;padding-top:21px}
-      .section-action .btn,.steps-action .btn,.reassurance-panel .btn{width:100%;min-height:52px}
-      .footer{padding:35px 0 100px}
-      .footer-grid{grid-template-columns:1fr;gap:25px}
-      .footer-bottom{display:block;margin-top:25px;line-height:1.5}
-      .footer-bottom span{display:block;margin-top:8px}
-      .mobile-cta{padding:8px 12px calc(8px + env(safe-area-inset-bottom));min-height:66px}
-      .mobile-cta .btn{min-height:50px;padding:13px 12px;font-size:.94rem;border-radius:10px}
-    }
-    @media(max-width:360px){
-      .topbar{font-size:.64rem}
-      .brand-text strong{font-size:.7rem}
-      .nav-cta{font-size:.68rem!important;padding-inline:9px!important}
-      .hero-direct h1{font-size:1.95rem}
-      .hero-direct .hero-lead{font-size:.9rem}
-    }
-
-
-    /* Refinamento mobile harmonico: ritmo visual, contraste e hierarquia consistentes. */
-    @media(max-width:620px){
-      body{background:#f7f8fb;padding-bottom:78px}
-      .wrap,.container{width:calc(100% - 32px)}
-      .topbar{font-size:.68rem;line-height:1.35;padding:8px 12px;background:#0d1b34}
-      .nav{background:#fff}
-      .nav-inner{min-height:58px;padding:7px 0}
-      .brand-mark{width:33px;height:33px;border-radius:9px}
-      .brand-text strong{font-size:.75rem;letter-spacing:-.01em}
-      .brand-text small{font-size:.59rem;margin-top:2px}
-      .nav-cta{font-size:.7rem!important;padding:9px 11px!important;border-radius:9px!important;box-shadow:0 6px 14px rgba(23,105,209,.18)!important}
-      .hero-direct{padding:32px 0 29px;background:linear-gradient(180deg,#f1f6ff 0%,#f7f8fb 100%);border-bottom:1px solid #e8edf5}
-      .hero-direct-inner{width:calc(100% - 32px)}
-      .hero-direct-copy{text-align:center}
-      .hero-direct .eyebrow{font-size:.66rem;justify-content:center;letter-spacing:.07em}
-      .hero-direct h1{font-size:clamp(2.08rem,9.9vw,2.55rem);line-height:1.06;letter-spacing:-.045em;margin:10px auto 0;max-width:340px}
-      .hero-direct .hero-lead{font-size:.94rem;line-height:1.45;margin:14px auto 20px;max-width:340px;color:#5f6c80}
-      .hero-direct-btn{width:min(100%,340px);margin:0 auto;min-height:54px;padding:14px 15px;font-size:.96rem;border-radius:11px;box-shadow:0 10px 22px rgba(23,105,209,.23)}
-      .hero-direct .cta-note{font-size:.7rem;line-height:1.35;margin-top:9px;color:#68758a}
-      .hero-direct-trust{width:min(100%,330px);margin:16px auto 0;display:grid;gap:6px;text-align:left;font-size:.72rem;line-height:1.35;color:#4d5b70}
-      .hero-direct-trust span{white-space:normal}
-      .hero-direct-trust span:nth-child(2){display:none}
-      .trust{background:#0d1b34}
-      .trust-grid{width:calc(100% - 32px)}
-      .trust-item{padding:14px 0;gap:9px}
-      .trust-item svg{width:21px;height:21px;margin-top:1px}
-      .trust-item strong{font-size:.8rem}
-      .trust-item span{font-size:.72rem;line-height:1.35;margin-top:2px}
-      section{padding:44px 0}
-      .section-head{text-align:center;margin-bottom:22px}
-      .section-head>div{width:100%}
-      .section-head .eyebrow{justify-content:center}
-      .section-title{font-size:1.62rem;line-height:1.1;margin-bottom:8px}
-      .section-copy{font-size:.84rem;line-height:1.5}
-      .product-grid{gap:10px}
-      .product{padding:16px;border-radius:14px}
-      .product-tag{font-size:.67rem;margin-bottom:10px}
-      .product-weight strong{font-size:2rem}
-      .product h3{font-size:.9rem}
-      .product p{font-size:.81rem;line-height:1.45}
-      .product-price{margin-top:13px;padding-top:12px}
-      .product-link{font-size:.82rem;min-height:40px;padding:8px 0}
-      .step-grid{gap:10px;margin-top:20px}
-      .step{padding:17px;border-radius:14px}
-      .step-num{width:30px;height:30px;margin-bottom:10px}
-      .step h3{font-size:.91rem}
-      .step p{font-size:.8rem;line-height:1.45}
-      .reassurance-grid,.two-col{gap:22px}
-      .reassurance-panel,.info-panel{padding:19px;border-radius:15px}
-      .faq-grid{gap:8px}
-      .faq{border-radius:13px}
-      .faq-q{padding:15px 16px;font-size:.84rem;min-height:52px}
-      .faq-answer p{padding:0 16px 15px;font-size:.81rem;line-height:1.5}
-      .section-action{margin-top:23px;padding-top:20px}
-      .section-action p{font-size:.84rem}
-      .mobile-cta{min-height:64px;padding:7px 12px calc(7px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97)}
-      .mobile-cta .btn{min-height:50px;width:min(100%,420px);margin:auto;font-size:.92rem;border-radius:10px}
-      .footer{padding:32px 0 96px}
-      .footer p,.footer li,.footer a{font-size:.78rem;line-height:1.5}
-      .footer-bottom{font-size:.7rem}
-    }
-    @media(max-width:360px){
-      .wrap,.container,.hero-direct-inner,.trust-grid{width:calc(100% - 28px)}
-      .brand-text strong{font-size:.7rem}
-      .nav-cta{font-size:.66rem!important;padding-inline:9px!important}
-      .hero-direct h1{font-size:2rem}
-      .hero-direct .hero-lead{font-size:.9rem}
-      .hero-direct-trust{font-size:.69rem}
-    }
-
   </style>
 </head>
 <body>
   <div class="topbar">
     <div class="container">
-      <a href="/vejasite" data-cta="topbar" aria-label="Consultar atendimento e valor total">Ver disponibilidade agora →</a>
+      <a href="/vejasite" data-cta="topbar" aria-label="Consultar atendimento e valor total">Consultar atendimento e valor total →</a>
     </div>
   </div>
 
@@ -520,21 +363,52 @@
         <a href="#produtos">Produtos</a>
         <a href="#duvidas">Dúvidas frequentes</a>
       </div>
-      <a class="btn btn-primary nav-cta" href="/vejasite" data-cta="nav" style="padding:12px 18px;min-height:0"><span class="nav-cta-full">Ver disponibilidade agora</span><span class="nav-cta-short">Consultar</span></a>
+      <a class="btn btn-primary nav-cta" href="/vejasite" data-cta="nav" style="padding:12px 18px;min-height:0"><span class="nav-cta-full">Ver valor e disponibilidade</span><span class="nav-cta-short">Consultar</span></a>
     </div>
   </nav>
 
   <main id="inicio">
-    <section class="hero hero-direct" id="inicio">
-      <div class="container hero-direct-inner">
-        <div class="hero-direct-copy">
-          <span class="eyebrow">Consulta rápida e gratuita</span>
-          <h1>Veja se entregamos no seu endereço.</h1>
-          <p class="hero-lead">Informe seu endereço e confira disponibilidade, prazo e valor do produto antes de decidir.</p>
-          <a class="btn btn-primary hero-direct-btn" href="/vejasite" data-cta="hero-direct" aria-label="Ver disponibilidade e valor do produto">Ver disponibilidade agora <span aria-hidden="true">→</span></a>
-          <span class="cta-note">Sem compromisso de compra · resultado na próxima etapa</span>
-          <div class="hero-direct-trust"><span>✓ Entrega 100% gratuita nos endereços atendidos</span><span>✓ Condições exibidas antes da confirmação</span></div>
+    <section class="hero">
+      <div class="container hero-grid">
+        <a class="ticket ticket-link" href="/vejasite" data-cta="p13-card" aria-label="Consultar disponibilidade e valor total do botijão P13">
+          <div class="ticket-top">
+            <div class="ticket-photo">
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png" alt="Botijão de gás GLP P13 de 13 kg" width="500" height="500" loading="eager" decoding="async">
+            </div>
+            <div class="ticket-caption">
+              <span><span class="label">GLP P13 · valor de referência do produto</span><span class="price">Promoção R$ 89,90</span></span>
+              <span class="status-badge" data-status aria-live="polite">&nbsp;</span>
+            </div>
+          </div>
+          <div class="ticket-divider"></div>
+          <div class="ticket-bottom">
+            <span class="free-delivery">Entrega 100% gratuita nos endereços atendidos</span>
+            <p class="ticket-disclaimer">O valor do produto e as condições aparecem antes da confirmação. A entrega é 100% gratuita, sem taxa adicional.</p>
+          </div>
+        </a>
+        <div class="p13-cta">
+          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total para este produto">Consultar disponibilidade e valor total →</a>
+          <span class="cta-note">Consulta gratuita · sem compromisso</span>
+          <span class="cta-note">Consulte também a <a href="politica-privacidade.html">Política de privacidade</a>.</span>
         </div>
+
+        <div class="hero-copy">
+          <span class="eyebrow">Entrega de gás</span>
+          <h1>Consulte o valor do produto antes de pedir — entrega 100% gratuita.</h1>
+          <p class="hero-lead">Informe seu endereço e veja rapidamente se atendemos sua região, o prazo, a disponibilidade e as condições do produto. A entrega é 100% gratuita, sem taxa adicional, e a consulta não gera compromisso de compra.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/vejasite" data-cta="hero-primary" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+            <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
+          </div>
+          <span class="cta-note hero-cta-note">Veja disponibilidade, prazo, valor do produto e condições antes de decidir.</span>
+          <ul class="hero-benefits">
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Consulta gratuita, sem compromisso de compra</li>
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Entrega sempre gratuita, sem taxa adicional</li>
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Você decide só depois de ver o valor e as condições</li>
+          </ul>
+          <p class="hero-note">COMERCIO DE GAS LTDA · CNPJ 45.846.492/0003-30 · Atendimento das 7h às 23h, todos os dias.</p>
+        </div>
+
       </div>
     </section>
 
@@ -558,7 +432,7 @@
     <div class="quick-action" aria-label="Ação principal">
       <div class="container quick-action-inner">
         <span>Confira se entregamos no seu endereço <span class="status-badge" data-status style="margin-left:4px">&nbsp;</span></span>
-        <a class="btn btn-primary" href="/vejasite" data-cta="quick-action" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+        <a class="btn btn-primary" href="/vejasite" data-cta="quick-action" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
       </div>
     </div>
 
@@ -608,7 +482,7 @@
         </div>
         <div class="section-action">
           <p>Pronto para verificar seu endereço?</p>
-          <a class="btn btn-primary" href="/vejasite" data-cta="products-footer" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="products-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
         </div>
       </div>
     </section>
@@ -636,7 +510,7 @@
           </div>
         </div>
         <div class="steps-action">
-          <a class="btn btn-primary" href="/vejasite" data-cta="steps-footer" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="steps-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
         </div>
       </div>
     </section>
@@ -654,7 +528,7 @@
             <span>Revenda independente · São Paulo/SP</span>
             <span class="free-delivery" style="margin-top:12px">Entrega 100% gratuita em todos os produtos</span>
             <span class="status-badge" data-status style="margin-top:10px">&nbsp;</span>
-          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
           <small>Disponibilidade e condições podem variar conforme endereço e estoque.</small>
         </div>
       </div>
@@ -723,14 +597,14 @@
         </div>
         <div class="section-action">
           <p>Ainda com dúvidas sobre o seu endereço?</p>
-          <a class="btn btn-primary" href="/vejasite" data-cta="faq-footer" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+          <a class="btn btn-primary" href="/vejasite" data-cta="faq-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
         </div>
       </div>
     </section>
   </main>
 
   <div class="mobile-cta" aria-label="Ação principal no celular">
-    <a class="btn btn-primary" href="/vejasite" data-cta="mobile-sticky" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+    <a class="btn btn-primary" href="/vejasite" data-cta="mobile-sticky" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
   </div>
 
   <footer class="footer">
