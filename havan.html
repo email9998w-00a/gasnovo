@@ -712,7 +712,6 @@ async function buscarEnderecoPorCep() {
     // nele para não atrapalhar quem ainda está lendo a tela.
     document.getElementById('addressNumberFields').classList.add('is-visible');
     document.getElementById('shippingCard').classList.add('is-visible');
-    document.getElementById('numero').focus();
   } catch (e) {
     const elapsed = performance.now() - startedAt;
     if (elapsed < 500) await new Promise(res => setTimeout(res, 500 - elapsed));
@@ -741,8 +740,6 @@ document.querySelectorAll('.shipping-option').forEach(option => option.addEventL
     document.getElementById('personalCard').classList.add('is-visible');
     setStep(2);
     setTimeout(() => document.getElementById('personalCard').scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
-  } else {
-    document.getElementById('numero').focus();
   }
 }));
 
