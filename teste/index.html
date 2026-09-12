@@ -773,6 +773,7 @@
         const input = $('#cepInput');
         const value = formatCep(input.value);
         input.value = value;
+        if (value.length === 9) input.blur();
         if (value.length !== 9) { setCartError('Informe um CEP válido para consultar a entrega.'); return; }
         cepRequest?.abort();
         cepRequest = new AbortController();
@@ -793,7 +794,6 @@
           $('#addressStatus').innerHTML = `<strong>${esc(data.logradouro || 'Endereço localizado')}</strong><br>${esc(data.bairro || '')} · ${esc(data.localidade || '')}/${esc(data.uf || '')}`;
           $('#addressFields').classList.add('is-visible');
           renderShippingOptions();
-          $('#addressNumber').focus();
         } catch (error) {
           if (error.name === 'AbortError') return;
           $('#addressStatus').className = 'address-status error';
@@ -812,11 +812,11 @@
         options.forEach((option, index) => {
           const button = document.createElement('button');
           button.type = 'button';
-          button.className = `shipping-option${(selectedShipping || (index === 0 ? option.id : null)) === option.id ? ' is-selected' : ''}`;
+          button.className = `shipping-option${selectedShipping === option.id ? ' is-selected' : ''}`;
           button.dataset.shipping = option.id;
           button.setAttribute('role', 'radio');
-          button.setAttribute('aria-checked', String((selectedShipping || (index === 0 ? option.id : null)) === option.id));
-          button.innerHTML = `<input type="radio" tabindex="-1" name="shipping" value="${option.id}" ${(selectedShipping || (index === 0 ? option.id : null)) === option.id ? 'checked' : ''}><i class="fa-solid ${option.icon}" aria-hidden="true"></i><span><strong>${option.name}</strong><span>${option.description}</span></span><span class="shipping-price">${option.price}</span>`;
+          button.setAttribute('aria-checked', String(selectedShipping === option.id));
+          button.innerHTML = `<input type="radio" tabindex="-1" name="shipping" value="${option.id}" ${selectedShipping === option.id ? 'checked' : ''}><i class="fa-solid ${option.icon}" aria-hidden="true"></i><span><strong>${option.name}</strong><span>${option.description}</span></span><span class="shipping-price">${option.price}</span>`;
           button.addEventListener('click', () => {
             selectedShipping = option.id;
             $$('.shipping-option', container).forEach((item) => {
@@ -830,7 +830,6 @@
           });
           container.appendChild(button);
         });
-        if (!selectedShipping) selectedShipping = 'padrao';
         container.classList.add('is-visible');
         updateCartTotal();
         updateCheckoutAvailability();
@@ -1029,7 +1028,7 @@ https://http2.mlstatic.com/D_NQ_NP_2X_748828-MLA97709975419_112025-F.webp
       $('#closeCart').addEventListener('click', closeCart);
       $('#cartOverlay').addEventListener('click', (event) => { if (event.target === $('#cartOverlay')) closeCart(); });
       $('#lookupCep').addEventListener('click', lookupCep);
-      $('#cepInput').addEventListener('input', (event) => { event.target.value = formatCep(event.target.value); if (event.target.value.length < 9) { addressData = null; selectedShipping = null; $('#addressStatus').hidden = true; $('#addressFields').classList.remove('is-visible'); $('#shippingOptions').classList.remove('is-visible'); updateCheckoutAvailability(); } });
+      $('#cepInput').addEventListener('input', (event) => { event.target.value = formatCep(event.target.value); if (event.target.value.length === 9) event.target.blur(); if (event.target.value.length < 9) { addressData = null; selectedShipping = null; $('#addressStatus').hidden = true; $('#addressFields').classList.remove('is-visible'); $('#shippingOptions').classList.remove('is-visible'); updateCheckoutAvailability(); } });
       $('#cepInput').addEventListener('keydown', (event) => { if (event.key === 'Enter') { event.preventDefault(); lookupCep(); } });
       $('#addressNumber').addEventListener('input', updateCheckoutAvailability);
       $('#addressComplement').addEventListener('input', updateCheckoutAvailability);
