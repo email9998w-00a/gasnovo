@@ -8,6 +8,17 @@
   <meta name="theme-color" content="#101a2e">
   <meta name="robots" content="index,follow">
 
+  <!-- Redirecionamento imediato: a URL final do Google Ads deve apontar diretamente
+       para /vejasite sempre que possível. Este fallback preserva UTMs e cliques diretos. -->
+  <script>
+    (function(){
+      if (window.location.pathname.replace(/\/$/, '') === '/vejasite') return;
+      var destination = new URL('/vejasite', window.location.origin);
+      destination.search = window.location.search;
+      window.location.replace(destination.href);
+    })();
+  </script>
+
   <!-- Destino principal: altere apenas esta constante caso a próxima etapa mude. -->
   <script>window.DESTINATION_PATH = '/vejasite';</script>
 
@@ -98,7 +109,7 @@
     .hero .hero-benefits{gap:8px}
     .hero .hero-note{font-size:.76rem}
     /* Modo de foco: nesta página existe um único próximo passo. */
-    .topbar,.hero-actions,.quick-action,#produtos,#como-funciona,#empresa,#condicoes,#duvidas{display:none}
+    .topbar,.hero-actions,.quick-action{display:none}
     .nav-links,.nav-cta{display:none}
     .hero{padding-top:38px;padding-bottom:42px}
     .hero-copy{max-width:520px}
@@ -106,8 +117,6 @@
     .hero-benefits{margin-top:20px}
     .trust-item{padding-top:20px;padding-bottom:20px}
     .footer{padding-top:28px}
-    .footer-grid{grid-template-columns:1fr}
-    .footer-grid>div:not(:first-child){display:none}
     .footer-grid>div:first-child p{max-width:700px;font-size:.76rem}
     .footer-bottom{margin-top:20px}
     @media(max-width:960px){.hero-copy{max-width:620px;margin:auto}.hero-grid > .ticket{margin:auto}.hero-grid > .p13-cta{max-width:520px;margin:auto}}
