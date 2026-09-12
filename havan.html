@@ -578,6 +578,19 @@ function setStep(n) {
   document.getElementById('headerStep').textContent = labels[n] || '';
 }
 
+/* Impede saídas acidentais pelo botão/gesto de voltar enquanto a compra está
+   em andamento. A proteção é removida quando o pagamento é aprovado. */
+const checkoutHistoryState = { checkoutGuard: true };
+function manterNoCheckout() {
+  history.pushState(checkoutHistoryState, '', location.href);
+}
+manterNoCheckout();
+function protegerVoltar(event) {
+  if (!document.getElementById('okArea').classList.contains('hidden')) return;
+  manterNoCheckout();
+}
+window.addEventListener('popstate', protegerVoltar);
+
 /* =====================================================================
    MÁSCARAS
    ===================================================================== */
