@@ -1203,6 +1203,38 @@
     .total-label { color: #596d7c; font-size: 11px; }
     .total-value { font-size: 22px; }
     .cart-footer .btn { min-height: 48px; border-radius: 9px; }
+    .cart-item { grid-template-columns: 60px minmax(0,1fr); gap: 12px; min-height: 88px; padding: 11px; border: 1px solid #dce5eb; border-radius: 12px; background: #fff; box-shadow: 0 2px 8px rgba(18,59,102,.045); }
+    .cart-product-image { width: 60px; height: 60px; border: 1px solid #e1e8ee; border-radius: 9px; background: #f8fafc; }
+    .cart-product-image img { padding: 4px; }
+    .cart-item-main { gap: 9px; }
+    .cart-item-head { min-height: 34px; }
+    .cart-item-copy { min-width: 0; padding-right: 4px; }
+    .cart-item-name { margin: 0 0 3px; color: #213746; font-size: 12px; font-weight: 800; line-height: 1.3; }
+    .cart-item-meta { color: #71818e; font-size: 10px; line-height: 1.3; }
+    .cart-item-price { margin: 0; color: #123b66; font-size: 13px; font-weight: 800; }
+    .cart-item-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .qty-control { margin: 0; border-color: #d6e1e8; background: #fbfcfd; }
+    .qty-control button { width: 25px; height: 25px; }
+    .remove-item { position: static; flex: 0 0 24px; width: 24px; height: 24px; margin: -3px -3px 0 0; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #9aa7b2; font-size: 12px; }
+    .remove-item:hover { background: #f3f6f8; color: #b13b3b; }
+    .cart-item { grid-template-columns: 60px minmax(0,1fr); gap: 12px; min-height: 88px; padding: 11px; border: 1px solid #dce5eb; border-radius: 12px; background: #fff; box-shadow: 0 2px 8px rgba(18,59,102,.045); }
+    .cart-product-image { display: grid; place-items: center; width: 60px; height: 60px; border: 1px solid #e1e8ee; border-radius: 9px; background: #f8fafc; }
+    .cart-product-image img { width: 100%; height: 100%; padding: 5px; border: 0; border-radius: 10px; background: transparent; object-fit: contain; }
+    .cart-item-main { min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 9px; }
+    .cart-item-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .cart-item-name { margin: 0 0 4px; color: #243746; font-size: 12px; font-weight: 800; line-height: 1.3; }
+    .cart-item-meta { color: #70818e; font-size: 10px; line-height: 1.3; }
+    .cart-item-price { flex: 0 0 auto; margin: 0; color: #123b66; font-size: 13px; font-weight: 800; white-space: nowrap; }
+    .cart-item-bottom { display: flex; align-items: center; justify-content: space-between; min-height: 28px; gap: 10px; }
+    .qty-control { margin: 0; border-color: #d3dee6; border-radius: 7px; }
+    .qty-control button { width: 24px; height: 24px; }
+    .remove-item { position: static; flex: 0 0 24px; width: 24px; height: 24px; margin: -3px -3px 0 0; padding: 0; border-radius: 50%; background: transparent; color: #9aa7b2; font-size: 12px; }
+    .remove-item:hover { background: #f3f6f8; color: #b13b3b; }
+    .qty-control { flex: 0 0 auto; display: inline-flex; align-items: center; width: 78px; height: 28px; margin: 0 0 0 auto; overflow: hidden; border: 0; border-radius: 999px; background: #f3f6f8; }
+    .qty-control button { display: grid; place-items: center; width: 27px; height: 28px; padding: 0; border: 0; background: transparent; color: #6d7e8a; font-size: 15px; font-weight: 500; line-height: 1; transition: background-color .15s ease, color .15s ease; }
+    .qty-control button:hover { background: #e7eef3; color: #123b66; }
+    .qty-control button:active { background: #dce7ee; }
+    .qty-control span { flex: 1 1 auto; display: grid; place-items: center; min-width: 24px; height: 28px; border: 0; color: #3f5260; font-size: 11px; font-weight: 700; line-height: 1; }
     .cart-header-subtitle { margin: 4px 0 0; color: #7b8995; font-size: 10px; line-height: 1.3; }
     .order-breakdown { display: grid; gap: 7px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e8eef2; }
     .order-breakdown > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #6e7e8b; font-size: 11px; }
@@ -1612,7 +1644,7 @@
           cart.forEach((item, index) => {
             const row = document.createElement('article');
             row.className = 'cart-item';
-            row.innerHTML = `<img src="${esc(item.image)}" alt="${esc(item.name)}"><div><div class="cart-item-name">${esc(item.name)}</div><div class="cart-item-meta">${esc(item.variant || '')}</div><div class="cart-item-price">${money(item.price)}</div><div class="qty-control"><button type="button" aria-label="Diminuir quantidade" data-action="decrease" data-index="${index}">−</button><span aria-live="polite">${item.quantity}</span><button type="button" aria-label="Aumentar quantidade" data-action="increase" data-index="${index}">+</button></div></div><button class="remove-item" type="button" aria-label="Remover item" data-action="remove" data-index="${index}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>`;
+            row.innerHTML = `<div class="cart-product-image"><img src="${esc(item.image)}" alt="${esc(item.name)}"></div><div class="cart-item-main"><div class="cart-item-head"><div class="cart-item-copy"><div class="cart-item-name">${esc(item.name)}</div><div class="cart-item-meta">${esc(item.variant || '')}</div></div><button class="remove-item" type="button" aria-label="Remover ${esc(item.name)}" data-action="remove" data-index="${index}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div><div class="cart-item-bottom"><div class="cart-item-price">${money(item.price)}</div><div class="qty-control"><button type="button" aria-label="Diminuir quantidade" data-action="decrease" data-index="${index}">−</button><span aria-live="polite">${item.quantity}</span><button type="button" aria-label="Aumentar quantidade" data-action="increase" data-index="${index}">+</button></div></div></div>`;
             items.appendChild(row);
           });
         }
