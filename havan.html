@@ -71,9 +71,7 @@ input,select{font:inherit}
 .order-item .thumb{width:56px;height:56px;border-radius:8px;overflow:hidden;background:#fafcfd;border:1px solid var(--line)}
 .order-item .thumb img{width:100%;height:100%;object-fit:contain}
 .order-item .nome{font-weight:700;font-size:.87rem;line-height:1.25}
-.order-item .meta{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:5px}
-.order-item .variant{color:var(--muted);font-size:.72rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.order-item .por{color:var(--brand);font-weight:700;font-size:.88rem;font-variant-numeric:tabular-nums;white-space:nowrap;flex:none}
+.order-item .variant{color:var(--muted);font-size:.72rem;margin-top:4px}
 .order-subtotal{display:flex;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted)}
 .order-subtotal strong{color:var(--brand);font-size:1rem;font-variant-numeric:tabular-nums}
 .order-error{background:#fff5f5;border:1px solid #ebc7cc;border-radius:9px;color:var(--danger);padding:12px;font-size:.82rem;line-height:1.4}
@@ -520,7 +518,7 @@ function renderOrderSummary() {
     row.className = 'order-item';
     const img = item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy">` : '<span aria-hidden="true"></span>';
     const details = [item.variant, item.weight ? `${item.weight} g` : '', item.quantity > 1 ? `Qtd ${item.quantity}` : ''].filter(Boolean).join(' · ');
-    row.innerHTML = `<div class="thumb">${img}</div><div><div class="nome">${escapeHtml(item.name)}</div><div class="meta"><span class="variant">${escapeHtml(details)}</span><span class="por">${brl(item.lineSubtotal)}</span></div></div>`;
+    row.innerHTML = `<div class="thumb">${img}</div><div><div class="nome">${escapeHtml(item.name)}</div><div class="variant">${escapeHtml(details)}</div></div>`;
     list.appendChild(row);
   });
   subtotalEl.textContent = brl(order.subtotal);
