@@ -344,44 +344,28 @@
       .quick-action-inner .btn{width:100%}
     }
 
-    /* Ajustes de conversao conservadores: elementos legais e informativos preservados. */
-    .hero{padding:42px 0 44px}
-    .hero-grid{grid-template-columns:minmax(360px,480px) minmax(0,1fr);gap:24px 54px}
-    .hero-copy{max-width:620px}
-    .hero h1{font-size:clamp(2.2rem,4.3vw,3.35rem);line-height:1.04}
-    .hero-lead{font-size:1.04rem;margin:16px 0 22px}
-    .hero-actions .btn-primary{min-width:300px}
-    .hero-cta-note{margin-top:8px}
-    .hero-benefits{margin-top:20px;gap:7px}
-    .ticket{box-shadow:0 16px 40px rgba(16,26,46,.12)}
-    .ticket-photo,.ticket-photo img{height:205px}
-    .ticket-top{padding-top:20px}
-    .ticket-bottom{padding-top:18px;padding-bottom:20px}
-    .trust-item{padding:21px 18px}
-    .quick-action-inner{min-height:70px}
-    section{padding:68px 0}
-    @media(max-width:960px){
-      .hero-grid{grid-template-columns:1fr;grid-template-areas:"copy" "ticket" "cta";gap:22px}
-      .hero-grid > .ticket{max-width:520px;justify-self:center}
-      .p13-cta{max-width:520px}
-      .hero{padding-top:34px}
-    }
+    /* Hero direto: reduz friccao apenas no primeiro contato; informacoes completas permanecem abaixo. */
+    .hero-direct{padding:42px 0 40px;background:linear-gradient(135deg,#f7f4ee 0%,#edf4ff 100%)}
+    .hero-direct-inner{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:55px;align-items:center;max-width:920px}
+    .hero-direct-copy{max-width:610px}
+    .hero-direct h1{font-size:clamp(2.35rem,5vw,3.8rem);line-height:1.02;margin-top:12px}
+    .hero-direct .hero-lead{font-size:1.12rem;margin:17px 0 22px;color:var(--steel)}
+    .hero-direct-btn{min-width:300px;font-size:1.02rem}
+    .hero-direct-trust{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:17px;color:#3c4657;font-size:.78rem;font-weight:700}
+    .hero-direct-product{background:#fff;border:1px solid rgba(16,26,46,.06);border-radius:20px;padding:17px;box-shadow:var(--shadow-sm);text-align:center}
+    .hero-direct-product img{height:170px;width:100%;object-fit:contain;filter:drop-shadow(0 13px 11px rgba(16,26,46,.14));margin-bottom:7px}
+    .hero-direct-product strong{display:block;color:var(--navy);font:900 1.05rem Archivo,sans-serif}
+    .hero-direct-product span{display:block;color:var(--steel);font-size:.76rem;margin-top:3px}
+    @media(max-width:960px){.hero-direct{padding:34px 0}.hero-direct-inner{grid-template-columns:1fr;gap:22px;max-width:620px}.hero-direct-product{display:none}.hero-direct-copy{max-width:none}}
     @media(max-width:620px){
-      .hero{padding:24px 0 28px}
-      .hero-grid{gap:18px}
-      .hero h1{font-size:clamp(2rem,9.2vw,2.35rem)}
-      .hero-lead{font-size:.96rem;margin:13px 0 17px}
-      .hero-actions .btn-primary{min-width:0}
-      .hero-actions .btn-ghost{display:none}
-      .hero-benefits{margin-top:15px;font-size:.82rem;gap:5px}
-      .ticket-photo,.ticket-photo img{height:205px}
-      .ticket-top{padding-top:17px}
-      .ticket-bottom{padding-top:16px;padding-bottom:18px}
-      .ticket-disclaimer{font-size:.8rem}
-      .trust-item{padding:16px 2px}
-      .quick-action{display:none}
-      section{padding:46px 0}
-      .footer{padding-bottom:86px}
+      .hero-direct{padding:25px 0 28px}
+      .hero-direct-inner{gap:0}
+      .hero-direct h1{font-size:clamp(2.05rem,10vw,2.55rem);line-height:1.03}
+      .hero-direct .hero-lead{font-size:1rem;line-height:1.42;margin:13px 0 18px}
+      .hero-direct-btn{width:100%;min-width:0;min-height:54px}
+      .hero-direct .cta-note{text-align:center;margin-top:8px}
+      .hero-direct-trust{display:grid;gap:5px;margin-top:14px;font-size:.75rem}
+      .hero-direct-trust span:nth-child(2){display:none}
     }
 
   </style>
@@ -409,47 +393,20 @@
   </nav>
 
   <main id="inicio">
-    <section class="hero">
-      <div class="container hero-grid">
-        <a class="ticket ticket-link" href="/vejasite" data-cta="p13-card" aria-label="Consultar disponibilidade e valor total do botijão P13">
-          <div class="ticket-top">
-            <div class="ticket-photo">
-              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png" alt="Botijão de gás GLP P13 de 13 kg" width="500" height="500" loading="eager" decoding="async">
-            </div>
-            <div class="ticket-caption">
-              <span><span class="label">GLP P13 · valor de referência do produto</span><span class="price">Promoção R$ 89,90</span></span>
-              <span class="status-badge" data-status aria-live="polite">&nbsp;</span>
-            </div>
-          </div>
-          <div class="ticket-divider"></div>
-          <div class="ticket-bottom">
-            <span class="free-delivery">Entrega 100% gratuita nos endereços atendidos</span>
-            <p class="ticket-disclaimer">O valor do produto e as condições aparecem antes da confirmação. A entrega é 100% gratuita, sem taxa adicional.</p>
-          </div>
-        </a>
-        <div class="p13-cta">
-          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total para este produto">Ver disponibilidade agora →</a>
-          <span class="cta-note">Consulta gratuita · sem compromisso</span>
-          <span class="cta-note">Consulte também a <a href="politica-privacidade.html">Política de privacidade</a>.</span>
+    <section class="hero hero-direct" id="inicio">
+      <div class="container hero-direct-inner">
+        <div class="hero-direct-copy">
+          <span class="eyebrow">Consulta rápida</span>
+          <h1>Consulte a entrega de gás no seu endereço.</h1>
+          <p class="hero-lead">Veja disponibilidade, prazo e valor do produto antes de decidir.</p>
+          <a class="btn btn-primary hero-direct-btn" href="/vejasite" data-cta="hero-direct" aria-label="Ver disponibilidade e valor do produto">Ver disponibilidade agora <span aria-hidden="true">→</span></a>
+          <span class="cta-note">Consulta gratuita · sem compromisso de compra</span>
+          <div class="hero-direct-trust"><span>✓ Entrega 100% gratuita nos endereços atendidos</span><span>✓ Condições exibidas antes da confirmação</span></div>
         </div>
-
-        <div class="hero-copy">
-          <span class="eyebrow">Entrega de gás</span>
-          <h1>Consulte o valor do produto antes de pedir — entrega 100% gratuita.</h1>
-          <p class="hero-lead">Informe seu endereço e veja rapidamente se atendemos sua região, o prazo, a disponibilidade e as condições do produto. A entrega é 100% gratuita, sem taxa adicional, e a consulta não gera compromisso de compra.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="/vejasite" data-cta="hero-primary" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
-            <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
-          </div>
-          <span class="cta-note hero-cta-note">Veja disponibilidade, prazo, valor do produto e condições antes de decidir.</span>
-          <ul class="hero-benefits">
-            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Consulta gratuita, sem compromisso de compra</li>
-            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Entrega sempre gratuita, sem taxa adicional</li>
-            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Você decide só depois de ver o valor e as condições</li>
-          </ul>
-          <p class="hero-note">COMERCIO DE GAS LTDA · CNPJ 45.846.492/0003-30 · Atendimento das 7h às 23h, todos os dias.</p>
+        <div class="hero-direct-product" aria-label="Produto em destaque">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png" alt="Botijão de gás GLP P13 de 13 kg" width="300" height="300" fetchpriority="high">
+          <div><strong>Botijão P13</strong><span>Valor de referência: R$ 89,90</span></div>
         </div>
-
       </div>
     </section>
 
