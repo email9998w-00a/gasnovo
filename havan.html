@@ -42,8 +42,7 @@ input,select{font:inherit}
 .top{display:flex;align-items:center;gap:12px;padding:18px 0 15px;border-bottom:1px solid var(--line);margin-bottom:14px}
 .top .back{width:31px;height:31px;border-radius:8px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--brand);font-size:1.15rem;flex:none}
 .top .logo{font-size:1.16rem;font-weight:800;color:var(--brand);letter-spacing:.1em}
-.top .h{margin-left:auto;text-align:right;font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:5px}
-.top .h .ico{color:var(--success);width:15px;height:15px}
+.top .h{margin-left:auto;text-align:right;font-size:.72rem;font-weight:700;color:var(--muted)}
 
 /* ---- Indicador de progresso ---- */
 .progress{display:flex;align-items:center;justify-content:center;gap:6px;padding:2px 4px 16px}
@@ -62,6 +61,8 @@ input,select{font:inherit}
 .step-n{width:25px;height:25px;border-radius:50%;background:var(--brand);color:#fff;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
 .step-h h2{font-size:.98rem;font-weight:700}
 .step-n.is-done{background:var(--success)}
+.section-icon{width:25px;height:25px;border-radius:7px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.section-icon .ico{width:14px;height:14px}
 
 /* ---- Resumo do pedido ---- */
 .order-items{display:grid;gap:12px}
@@ -101,6 +102,7 @@ input,select{font:inherit}
 .row-compact .field:not(.w-num){flex:1 1 auto}
 .privacy-note{display:flex;align-items:center;gap:6px;margin:-2px 0 12px;color:#7b8b95;font-size:.7rem;line-height:1.4}
 .privacy-note .ico{width:13px;height:13px;color:var(--success);flex:none}
+.field-hint{margin:-6px 0 12px;color:var(--muted);font-size:.7rem;line-height:1.4}
 
 /* ---- Status do CEP ---- */
 .field-status{display:flex;align-items:center;gap:8px;min-height:0;margin-top:7px;padding:0;font-size:.7rem;line-height:1.3}
@@ -140,7 +142,6 @@ input,select{font:inherit}
 .shipping-option small{display:block;margin-top:2px;color:var(--muted);font-size:.68rem}
 .shipping-price{color:var(--success);font-size:.78rem;font-weight:800;white-space:nowrap}
 .shipping-price.express{color:var(--brand)}
-.shipping-note{margin-top:9px;color:var(--muted);font-size:.68rem;line-height:1.4}
 
 /* ---- Cards que só aparecem depois ---- */
 .personal-card,.payment-card{display:none}
@@ -176,7 +177,7 @@ input,select{font:inherit}
 
 /* ---- Selos de confiança ---- */
 .trust-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-bottom:14px}
-.trust-strip div{display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;background:#fafcfd;color:#536b79;font-size:.62rem;font-weight:700;text-align:center;padding:4px 6px}
+.trust-strip div{display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;background:#fafcfd;color:#41586a;font-size:.62rem;font-weight:700;text-align:center;padding:4px 6px}
 .trust-strip .ico{width:15px;height:15px;color:var(--success)}
 
 /* ---- Tela do PIX gerado ---- */
@@ -235,6 +236,7 @@ input,select{font:inherit}
   <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 4h14v11H1z"/><path d="M15 8h4l4 4v3h-8z"/><circle cx="5.5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
   <symbol id="i-support" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
 </svg>
 
 <div class="securebar"><svg class="ico"><use href="#i-lock"/></svg> Ambiente de pagamento seguro</div>
@@ -245,7 +247,7 @@ input,select{font:inherit}
   <div class="top">
     <a class="back" href="javascript:history.back()" aria-label="Voltar">‹</a>
     <div class="logo">EQUALIV</div>
-    <div class="h"><svg class="ico"><use href="#i-shield"/></svg> Compra protegida</div>
+    <div class="h" id="headerStep">Etapa 1 de 3</div>
   </div>
 
   <!-- PROGRESSO -->
@@ -261,7 +263,7 @@ input,select{font:inherit}
 
   <!-- RESUMO DO PEDIDO -->
   <div class="card order-card">
-    <div class="step-h"><div class="step-n is-done"><svg class="ico" style="width:13px;height:13px"><use href="#i-check"/></svg></div><h2>Resumo do pedido</h2></div>
+    <div class="step-h"><div class="section-icon"><svg class="ico"><use href="#i-bag"/></svg></div><h2>Resumo do pedido</h2></div>
     <div id="orderItems" class="order-items" aria-live="polite"></div>
     <div class="order-subtotal"><span>Subtotal dos produtos</span><strong id="orderSubtotal">R$ 0,00</strong></div>
     <p class="order-note"><svg class="ico"><use href="#i-check"/></svg> Confira os itens e o total antes de continuar.</p>
@@ -378,7 +380,7 @@ input,select{font:inherit}
           <div class="msg">CPF inválido.</div>
         </div>
       </div>
-      <p class="privacy-note" style="margin-top:-2px"><svg class="ico"><use href="#i-lock"/></svg> O CPF é exigido pelo Banco Central para identificar quem paga via PIX.</p>
+      <p class="field-hint">Exigido pelo Banco Central para identificar quem paga via PIX.</p>
       <button class="btn btn-proceed" id="proceedPayment" type="button">Ir para o pagamento <span aria-hidden="true">→</span></button>
     </div>
 
@@ -551,6 +553,7 @@ function setStep(n) {
   });
   document.getElementById('stepN1').classList.toggle('is-done', n > 1);
   document.getElementById('stepN2').classList.toggle('is-done', n > 2);
+  document.getElementById('headerStep').textContent = 'Etapa ' + n + ' de 3';
 }
 
 /* =====================================================================
