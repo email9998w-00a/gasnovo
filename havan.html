@@ -42,6 +42,7 @@ input,select{font:inherit}
 /* ---- Header ---- */
 .top{display:flex;align-items:center;gap:12px;padding:18px 0 15px;border-bottom:1px solid var(--line);margin-bottom:14px}
 .top .back{width:31px;height:31px;border-radius:8px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--brand);font-size:1.15rem;flex:none}
+.top .back:disabled{opacity:.45;cursor:not-allowed}
 .top .logo{font-size:1.16rem;font-weight:800;color:var(--brand);letter-spacing:.1em}
 .top .h{margin-left:auto;text-align:right;font-size:.72rem;font-weight:700;color:var(--muted)}
 
@@ -265,7 +266,7 @@ input,select{font:inherit}
 
   <!-- HEADER -->
   <div class="top">
-    <a class="back" href="javascript:history.back()" aria-label="Voltar">‹</a>
+    <button class="back" type="button" aria-label="Voltar" disabled aria-disabled="true">‹</button>
     <div class="logo">EQUALIV</div>
     <div class="h" id="headerStep">Etapa 1 de 3</div>
   </div>
@@ -583,7 +584,11 @@ function setStep(n) {
 const onlyD = s => s.replace(/\D/g, '');
 function mask(el, fn) { el.addEventListener('input', () => { el.value = fn(onlyD(el.value)); }); }
 mask(document.getElementById('cep'), d => d.slice(0, 8).replace(/(\d{5})(\d)/, '$1-$2'));
-mask(document.getElementById('cpf'), d => d.slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2'));
+const cpfInput = document.getElementById('cpf');
+mask(cpfInput, d => d.slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2'));
+cpfInput.addEventListener('input', () => {
+  if (onlyD(cpfInput.value).length === 11 && validCPF(cpfInput.value)) cpfInput.blur();
+});
 
 /* =====================================================================
    BUSCA DE ENDEREÇO PELO CEP (ViaCEP)
