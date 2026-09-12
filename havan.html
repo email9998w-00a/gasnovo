@@ -179,6 +179,67 @@ input,select{font:inherit}
 .btn{min-height:50px;font-size:.98rem}
 .btn-proceed{margin-top:4px;background:var(--wine);box-shadow:0 6px 16px rgba(18,59,102,.2);font-size:.9rem}
 .btn-proceed:hover{background:var(--wine-dark)}
+.wrap{max-width:520px;padding-bottom:48px}
+.top{border-bottom:1px solid #e5edf2;margin-bottom:18px}
+.top .logo{font-size:1.18rem}
+.top .back{width:32px;height:32px;background:#f7fafc;box-shadow:none;border:1px solid #dce7ee}
+.checkout-intro{color:#526879;font-size:.76rem}
+.order-card{background:linear-gradient(180deg,#fff,#fbfdfe)}
+.order-card .step-h{padding-bottom:2px}
+.order-item .thumb{width:68px;height:68px;border-radius:12px}
+.order-item .nome{font-size:.88rem}
+.order-item .variant{font-size:.73rem}
+.order-item .meta{margin-top:7px}
+.order-subtotal{font-size:.78rem}
+.delivery-card,.personal-card,.payment-card{scroll-margin-top:14px}
+.field label{font-size:.76rem;color:#3b5060}
+.field input,.field select{min-height:46px;border-color:#d6e2e9;border-radius:9px;font-size:.88rem;color:#243746}
+.field input::placeholder{color:#a0adb7}
+.field input:focus,.field select:focus{border-color:#5b86a6;box-shadow:0 0 0 3px rgba(91,134,166,.12)}
+.field-status{font-size:.68rem;line-height:1.35}
+.shipping-card{background:#fbfdfe;border-top:1px solid #e4edf2}
+.shipping-title{color:#1e3c51}
+.shipping-subtitle{font-size:.7rem}
+.shipping-option{min-height:64px;background:#fff;border-color:#d7e3ea}
+.shipping-option.is-selected{border-color:#157347;background:#f3faf5}
+.shipping-option strong{font-size:.78rem;color:#203b4d}
+.shipping-option small{font-size:.68rem}
+.payment-card{background:#fff}
+.payment-card .pix-head{margin-bottom:16px}
+.payment-card .total-line{padding:10px 0}
+.payment-card .total-line:last-of-type{padding-top:13px;border-top:1px solid #dfe8ed}
+.payment-card .total-line:last-of-type strong{font-size:1.7rem}
+.payment-card .btn{min-height:54px;font-size:1rem;letter-spacing:.01em}
+.payment-card .safenote{font-size:.7rem}
+@media (max-width:620px){.wrap{max-width:520px;padding-inline:14px}.top{margin-bottom:15px}.order-item .thumb{width:62px;height:62px}.payment-card .total-line:last-of-type strong{font-size:1.55rem}}
+/* Acabamento institucional final: consistência, sobriedade e confiança. */
+body{font-family:Arial,"Helvetica Neue",sans-serif;color:#1b2d3a;background:#f4f7f9}
+.securebar{background:#0c2d4e;color:#e9f2f8;font-size:11px;font-weight:600;padding:9px 8px;letter-spacing:.01em}
+.top{padding:20px 0 17px;border-bottom:1px solid #dce6ec;margin-bottom:20px}
+.top .logo{font-size:20px;letter-spacing:.12em;color:#123b66;font-weight:800}
+.top .h{font-size:11px;font-weight:600;color:#687b89}
+.top .back{width:30px;height:30px;border-radius:7px;color:#123b66;background:#fff;border:1px solid #d5e0e7;font-size:20px}
+.checkout-intro{margin:0 2px 17px;color:#607482;font-size:12px;line-height:1.5}
+.card{border:1px solid #dce6ec;border-radius:10px;box-shadow:0 2px 8px rgba(18,59,102,.035);background:#fff;padding:20px;margin-bottom:14px}
+.step-h{gap:9px;margin-bottom:15px}.step-n{width:24px;height:24px;background:#123b66;font-size:11px}.step-h h2{font-size:15px;font-weight:700;color:#1b2d3a}
+.order-card{background:#fff}.order-card .step-n{background:#e7f3ec;color:#157347}
+.order-item{grid-template-columns:62px minmax(0,1fr);gap:12px;padding-bottom:13px;border-color:#e8eef2}
+.order-item .thumb{width:62px;height:62px;border-radius:8px;background:#fafcfd;border-color:#e2eaf0}
+.order-item .nome{font-size:13px;color:#203746}.order-item .variant{font-size:11px;color:#71828d}.order-item .por{font-size:13px;color:#123b66}
+.order-subtotal{border-color:#e2eaf0;color:#6c7d88}.order-subtotal strong{color:#123b66;font-size:14px}
+.field{margin-bottom:13px}.field label{font-size:11px;font-weight:700;color:#415866;margin-bottom:6px}
+.field input,.field select{min-height:44px;border:1px solid #cfdde5;border-radius:7px;background:#fff;color:#213946;font-size:13px}
+.field input:focus,.field select:focus{border-color:#39739b;box-shadow:0 0 0 3px rgba(57,115,155,.1)}
+.shipping-card{background:#fbfcfd;border-top:1px solid #e2eaf0}.shipping-title{font-size:13px;color:#28485b}.shipping-subtitle{font-size:11px;color:#71828d}
+.shipping-option{min-height:60px;padding:11px;border:1px solid #d5e1e8;border-radius:8px;box-shadow:none}.shipping-option strong{font-size:12px}.shipping-option small{font-size:10px}.shipping-option.is-selected{border-color:#39805e;background:#f3f9f5;box-shadow:0 0 0 1px #39805e}
+.btn{border-radius:7px;font-size:13px;font-weight:700;box-shadow:none}.btn-primary,.btn.green{background:#157347}.btn-primary:hover,.btn.green:hover{background:#105c39}.btn-proceed{background:#123b66;box-shadow:none}.btn-proceed:hover{background:#0c2d4e}
+#btnGerar{background:#157347}#btnGerar:hover{background:#105c39}
+.pix-head{background:#f5f9fc;border:1px solid #d7e5ed;border-radius:8px}.pix-head .pixlogo{background:#123b66;border-radius:6px}.pix-head strong{font-size:13px}.pix-head small{font-size:11px}.payment-card .total-line{border-color:#e1e9ee}.payment-card .total-line:last-of-type strong{font-size:22px;color:#123b66}
+.payment-card .safenote{font-size:10px;color:#71828d}.field-status{font-size:10px}.required-mark{color:#b3263e}
+.foot{font-size:10px;color:#7a8a95;margin-top:22px}
+.order-note{display:flex;align-items:flex-start;gap:6px;margin:13px 0 0;color:#6e808c;font-size:10px;line-height:1.4}
+.order-note .ico{width:14px;height:14px;color:#157347;margin-top:1px}
+.data-note{margin:-3px 0 13px;color:#71828d;font-size:10px;line-height:1.4}
 @media (min-width:621px){.ckbar{display:none!important}}
 .address-fields{display:none}
 .address-fields.is-visible{display:block}
@@ -236,24 +297,25 @@ body{background:#f5f8fb}
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
 </svg>
 
-<div class="securebar"><svg class="ico"><use href="#i-lock"/></svg> Ambiente 100% seguro e criptografado</div>
+<div class="securebar"><svg class="ico"><use href="#i-lock"/></svg> Finalização segura</div>
 
 <div class="wrap">
 
   <!-- HEADER -->
   <div class="top">
     <a class="back" href="javascript:history.back()" aria-label="Voltar">‹</a>
-    <div class="logo">EQUALIV<span>.</span></div>
-    <div class="h">Revisar pedido</div>
+    <div class="logo">EQUALIV</div>
+    <div class="h">Finalizar pedido</div>
   </div>
 
-  <p class="checkout-intro">Preencha seus dados e endereço. Depois, escolha a entrega e gere seu PIX.</p>
+  <p class="checkout-intro">Confira o pedido, informe os dados de entrega e finalize pelo PIX.</p>
 
   <!-- RESUMO DO PRODUTO -->
   <div class="card order-card">
-    <div class="step-h"><div class="step-n">✓</div><h2>Seu pedido</h2></div>
+    <div class="step-h"><div class="step-n">✓</div><h2>Confira seu pedido</h2></div>
     <div id="orderItems" class="order-items" aria-live="polite"></div>
     <div class="order-subtotal"><span>Subtotal dos produtos</span><strong id="orderSubtotal">R$ 0,00</strong></div>
+    <p class="order-note"><svg class="ico"><use href="#i-check"/></svg> O pedido será revisado antes da geração do PIX.</p>
   </div>
 
   <!-- FORM (etapas) -->
@@ -262,6 +324,7 @@ body{background:#f5f8fb}
     <!-- 2. DADOS PESSOAIS -->
     <div class="card personal-card" id="personalCard">
       <div class="step-h"><div class="step-n">2</div><h2>Seus dados</h2></div>
+      <p class="data-note">Usaremos estas informações para processar e entregar o pedido.</p>
       <div class="field">
         <label for="nome">Nome completo</label>
         <input id="nome" type="text" autocomplete="name" placeholder="Seu nome completo">
