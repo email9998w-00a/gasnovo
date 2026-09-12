@@ -693,7 +693,7 @@ function setupShipping(){
       : { id:'standard', label:'Entrega econômica', price:0, delivery:'Até 4 dias' };
     updateShippingTotal();
     personalCard.classList.add('is-visible');
-    setTimeout(() => personalCard.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
+    setTimeout(() => personalCard.scrollIntoView({ behavior:'smooth', block:'center', inline:'nearest' }), 80);
   }));
   window.showShippingOptions = () => card.classList.add('is-visible');
 }
