@@ -368,9 +368,18 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
 @media(max-width:480px){.wrap{padding-inline:13px}.card{padding:16px}.top{padding-top:16px}.checkout-intro{font-size:.71rem}.payment-card .total-line:last-of-type strong{font-size:1.45rem}}
 </style>
 
-<style id="pix-preview">
-.preview-empty{display:flex;align-items:center;justify-content:center;text-align:center;background:#f7fafc;border:1px dashed #b8cbd6;color:#7b8d98;font-size:.72rem;line-height:1.35}
-.pix-code input::placeholder{color:#8a9aa4}.preview-note{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;color:#8a5d00;background:#fff8e6;border:1px solid #f0d58a;border-radius:8px;padding:9px;font-size:.66rem}.preview-note .ico{width:14px;height:14px}
+<style id="conversion-final-layer">
+/* Otimização de conversão: menos campos, hierarquia clara e um CTA por etapa. */
+.personal-card .row{gap:0}.personal-card .field{margin-bottom:11px}
+.personal-card .data-note{max-width:390px}.privacy-note{margin-top:-1px}
+#proceedPayment{margin-top:3px}
+@media(max-width:480px){.personal-card .field input{min-height:46px}.personal-card .btn{min-height:51px}}
+</style>
+
+<style id="two-field-conversion">
+/* Formulário essencial: apenas os dados necessários para contato e confirmação. */
+.personal-card .data-note{max-width:390px}.personal-card .field{margin-bottom:12px}.personal-card .privacy-note{margin-bottom:12px}
+@media(max-width:480px){.personal-card .field input{min-height:47px}.personal-card .btn{min-height:52px}}
 </style>
 </head>
 <body>
@@ -414,8 +423,8 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
     <!-- 2. DADOS PESSOAIS -->
     <div class="card personal-card" id="personalCard">
       <div class="step-h"><div class="step-n">2</div><h2>Seus dados</h2></div>
-      <p class="data-note">Usaremos estes dados para entregar o pedido e enviar a confirmação.</p>
-      <p class="privacy-note"><svg class="ico"><use href="#i-lock"/></svg> Seus dados são usados apenas para processar esta compra.</p>
+      <p class="data-note">Usaremos estes dados para confirmar a compra e enviar os detalhes do pedido.</p>
+      <p class="privacy-note"><svg class="ico"><use href="#i-lock"/></svg> Usaremos estes dados apenas para processar e confirmar esta compra.</p>
       <div class="field">
         <label for="nome">Nome completo <span class="required-mark">*</span></label>
         <input id="nome" type="text" autocomplete="name" placeholder="Seu nome completo">
@@ -427,16 +436,6 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
         <div class="msg">Informe um e-mail válido.</div>
       </div>
       <div class="row">
-        <div class="field">
-          <label for="cpf">CPF <span class="required-mark">*</span></label>
-          <input id="cpf" type="tel" inputmode="numeric" placeholder="000.000.000-00" maxlength="14">
-          <div class="msg">CPF inválido.</div>
-        </div>
-        <div class="field">
-          <label for="tel">Telefone <span class="required-mark">*</span></label>
-          <input id="tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(00) 00000-0000" maxlength="15">
-          <div class="msg">Telefone inválido.</div>
-        </div>
       </div>
       <button class="btn btn-proceed" id="proceedPayment" type="button">Continuar <span aria-hidden="true">→</span></button>
     </div>
@@ -546,23 +545,23 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
   <!-- TELA: PIX GERADO -->
   <div id="pixArea" class="card pix-pay hidden">
     <h2>Quase lá! Pague com PIX</h2>
-    <p class="sub">Pré-visualização da tela de pagamento. Nenhum pagamento está sendo gerado.</p>
-    <div class="qr preview-empty" aria-label="Área reservada para o QR Code"><span>QR Code<br>será exibido aqui</span></div>
+    <p class="sub">Escaneie o QR Code ou copie o código no seu banco.</p>
+    <div class="qr"><img id="pixQr" src="" alt="QR Code PIX para pagamento"></div>
     <div class="pix-code" aria-label="Código PIX copia e cola">
-      <input id="pixCode" readonly value="" placeholder="Código PIX será exibido aqui" aria-label="Código PIX copia e cola">
+      <input id="pixCode" readonly value="" aria-label="Código PIX copia e cola">
       <button id="btnCopy" type="button"><svg class="ico"><use href="#i-copy"/></svg> Copiar</button>
     </div>
     <div class="timer-box">
-      <strong>Área de pagamento</strong><br>
-      <small>Em produção, o código PIX e o prazo serão exibidos aqui.</small>
+      O código expira em <span class="clock" id="pixClock">30:00</span><br>
+      <small>Após o pagamento, a confirmação é automática.</small>
     </div>
     <ol class="steps-list">
       <li>Abra o app do seu banco e escolha <strong>PIX</strong>.</li>
       <li>Selecione <strong>Pagar com QR Code</strong> ou <strong>Copia e Cola</strong>.</li>
-      <li>O valor do pedido será exibido nesta etapa: <strong id="pixValor">R$ 0,00</strong>.</li>
+      <li>Confirme o valor <strong id="pixValor">R$ 0,00</strong> e finalize.</li>
       <li>A tela será atualizada automaticamente após a confirmação.</li>
     </ol>
-    <div class="preview-note"><svg class="ico"><use href="#i-shield"/></svg> Modo de visualização — nenhum pagamento será processado</div>
+    <div class="safenote"><svg class="ico"><use href="#i-shield"/></svg> Pagamento processado com segurança</div>
   </div>
 
   <!-- TELA: APROVADO -->
@@ -590,8 +589,7 @@ const CONFIG = {
   PIXEL_ID:  '1838038347359216',  // ID do Pixel (Meta)
   API_BASE:  '',            // Vazio = mesmo servidor que serve a página. Ou URL fixa do backend Equaliv.
   PIX_EXPIRE_MIN: 30,       // minutos até o PIX expirar
-  MODO_DEMO: false,         // false = PIX real pelo backend.
-  MODO_PREVIEW_PIX: true    // apenas visualização: abre a tela pós-PIX sem cobrança e sem código.
+  MODO_DEMO: false          // true = só simula o visual. false = PIX real pelo backend.
 };
 // SEGURANÇA: a Secret Key (sk_...) da Pagap NUNCA fica aqui no frontend.
 // Ela mora só no backend (VPS). O checkout fala com o SEU backend, e o backend fala com a Pagap.
@@ -736,10 +734,6 @@ initPixel();
    ===================================================================== */
 const onlyD = s => s.replace(/\D/g,'');
 function mask(el, fn){ el.addEventListener('input', ()=>{ el.value = fn(onlyD(el.value)); }); }
-mask(document.getElementById('cpf'), d => d.slice(0,11)
-  .replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2'));
-mask(document.getElementById('tel'), d => d.slice(0,11)
-  .replace(/(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2'));
 mask(document.getElementById('cep'), d => d.slice(0,8).replace(/(\d{5})(\d)/,'$1-$2'));
 
 /* ---- busca automática do endereço ao completar o CEP (ViaCEP) ---- */
@@ -813,8 +807,6 @@ function validar(){
   const g = id => document.getElementById(id).value.trim();
   ok = setField('nome',  g('nome').split(' ').length>=2) && ok;
   ok = setField('email', /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(g('email'))) && ok;
-  ok = setField('cpf',   validCPF(g('cpf'))) && ok;
-  ok = setField('tel',   onlyD(g('tel')).length>=10) && ok;
   ok = setField('cep',   onlyD(g('cep')).length===8) && ok;
   ok = setField('estado',!!g('estado')) && ok;
   ok = setField('cidade',g('cidade').length>1) && ok;
@@ -842,7 +834,7 @@ btnGerar.addEventListener('click', gerarPix);
 function dadosCliente(){
   const g = id => document.getElementById(id).value.trim();
   return {
-    name:g('nome'), email:g('email'), document:onlyD(g('cpf')), phone:onlyD(g('tel')),
+    name:g('nome'), email:g('email'), document:'', phone:'',
     cep:onlyD(g('cep')), estado:g('estado'), cidade:g('cidade'),
     bairro:g('bairro'), rua:g('rua'), numero:g('numero'), complemento:g('compl')
   };
@@ -872,9 +864,7 @@ async function gerarPix(){
 
   try{
     let pix;
-    if(CONFIG.MODO_PREVIEW_PIX){
-      pix = { qr_image:'', copia_e_cola:'', id:'preview-pix' };
-    } else if(CONFIG.MODO_DEMO){
+    if(CONFIG.MODO_DEMO){
       // ---- MODO DEMO (visual). Trocamos por chamada real ao ligar o gateway. ----
       await new Promise(r=>setTimeout(r,900));
       pix = {
@@ -936,7 +926,6 @@ document.getElementById('btnCopy').addEventListener('click', ()=>{
 
 /* ---- timer de expiração ---- */
 function iniciarTimer(){
-  if(CONFIG.MODO_PREVIEW_PIX) return;
   let t = CONFIG.PIX_EXPIRE_MIN*60;
   const el = document.getElementById('pixClock');
   const iv = setInterval(()=>{
@@ -948,7 +937,6 @@ function iniciarTimer(){
 
 /* ---- confirmação automática do pagamento ---- */
 function iniciarPolling(id){
-  if(CONFIG.MODO_PREVIEW_PIX) return;
   if(CONFIG.MODO_DEMO){
     // demo: aprova sozinho em 6s só p/ você ver a tela de sucesso
     setTimeout(aprovado, 6000);
