@@ -2,47 +2,759 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0d1b34">
-  <meta name="description" content="Consulte em poucos segundos a disponibilidade e o valor do botijão de gás para o seu endereço.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Informe seu endereço e veja na hora se atendemos sua região, a disponibilidade, o prazo e as condições do produto com entrega 100% gratuita, sem taxa de entrega ou cobrança adicional relacionada à entrega.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Consulte a entrega de gás no seu endereço</title>
+  <meta name="theme-color" content="#101a2e">
+
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18430848378"></script>
   <script>
-    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
-    gtag('js',new Date());gtag('config','AW-18430848378');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18430848378');
   </script>
+
+  <title>Consulte Entrega de Gás no seu Endereço | Disk Gás e Água</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "COMERCIO DE GAS LTDA",
+    "alternateName": "Disk Gás e Água",
+    "taxID": "45.846.492/0003-30",
+    "telephone": "+55-11-5190-7266",
+    "email": "comercia88as@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Estrada Sao Paulo-Jundiai, 1373 — Perus",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "05230-000",
+      "addressCountry": "BR"
+    },
+    "openingHours": "Mo-Su 07:00-23:00"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Vocês entregam no meu endereço?","acceptedAnswer":{"@type":"Answer","text":"A área atendida depende do endereço informado. Consulte para confirmar se há atendimento na sua região antes de decidir."}},
+      {"@type":"Question","name":"O preço mostrado é o valor final?","acceptedAnswer":{"@type":"Answer","text":"O preço exibido é uma referência do produto. A entrega é 100% gratuita nos endereços atendidos, sem taxa de entrega ou cobrança adicional relacionada à entrega. A disponibilidade, a modalidade e as condições finais são confirmadas na consulta antes da confirmação do pedido."}},
+      {"@type":"Question","name":"Existe compromisso de compra ao consultar?","acceptedAnswer":{"@type":"Answer","text":"Não. A consulta apenas mostra as condições disponíveis para o seu endereço. Você decide se quer seguir depois de ver tudo."}}
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{--navy:#0d1b34;--navy2:#152849;--blue:#1769d1;--blue2:#0d4da4;--yellow:#ffc636;--paper:#f7f8fb;--ink:#172033;--muted:#667085;--line:#e5e9f0;--green:#178552;--white:#fff;--shadow:0 18px 50px rgba(13,27,52,.13);--ease:cubic-bezier(.22,1,.36,1)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Public Sans',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}a{color:inherit}button{font:inherit}img{display:block;max-width:100%}.wrap{width:min(1080px,calc(100% - 40px));margin:auto}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
-    .top{background:var(--navy);color:#dbe5f7;text-align:center;font-size:.8rem;padding:8px 12px}.top strong{color:#fff}.nav{background:rgba(247,248,251,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.navin{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}.mark{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:linear-gradient(145deg,var(--blue),var(--blue2));color:#fff;font-weight:900;font-family:Archivo,sans-serif;font-size:.83rem;flex:none}.brand b{display:block;font:800 .93rem Archivo,sans-serif;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand small{display:block;color:var(--muted);font-size:.68rem}.navcta{font-size:.84rem;padding:11px 16px!important;min-height:0!important}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;min-height:54px;padding:15px 22px;text-decoration:none;font-weight:900;cursor:pointer;transition:transform .15s var(--ease),background .15s,box-shadow .15s}.btn:active{transform:scale(.98)}.btn-primary{background:var(--blue);color:#fff;box-shadow:0 12px 26px rgba(23,105,209,.25)}.btn-primary:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 15px 30px rgba(13,77,164,.3)}.btn-wide{width:100%}.btn-secondary{background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:none}
-    .hero{padding:46px 0 44px;background:linear-gradient(135deg,#f7f8fb 0%,#edf4ff 100%)}.hero-grid{display:grid;grid-template-columns:1fr 430px;gap:60px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--blue2);font-size:.75rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.eyebrow:before{content:'';width:22px;height:3px;border-radius:4px;background:var(--yellow)}h1,h2{font-family:Archivo,sans-serif;letter-spacing:-.035em;margin:0;color:var(--navy)}h1{font-size:clamp(2.25rem,5vw,3.65rem);line-height:1.02;max-width:600px;margin-top:13px}.lead{font-size:1.08rem;color:#536174;max-width:570px;margin:20px 0 25px}.hero-list{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px;color:#3f4d62;font-size:.9rem}.hero-list li:before{content:'✓';color:var(--green);font-weight:900;margin-right:9px}.small{color:var(--muted);font-size:.76rem}.hero .small{display:block;margin-top:11px}.product-card{background:#fff;border:1px solid rgba(13,27,52,.06);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.product-card img{width:205px;height:205px;object-fit:contain;margin:0 auto 5px;filter:drop-shadow(0 16px 12px rgba(13,27,52,.14))}.card-top{display:flex;align-items:end;justify-content:space-between;gap:12px;border-top:1px dashed #d6dce6;padding-top:18px}.label{display:block;color:var(--muted);font-size:.72rem}.price{display:block;font:900 1.55rem Archivo,sans-serif;color:var(--navy);margin-top:3px}.status{font-size:.72rem;color:var(--green);font-weight:800;text-align:right}.status:before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px}.card-note{margin:14px 0 17px;color:#596579;font-size:.8rem}.card-cta{font-size:1rem}.trust{background:var(--navy);color:#fff}.trustin{display:grid;grid-template-columns:repeat(3,1fr)}.trustitem{padding:22px 18px;display:flex;gap:11px;border-right:1px solid rgba(255,255,255,.12)}.trustitem:last-child{border-right:0}.trustitem b{font:800 .85rem Archivo,sans-serif}.trustitem span{display:block;color:#aebbd2;font-size:.77rem;margin-top:3px}.check{color:var(--yellow);font-size:1.15rem;font-weight:900;line-height:1}
-    .how{padding:56px 0}.section-head{text-align:center;max-width:650px;margin:0 auto 28px}.section-head h2{font-size:clamp(1.75rem,3vw,2.35rem);margin-top:9px}.section-head p{color:var(--muted);margin:12px 0 0}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{background:#fff;border:1px solid var(--line);border-radius:15px;padding:21px}.num{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#e8f1ff;color:var(--blue2);font-weight:900;margin-bottom:14px}.step b{font-size:.92rem}.step p{color:var(--muted);font-size:.82rem;margin:6px 0 0}.faq{padding:0 0 65px}.faqbox{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;max-width:750px;margin:auto}.faqrow{padding:17px 20px;border-bottom:1px solid var(--line);font-weight:800;font-size:.9rem}.faqrow:last-child{border-bottom:0}.faqrow summary{cursor:pointer;list-style:none}.faqrow summary::-webkit-details-marker{display:none}.faqrow p{font-weight:400;color:var(--muted);font-size:.84rem;margin:11px 0 0;max-width:650px}.footer{background:#091426;color:#9facbf;padding:30px 0;text-align:center;font-size:.72rem}.footer b{color:#fff}.mobile-cta{display:none}
-    @media(max-width:800px){.wrap{width:min(100% - 28px,1080px)}.hero{padding:27px 0 28px}.hero-grid{grid-template-columns:1fr;gap:22px}.hero-copy{order:1}.product-card{order:2;max-width:480px;margin:auto}.hero h1{font-size:clamp(2.1rem,10vw,3rem);max-width:520px}.lead{font-size:.98rem;margin:15px 0 20px}.hero-list{display:none}.trustin{grid-template-columns:1fr}.trustitem{border-right:0;border-bottom:1px solid rgba(255,255,255,.12);padding:16px 4px}.trustitem:last-child{border-bottom:0}.steps{grid-template-columns:1fr}.how{padding:46px 0}.faq{padding-bottom:40px}.mobile-cta{display:block;position:fixed;z-index:20;bottom:0;left:0;right:0;padding:9px 13px calc(9px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);box-shadow:0 -8px 25px rgba(13,27,52,.12)}body{padding-bottom:73px}.mobile-cta .btn{min-height:50px}.navcta{padding:10px 13px!important}.brand b{font-size:.8rem}.brand small{font-size:.62rem}}
-    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+    :root{
+      --ink:#161b22;
+      --navy:#101a2e;
+      --navy-2:#182747;
+      --paper:#f7f4ee;
+      --white:#fff;
+      --blue:#1769d1;
+      --blue-dark:#0d47a1;
+      --blue-tint:#e8f1ff;
+      --steel:#57647a;
+      --line:#e6dfd0;
+      --line-dark:rgba(255,255,255,.14);
+      --safety:#ffc636;
+      --green:#1c8f5a;
+      --shadow:0 20px 50px rgba(16,26,46,.14);
+      --shadow-sm:0 10px 26px rgba(16,26,46,.08);
+      --radius:20px;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
+    body{margin:0;font-family:'Public Sans',ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    h1,h2,h3{font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;font-weight:900;letter-spacing:-.02em;margin:0}
+    a{color:inherit}
+    button,input,select{font:inherit}
+    button{cursor:pointer;background:none;border:0}
+    img{max-width:100%;display:block}
+    .container{width:min(1120px,calc(100% - 40px));margin:auto}
+    .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    :focus-visible{outline:3px solid rgba(23,105,209,.45);outline-offset:3px;border-radius:6px}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-weight:800;text-decoration:none;padding:16px 24px;min-height:54px;transition:transform .15s var(--ease),background .15s,box-shadow .15s;white-space:nowrap;font-size:.98rem}
+    .btn:active{transform:scale(.97)}
+    .btn:focus-visible{box-shadow:0 0 0 4px rgba(23,105,209,.2),0 12px 26px rgba(23,105,209,.28)}
+    .btn-primary{background:var(--blue);color:#fff;box-shadow:0 12px 26px rgba(23,105,209,.28);font-weight:900}
+    .btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 14px 30px rgba(13,71,161,.32)}
+    .btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line);font-weight:800;padding:14px 22px;border-radius:12px;text-decoration:none;transition:border-color .15s,transform .15s}
+    .btn-ghost:hover{border-color:var(--blue);transform:translateY(-2px)}
+    .btn-block{width:100%}
+
+    /* Status badge (real, time-based) */
+    .status-badge{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:.82rem}
+    .status-badge .dot{width:9px;height:9px;border-radius:50%;flex:none}
+    .status-badge.is-open{color:var(--green)}
+    .status-badge.is-open .dot{background:var(--green);box-shadow:0 0 0 5px rgba(28,143,90,.14)}
+    .status-badge.is-closed{color:var(--steel)}
+    .status-badge.is-closed .dot{background:var(--steel);box-shadow:0 0 0 5px rgba(87,100,122,.12)}
+
+    /* Top bar */
+    .topbar{background:var(--navy);color:#cddaf2;font-size:.84rem}
+    .topbar .container{display:flex;justify-content:center;padding:10px 0;text-align:center}
+    .topbar a{color:#fff;font-weight:800;text-decoration:none}
+    .topbar a:hover{text-decoration:underline}
+
+    /* Nav */
+    .nav{position:sticky;top:0;z-index:30;background:rgba(247,244,238,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 auto;text-decoration:none}
+    .brand-mark{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:12px;background:linear-gradient(155deg,var(--blue),var(--blue-dark));color:#fff;font-family:'Archivo',sans-serif;font-weight:900;font-size:.95rem}
+    .brand-text strong{display:block;font-size:1.02rem;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand-text small{display:block;color:var(--steel);font-size:.74rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .nav-links{display:flex;align-items:center;gap:22px;flex:0 0 auto;font-size:.9rem;font-weight:700;color:var(--steel)}
+    .nav-links a{text-decoration:none}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-cta-short{display:none}
+    .nav-cta{font-size:.9rem;flex:0 0 auto;max-width:230px}
+
+    /* Hero */
+    .hero{padding:64px 0 56px;background:var(--paper);border-bottom:1px solid var(--line)}
+    .hero-grid{display:grid;grid-template-columns:minmax(360px,480px) minmax(0,1fr);grid-template-areas:"ticket copy" "cta copy";gap:22px 64px;align-items:center}
+    .hero-copy{grid-area:copy;align-self:center}
+    .hero-grid > .ticket{grid-area:ticket;width:100%;margin:0}
+    .hero h1{font-size:clamp(2.3rem,4.6vw,3.6rem);line-height:1.05;color:var(--navy);max-width:620px}
+    .hero-lead{font-size:1.12rem;color:var(--steel);max-width:520px;margin:20px 0 28px}
+    .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .hero-actions .btn-primary{min-width:330px}
+    .hero-benefits{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;margin:26px 0 0;color:#3c4657;font-size:.9rem;font-weight:600}
+    .hero-benefits li{display:flex;gap:10px;align-items:flex-start}
+    .hero-benefits svg{flex:none;width:19px;height:19px;color:var(--green);margin-top:1px}
+    .hero-note{font-size:.82rem;color:var(--steel);margin-top:20px;max-width:480px}
+
+    .ticket{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(16,26,46,.05)}
+    .ticket-link{display:block;color:inherit;text-decoration:none;cursor:pointer;transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
+    .ticket-link:hover{transform:translateY(-2px);box-shadow:0 24px 56px rgba(16,26,46,.18)}
+    .ticket-link:focus-visible{outline:3px solid rgba(23,105,209,.55);outline-offset:4px}
+    .ticket-top{padding:26px 26px 0}
+    .ticket-photo{height:230px;display:grid;place-items:center}
+    .ticket-photo img{width:min(270px,80%);height:230px;object-fit:contain;filter:drop-shadow(0 18px 16px rgba(16,26,46,.16))}
+    .ticket-caption{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-bottom:22px}
+    .ticket-caption>span:first-child{min-width:0}
+    .ticket-caption>.status-badge{flex:none;text-align:right}
+    .ticket-caption .label{display:block;color:var(--steel);font-size:.78rem}
+    .ticket-caption .price{display:block;color:var(--navy);font-size:1.6rem;font-family:'Archivo',sans-serif;font-weight:900;margin-top:2px}
+    .ticket-divider{position:relative;margin:0 -26px;border-top:2px dashed var(--line);height:0}
+    .ticket-divider::before,.ticket-divider::after{content:"";position:absolute;top:-11px;width:22px;height:22px;border-radius:50%;background:var(--paper)}
+    .ticket-divider::before{left:-11px}
+    .ticket-divider::after{right:-11px}
+    .ticket-bottom{padding:22px 26px 26px;display:flex;flex-direction:column;gap:16px}
+    .ticket-disclaimer{margin:0;color:var(--steel);font-size:.86rem}
+    .free-delivery{display:inline-flex;align-items:center;gap:7px;background:#e7f7ef;color:#147346;border:1px solid #b9e8ce;border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:900;line-height:1.2}
+    .free-delivery::before{content:"✓";display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem}
+    .p13-cta{grid-area:cta;width:100%;margin:0 auto}
+    .p13-cta .btn{box-shadow:0 14px 30px rgba(23,105,209,.24)}
+    .cta-note{display:block;color:var(--steel);font-size:.78rem;text-align:center;margin-top:9px}
+
+    /* Trust row */
+    .trust{background:var(--navy);color:#fff}
+    .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px}
+    .trust-item{padding:26px 20px;display:flex;gap:14px;align-items:flex-start;border-right:1px solid var(--line-dark)}
+    .trust-item:last-child{border-right:0}
+    .trust-item svg{flex:none;width:26px;height:26px;color:var(--safety);margin-top:2px}
+    .trust-item strong{display:block;font-size:.95rem;font-family:'Archivo',sans-serif}
+    .trust-item span{display:block;color:#aebcd6;font-size:.84rem;margin-top:4px}
+
+    /* Quick action strip */
+    .quick-action{background:var(--white);border-bottom:1px solid var(--line)}
+    .quick-action-inner{display:flex;align-items:center;justify-content:center;gap:22px;min-height:80px;text-align:center}
+    .quick-action-inner span{font-weight:700;color:var(--navy)}
+
+    section{padding:80px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:34px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--blue-dark);font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+    .eyebrow::before{content:"";width:22px;height:3px;border-radius:4px;background:var(--safety)}
+    .section-title{font-size:clamp(1.7rem,2.8vw,2.5rem);line-height:1.1;color:var(--navy);margin-bottom:10px}
+    .section-copy{color:var(--steel);max-width:600px;margin:0}
+
+    /* Products */
+    .products{background:var(--paper)}
+    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .product{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;transition:transform .18s var(--ease),box-shadow .18s}
+    .product:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm)}
+    .product-tag{display:inline-flex;align-self:flex-start;background:var(--blue-tint);color:var(--blue-dark);font-weight:800;font-size:.72rem;padding:4px 10px;border-radius:999px;margin-bottom:14px}
+    .product-weight{display:flex;align-items:baseline;gap:5px;margin-bottom:6px}
+    .product-weight strong{font-family:'Archivo',sans-serif;font-size:2.4rem;font-weight:900;color:var(--navy);line-height:1}
+    .product-weight span{font-weight:700;color:var(--steel);font-size:.95rem}
+    .product h3{font-size:.94rem;color:var(--navy);margin-bottom:8px;font-family:'Public Sans',sans-serif;font-weight:800}
+    .product p{font-size:.82rem;color:var(--steel);margin:0;flex:1}
+    .product-price{display:flex;justify-content:space-between;align-items:end;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+    .product-price .from{display:block;font-size:.7rem;color:var(--steel)}
+    .product-price strong{font-size:1.2rem;color:var(--navy);font-family:'Archivo',sans-serif}
+    .product-link{color:var(--blue-dark);font-weight:900;font-size:.86rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;margin-top:14px}
+    .product-link::after{content:"→";transition:transform .15s var(--ease)}
+    .product-link:hover::after{transform:translateX(3px)}
+    .product-link:hover{text-decoration:underline}
+
+    .section-action{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
+    .section-action p{margin:0;color:var(--steel);font-weight:700}
+
+    /* Steps (real sequence) */
+    .steps{background:var(--navy);color:#fff}
+    .steps .section-title{color:#fff}
+    .steps .section-copy{color:#aebcd6}
+    .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+    .step{padding:26px;border:1px solid var(--line-dark);border-radius:16px;background:var(--navy-2)}
+    .step-num{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--safety);color:var(--navy);font-weight:900;font-family:'Archivo',sans-serif;margin-bottom:20px}
+    .step h3{font-size:1.02rem;margin-bottom:8px;font-family:'Public Sans',sans-serif;font-weight:800}
+    .step p{color:#aebcd6;font-size:.87rem;margin:0}
+    .steps-action{text-align:center;margin-top:36px}
+
+    /* Reassurance */
+    .reassurance-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:44px;align-items:center}
+    .reassurance-panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm)}
+    .reassurance-panel strong{display:block;color:var(--navy);font-size:1.05rem;font-family:'Archivo',sans-serif;margin-bottom:4px}
+    .reassurance-panel span{display:block;color:var(--steel);font-size:.86rem}
+    .reassurance-panel .btn{margin-top:16px}
+    .reassurance-panel small{display:block;color:var(--steel);font-size:.78rem;margin-top:12px}
+
+    /* Two-col conditions */
+    .two-col{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+    .info-panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm)}
+    .info-panel h3{font-size:1.02rem;color:var(--navy);margin-bottom:16px;font-family:'Public Sans',sans-serif;font-weight:800}
+    .checks{display:grid;gap:15px;margin:0;padding:0;list-style:none}
+    .checks li{display:flex;gap:12px;align-items:flex-start;color:#3c4657;font-size:.92rem}
+    .checks li svg{flex:none;width:22px;height:22px;color:var(--green);margin-top:1px}
+    .contact-line{color:var(--steel);font-size:.88rem;margin:22px 0 0}
+    .contact-line a{color:var(--blue-dark);font-weight:700;text-decoration:none}
+    .contact-line a:hover{text-decoration:underline}
+    .company{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+    .company div{background:var(--paper);border-radius:12px;padding:14px}
+    .company small{display:block;color:var(--steel);font-size:.72rem;font-weight:700}
+    .company span,.company a{display:block;font-weight:800;font-size:.9rem;margin-top:4px;overflow-wrap:anywhere;text-decoration:none}
+    .company a{color:var(--blue-dark)}
+
+    /* FAQ */
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .faq{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+    .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:15px;text-align:left;padding:19px 20px;font-weight:800;color:var(--navy);font-size:.94rem}
+    .faq-q span{min-width:0;overflow-wrap:anywhere}
+    .faq-q .chev{flex:none;width:20px;height:20px;color:var(--blue);transition:transform .2s var(--ease)}
+    .faq.open .faq-q .chev{transform:rotate(180deg)}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .25s var(--ease)}
+    .faq-answer p{padding:0 20px 20px;margin:0;color:var(--steel);font-size:.9rem}
+    .faq.open .faq-answer{max-height:220px}
+
+    /* Footer */
+    .footer{background:#0b1526;color:#cddaf2;padding:56px 0 24px}
+    .footer-grid{display:grid;grid-template-columns:1.2fr .8fr 1fr;gap:44px}
+    .footer h3{font-size:.9rem;color:#fff;margin:0 0 14px;font-family:'Public Sans',sans-serif;font-weight:800}
+    .footer p,.footer li,.footer a{color:#93a3c0;font-size:.84rem}
+    .footer p{max-width:340px;line-height:1.6}
+    .footer ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+    .footer a{text-decoration:none}
+    .footer a:hover{color:#fff}
+    .footer .brand-text strong{color:#fff}
+    .footer .brand-text small{color:#93a3c0}
+    .footer-bottom{border-top:1px solid var(--line-dark);margin-top:38px;padding-top:18px;color:#6f81a0;font-size:.75rem;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+
+    /* Mobile sticky CTA: facilita o avanço após a rolagem sem competir com o hero */
+    .mobile-cta{display:none}
+    .mobile-cta .btn{width:100%;min-height:50px;padding:13px 16px}
+    @media(max-width:620px){
+      body{padding-bottom:76px}
+      .mobile-cta{
+        position:fixed;left:0;right:0;bottom:0;z-index:40;display:block;
+        padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+        background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+        border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(16,26,46,.12)
+      }
+    }
+
+    @media(max-width:960px){
+      .hero-grid{grid-template-columns:1fr;grid-template-areas:"ticket" "cta" "copy";gap:28px}
+      .two-col,.reassurance-grid{grid-template-columns:1fr}
+      .ticket{max-width:520px}
+      .product-grid{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .nav-links{display:none}
+    }
+    @media(max-width:1120px){
+      .nav-links{display:none}
+      .nav-cta{max-width:210px}
+    }
+    @media(max-width:620px){
+      .container{width:min(100% - 28px,1120px)}
+      .topbar{font-size:.74rem;line-height:1.35}
+      .topbar .container{padding:8px 0}
+      .nav-inner{min-height:66px;padding:8px 0;gap:10px}
+      .brand-mark{width:36px;height:36px;font-size:.8rem;border-radius:10px}
+      .brand-text strong{font-size:.82rem}
+      .brand-text small{font-size:.62rem}
+      .nav > .container > .btn{padding:10px 12px;font-size:.78rem;border-radius:10px}
+      .nav-cta{max-width:none;flex:0 0 auto}
+      .nav-cta-full{display:none}
+      .nav-cta-short{display:inline}
+      .hero{padding:28px 0 34px}
+      .hero-grid{gap:24px}
+      .hero-grid > .ticket{width:100%}
+      .ticket-top{padding:22px 22px 0}
+      .ticket-photo,.ticket-photo img{height:238px}
+      .ticket-photo img{width:min(270px,82%)}
+      .ticket-caption{align-items:center;padding-bottom:16px;gap:8px}
+      .ticket-caption .label{font-size:.7rem;line-height:1.3}
+      .ticket-caption .price{font-size:1.4rem}
+      .ticket-divider{margin:0 -22px}
+      .ticket-bottom{padding:20px 22px 22px;gap:14px}
+      .p13-cta{width:100%;margin:0 auto}
+      .p13-cta .btn{width:100%;min-height:50px;padding:13px 16px}
+      .ticket-caption>span:first-child{min-width:0;overflow-wrap:anywhere}
+      .ticket-caption>.status-badge{font-size:.7rem;max-width:42%;line-height:1.25}
+      /* Mantém título e CTA imediatamente visíveis no celular */
+      .hero-grid > div:not(.ticket):not(.p13-cta){padding-top:0}
+      .hero h1{font-size:clamp(2rem,9vw,2.35rem);line-height:1.04}
+      .hero-lead{font-size:.98rem;line-height:1.5;margin:16px 0 22px}
+      .hero-actions{gap:10px}
+      .btn{white-space:normal;text-align:center;line-height:1.25;overflow-wrap:anywhere}
+      .hero-actions .btn-primary{min-width:0;width:100%}
+      .hero-actions .btn-ghost{width:100%}
+      .trust-grid,.step-grid,.faq-grid{grid-template-columns:1fr}
+      .trust-item{border-right:0;border-bottom:1px solid var(--line-dark)}
+      section{padding:56px 0}
+      .section-head{display:block}
+      .product-grid{grid-template-columns:1fr;gap:12px}
+      .product{padding:18px}
+      .product-weight strong{font-size:2.1rem}
+      .product p{font-size:.86rem}
+      .company{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .footer-bottom{display:block}
+      .footer-bottom span{display:block;margin-top:8px}
+      .section-action{display:block;text-align:center}
+      .section-action p{margin-bottom:14px}
+      .section-action .btn,.steps-action .btn{width:100%}
+      .quick-action-inner{display:block;padding:18px 0}
+      .quick-action-inner span{display:block;margin-bottom:12px}
+      .quick-action-inner .btn{width:100%}
+    }
+
+    /* Ajustes de conversao conservadores: elementos legais e informativos preservados. */
+    .hero{padding:42px 0 44px}
+    .hero-grid{grid-template-columns:minmax(360px,480px) minmax(0,1fr);gap:24px 54px}
+    .hero-copy{max-width:620px}
+    .hero h1{font-size:clamp(2.2rem,4.3vw,3.35rem);line-height:1.04}
+    .hero-lead{font-size:1.04rem;margin:16px 0 22px}
+    .hero-actions .btn-primary{min-width:300px}
+    .hero-cta-note{margin-top:8px}
+    .hero-benefits{margin-top:20px;gap:7px}
+    .ticket{box-shadow:0 16px 40px rgba(16,26,46,.12)}
+    .ticket-photo,.ticket-photo img{height:205px}
+    .ticket-top{padding-top:20px}
+    .ticket-bottom{padding-top:18px;padding-bottom:20px}
+    .trust-item{padding:21px 18px}
+    .quick-action-inner{min-height:70px}
+    section{padding:68px 0}
+    @media(max-width:960px){
+      .hero-grid{grid-template-columns:1fr;grid-template-areas:"copy" "ticket" "cta";gap:22px}
+      .hero-grid > .ticket{max-width:520px;justify-self:center}
+      .p13-cta{max-width:520px}
+      .hero{padding-top:34px}
+    }
+    @media(max-width:620px){
+      .hero{padding:24px 0 28px}
+      .hero-grid{gap:18px}
+      .hero h1{font-size:clamp(2rem,9.2vw,2.35rem)}
+      .hero-lead{font-size:.96rem;margin:13px 0 17px}
+      .hero-actions .btn-primary{min-width:0}
+      .hero-actions .btn-ghost{display:none}
+      .hero-benefits{margin-top:15px;font-size:.82rem;gap:5px}
+      .ticket-photo,.ticket-photo img{height:205px}
+      .ticket-top{padding-top:17px}
+      .ticket-bottom{padding-top:16px;padding-bottom:18px}
+      .ticket-disclaimer{font-size:.8rem}
+      .trust-item{padding:16px 2px}
+      .quick-action{display:none}
+      section{padding:46px 0}
+      .footer{padding-bottom:86px}
+    }
+
   </style>
 </head>
 <body>
-  <div class="top"><strong>Entrega 100% gratuita</strong> nos endereços atendidos · consulta rápida e sem compromisso</div>
-  <nav class="nav" aria-label="Navegação principal"><div class="wrap navin"><a class="brand" href="#inicio" aria-label="Disk Gás e Água"><span class="mark">DG</span><span><b>Disk Gás e Água</b><small>Revenda independente</small></span></a><a class="btn btn-primary navcta" href="/vejasite" data-cta="nav">Consultar agora</a></div></nav>
+  <div class="topbar">
+    <div class="container">
+      <a href="/vejasite" data-cta="topbar" aria-label="Consultar atendimento e valor total">Ver disponibilidade agora →</a>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Navegação principal">
+    <div class="container nav-inner">
+      <a class="brand" href="#inicio" aria-label="COMERCIO DE GAS LTDA — início">
+        <span class="brand-mark" aria-hidden="true">DG</span>
+        <span class="brand-text"><strong>COMERCIO DE GAS LTDA</strong><small>Disk Gás e Água</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#duvidas">Dúvidas frequentes</a>
+      </div>
+      <a class="btn btn-primary nav-cta" href="/vejasite" data-cta="nav" style="padding:12px 18px;min-height:0"><span class="nav-cta-full">Ver disponibilidade agora</span><span class="nav-cta-short">Consultar</span></a>
+    </div>
+  </nav>
+
   <main id="inicio">
-    <section class="hero"><div class="wrap hero-grid">
-      <div class="hero-copy"><span class="eyebrow">Consulte em poucos segundos</span><h1>Veja se entregamos no seu endereço.</h1><p class="lead">Informe seu endereço na próxima página e confira a disponibilidade, o prazo e o valor do produto antes de decidir.</p><a class="btn btn-primary" href="/vejasite" data-cta="hero">Ver disponibilidade agora <span aria-hidden="true">→</span></a><span class="small">Consulta gratuita · sem compromisso de compra</span><ul class="hero-list"><li>Entrega 100% gratuita nos endereços atendidos</li><li>Condições mostradas antes da confirmação</li><li>Você decide somente depois de consultar</li></ul></div>
-      <a class="product-card" href="/vejasite" data-cta="product-card" aria-label="Consultar disponibilidade do botijão P13"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png" alt="Botijão de gás GLP P13 de 13 kg" width="410" height="410" fetchpriority="high"><div class="card-top"><div><span class="label">Botijão GLP P13 · valor de referência</span><span class="price">R$ 89,90</span></div><span class="status">Atendimento<br>todos os dias</span></div><p class="card-note">O valor final, a disponibilidade e o prazo são confirmados para o seu endereço.</p><span class="btn btn-primary btn-wide card-cta">Consultar este produto <span aria-hidden="true">→</span></span></a>
-    </div></section>
-    <section class="trust" aria-label="Garantias da consulta"><div class="wrap trustin"><div class="trustitem"><span class="check">✓</span><div><b>Sem taxa de entrega</b><span>Entrega gratuita nos endereços atendidos.</span></div></div><div class="trustitem"><span class="check">✓</span><div><b>Sem surpresa no total</b><span>Condições aparecem antes da confirmação.</span></div></div><div class="trustitem"><span class="check">✓</span><div><b>Empresa identificada</b><span>CNPJ e contatos disponíveis na página.</span></div></div></div></section>
-    <section class="how" id="como-funciona"><div class="wrap"><div class="section-head"><span class="eyebrow">É simples</span><h2>Consulte antes de decidir</h2><p>O próximo passo é rápido e serve para confirmar o atendimento no seu endereço.</p></div><div class="steps"><div class="step"><div class="num">1</div><b>Informe seu endereço</b><p>Digite os dados solicitados na próxima página.</p></div><div class="step"><div class="num">2</div><b>Veja as condições</b><p>Confira disponibilidade, prazo, valor e entrega gratuita.</p></div><div class="step"><div class="num">3</div><b>Decida com tranquilidade</b><p>A consulta não confirma uma compra automaticamente.</p></div></div></div></section>
-    <section class="faq" id="duvidas"><div class="wrap"><div class="section-head"><span class="eyebrow">Dúvidas</span><h2>Antes de consultar</h2></div><div class="faqbox"><details class="faqrow"><summary>Vocês entregam no meu endereço?</summary><p>A área atendida depende do endereço informado. A confirmação aparece na próxima etapa.</p></details><details class="faqrow"><summary>Existe compromisso de compra?</summary><p>Não. Você vê as condições primeiro e decide se quer seguir.</p></details><details class="faqrow"><summary>A entrega tem taxa adicional?</summary><p>Nos endereços atendidos, a entrega é 100% gratuita, sem taxa adicional relacionada à entrega.</p></details></div></div></section>
+    <section class="hero">
+      <div class="container hero-grid">
+        <a class="ticket ticket-link" href="/vejasite" data-cta="p13-card" aria-label="Consultar disponibilidade e valor total do botijão P13">
+          <div class="ticket-top">
+            <div class="ticket-photo">
+              <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png" alt="Botijão de gás GLP P13 de 13 kg" width="500" height="500" loading="eager" decoding="async">
+            </div>
+            <div class="ticket-caption">
+              <span><span class="label">GLP P13 · valor de referência do produto</span><span class="price">Promoção R$ 89,90</span></span>
+              <span class="status-badge" data-status aria-live="polite">&nbsp;</span>
+            </div>
+          </div>
+          <div class="ticket-divider"></div>
+          <div class="ticket-bottom">
+            <span class="free-delivery">Entrega 100% gratuita nos endereços atendidos</span>
+            <p class="ticket-disclaimer">O valor do produto e as condições aparecem antes da confirmação. A entrega é 100% gratuita, sem taxa adicional.</p>
+          </div>
+        </a>
+        <div class="p13-cta">
+          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total para este produto">Ver disponibilidade agora →</a>
+          <span class="cta-note">Consulta gratuita · sem compromisso</span>
+          <span class="cta-note">Consulte também a <a href="politica-privacidade.html">Política de privacidade</a>.</span>
+        </div>
+
+        <div class="hero-copy">
+          <span class="eyebrow">Entrega de gás</span>
+          <h1>Consulte o valor do produto antes de pedir — entrega 100% gratuita.</h1>
+          <p class="hero-lead">Informe seu endereço e veja rapidamente se atendemos sua região, o prazo, a disponibilidade e as condições do produto. A entrega é 100% gratuita, sem taxa adicional, e a consulta não gera compromisso de compra.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/vejasite" data-cta="hero-primary" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+            <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
+          </div>
+          <span class="cta-note hero-cta-note">Veja disponibilidade, prazo, valor do produto e condições antes de decidir.</span>
+          <ul class="hero-benefits">
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Consulta gratuita, sem compromisso de compra</li>
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Entrega sempre gratuita, sem taxa adicional</li>
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Você decide só depois de ver o valor e as condições</li>
+          </ul>
+          <p class="hero-note">COMERCIO DE GAS LTDA · CNPJ 45.846.492/0003-30 · Atendimento das 7h às 23h, todos os dias.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="trust" aria-label="Informações importantes">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 12.5L12.5 20a2 2 0 0 1-2.83 0l-6.67-6.67a2 2 0 0 1 0-2.83L10.5 3H19a1 1 0 0 1 1 1v8.5z"/><circle cx="15" cy="8" r="1.4" fill="currentColor" stroke="none"/></svg>
+          <div><strong>Entrega 100% gratuita</strong><span>Entrega 100% gratuita nos endereços atendidos e para todos os produtos disponíveis.</span></div>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-7.1 7-12a7 7 0 1 0-14 0c0 4.9 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          <div><strong>Área verificada primeiro</strong><span>Prazo, disponibilidade e confirmação da entrega gratuita são informados após verificarmos o seu endereço.</span></div>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 21V6l8-3 8 3v15"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>
+          <div><strong>Empresa identificada</strong><span>Razão social, CNPJ, endereço e telefone publicados nesta página.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="quick-action" aria-label="Ação principal">
+      <div class="container quick-action-inner">
+        <span>Confira se entregamos no seu endereço <span class="status-badge" data-status style="margin-left:4px">&nbsp;</span></span>
+        <a class="btn btn-primary" href="/vejasite" data-cta="quick-action" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+      </div>
+    </div>
+
+    <section class="products" id="produtos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Produtos e condições</span>
+            <h2 class="section-title">Escolha o tamanho e consulte seu endereço</h2>
+            <p class="section-copy">Preços de referência. A entrega é totalmente gratuita nos endereços atendidos, sem taxa de entrega ou cobrança adicional relacionada à entrega. A disponibilidade, a modalidade e as condições do produto são confirmadas para o seu endereço na próxima etapa.</p>
+          </div>
+        </div>
+        <p class="section-copy" style="margin:-16px 0 24px">Os valores exibidos são referências do produto e podem variar conforme disponibilidade, modalidade e condições comerciais. A entrega é sempre 100% gratuita nos endereços atendidos, sem taxa de entrega ou cobrança adicional relacionada à entrega.</p>
+        <div class="product-grid">
+          <article class="product">
+            <span class="product-tag">GLP</span>
+            <div class="product-weight"><strong>13</strong><span>kg</span></div>
+            <h3>Botijão P13</h3>
+            <p>O mais usado em residências. Consulte disponibilidade, modalidade e condições para o seu endereço.</p>
+            <div class="product-price"><div><span class="from">A partir de · entrega 100% gratuita</span><strong>R$ 89,90</strong></div></div>
+            <a class="product-link" href="/vejasite" data-cta="product-p13" aria-label="Ver valor total do botijão P13">Ver valor total →</a>
+          </article>
+          <article class="product">
+            <span class="product-tag">GLP</span>
+            <div class="product-weight"><strong>20</strong><span>kg</span></div>
+            <h3>Botijão P20</h3>
+            <p>Indicado para maior consumo. Consulte aplicação, disponibilidade e condições de entrega.</p>
+            <div class="product-price"><div><span class="from">A partir de · entrega 100% gratuita</span><strong>R$ 189,90</strong></div></div>
+            <a class="product-link" href="/vejasite" data-cta="product-p20" aria-label="Ver valor total do botijão P20">Ver valor total →</a>
+          </article>
+          <article class="product">
+            <span class="product-tag">GLP</span>
+            <div class="product-weight"><strong>45</strong><span>kg</span></div>
+            <h3>Botijão P45</h3>
+            <p>Uso comercial ou consumo elevado. Consulte disponibilidade e condições para o seu endereço.</p>
+            <div class="product-price"><div><span class="from">A partir de · entrega 100% gratuita</span><strong>R$ 395,90</strong></div></div>
+            <a class="product-link" href="/vejasite" data-cta="product-p45" aria-label="Ver valor total do botijão P45">Ver valor total →</a>
+          </article>
+          <article class="product">
+            <span class="product-tag">GLP</span>
+            <div class="product-weight"><strong>5</strong><span>kg</span></div>
+            <h3>Botijão P5</h3>
+            <p>Compacto e portátil. Consulte disponibilidade, modalidade e condições de entrega.</p>
+            <div class="product-price"><div><span class="from">A partir de · entrega 100% gratuita</span><strong>R$ 69,90</strong></div></div>
+            <a class="product-link" href="/vejasite" data-cta="product-p5" aria-label="Ver valor total do botijão P5">Ver valor total →</a>
+          </article>
+        </div>
+        <div class="section-action">
+          <p>Pronto para verificar seu endereço?</p>
+          <a class="btn btn-primary" href="/vejasite" data-cta="products-footer" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps" id="como-funciona">
+      <div class="container">
+        <span class="eyebrow" style="color:#cddaf2">Processo simples</span>
+        <h2 class="section-title">Veja tudo antes de decidir</h2>
+        <p class="section-copy">A consulta é rápida e não confirma uma compra. Você só decide depois de conferir as condições completas.</p>
+        <div class="step-grid">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Informe seu endereço</h3>
+            <p>Na próxima página, digite o endereço de entrega para localizarmos a área de atendimento.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Veja as condições completas</h3>
+            <p>Disponibilidade, prazo estimado, entrega 100% gratuita e condições do produto aparecem antes de qualquer confirmação.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Decida sem compromisso</h3>
+            <p>Só depois de ver o valor total você decide se quer seguir com o pedido.</p>
+          </div>
+        </div>
+        <div class="steps-action">
+          <a class="btn btn-primary" href="/vejasite" data-cta="steps-footer" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="empresa">
+      <div class="container reassurance-grid">
+        <div>
+          <span class="eyebrow">Transparência no atendimento</span>
+          <h2 class="section-title">Você confere as condições antes de decidir.</h2>
+          <p class="section-copy">Na próxima página, você informa o endereço e confere se há atendimento, a disponibilidade, o prazo, a entrega 100% gratuita e as condições do produto. Não há taxa de entrega nem cobrança adicional relacionada à entrega. A consulta não confirma automaticamente uma compra.</p>
+        </div>
+          <div class="reassurance-panel">
+            <strong>Atendimento identificado</strong>
+            <span>COMERCIO DE GAS LTDA · CNPJ 45.846.492/0003-30</span>
+            <span>Revenda independente · São Paulo/SP</span>
+            <span class="free-delivery" style="margin-top:12px">Entrega 100% gratuita em todos os produtos</span>
+            <span class="status-badge" data-status style="margin-top:10px">&nbsp;</span>
+          <a class="btn btn-primary btn-block" href="/vejasite" data-cta="reassurance" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+          <small>Disponibilidade e condições podem variar conforme endereço e estoque.</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="condicoes">
+      <div class="container two-col">
+        <div>
+          <span class="eyebrow">Sem surpresas no total</span>
+          <h2 class="section-title">Todas as condições aparecem antes da confirmação</h2>
+          <p class="section-copy">O preço mostrado nesta página é uma referência do produto. A entrega é totalmente gratuita nos endereços atendidos, sem taxa de entrega ou cobrança adicional relacionada à entrega. A disponibilidade, a modalidade e a forma de pagamento são informadas antes da confirmação.</p>
+        </div>
+        <div class="info-panel">
+          <h3>Informado antes de qualquer confirmação</h3>
+          <ul class="checks">
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Produto, peso e modalidade de venda ou troca disponíveis.</li>
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Área atendida, prazo estimado e confirmação da entrega 100% gratuita, sem taxa de entrega adicional.</li>
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Modalidade de venda ou troca, eventual caução, troca de recipiente e outras condições do produto.</li>
+            <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10l4 4 8-8"/></svg>Forma de pagamento e valor total antes da confirmação.</li>
+          </ul>
+          <p class="contact-line">Prefere falar antes? Ligue para <a href="tel:+551151907266">(11) 5190-7266</a> ou envie um e-mail para <a href="mailto:comercia88as@gmail.com">comercia88as@gmail.com</a>.</p>
+          <div class="company">
+            <div><small>Razão social</small><span>COMERCIO DE GAS LTDA</span></div>
+            <div><small>CNPJ</small><span>45.846.492/0003-30</span></div>
+            <div><small>Telefone</small><a href="tel:+551151907266">(11) 5190-7266</a></div>
+            <div><small>E-mail</small><a href="mailto:comercia88as@gmail.com">comercia88as@gmail.com</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="duvidas">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Dúvidas frequentes</span>
+            <h2 class="section-title">Quer consultar com segurança?</h2>
+            <p class="section-copy">Se sua dúvida não estiver aqui, ligue para (11) 5190-7266 ou envie um e-mail para comercia88as@gmail.com.</p>
+          </div>
+        </div>
+        <div class="faq-grid">
+          <div class="faq">
+            <button class="faq-q" type="button" aria-expanded="false"><span>Vocês entregam no meu endereço?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <div class="faq-answer"><p>A área atendida depende do endereço informado. Consulte para confirmar se há atendimento na sua região antes de decidir.</p></div>
+          </div>
+          <div class="faq">
+            <button class="faq-q" type="button" aria-expanded="false"><span>O preço mostrado é o valor final?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <div class="faq-answer"><p>O preço exibido é uma referência do produto. A entrega é 100% gratuita nos endereços atendidos, sem taxa de entrega ou cobrança adicional relacionada à entrega. A disponibilidade, a modalidade e as condições finais são confirmadas na consulta antes da confirmação do pedido.</p></div>
+          </div>
+          <div class="faq">
+            <button class="faq-q" type="button" aria-expanded="false"><span>Existe compromisso de compra ao consultar?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <div class="faq-answer"><p>Não. A consulta apenas mostra as condições disponíveis para o seu endereço. Você decide se quer seguir depois de ver tudo.</p></div>
+          </div>
+          <div class="faq">
+            <button class="faq-q" type="button" aria-expanded="false"><span>Preciso ter o botijão vazio para troca?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <div class="faq-answer"><p>Depende da modalidade disponível na sua região. Essa e outras condições de troca são informadas na consulta.</p></div>
+          </div>
+          <div class="faq">
+            <button class="faq-q" type="button" aria-expanded="false"><span>Quais formas de pagamento são aceitas?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <div class="faq-answer"><p>As formas de pagamento disponíveis variam por região e são apresentadas junto com o valor total antes da confirmação.</p></div>
+          </div>
+          <div class="faq">
+            <button class="faq-q" type="button" aria-expanded="false"><span>Quanto tempo leva para saber se atendem minha região?</span><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7l5 6 5-6"/></svg></button>
+            <div class="faq-answer"><p>Após informar o endereço na próxima página, você verá o resultado da consulta, conforme a disponibilidade do sistema.</p></div>
+          </div>
+        </div>
+        <div class="section-action">
+          <p>Ainda com dúvidas sobre o seu endereço?</p>
+          <a class="btn btn-primary" href="/vejasite" data-cta="faq-footer" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+        </div>
+      </div>
+    </section>
   </main>
-  <div class="mobile-cta"><a class="btn btn-primary btn-wide" href="/vejasite" data-cta="mobile-sticky">Ver disponibilidade agora <span aria-hidden="true">→</span></a></div>
-  <footer class="footer"><div class="wrap"><b>COMERCIO DE GAS LTDA</b> · CNPJ 45.846.492/0003-30 · (11) 5190-7266 · Atendimento das 7h às 23h</div></footer>
+
+  <div class="mobile-cta" aria-label="Ação principal no celular">
+    <a class="btn btn-primary" href="/vejasite" data-cta="mobile-sticky" aria-label="Consultar disponibilidade e valor total">Ver disponibilidade agora →</a>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="#inicio">
+          <span class="brand-mark" aria-hidden="true">DG</span>
+          <span class="brand-text"><strong>COMERCIO DE GAS LTDA</strong><small>Disk Gás e Água · Revenda independente</small></span>
+        </a>
+        <p style="margin-top:14px">COMERCIO DE GAS LTDA, CNPJ 45.846.492/0003-30. Revenda independente de GLP. “Disk Gás e Água” é o nome comercial utilizado nesta página. Disponibilidade, área atendida, prazo, modalidade de venda ou troca e eventuais condições do produto são confirmados antes da conclusão. A entrega é 100% gratuita, sem taxa de entrega ou cobrança adicional relacionada à entrega.</p>
+      </div>
+      <div>
+        <h3>Atendimento</h3>
+        <ul>
+          <li><a href="tel:+551151907266">Telefone: (11) 5190-7266</a></li>
+          <li><a href="mailto:comercia88as@gmail.com">comercia88as@gmail.com</a></li>
+          <li>Segunda a domingo, 07h às 23h</li>
+          <li>Estrada Sao Paulo-Jundiai, 1373 — Perus</li>
+          <li>São Paulo/SP — CEP 05230-000</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Informações e políticas</h3>
+        <ul>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="duvidas-frequentes.html">Dúvidas frequentes</a></li>
+          <li><a href="fale-conosco.html">Fale conosco</a></li>
+          <li><a href="politica-privacidade.html">Política de privacidade</a></li>
+          <li><a href="politica-cookies.html">Política de cookies</a></li>
+          <li><a href="politica-reembolso.html">Política de reembolso</a></li>
+          <li><a href="termos-uso.html">Termos de uso</a></li>
+          <li><a href="#condicoes">Condições de atendimento</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 COMERCIO DE GAS LTDA. CNPJ 45.846.492/0003-30. Todos os direitos reservados.</span>
+      <span><a href="sobre.html">Sobre</a> · <a href="fale-conosco.html">Contato</a> · <a href="politica-privacidade.html">Privacidade</a> · <a href="termos-uso.html">Termos de uso</a></span>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="container" style="padding:16px;background:#fff3cd;color:#614f00;text-align:center">
+      Para consultar disponibilidade sem JavaScript, ligue para <a href="tel:+551151907266">(11) 5190-7266</a> ou envie um e-mail para <a href="mailto:comercia88as@gmail.com">comercia88as@gmail.com</a>. A entrega é 100% gratuita, sem taxa de entrega ou cobrança adicional relacionada à entrega. O valor do produto e as demais condições são confirmados antes do pedido. <a href="/vejasite">Consultar atendimento</a>.
+    </div>
+  </noscript>
+
   <script>
-    var GOOGLE_ADS_CONVERSION_LABEL='';
-    document.querySelectorAll('a[href="/vejasite"]').forEach(function(link){link.addEventListener('click',function(){if(typeof gtag!=='function')return;gtag('event','destination_click',{event_category:'engagement',event_label:link.dataset.cta||'vejasite',destination:'/vejasite',transport_type:'beacon'});if(!GOOGLE_ADS_CONVERSION_LABEL)return;gtag('event','conversion',{send_to:'AW-18430848378/'+GOOGLE_ADS_CONVERSION_LABEL});});});
+    // O carregamento de /vejasite deve ser a conversão principal recomendada.
+    // Este evento de clique é secundário e serve para diagnosticar a intenção.
+    var GOOGLE_ADS_CONVERSION_LABEL = '';
+    document.querySelectorAll('a[href="/vejasite"]').forEach(function(link){
+      link.addEventListener('click', function(event){
+        if (typeof gtag !== 'function') return;
+        var cta = link.getAttribute('data-cta') || 'vejasite';
+        gtag('event', 'destination_click', {
+          event_category: 'engagement',
+          event_label: cta,
+          destination: '/vejasite',
+          transport_type: 'beacon'
+        });
+        if (!GOOGLE_ADS_CONVERSION_LABEL) return;
+        event.preventDefault();
+        var navigated = false;
+        var go = function(){ if (!navigated) { navigated = true; window.location.href = link.href; } };
+        gtag('event', 'conversion', {
+          send_to: 'AW-18430848378/' + GOOGLE_ADS_CONVERSION_LABEL,
+          event_callback: go
+        });
+        window.setTimeout(go, 700);
+      });
+    });
+
+    document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]').forEach(function(link){
+      link.addEventListener('click', function(){
+        if (typeof gtag === 'function') {
+          gtag('event', 'contact_click', {contact_method: link.href.split(':')[0]});
+        }
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var faq = btn.closest('.faq');
+        var isOpen = faq.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    });
+
+    // Real, timezone-correct open/closed status (America/Sao_Paulo), not a fabricated indicator
+    function currentSPHour(){
+      try {
+        var fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', hour: '2-digit', hour12: false });
+        return parseInt(fmt.format(new Date()), 10);
+      } catch (e) {
+        return new Date().getHours();
+      }
+    }
+    function updateStatusBadges(){
+      var hour = currentSPHour();
+      var open = hour >= 7 && hour < 23;
+      document.querySelectorAll('[data-status]').forEach(function(el){
+        el.innerHTML = '<span class="dot"></span>' + (open ? 'Aberto agora · atende até 23h' : 'Fechado agora · reabre às 7h');
+        el.classList.toggle('is-open', open);
+        el.classList.toggle('is-closed', !open);
+      });
+    }
+    updateStatusBadges();
   </script>
 </body>
 </html>
