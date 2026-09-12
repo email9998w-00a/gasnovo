@@ -831,6 +831,61 @@
       .variant-name { font-size: 10px; }
       .variant-weight { font-size: 9px; }
     }
+    /* ===== Acabamento: alinhamento e ritmo visual ===== */
+    .product-info { padding-top: 4px; }
+    .badge-row { margin-bottom: 14px; }
+    .badge { min-height: 27px; }
+    h1 { margin-bottom: 10px; }
+    .positioning { margin-bottom: 0; }
+    .rating-row { margin: 14px 0 20px; }
+
+    .choice-heading { min-height: 24px; }
+    .choice-heading strong { letter-spacing: -.01em; }
+    .choice-heading span { white-space: nowrap; }
+    .variant-grid { align-items: stretch; }
+    .variant-card, .variant-card.is-selected { min-width: 0; }
+    .variant-card:focus-visible { outline: 3px solid rgba(28,101,159,.22); outline-offset: 2px; }
+    .variant-name { letter-spacing: -.01em; }
+
+    .price-box { margin-top: 16px; }
+    .old-price-row { min-height: 19px; }
+    .current-price { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+    .pix-label { margin-left: 0; }
+    .installments { line-height: 1.45; }
+    .unit-price { line-height: 1.4; }
+    .cta-group { margin-top: 16px; }
+    .btn { letter-spacing: -.01em; }
+    .purchase-note { line-height: 1.4; }
+
+    .shipping-preview { align-items: center; }
+    .shipping-preview-icon { flex-shrink: 0; }
+    .details { margin-top: 0; }
+    .tabs { gap: 28px; }
+    .tab-button { letter-spacing: -.01em; }
+
+    .reviews-section, .faq-section { border-top: 1px solid #d8e2e9; }
+    .section-heading { margin-bottom: 25px; }
+    .section-heading p { color: #5c6e7c; line-height: 1.55; }
+    .reviews-header h2 { letter-spacing: -.035em; }
+    .review-summary { border-color: #d4e0e8; background: #f8fafc; }
+    .pagination { margin-top: 30px; }
+
+    .mobile-cta { border-top-color: #d0dde6; }
+    .mobile-cta-price { color: var(--brand); }
+    .mobile-cta .btn { min-height: 46px; }
+
+    @media (max-width: 620px) {
+      .product-info { padding-top: 0; }
+      .badge-row { margin-bottom: 11px; }
+      .rating-row { margin: 12px 0 17px; }
+      .choice-heading { min-height: 22px; }
+      .choice-heading strong { font-size: 12px; }
+      .choice-heading span { font-size: 10px; }
+      .price-box { margin-top: 14px; }
+      .current-price { gap: 5px; }
+      .shipping-preview { align-items: flex-start; }
+      .tabs { gap: 23px; }
+    }
   </style>
 </head>
 <body>
