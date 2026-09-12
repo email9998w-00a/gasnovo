@@ -196,6 +196,7 @@ input,select{font:inherit}
 .qr.is-expired .qr-expired-tag{display:flex}
 .pix-code{display:flex;gap:8px;margin-bottom:12px}
 .pix-code input{flex:1;padding:11px;border:1.5px solid var(--line);border-radius:9px;font-size:.76rem;color:var(--muted);background:#f7f9fb;overflow:hidden;text-overflow:ellipsis}
+.pix-code input:disabled{color:#8a969e;background:#f1f4f6;cursor:not-allowed}
 .btn-copy-main{margin-bottom:14px}
 .timer-box{background:#f1f8f4;border:1px solid #cce5d4;border-radius:9px;padding:12px;margin-bottom:16px;font-size:.83rem}
 .timer-box.is-expired{background:#fff5f5;border-color:#ebc7cc}
@@ -207,6 +208,8 @@ input,select{font:inherit}
 .jpmsg{font-size:.78rem;color:#12603c;background:#eafaf1;border:1px solid #a7e3c4;border-radius:9px;padding:10px;margin-top:10px;display:none;text-align:left;line-height:1.5}
 .btn-regenerate{display:none;margin-bottom:10px}
 .btn-regenerate.is-visible{display:flex}
+.pix-page-error{display:none;background:#fff8e8;border:1px solid #ead49b;color:#705416;border-radius:9px;padding:10px 12px;margin:0 0 14px;font-size:.78rem;line-height:1.45;text-align:left}
+.pix-page-error.is-visible{display:block}
 
 /* ---- Tela aprovado ---- */
 .approved{text-align:center;padding:22px 0;border-top:3px solid var(--success)}
@@ -429,11 +432,13 @@ input,select{font:inherit}
   <div id="pixArea" class="card pix-pay hidden" aria-live="polite">
     <h2>Pague com PIX para concluir</h2>
     <p class="sub">Escaneie o QR Code pelo app do seu banco ou copie o código abaixo.</p>
+    <div class="pix-page-error" id="pixPageError" role="alert"></div>
     <div class="qr" id="qrBox"><img id="pixQr" src="" alt="QR Code PIX para pagamento"><span class="qr-expired-tag">Código expirado</span></div>
     <div class="pix-code" aria-label="Código PIX copia e cola">
       <input id="pixCode" readonly value="" aria-label="Código PIX copia e cola">
     </div>
     <button class="btn success btn-copy-main" id="btnCopy" type="button"><svg class="ico"><use href="#i-copy"/></svg> Copiar código PIX</button>
+    <button class="btn outline btn-retry-page" id="btnRetryPage" type="button">Tentar gerar o código novamente</button>
     <div class="timer-box" id="timerBox">
       O código expira em <span class="clock" id="pixClock">30:00</span><br>
       <small id="timerHint">Após o pagamento, a confirmação é automática.</small>
@@ -902,12 +907,47 @@ async function gerarPix() {
     }
     mostrarPix(pix);
   } catch (e) {
-    errorBox.classList.remove('hidden');
-    errorBox.innerHTML = '<strong>Não foi possível gerar o PIX agora.</strong><span>Seus dados foram preservados. Tente novamente em alguns instantes.</span>';
+    mostrarPixErro();
+    errorBox.classList.add('hidden');
     btnGerar.disabled = false;
     btnGerar.innerHTML = '<svg class="ico"><use href="#i-lock"/></svg> Tentar novamente';
   }
 }
+
+function mostrarPixErro() {
+  const pageError = document.getElementById('pixPageError');
+  pageError.innerHTML = '<strong>O código PIX ainda não está disponível.</strong><br>Você pode tentar gerar novamente. Seus dados e o pedido foram preservados.';
+  pageError.classList.add('is-visible');
+  document.getElementById('formArea').classList.add('hidden');
+  document.getElementById('progressBar').classList.add('hidden');
+  document.querySelector('.order-card').classList.add('hidden');
+  document.querySelector('.trust-strip').classList.add('hidden');
+  document.getElementById('headerStep').textContent = 'Pagamento';
+  document.getElementById('pixArea').classList.remove('hidden');
+  document.getElementById('qrBox').classList.add('is-expired');
+  document.getElementById('pixQr').removeAttribute('src');
+  document.getElementById('pixQr').alt = 'QR Code indisponível no momento';
+  document.getElementById('pixCode').value = '';
+  document.getElementById('pixCode').disabled = true;
+  document.getElementById('btnCopy').disabled = true;
+  document.getElementById('btnRegenerate').classList.remove('is-visible');
+  document.getElementById('timerBox').classList.add('is-expired');
+  document.getElementById('pixClock').textContent = '--:--';
+  document.getElementById('timerHint').textContent = 'O prazo começa quando um código válido for gerado.';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('btnRetryPage').addEventListener('click', () => {
+  document.getElementById('pixArea').classList.add('hidden');
+  document.getElementById('pixPageError').classList.remove('is-visible');
+  document.getElementById('formArea').classList.remove('hidden');
+  document.getElementById('progressBar').classList.remove('hidden');
+  document.querySelector('.order-card').classList.remove('hidden');
+  document.querySelector('.trust-strip').classList.remove('hidden');
+  document.getElementById('paymentCard').classList.add('is-visible');
+  setStep(3);
+  document.getElementById('paymentCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
 
 function mostrarPix(pix) {
   currentTxn = pix.id;
@@ -917,11 +957,13 @@ function mostrarPix(pix) {
   document.querySelector('.trust-strip').classList.add('hidden');
   document.getElementById('headerStep').textContent = 'Pagamento';
   document.getElementById('pixArea').classList.remove('hidden');
+  document.getElementById('pixPageError').classList.remove('is-visible');
   document.getElementById('qrBox').classList.remove('is-expired');
   document.getElementById('timerBox').classList.remove('is-expired');
   document.getElementById('timerHint').textContent = 'Após o pagamento, a confirmação é automática.';
   document.getElementById('btnRegenerate').classList.remove('is-visible');
   document.getElementById('btnCopy').disabled = false;
+  document.getElementById('pixCode').disabled = false;
   document.getElementById('pixQr').src = pix.qr_image;
   document.getElementById('pixCode').value = pix.copia_e_cola;
   btnGerar.disabled = false;
