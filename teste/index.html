@@ -747,6 +747,90 @@
       .btn { min-height: 50px; }
       .reviews-section, .faq-section { padding: 46px 0; }
     }
+    /* ===== Variantes: seletor compacto e de baixa carga visual ===== */
+    .choice-box {
+      margin: 18px 0 14px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .choice-heading {
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 0;
+    }
+    .choice-heading strong {
+      color: #1a2a37;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .choice-heading span {
+      padding: 0;
+      background: transparent;
+      color: #637584;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .variant-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .variant-card,
+    .variant-card.is-selected {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 9px 8px;
+      border: 1px solid #cbd8e2;
+      border-radius: 9px;
+      background: #fff;
+      box-shadow: none;
+      text-align: center;
+      transition: border-color .16s ease, background-color .16s ease, color .16s ease;
+    }
+    .variant-card:hover {
+      border-color: #7395ad;
+      background: #f8fbfd;
+    }
+    .variant-card.is-selected {
+      border-color: var(--brand);
+      background: #edf4f8;
+      color: var(--brand);
+    }
+    .variant-check {
+      display: none;
+    }
+    .variant-copy { min-width: 0; width: 100%; }
+    .variant-name {
+      display: block;
+      overflow: hidden;
+      color: #263847;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.25;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .variant-card.is-selected .variant-name { color: #123b63; }
+    .variant-weight {
+      display: block;
+      margin-top: 3px;
+      color: #667886;
+      font-size: 10px;
+      line-height: 1.2;
+    }
+    .variant-card.is-selected .variant-weight { color: #315c79; }
+    @media (max-width: 620px) {
+      .choice-box { margin-top: 15px; }
+      .choice-heading { margin-bottom: 8px; }
+      .variant-grid { gap: 6px; }
+      .variant-card, .variant-card.is-selected { min-height: 55px; padding: 8px 5px; }
+      .variant-name { font-size: 10px; }
+      .variant-weight { font-size: 9px; }
+    }
   </style>
 </head>
 <body>
