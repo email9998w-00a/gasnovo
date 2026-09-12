@@ -580,16 +580,22 @@ function setStep(n) {
 
 /* Impede saídas acidentais pelo botão/gesto de voltar enquanto a compra está
    em andamento. A proteção é removida quando o pagamento é aprovado. */
-const checkoutHistoryState = { checkoutGuard: true };
-function manterNoCheckout() {
-  history.pushState(checkoutHistoryState, '', location.href);
+const checkoutHistoryState = { checkoutGuard: 'sentinel' };
+function checkoutAprovado() {
+  return !document.getElementById('okArea').classList.contains('hidden');
 }
-manterNoCheckout();
-function protegerVoltar(event) {
-  if (!document.getElementById('okArea').classList.contains('hidden')) return;
+function manterNoCheckout() {
+  if (!checkoutAprovado()) history.pushState(checkoutHistoryState, '', location.href);
+}
+/* Mantém uma entrada-base e uma entrada sentinela. Assim, o voltar do
+   navegador e o gesto/botão voltar do Android encontram sempre a guarda. */
+if (!checkoutAprovado()) {
+  history.replaceState({ checkoutGuard: 'base' }, '', location.href);
   manterNoCheckout();
 }
-window.addEventListener('popstate', protegerVoltar);
+window.addEventListener('popstate', () => {
+  if (!checkoutAprovado()) manterNoCheckout();
+});
 
 /* =====================================================================
    MÁSCARAS
