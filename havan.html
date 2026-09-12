@@ -88,6 +88,7 @@ input,select{font:inherit}
 .field input::placeholder{color:#a0adb7}
 .field input:focus,.field select:focus{border-color:#4a7b9e;box-shadow:0 0 0 3px rgba(74,123,158,.12)}
 .field input.err,.field select.err{border-color:var(--danger);box-shadow:0 0 0 3px rgba(165,47,61,.1)}
+.field input.err:focus,.field select.err:focus{border-color:var(--danger);box-shadow:0 0 0 3px rgba(165,47,61,.14)}
 .field .msg{font-size:.72rem;color:var(--danger);margin-top:5px;display:none}
 .field.invalid .msg{display:block}
 .row{display:flex;flex-wrap:wrap;gap:10px}
@@ -136,6 +137,7 @@ input,select{font:inherit}
 .shipping-options{display:grid;gap:8px}
 .shipping-option{position:relative;display:grid;grid-template-columns:20px minmax(0,1fr) auto;align-items:center;gap:9px;width:100%;min-height:60px;padding:12px 11px;border:1.5px solid #d5e1e8;border-radius:9px;background:#fff;color:var(--ink);text-align:left;transition:.15s}
 .shipping-option:hover{border-color:#9eb4c8;background:#f9fbfd}
+.shipping-option:focus-within{border-color:#4a7b9e;box-shadow:0 0 0 3px rgba(74,123,158,.12)}
 .shipping-option.is-selected{border-color:var(--success);background:#f2faf5;box-shadow:0 0 0 1px var(--success)}
 .shipping-option input{width:16px;height:16px;accent-color:var(--success)}
 .shipping-option strong{display:block;font-size:.79rem}
@@ -576,25 +578,7 @@ function setStep(n) {
 const onlyD = s => s.replace(/\D/g, '');
 function mask(el, fn) { el.addEventListener('input', () => { el.value = fn(onlyD(el.value)); }); }
 mask(document.getElementById('cep'), d => d.slice(0, 8).replace(/(\d{5})(\d)/, '$1-$2'));
-const cpfInput = document.getElementById('cpf');
-cpfInput.addEventListener('input', () => {
-  const digits = onlyD(cpfInput.value).slice(0, 11);
-  cpfInput.value = digits.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-
-  // Ao completar um CPF válido, tira o foco do campo e fecha o teclado virtual.
-  if (digits.length === 11 && validCPF(cpfInput.value)) {
-    requestAnimationFrame(() => cpfInput.blur());
-  }
-});
-
-const numeroInput = document.getElementById('numero');
-numeroInput.addEventListener('focus', () => {
-  // O rótulo "Nº" continua visível acima; dentro do campo, some ao selecionar.
-  numeroInput.placeholder = '';
-});
-numeroInput.addEventListener('blur', () => {
-  if (!numeroInput.value.trim()) numeroInput.placeholder = 'Nº';
-});
+mask(document.getElementById('cpf'), d => d.slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2'));
 
 /* =====================================================================
    BUSCA DE ENDEREÇO PELO CEP (ViaCEP)
@@ -620,7 +604,8 @@ function abrirEnderecoManual() {
   document.getElementById('addressFields').classList.add('is-visible');
   document.getElementById('addressSummary').classList.remove('is-visible');
   document.getElementById('addressNumberFields').classList.add('is-visible');
-  document.getElementById('shippingCard').classList.add('is-visible');
+  document.getElementById('shippingCard').classList.remove('is-visible');
+  document.getElementById('personalCard').classList.remove('is-visible');
   const cepStatus = document.getElementById('cepStatus');
   cepStatus.innerHTML = '';
   cepStatus.className = 'field-status';
@@ -628,6 +613,46 @@ function abrirEnderecoManual() {
   document.getElementById('estado').focus();
 }
 document.getElementById('manualAddressLink').addEventListener('click', abrirEnderecoManual);
+
+function enderecoBaseCompleto() {
+  const g = id => document.getElementById(id).value.trim();
+  return onlyD(g('cep')).length === 8 && !!g('estado') && g('cidade').length > 1 && g('bairro').length > 1 && g('rua').length > 1;
+}
+
+function enderecoCompleto() {
+  return enderecoBaseCompleto() && document.getElementById('numero').value.trim().length >= 1;
+}
+
+function selecionarFretePadrao() {
+  const option = document.querySelector('.shipping-option[data-shipping="standard"]');
+  if (!selectedShipping && option) {
+    option.classList.add('is-selected');
+    option.querySelector('input').checked = true;
+    selectedShipping = { id: 'standard', price: 0 };
+    updateTotals();
+  }
+}
+
+function liberarDadosPessoais({ scroll = false } = {}) {
+  if (!enderecoCompleto()) return;
+  document.getElementById('shippingCard').classList.add('is-visible');
+  selecionarFretePadrao();
+  document.getElementById('personalCard').classList.add('is-visible');
+  setStep(2);
+  if (scroll) setTimeout(() => document.getElementById('personalCard').scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+}
+
+['estado', 'cidade', 'bairro', 'rua', 'numero'].forEach(id => {
+  const input = document.getElementById(id);
+  input.addEventListener('input', () => {
+    if (enderecoBaseCompleto()) document.getElementById('shippingCard').classList.add('is-visible');
+    if (id === 'numero' && enderecoCompleto()) liberarDadosPessoais();
+  });
+  input.addEventListener('change', () => {
+    if (enderecoBaseCompleto()) document.getElementById('shippingCard').classList.add('is-visible');
+    if (enderecoCompleto()) liberarDadosPessoais({ scroll: true });
+  });
+});
 
 function renderAddressSummary() {
   const g = id => document.getElementById(id).value.trim();
@@ -682,6 +707,7 @@ async function buscarEnderecoPorCep() {
     // nele para não atrapalhar quem ainda está lendo a tela.
     document.getElementById('addressNumberFields').classList.add('is-visible');
     document.getElementById('shippingCard').classList.add('is-visible');
+    document.getElementById('numero').focus();
   } catch (e) {
     const elapsed = performance.now() - startedAt;
     if (elapsed < 500) await new Promise(res => setTimeout(res, 500 - elapsed));
@@ -706,9 +732,13 @@ document.querySelectorAll('.shipping-option').forEach(option => option.addEventL
     ? { id: 'express', price: 9.90 }
     : { id: 'standard', price: 0 };
   updateTotals();
-  document.getElementById('personalCard').classList.add('is-visible');
-  setStep(2);
-  setTimeout(() => document.getElementById('personalCard').scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+  if (enderecoCompleto()) {
+    document.getElementById('personalCard').classList.add('is-visible');
+    setStep(2);
+    setTimeout(() => document.getElementById('personalCard').scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+  } else {
+    document.getElementById('numero').focus();
+  }
 }));
 
 /* =====================================================================
@@ -728,6 +758,16 @@ function setField(id, ok) {
   f.classList.toggle('invalid', !ok);
   return ok;
 }
+function clearFieldErrorOnInput(id) {
+  const input = document.getElementById(id);
+  input.addEventListener('input', () => {
+    if (input.value.trim()) {
+      input.classList.remove('err');
+      input.closest('.field').classList.remove('invalid');
+    }
+  });
+}
+['cep', 'estado', 'cidade', 'bairro', 'rua', 'numero', 'nome', 'email', 'cpf'].forEach(clearFieldErrorOnInput);
 function validarEndereco() {
   const g = id => document.getElementById(id).value.trim();
   let ok = true;
