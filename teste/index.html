@@ -341,6 +341,154 @@
       .rating-number { font-size:36px; }
       .review-card { padding:18px; }
     }
+
+    /* ===== Carrinho: refinamento visual limpo e profissional ===== */
+    .cart-drawer { background:#f8fafc; }
+    .cart-header { min-height:76px; padding:16px 22px; border-bottom:1px solid #e6edf3; }
+    .cart-title-block { min-width:0; }
+    .cart-header h2 { margin:0; color:var(--brand); font-size:18px; line-height:1.2; letter-spacing:-.025em; }
+    .cart-title-block p { margin:5px 0 0; color:#71808d; font-size:10px; line-height:1.3; }
+    .close-cart { flex:0 0 34px; transition:background-color .18s ease, color .18s ease, border-color .18s ease; }
+    .close-cart:hover { border-color:#cbd9e5; background:#eef4f9; color:var(--brand); }
+    .cart-content { background:#f8fafc; }
+    .cart-section { padding:18px 22px; background:#f8fafc; }
+    .cart-section + .cart-section { padding-top:19px; border-top:1px solid #e6edf3; background:#fff; }
+    .cart-section[hidden] { display:none; }
+    .cart-section h3 { margin-bottom:13px; font-size:14px; letter-spacing:-.01em; }
+    .cart-section h3 small { max-width:320px; font-size:10px; line-height:1.45; }
+    .cart-item { grid-template-columns:58px minmax(0,1fr); gap:12px; min-height:91px; margin-bottom:9px; padding:11px 32px 11px 11px; border-color:#e1e8ef; border-radius:11px; box-shadow:0 2px 7px rgba(18,59,102,.035); }
+    .cart-item:hover { border-color:#c7d7e5; box-shadow:0 4px 12px rgba(18,59,102,.07); }
+    .cart-item img { width:58px; height:58px; }
+    .cart-item-name { font-size:12px; }
+    .cart-item-meta { max-width:210px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .cart-item-price { margin-top:4px; font-size:13px; }
+    .qty-control { margin-top:7px; }
+    .remove-item { top:10px; right:9px; }
+    .empty-cart { min-height:245px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:36px 20px; }
+    .empty-cart i { width:54px; height:54px; margin-bottom:14px; background:#edf3f8; font-size:20px; }
+    .empty-cart strong { font-size:15px; }
+    .empty-cart span { max-width:245px; text-align:center; line-height:1.5; }
+    .field-label { margin-bottom:7px; color:#536273; font-size:10px; }
+    .field-row { grid-template-columns:minmax(0,1fr) 90px; }
+    .field-input { min-height:45px; border-color:#d2dde7; font-size:13px; }
+    .field-row .btn { min-height:45px; padding:10px 11px; font-size:12px; }
+    .field-help { font-size:10px; }
+    .address-status { padding:11px 12px; font-size:11px; }
+    .address-fields { margin-top:15px; }
+    .shipping-options { gap:9px; margin-top:18px; }
+    .shipping-option { min-height:67px; padding:11px 12px; border-color:#d6e1eb; border-radius:10px; }
+    .shipping-option.is-selected { border-color:var(--accent); background:#f3f8fd; box-shadow:0 0 0 2px rgba(31,111,178,.1); }
+    .cart-footer { padding:17px 22px 20px; border-top-color:#e1e8ef; }
+    .cart-error { margin-bottom:7px; font-size:11px; }
+    .total-row { margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid #edf1f5; }
+    .total-label { font-size:11px; }
+    .total-value { font-size:25px; }
+    .cart-footer .btn { min-height:52px; border-radius:10px; }
+    .cart-footer .btn-primary:disabled { opacity:.48; cursor:not-allowed; transform:none; box-shadow:none; }
+    .cart-footer-note { max-width:290px; margin:10px auto 0; }
+    @media (max-width:620px) {
+      .cart-header, .cart-section, .cart-footer { padding-right:16px; padding-left:16px; }
+      .cart-header { min-height:70px; }
+      .cart-section { padding-top:16px; padding-bottom:16px; }
+      .cart-footer { padding-top:15px; padding-bottom:calc(17px + env(safe-area-inset-bottom)); }
+      .field-row { grid-template-columns:minmax(0,1fr) 86px; }
+    }
+
+    /* ===== Carrinho minimalista: foco no pedido e no próximo passo ===== */
+    .cart-drawer { background:#fff; box-shadow:-10px 0 28px rgba(18,59,102,.10); }
+    .cart-header { min-height:64px; padding:15px 20px; background:#fff; }
+    .cart-header h2 { font-size:17px; }
+    .cart-title-block p { display:none; }
+    .cart-content { background:#fff; }
+    .cart-section, .cart-section + .cart-section { padding:18px 20px; background:#fff; border-top:0; }
+    .cart-section + .cart-section { border-top:1px solid #edf1f5; }
+    .cart-section h3 { margin-bottom:14px; font-size:13px; }
+    .cart-section h3 small, .field-help { display:none; }
+    .cart-item { grid-template-columns:56px minmax(0,1fr); gap:11px; min-height:0; margin:0 0 14px; padding:0 28px 14px 0; border:0; border-bottom:1px solid #edf1f5; border-radius:0; background:transparent; box-shadow:none; }
+    .cart-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:0; }
+    .cart-item:hover { border-color:#edf1f5; box-shadow:none; }
+    .cart-item img { width:56px; height:56px; border-color:#edf1f5; border-radius:7px; }
+    .cart-item-name { font-size:12px; }
+    .cart-item-meta { color:#7b8792; }
+    .cart-item-price { color:var(--text); font-size:12px; }
+    .qty-control { margin-top:6px; background:#fff; }
+    .empty-cart { min-height:210px; padding:30px 18px; }
+    .empty-cart i { width:46px; height:46px; margin-bottom:11px; font-size:17px; }
+    .empty-cart strong { font-size:14px; }
+    .address-status { margin-top:9px; background:#f7fafc; }
+    .address-fields { margin-top:13px; }
+    .shipping-options { margin-top:15px; }
+    .shipping-option { min-height:58px; padding:9px 10px; border-color:#e1e8ef; border-radius:8px; box-shadow:none; }
+    .shipping-option.is-selected { box-shadow:0 0 0 1px var(--accent); }
+    .cart-footer { padding:15px 20px 18px; background:#fff; box-shadow:0 -4px 12px rgba(18,59,102,.035); }
+    .total-row { margin-bottom:12px; padding-bottom:12px; }
+    .total-value { font-size:23px; }
+    .cart-footer .btn { min-height:50px; }
+    .cart-footer-note { margin-top:8px; font-size:9px; }
+    @media (max-width:620px) {
+      .cart-header, .cart-section, .cart-footer { padding-right:16px; padding-left:16px; }
+      .cart-section, .cart-section + .cart-section { padding-top:16px; padding-bottom:16px; }
+      .cart-footer { padding-top:14px; padding-bottom:calc(16px + env(safe-area-inset-bottom)); }
+    }
+
+    /* ===== Carrinho — composição completa ===== */
+    .cart-overlay { background:rgba(15,31,48,.38); backdrop-filter:blur(3px); }
+    .cart-drawer { width:min(100%,430px); background:#fff; box-shadow:-18px 0 42px rgba(15,31,48,.16); }
+    .cart-header { min-height:72px; padding:17px 24px; border-bottom:1px solid #e8edf2; background:#fff; }
+    .cart-title-block { display:flex; flex-direction:column; gap:3px; }
+    .cart-kicker { color:#81909e; font-size:9px; font-weight:800; letter-spacing:1.1px; }
+    .cart-header h2 { color:#17212b; font-size:19px; letter-spacing:-.035em; }
+    .close-cart { width:32px; height:32px; border:0; background:#f4f7f9; }
+    .close-cart:hover { border:0; background:#eaf1f6; }
+    .cart-content { background:#fff; }
+    .cart-section, .cart-section + .cart-section { padding:22px 24px; background:#fff; border:0; }
+    .cart-section + .cart-section { border-top:8px solid #f5f7f9; }
+    .cart-section-heading { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+    .cart-step { flex:0 0 23px; width:23px; height:23px; display:grid; place-items:center; border-radius:50%; background:#eaf1f6; color:#315b7e; font-size:11px; font-weight:800; }
+    .cart-section-heading h3 { margin:0; color:#17212b; font-size:14px; line-height:1.2; }
+    .cart-section-heading small { display:block; margin-top:3px; color:#8795a2; font-size:10px; line-height:1.2; }
+    .cart-section h3 small { display:none; }
+    .cart-item { grid-template-columns:62px minmax(0,1fr); gap:12px; min-height:0; margin:0 0 14px; padding:0 28px 14px 0; border:0; border-bottom:1px solid #edf1f4; border-radius:0; background:#fff; box-shadow:none; }
+    .cart-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:0; }
+    .cart-item:hover { border-color:#edf1f4; box-shadow:none; }
+    .cart-item img { width:62px; height:62px; border:1px solid #e7edf2; border-radius:9px; background:#f8fafb; }
+    .cart-item-name { color:#17212b; font-size:12px; font-weight:800; }
+    .cart-item-meta { margin-top:3px; color:#7b8792; font-size:10px; }
+    .cart-item-price { margin-top:5px; color:#17212b; font-size:13px; }
+    .qty-control { margin-top:8px; border-color:#dce5ec; border-radius:6px; }
+    .qty-control button { width:24px; height:23px; }
+    .qty-control span { min-width:25px; }
+    .remove-item { top:0; right:0; width:25px; height:25px; background:transparent; }
+    .empty-cart { min-height:220px; padding:30px 16px; }
+    .empty-cart i { width:44px; height:44px; margin-bottom:12px; background:#f1f5f8; color:#91a0ad; }
+    .empty-cart strong { color:#17212b; font-size:14px; }
+    .empty-cart span { color:#84929f; font-size:11px; }
+    .field-label { margin-bottom:6px; color:#687887; font-size:10px; }
+    .field-row { grid-template-columns:minmax(0,1fr) 86px; }
+    .field-input { min-height:44px; border-color:#d7e1e8; border-radius:7px; background:#fff; font-size:13px; }
+    .field-row .btn { min-height:44px; border-radius:7px; font-size:11px; }
+    .address-status { margin-top:9px; border:1px solid #dce8f1; border-radius:7px; background:#f6f9fb; font-size:11px; }
+    .address-fields { margin-top:14px; }
+    .shipping-options { gap:7px; margin-top:16px; }
+    .shipping-option { min-height:59px; padding:10px; border:1px solid #dce5ec; border-radius:8px; background:#fff; box-shadow:none; }
+    .shipping-option.is-selected { border-color:#2d6f9f; background:#f4f8fb; box-shadow:0 0 0 1px #2d6f9f; }
+    .shipping-option strong { color:#315b7e; }
+    .shipping-option span { color:#7b8792; }
+    .cart-footer { padding:16px 24px 20px; border-top:1px solid #e6edf2; background:#fff; box-shadow:0 -8px 18px rgba(18,59,102,.05); }
+    .total-row { margin-bottom:13px; padding-bottom:13px; border-bottom:1px solid #edf1f4; }
+    .total-label { color:#6f7d89; font-size:11px; }
+    .total-label small { color:#9aa7b1; }
+    .total-value { color:#17212b; font-size:24px; }
+    .cart-footer .btn { min-height:51px; border-radius:8px; }
+    .cart-footer .btn-primary { background:#157347; border-color:#157347; box-shadow:none; }
+    .cart-footer .btn-primary:hover { background:#105c39; border-color:#105c39; box-shadow:none; }
+    .cart-footer-note { margin-top:9px; color:#8b98a3; font-size:9px; }
+    @media (max-width:620px) {
+      .cart-drawer { width:100%; }
+      .cart-header, .cart-section, .cart-footer { padding-right:18px; padding-left:18px; }
+      .cart-section, .cart-section + .cart-section { padding-top:18px; padding-bottom:18px; }
+      .cart-footer { padding-top:15px; padding-bottom:calc(17px + env(safe-area-inset-bottom)); }
+    }
   </style>
 </head>
 <body>
@@ -521,11 +669,11 @@
 
   <div class="cart-overlay" id="cartOverlay" aria-hidden="true">
     <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
-      <header class="cart-header"><h2 id="cartTitle">Seu carrinho</h2><button class="close-cart" id="closeCart" type="button" aria-label="Fechar carrinho"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>
+      <header class="cart-header"><div class="cart-title-block"><span class="cart-kicker">SEU PEDIDO</span><h2 id="cartTitle">Revisar compra</h2></div><button class="close-cart" id="closeCart" type="button" aria-label="Fechar carrinho"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>
       <div class="cart-content">
-        <section class="cart-section"><h3>Seu pedido <small>Revise a opção e a quantidade antes de continuar.</small></h3><div id="cartItems"></div></section>
+        <section class="cart-section cart-order-section"><div class="cart-section-heading"><span class="cart-step">1</span><div><h3>Produtos</h3><small>Confira sua seleção</small></div></div><div id="cartItems"></div></section>
         <section class="cart-section" id="deliverySection">
-          <h3>Entrega <small>Informe o CEP para consultar endereço, prazo e frete.</small></h3>
+          <div class="cart-section-heading"><span class="cart-step">2</span><div><h3>Entrega</h3><small>Informe o CEP para calcular</small></div></div>
           <label class="field-label" for="cepInput">CEP</label>
           <div class="field-row"><input class="field-input" id="cepInput" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000"><button class="btn btn-secondary" id="lookupCep" type="button">Consultar</button></div>
           <span class="field-help" id="cepHelp">Usamos o CEP somente para calcular a entrega.</span>
@@ -536,7 +684,7 @@
           <div class="shipping-options" id="shippingOptions" role="radiogroup" aria-label="Opções de entrega"></div>
         </section>
       </div>
-      <footer class="cart-footer"><p class="cart-error" id="cartError" role="alert"></p><div class="total-row"><div class="total-label">Total estimado<small>Produtos + entrega</small></div><div class="total-value" id="cartTotal">R$ 0,00</div></div><button class="btn btn-primary" id="continueCheckout" type="button" disabled>Continuar para o checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><p class="cart-footer-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Você revisará os dados e escolherá o pagamento no checkout.</p></footer>
+      <footer class="cart-footer"><p class="cart-error" id="cartError" role="alert"></p><div class="total-row"><div class="total-label">Total do pedido<small>Produtos + entrega</small></div><div class="total-value" id="cartTotal">R$ 0,00</div></div><button class="btn btn-primary" id="continueCheckout" type="button" disabled>Continuar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><p class="cart-footer-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Pagamento protegido no checkout.</p></footer>
     </aside>
   </div>
 
@@ -711,9 +859,11 @@
 
       function renderCart() {
         const items = $('#cartItems');
+        const deliverySection = $('#deliverySection');
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         $('#cartCount').textContent = String(totalItems);
         items.replaceChildren();
+        deliverySection.hidden = !cart.length;
 
         if (!cart.length) {
           const empty = document.createElement('div');
