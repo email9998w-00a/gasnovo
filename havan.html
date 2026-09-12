@@ -317,9 +317,9 @@ body{background:var(--canvas);color:var(--ink)}
 .securebar{background:var(--navy-dark);font-size:.73rem;letter-spacing:.02em;padding:10px 14px}
 .top{display:flex;align-items:center;gap:12px;padding:20px 0 15px;margin-bottom:0;border-bottom:1px solid var(--line)}
 .top .back{flex:0 0 31px}.brand-lockup{min-width:0}.top .logo{font-size:1.18rem;letter-spacing:.14em;line-height:1.1}.brand-caption{margin-top:4px;color:#7b8b96;font-size:.62rem;letter-spacing:.015em}.top .h{display:flex;align-items:center;gap:5px;margin-left:auto;text-align:right;font-size:.68rem;line-height:1.25;color:var(--muted)}.top .h .ico{width:15px;height:15px;color:var(--emerald)}
-.checkout-progress{display:flex;align-items:center;justify-content:center;padding:17px 4px 14px}.progress-step{display:flex;align-items:center;gap:6px;color:#8a99a3;font-size:.65rem;white-space:nowrap}.progress-step span{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid #cbd8df;border-radius:50%;background:#fff;font-size:.68rem;font-weight:750}.progress-step.is-current{color:var(--navy);font-weight:750}.progress-step.is-current span{background:var(--navy);border-color:var(--navy);color:#fff}.checkout-progress i{display:block;width:38px;height:1px;margin:0 8px;background:#cbd8df}
+.checkout-progress{display:flex;align-items:center;justify-content:center;padding:13px 4px 11px}.progress-step{display:flex;align-items:center;gap:6px;color:#8a99a3;font-size:.65rem;white-space:nowrap}.progress-step span{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid #cbd8df;border-radius:50%;background:#fff;font-size:.68rem;font-weight:750}.progress-step.is-current{color:var(--navy);font-weight:750}.progress-step.is-current span{background:var(--navy);border-color:var(--navy);color:#fff}.checkout-progress i{display:block;width:38px;height:1px;margin:0 8px;background:#cbd8df}
 .checkout-intro{margin:0 3px 16px;padding:0 2px;color:var(--muted);font-size:.77rem;line-height:1.55}.checkout-intro strong{color:var(--ink)}
-.merchant-card{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:9px;box-shadow:0 3px 12px rgba(18,59,102,.035)}.merchant-mark{display:flex;align-items:center;justify-content:center;flex:0 0 35px;height:35px;border-radius:9px;background:var(--navy);color:#fff;font-size:1.05rem;font-weight:800;letter-spacing:.04em}.merchant-copy{display:flex;flex-direction:column;gap:2px;min-width:0}.merchant-copy strong{font-size:.76rem;color:var(--ink)}.merchant-copy span{font-size:.63rem;line-height:1.35;color:var(--muted)}.merchant-status{display:flex;align-items:center;gap:4px;margin-left:auto;color:var(--emerald);font-size:.59rem;font-weight:750;line-height:1.15;text-align:right}.merchant-status .ico{width:17px;height:17px}
+.merchant-card{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 12px;margin-bottom:12px;box-shadow:0 3px 12px rgba(18,59,102,.035)}.merchant-mark{display:flex;align-items:center;justify-content:center;flex:0 0 32px;height:32px;border-radius:9px;background:var(--navy);color:#fff;font-size:1.05rem;font-weight:800;letter-spacing:.04em}.merchant-copy{display:flex;flex-direction:column;gap:2px;min-width:0}.merchant-copy strong{font-size:.72rem;color:var(--ink)}.merchant-copy span{font-size:.59rem;line-height:1.35;color:var(--muted)}.merchant-status{display:flex;align-items:center;gap:4px;margin-left:auto;color:var(--emerald);font-size:.59rem;font-weight:750;line-height:1.15;text-align:right}.merchant-status .ico{width:17px;height:17px}
 .trust-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#dce7ec;border:1px solid #dce7ec;border-radius:9px;overflow:hidden;margin-bottom:14px}.trust-strip div{display:flex;align-items:center;justify-content:center;gap:5px;min-height:39px;background:#f9fbfc;color:#536b79;font-size:.59rem;font-weight:700;text-align:center}.trust-strip .ico{width:14px;height:14px;color:var(--emerald)}
 .card{border-radius:12px;border-color:var(--line);box-shadow:0 4px 18px rgba(18,59,102,.055)}.order-card{padding-bottom:15px}.order-note{border-top:1px solid #edf2f5}.total-explain{margin-top:8px;color:#7a8b95;font-size:.62rem;line-height:1.4}
 .step-h h2{font-size:.98rem}.step-h{margin-bottom:15px}.data-note{font-size:.69rem;line-height:1.45}.field label{font-size:.72rem}
@@ -327,6 +327,16 @@ body{background:var(--canvas);color:var(--ink)}
 #pixArea{border-top:3px solid var(--emerald)}#okArea{border-top:3px solid var(--emerald)}
 .foot{padding-bottom:30px}
 @media(max-width:480px){.wrap{padding-inline:13px}.progress-step{font-size:.6rem}.checkout-progress i{width:22px;margin:0 5px}.merchant-copy span{font-size:.59rem}.trust-strip div{font-size:.55rem;gap:3px}}
+</style>
+
+<style id="conversion-simplification">
+/* Menos ruído, mais foco: identidade, pedido, dados e pagamento. */
+.checkout-progress{padding:11px 4px 9px}.progress-step b{font-weight:700}.checkout-intro{max-width:500px;margin-bottom:13px}
+.merchant-card{box-shadow:none;background:#fbfdfe}.merchant-status span{display:none}.merchant-status .ico{width:16px;height:16px}
+.total-explain{font-size:.59rem;margin-top:6px}
+.payment-assurance{display:none!important}
+#formArea .seals{display:none!important}
+@media(max-width:480px){.checkout-progress i{width:18px;margin:0 4px}.checkout-intro{font-size:.73rem}.merchant-copy span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:205px}}
 </style>
 </head>
 <body>
@@ -359,7 +369,7 @@ body{background:var(--canvas);color:var(--ink)}
     <div class="progress-step is-current"><span>1</span><b>Dados</b></div>
     <i></i><div class="progress-step"><span>2</span><b>Pagamento</b></div><i></i><div class="progress-step"><span>3</span><b>Confirmação</b></div>
   </div>
-  <p class="checkout-intro"><strong>Finalize sua compra com tranquilidade.</strong> Confira os itens, informe o endereço e revise o valor total antes de confirmar pelo PIX.</p>
+  <p class="checkout-intro"><strong>Confira os dados e finalize sua compra.</strong> O pagamento será feito via PIX após a revisão do pedido.</p>
 
   <section class="merchant-card" aria-label="Informações da loja">
     <div class="merchant-mark">E</div>
@@ -367,17 +377,11 @@ body{background:var(--canvas);color:var(--ink)}
     <div class="merchant-status"><svg class="ico"><use href="#i-shield"/></svg><span>Ambiente<br>protegido</span></div>
   </section>
 
-  <div class="trust-strip" aria-label="Compromissos do checkout">
-    <div><svg class="ico"><use href="#i-lock"/></svg><span>Dados protegidos</span></div>
-    <div><svg class="ico"><use href="#i-truck"/></svg><span>Entrega acompanhada</span></div>
-    <div><svg class="ico"><use href="#i-check"/></svg><span>Valor transparente</span></div>
-  </div>
-
   <!-- RESUMO DO PRODUTO -->
   <div class="card order-card">
     <div class="step-h"><div class="step-n">✓</div><h2>Confira seu pedido</h2></div>
     <div id="orderItems" class="order-items" aria-live="polite"></div>
-    <div class="order-subtotal"><span>Subtotal dos produtos</span><strong id="orderSubtotal">R$ 0,00</strong></div><p class="total-explain">O frete será calculado e exibido separadamente após a validação do CEP.</p>
+    <div class="order-subtotal"><span>Subtotal dos produtos</span><strong id="orderSubtotal">R$ 0,00</strong></div><p class="total-explain">O frete aparece após informar o CEP.</p>
     <p class="order-note"><svg class="ico"><use href="#i-check"/></svg> Revise os itens e o valor total antes de gerar o código PIX.</p>
   </div>
 
@@ -506,10 +510,6 @@ body{background:var(--canvas);color:var(--ink)}
       </div>
       <button class="btn" id="btnGerar" type="button"><svg class="ico"><use href="#i-lock"/></svg> Gerar código PIX</button>
       <div class="safenote"><svg class="ico"><use href="#i-lock"/></svg> Conexão protegida · você só paga após revisar o total</div>
-      <div class="payment-assurance">
-        <div class="assurance-icon"><svg class="ico"><use href="#i-shield"/></svg></div>
-        <div><strong>Você mantém o controle</strong><span>O código só é gerado depois da conferência dos seus dados, itens, frete e total.</span></div>
-      </div>
     </div>
 
     <div class="seals">
