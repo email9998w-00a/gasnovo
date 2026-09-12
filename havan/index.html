@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar pedido — Equaliv</title>
+<style>
+/* ====== TEMA (igual à loja Kokeshi) ====== */
+:root{
+  --wine:#9c0b52;
+  --wine-dark:#7d0842;
+  --pink:#ff8fc0;
+  --pink-soft:#ffe6f1;
+  --pink-bg:#fff5fa;
+  --teal:#157e6e;
+  --green:#1fa463;
+  --ink:#2a2230;
+  --muted:#7a7280;
+  --line:#ececf1;
+  --radius:12px;
+  --shadow:0 6px 24px rgba(156,11,82,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#f4f2f6;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none}
+input,select{font:inherit}
+
+/* ====== ESTRUTURA (coluna única, otimizado p/ celular) ====== */
+.wrap{max-width:480px;margin-inline:auto;padding:0 14px 40px}
+
+/* ---- Barra segura ---- */
+.securebar{background:var(--wine);color:#fff;font-size:.8rem;font-weight:600;text-align:center;padding:8px;display:flex;align-items:center;justify-content:center;gap:6px}
+.ico{width:1.05em;height:1.05em;vertical-align:-.16em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+/* ---- Header ---- */
+.top{display:flex;align-items:center;gap:10px;padding:14px 2px}
+.top .back{width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);color:var(--wine);font-size:1.2rem}
+.top .logo{font-size:1.3rem;font-weight:800;color:var(--wine)}
+.top .logo span{color:var(--pink)}
+.top .h{font-size:.95rem;font-weight:700;margin-left:auto;color:var(--muted)}
+
+/* ---- Card genérico ---- */
+.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
+.step-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.step-n{width:26px;height:26px;border-radius:50%;background:var(--wine);color:#fff;font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.step-h h2{font-size:1rem;font-weight:700}
+
+/* ---- Resumo do produto ---- */
+.summary{display:flex;gap:14px;align-items:center}
+.summary .thumb{width:74px;height:74px;border-radius:10px;overflow:hidden;background:var(--pink-soft);flex:none}
+.summary .thumb img{width:100%;height:100%;object-fit:cover}
+.summary .nome{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.summary .de{color:var(--muted);text-decoration:line-through;font-size:.82rem}
+.summary .por{color:var(--wine);font-weight:800;font-size:1.25rem}
+.summary .eco{color:var(--green);font-size:.8rem;font-weight:600;margin-top:2px}
+
+/* ---- Formulário ---- */
+.field{margin-bottom:12px}
+.field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:5px;color:var(--ink)}
+.field input,.field select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;transition:.15s;outline:none}
+.field input:focus,.field select:focus{border-color:var(--wine);box-shadow:0 0 0 3px rgba(156,11,82,.10)}
+.field input.err,.field select.err{border-color:#e03b52;box-shadow:0 0 0 3px rgba(224,59,82,.10)}
+.field .msg{font-size:.74rem;color:#e03b52;margin-top:4px;display:none}
+.field.invalid .msg{display:block}
+.row{display:flex;gap:10px}
+.row .field{flex:1}
+.w-cep{max-width:150px}
+/*mobilerow*/ .row{flex-wrap:wrap;gap:0}.row .field{flex:1 1 100%}.w-cep,.w-num{max-width:none}
+.w-num{max-width:110px}
+
+/* ---- Pagamento PIX ---- */
+.pix-head{display:flex;align-items:center;gap:10px;background:var(--pink-bg);border:1.5px solid var(--pink);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.pix-head .pixlogo{width:34px;height:34px;border-radius:8px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.7rem;flex:none}
+.pix-head strong{font-size:.95rem}
+.pix-head small{color:var(--muted);font-size:.78rem;display:block}
+.pix-benef{display:flex;gap:8px;margin-bottom:16px}
+.pix-benef div{flex:1;text-align:center;background:#f7f6f9;border-radius:8px;padding:10px 4px;font-size:.68rem;font-weight:700;color:var(--muted)}
+.pix-benef .ico{width:20px;height:20px;color:var(--teal);margin:0 auto 4px}
+.total-line{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);margin-bottom:16px}
+.total-line span{color:var(--muted);font-size:.9rem}
+.total-line strong{font-size:1.5rem;color:var(--wine);font-weight:800}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--wine);color:#fff;font-size:1.1rem;font-weight:700;padding:16px;border-radius:50px;text-align:center;transition:.2s;box-shadow:0 6px 20px rgba(156,11,82,.30)}
+.btn:hover{background:var(--wine-dark);transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn.green{background:var(--green);box-shadow:0 6px 20px rgba(31,164,99,.30)}
+.btn.green:hover{background:#178a53}
+.btn.outline{background:#fff;color:var(--wine);border:1.5px solid var(--wine);box-shadow:none}
+
+.safenote{display:flex;align-items:center;justify-content:center;gap:6px;color:var(--muted);font-size:.78rem;margin-top:12px}
+
+/* ---- Selos de confiança ---- */
+.seals{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:6px 0 2px}
+.seal{display:flex;align-items:center;gap:5px;font-size:.72rem;color:var(--muted);font-weight:600}
+.seal .ico{width:15px;height:15px;color:var(--teal)}
+
+/* ---- Tela do PIX gerado ---- */
+.hidden{display:none!important}
+.pix-pay{text-align:center}
+.pix-pay h2{font-size:1.1rem;margin-bottom:4px}
+.pix-pay .sub{color:var(--muted);font-size:.85rem;margin-bottom:16px}
+.qr{width:210px;height:210px;margin:0 auto 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px}
+.qr img{width:100%;height:100%;object-fit:contain}
+.pix-code{display:flex;gap:8px;margin-bottom:14px}
+.pix-code input{flex:1;padding:11px;border:1.5px solid var(--line);border-radius:10px;font-size:.78rem;color:var(--muted);background:#f7f6f9;overflow:hidden;text-overflow:ellipsis}
+.pix-code button{background:var(--wine);color:#fff;padding:0 16px;border-radius:10px;font-weight:700;font-size:.82rem;white-space:nowrap}
+.timer-box{background:var(--pink-bg);border-radius:10px;padding:12px;margin-bottom:16px;font-size:.85rem}
+.timer-box .clock{font-size:1.4rem;font-weight:800;color:var(--wine);font-variant-numeric:tabular-nums}
+.steps-list{text-align:left;font-size:.85rem;color:var(--muted);margin:0 auto 8px;max-width:320px}
+.steps-list li{margin-bottom:6px;padding-left:4px}
+
+/* ---- Tela aprovado ---- */
+.approved{text-align:center;padding:20px 0}
+.approved .check{width:80px;height:80px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.approved .check .ico{width:42px;height:42px;stroke-width:3}
+.approved h2{font-size:1.4rem;color:var(--green);margin-bottom:8px}
+.approved p{color:var(--muted);font-size:.9rem;margin-bottom:6px}
+
+.foot{text-align:center;color:var(--muted);font-size:.74rem;margin-top:20px;line-height:1.6}
+
+/* Resumo dinâmico recebido pela URL */
+.order-items{display:grid;gap:12px}
+.order-item{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.order-item:last-child{border-bottom:0;padding-bottom:0}
+.order-item .thumb{width:64px;height:64px;border-radius:10px;overflow:hidden;background:#f7f6f9;border:1px solid var(--line)}
+.order-item .thumb img{width:100%;height:100%;object-fit:contain}
+.order-item .nome{font-weight:700;font-size:.86rem;line-height:1.25}
+.order-item .variant{color:var(--muted);font-size:.75rem;margin-top:3px}
+.order-item .meta{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:5px}
+.order-item .qty{color:var(--muted);font-size:.75rem}
+.order-item .por{color:var(--wine);font-weight:800;font-size:.95rem}
+.order-item .de{color:var(--muted);text-decoration:line-through;font-size:.7rem;margin-left:5px}
+.order-subtotal{display:flex;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--muted)}
+.order-subtotal strong{color:var(--wine);font-size:1rem}
+.order-error{background:#fff1f2;border:1px solid #f2a4ad;border-radius:10px;color:#a51d35;padding:12px;font-size:.82rem;line-height:1.4}
+/* Refinamento Equaliv: institucional, limpo e orientado à conclusão. */
+:root{--wine:#123b66;--wine-dark:#0c2d4e;--pink:#b9d7ec;--pink-soft:#eef6fb;--pink-bg:#f5f9fc;--teal:#157347;--green:#157347;--ink:#17212b;--muted:#637382;--line:#dfe7ee;--shadow:0 6px 24px rgba(18,59,102,.09)}
+body{background:#f5f8fb}
+.securebar{background:var(--wine-dark);font-size:.74rem;letter-spacing:.01em}
+.top{padding:18px 2px 16px}
+.top .back{color:var(--wine);box-shadow:0 3px 12px rgba(18,59,102,.1)}
+.top .logo{color:var(--wine);letter-spacing:.06em}.top .logo span{color:#157347}
+.top .h{color:#5c7080;font-size:.82rem}
+.card{border:1px solid #e1e9ef;box-shadow:0 5px 20px rgba(18,59,102,.065)}
+.step-n{background:var(--wine);font-size:.78rem}
+.step-h h2{color:#17212b;letter-spacing:-.015em}
+.order-card{padding-bottom:16px}
+.order-card .step-n{background:#e8f5ed;color:#157347}
+.order-item .thumb{background:#f7fafc;border-color:#dfe8ef}
+.order-item .nome{color:#17212b}.order-item .por,.order-subtotal strong{color:var(--wine)}
+.pix-head{background:#f1f8f4;border-color:#b9ddc6}
+.pix-head .pixlogo{background:#157347}
+.pix-head strong{color:#17212b}.pix-head small{color:#657887}
+.pix-benef div{background:#f6f9fb;color:#637382}
+.pix-benef .ico{color:#157347}
+.total-line{border-color:#dce6ed}.total-line strong{color:var(--wine);font-size:1.6rem}
+.btn{background:#157347;box-shadow:0 7px 20px rgba(21,115,71,.25);font-size:1rem;padding:15px}
+.btn:hover{background:#105c39}.btn.outline{background:#fff;color:var(--wine);border-color:#9eb4c8;box-shadow:none}
+.safenote{font-size:.73rem}.safenote .ico{color:#157347}
+.seal .ico{color:#157347}.foot{color:#7b8b98}
+.timer-box{background:#f1f8f4;border:1px solid #cce5d4}.timer-box .clock{color:#157347}
+.pix-code button{background:var(--wine)}
+.pixbig{background:#157347!important;box-shadow:0 7px 20px rgba(21,115,71,.27)!important}
+@media (max-width:480px){.wrap{padding-inline:12px}.card{padding:16px}.order-item{grid-template-columns:58px minmax(0,1fr);gap:10px}.order-item .thumb{width:58px;height:58px}.order-item .nome{font-size:.82rem}.order-item .por{font-size:.88rem}.total-line strong{font-size:1.45rem}}
+</style>
+<!-- Macna Pixel -->
+<script src="https://macna.ai/px.js" data-token="P59IOULngxyS6D7U9jsALH"></script>
+<script src="/mx-funil.js"></script>
+</head>
+<body>
+
+<!-- KIT DE ÍCONES -->
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 4h14v11H1z"/><path d="M15 8h4l4 4v3h-8z"/><circle cx="5.5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+</svg>
+
+<div class="securebar"><svg class="ico"><use href="#i-lock"/></svg> Ambiente 100% seguro e criptografado</div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="top">
+    <a class="back" href="javascript:history.back()" aria-label="Voltar">‹</a>
+    <div class="logo">EQUALIV<span>.</span></div>
+    <div class="h">Revisar pedido</div>
+  </div>
+
+  <!-- RESUMO DO PRODUTO -->
+  <div class="card order-card">
+    <div class="step-h"><div class="step-n">✓</div><h2>Resumo do pedido</h2></div>
+    <div id="orderItems" class="order-items" aria-live="polite"></div>
+    <div class="order-subtotal"><span>Subtotal dos produtos</span><strong id="orderSubtotal">R$ 0,00</strong></div>
+  </div>
+
+  <!-- FORM (etapas) -->
+  <div id="formArea">
+
+    <!-- 1. DADOS PESSOAIS -->
+    <div class="card">
+      <div class="step-h"><div class="step-n">1</div><h2>Seus dados</h2></div>
+      <div class="field">
+        <label for="nome">Nome completo</label>
+        <input id="nome" type="text" autocomplete="name" placeholder="Seu nome completo">
+        <div class="msg">Informe seu nome completo.</div>
+      </div>
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" autocomplete="email" placeholder="seu@email.com">
+        <div class="msg">Informe um e-mail válido.</div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="cpf">CPF</label>
+          <input id="cpf" type="tel" inputmode="numeric" placeholder="000.000.000-00" maxlength="14">
+          <div class="msg">CPF inválido.</div>
+        </div>
+        <div class="field">
+          <label for="tel">Telefone</label>
+          <input id="tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(00) 00000-0000" maxlength="15">
+          <div class="msg">Telefone inválido.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ENDEREÇO -->
+    <div class="card">
+      <div class="step-h"><div class="step-n">2</div><h2>Endereço de entrega</h2></div>
+      <div class="row">
+        <div class="field w-cep">
+          <label for="cep">CEP</label>
+          <input id="cep" type="tel" inputmode="numeric" placeholder="00000-000" maxlength="9">
+          <div class="msg">CEP inválido.</div>
+        </div>
+        <div class="field">
+          <label for="estado">Estado</label>
+          <select id="estado">
+            <option value="">UF</option>
+            <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
+            <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
+            <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
+            <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+            <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
+            <option>SE</option><option>TO</option>
+          </select>
+          <div class="msg">Selecione.</div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="cidade">Cidade</label>
+        <input id="cidade" type="text" placeholder="Sua cidade">
+        <div class="msg">Informe a cidade.</div>
+      </div>
+      <div class="field">
+        <label for="bairro">Bairro</label>
+        <input id="bairro" type="text" placeholder="Seu bairro">
+        <div class="msg">Informe o bairro.</div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="rua">Rua / Logradouro</label>
+          <input id="rua" type="text" placeholder="Nome da rua">
+          <div class="msg">Informe a rua.</div>
+        </div>
+        <div class="field w-num">
+          <label for="numero">Número</label>
+          <input id="numero" type="text" inputmode="numeric" placeholder="Nº">
+          <div class="msg">Nº</div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="compl">Complemento <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+        <input id="compl" type="text" placeholder="Apto, bloco, referência">
+      </div>
+    </div>
+
+    <!-- 3. PAGAMENTO -->
+    <div class="card">
+      <div class="step-h"><div class="step-n">3</div><h2>Pagamento</h2></div>
+      <div class="pix-head">
+        <div class="pixlogo">PIX</div>
+        <div>
+          <strong>Pagamento via PIX</strong>
+          <small>Confirmação rápida · liberação após aprovação</small>
+        </div>
+      </div>
+      <div class="pix-benef">
+        <div><svg class="ico"><use href="#i-bolt"/></svg>IMEDIATO</div>
+        <div><svg class="ico"><use href="#i-check"/></svg>SIMPLES</div>
+        <div><svg class="ico"><use href="#i-shield"/></svg>SEGURO</div>
+      </div>
+      <div class="total-line">
+        <span>Total a pagar</span>
+        <strong id="totalPagar">R$ 0,00</strong>
+      </div>
+      <button class="btn" id="btnGerar"><svg class="ico"><use href="#i-lock"/></svg> GERAR PIX SEGURO</button>
+      <div class="safenote"><svg class="ico"><use href="#i-lock"/></svg> Seus dados são protegidos durante o pagamento</div>
+    </div>
+
+    <div class="seals">
+      <span class="seal"><svg class="ico"><use href="#i-shield"/></svg> Compra protegida</span>
+      <span class="seal"><svg class="ico"><use href="#i-truck"/></svg> Envio rastreado</span>
+      <span class="seal"><svg class="ico"><use href="#i-check"/></svg> Pedido revisável</span>
+    </div>
+  </div>
+
+  <!-- TELA: PIX GERADO -->
+  <div id="pixArea" class="card pix-pay hidden">
+    <h2>Quase lá! Pague com PIX</h2>
+    <p class="sub">Escaneie o QR Code ou copie o código no seu banco.</p>
+    <div class="qr"><img id="pixQr" src="" alt="QR Code PIX"></div>
+    <div class="pix-code">
+      <input id="pixCode" readonly value="">
+      <button id="btnCopy"><svg class="ico"><use href="#i-copy"/></svg> Copiar</button>
+    </div>
+    <div class="timer-box">
+      O código expira em <span class="clock" id="pixClock">30:00</span><br>
+      <small>Após o pagamento, a confirmação é automática.</small>
+    </div>
+    <ol class="steps-list">
+      <li>Abra o app do seu banco e escolha <strong>PIX</strong>.</li>
+      <li>Selecione <strong>Pagar com QR Code</strong> ou <strong>Copia e Cola</strong>.</li>
+      <li>Confirme o valor <strong id="pixValor">R$ 0,00</strong> e finalize.</li>
+      <li>Pronto! A tela vira sozinha quando o pagamento cair.</li>
+    </ol>
+    <div class="safenote"><svg class="ico"><use href="#i-shield"/></svg> Pagamento processado com segurança</div>
+  </div>
+
+  <!-- TELA: APROVADO -->
+  <div id="okArea" class="card approved hidden">
+    <div class="check"><svg class="ico"><use href="#i-check"/></svg></div>
+    <h2>Pagamento aprovado!</h2>
+    <p>Seu pedido foi confirmado com sucesso.</p>
+    <p>Enviamos os detalhes e o código de rastreio para o seu e-mail.</p>
+    <br>
+    <a class="btn outline" href="javascript:history.back()">Voltar à loja</a>
+  </div>
+
+  <div class="foot">
+    EQUALIV · Compra segura.<br>
+    Pagamento via PIX processado conforme as regras do Banco Central.
+  </div>
+
+</div>
+
+<script>
+/* =====================================================================
+   CONFIGURAÇÃO — cole aqui os dados que você vai me passar
+   ===================================================================== */
+const CONFIG = {
+  PIXEL_ID:  '1838038347359216',  // ID do Pixel (Meta)
+  API_BASE:  '',            // Vazio = mesmo servidor que serve a página. Ou URL fixa, ex: 'https://kokeshi.com.br'
+  PIX_EXPIRE_MIN: 30,       // minutos até o PIX expirar
+  MODO_DEMO: false          // true = só simula o visual. false = PIX real pelo backend.
+};
+// SEGURANÇA: a Secret Key (sk_...) da Pagap NUNCA fica aqui no frontend.
+// Ela mora só no backend (VPS). O checkout fala com o SEU backend, e o backend fala com a Pagap.
+const API = (CONFIG.API_BASE || '').replace(/\/$/,''); // vazio = URLs relativas (mesmo servidor)
+
+/* =====================================================================
+   KITS — valores correspondentes a cada kit (batem com a loja)
+   ===================================================================== */
+/* =====================================================================
+   PEDIDO — lido e validado a partir da URL
+   ===================================================================== */
+const params = new URLSearchParams(location.search);
+const brl = v => Number(v || 0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const numberOr = (v, fallback=0) => Number.isFinite(Number(v)) ? Number(v) : fallback;
+const readJson = (key, fallback) => {
+  try { return JSON.parse(params.get(key) || ''); } catch (_) { return fallback; }
+};
+
+const rawOrder = readJson('order', null);
+const rawProducts = readJson('products', []);
+const sourceItems = Array.isArray(rawOrder?.items) ? rawOrder.items : (Array.isArray(rawProducts) ? rawProducts : []);
+const orderItems = sourceItems.map((item, index) => ({
+  id: item.id || `item-${index + 1}`,
+  name: item.name || 'Produto',
+  variant: item.variant || item.flavor || '',
+  flavor: item.flavor || '',
+  weight: item.weight || null,
+  quantity: Math.max(1, numberOr(item.quantity, 1)),
+  price: numberOr(item.price ?? item.v, 0),
+  oldPrice: numberOr(item.oldPrice, 0),
+  discount: numberOr(item.discount, 0),
+  image: item.image || item.p || (Array.isArray(item.images) ? item.images[0] : ''),
+  images: Array.isArray(item.images) && item.images.length ? item.images : [item.image || item.p].filter(Boolean),
+  lineSubtotal: numberOr(item.lineSubtotal, numberOr(item.price ?? item.v, 0) * Math.max(1, numberOr(item.quantity ?? item.q, 1)))
+}));
+
+const calculatedSubtotal = orderItems.reduce((sum, item) => sum + item.lineSubtotal, 0);
+const order = {
+  version: numberOr(rawOrder?.version, 1),
+  createdAt: rawOrder?.createdAt || new Date().toISOString(),
+  currency: rawOrder?.currency || 'BRL',
+  itemCount: orderItems.reduce((sum, item) => sum + item.quantity, 0),
+  items: orderItems,
+  subtotal: numberOr(rawOrder?.subtotal, numberOr(params.get('subtotal'), calculatedSubtotal)),
+  shipping: numberOr(rawOrder?.shipping, numberOr(params.get('shipping'), 0)),
+  total: numberOr(rawOrder?.total, numberOr(params.get('total'), calculatedSubtotal))
+};
+const kitKey = orderItems[0]?.id || 'equaliv-body-protein';
+const kit = {
+  nome: orderItems[0]?.name || 'Pedido Equaliv',
+  por: order.total,
+  de: orderItems.reduce((sum, item) => sum + (item.oldPrice || item.price) * item.quantity, 0),
+  img: orderItems[0]?.image || ''
+};
+
+function renderOrderSummary(){
+  const list = document.getElementById('orderItems');
+  const subtotal = document.getElementById('orderSubtotal');
+  if(!orderItems.length){
+    list.innerHTML = '<div class="order-error">Não encontramos os dados do pedido nesta URL. Volte à loja e tente novamente.</div>';
+    document.getElementById('btnGerar').disabled = true;
+    return;
+  }
+  list.replaceChildren();
+  orderItems.forEach(item => {
+    const row = document.createElement('article');
+    row.className = 'order-item';
+    const img = item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy">` : '<span aria-hidden="true"></span>';
+    const old = item.oldPrice > item.price ? `<span class="de">${brl(item.oldPrice * item.quantity)}</span>` : '';
+    row.innerHTML = `<div class="thumb">${img}</div><div><div class="nome">${escapeHtml(item.name)}</div><div class="variant">${escapeHtml(item.variant)}${item.weight ? ` · ${item.weight} g` : ''}</div><div class="meta"><span class="qty">Quantidade: ${item.quantity}</span><span class="por">${brl(item.lineSubtotal)}${old}</span></div></div>`;
+    list.appendChild(row);
+  });
+  subtotal.textContent = brl(order.subtotal);
+}
+function escapeHtml(value){ return String(value ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+renderOrderSummary();
+
+document.getElementById('totalPagar').textContent = brl(order.total);
+document.getElementById('pixValor').textContent = brl(order.total);
+document.getElementById('pixCode').value = '';
+
+// captura UTMs / click-ids da URL p/ atribuição de vendas
+const tracking = {};
+['utm_source','utm_campaign','utm_medium','utm_content','utm_term','fbclid','gclid','kclid','src','sck']
+  .forEach(k => { const v = params.get(k); if(v) tracking[k] = v; });
+
+/* =====================================================================
+   PIXEL (Meta) — dispara quando CONFIG.PIXEL_ID estiver preenchido
+   ===================================================================== */
+function initPixel(){
+  if(!CONFIG.PIXEL_ID) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', CONFIG.PIXEL_ID);
+  /* PageView e InitiateCheckout saem pelo Macna (px.js), no navegador e no
+     servidor com o mesmo event_id. Não redisparar aqui — contaria em dobro. */
+}
+// parâmetros de produto no padrão da Meta (catálogo/otimização/dynamic ads)
+function fbContent(){ return { content_type:'product', content_ids:orderItems.map(item=>item.id), content_name:kit.nome, contents:orderItems.map(item=>({id:item.id,quantity:item.quantity,item_price:item.price})), value:order.total, currency:'BRL' }; }
+/* function pixel() removida — disparava fbq('track') e ficou sem uso depois da
+   migração pro Macna. Não recriar: os eventos padrão são do px.js. */
+initPixel();
+
+/* =====================================================================
+   MÁSCARAS de CPF, telefone e CEP
+   ===================================================================== */
+const onlyD = s => s.replace(/\D/g,'');
+function mask(el, fn){ el.addEventListener('input', ()=>{ el.value = fn(onlyD(el.value)); }); }
+mask(document.getElementById('cpf'), d => d.slice(0,11)
+  .replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2'));
+mask(document.getElementById('tel'), d => d.slice(0,11)
+  .replace(/(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2'));
+mask(document.getElementById('cep'), d => d.slice(0,8).replace(/(\d{5})(\d)/,'$1-$2'));
+
+/* ---- busca endereço pelo CEP (ViaCEP) ---- */
+document.getElementById('cep').addEventListener('blur', async ()=>{
+  const d = onlyD(document.getElementById('cep').value);
+  if(d.length!==8) return;
+  try{
+    const r = await fetch('https://viacep.com.br/ws/'+d+'/json/');
+    const j = await r.json();
+    if(j.erro) return;
+    if(j.uf) document.getElementById('estado').value = j.uf;
+    if(j.localidade) document.getElementById('cidade').value = j.localidade;
+    if(j.bairro) document.getElementById('bairro').value = j.bairro;
+    if(j.logradouro) document.getElementById('rua').value = j.logradouro;
+    document.getElementById('numero').focus();
+  }catch(e){}
+});
+
+/* =====================================================================
+   VALIDAÇÃO
+   ===================================================================== */
+function validCPF(cpf){
+  cpf = onlyD(cpf); if(cpf.length!==11 || /^(\d)\1{10}$/.test(cpf)) return false;
+  let s=0; for(let i=0;i<9;i++) s+=+cpf[i]*(10-i);
+  let d1=(s*10)%11; if(d1===10)d1=0; if(d1!==+cpf[9]) return false;
+  s=0; for(let i=0;i<10;i++) s+=+cpf[i]*(11-i);
+  let d2=(s*10)%11; if(d2===10)d2=0; return d2===+cpf[10];
+}
+function setField(id, ok){
+  const f = document.getElementById(id).closest('.field');
+  document.getElementById(id).classList.toggle('err', !ok);
+  f.classList.toggle('invalid', !ok);
+  return ok;
+}
+function validar(){
+  let ok = true;
+  const g = id => document.getElementById(id).value.trim();
+  ok = setField('nome',  g('nome').split(' ').length>=2) && ok;
+  ok = setField('email', /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(g('email'))) && ok;
+  ok = setField('cpf',   validCPF(g('cpf'))) && ok;
+  ok = setField('tel',   onlyD(g('tel')).length>=10) && ok;
+  ok = setField('cep',   onlyD(g('cep')).length===8) && ok;
+  ok = setField('estado',!!g('estado')) && ok;
+  ok = setField('cidade',g('cidade').length>1) && ok;
+  ok = setField('bairro',g('bairro').length>1) && ok;
+  ok = setField('rua',   g('rua').length>1) && ok;
+  ok = setField('numero',g('numero').length>=1) && ok;
+  return ok;
+}
+
+/* =====================================================================
+   GERAR PIX
+   ===================================================================== */
+const btnGerar = document.getElementById('btnGerar');
+btnGerar.addEventListener('click', gerarPix);
+
+function dadosCliente(){
+  const g = id => document.getElementById(id).value.trim();
+  return {
+    name:g('nome'), email:g('email'), document:onlyD(g('cpf')), phone:onlyD(g('tel')),
+    cep:onlyD(g('cep')), estado:g('estado'), cidade:g('cidade'),
+    bairro:g('bairro'), rua:g('rua'), numero:g('numero'), complemento:g('compl')
+  };
+}
+// cookies do Pixel (_fbp/_fbc) — melhoram muito a correspondência de conversões na Meta
+function getCookie(n){ const m = document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)'); return m ? m.pop() : ''; }
+function dadosFb(){ return { fbp:getCookie('_fbp'), fbc:getCookie('_fbc') }; }
+let currentTxn = null; // id da transação — usado p/ deduplicar o Purchase (Pixel + CAPI)
+
+async function gerarPix(){
+  if(!validar()){
+    document.querySelector('.field.invalid')?.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  btnGerar.disabled = true;
+  btnGerar.textContent = 'Gerando PIX...';
+  /* AddPaymentInfo agora sai pelo Macna — removido daqui pra não contar 2x. */
+  /* Identifica a pessoa assim que temos e-mail/telefone: é o que liga o clique
+     no anúncio (celular) à compra (desktop). Manda só o que estiver preenchido. */
+  try{
+    var _mxc = dadosCliente(), _mxid = {};
+    if(_mxc.email) _mxid.email = _mxc.email;
+    if(_mxc.phone) _mxid.phone = _mxc.phone;
+    if(_mxc.name)  _mxid.name  = _mxc.name;
+    if(typeof mx === 'function' && (_mxid.email || _mxid.phone)) mx('identify', _mxid);
+  }catch(e){}
+
+  try{
+    let pix;
+    if(CONFIG.MODO_DEMO){
+      // ---- MODO DEMO (visual). Trocamos por chamada real ao ligar o gateway. ----
+      await new Promise(r=>setTimeout(r,900));
+      pix = {
+        qr_image: gerarQrFake(),
+        copia_e_cola: '00020126BR.GOV.BCB.PIX'+Date.now()+'5204000053039865802BR5913KOKESHI6009SAOPAULO62070503***6304DEMO',
+        id: 'demo-'+Date.now()
+      };
+    } else {
+      // ---- REAL: chama o SEU backend (VPS). O valor é definido no servidor pelo kit. ----
+      const resp = await fetch(API + '/api/create-pix', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ kit:kitKey, order, products:order.items, amount:order.total, customer:dadosCliente(), tracking, fb:dadosFb(), signals:(window.mxSignals?mxSignals():{}) })
+      });
+      const j = await resp.json();
+      if(!resp.ok || j.error) throw new Error(j.error || 'Falha ao gerar PIX');
+      pix = { qr_image:j.pix_qrcode_image, copia_e_cola:j.pix_copy_paste, id:j.transaction_id };
+    }
+
+    mostrarPix(pix);
+  }catch(e){
+    alert('Não foi possível gerar o PIX agora. Tente novamente.');
+    btnGerar.disabled = false;
+    btnGerar.innerHTML = '<svg class="ico"><use href="#i-lock"/></svg> GERAR PIX SEGURO';
+  }
+}
+
+function mostrarPix(pix){
+  currentTxn = pix.id;
+  document.getElementById('formArea').classList.add('hidden');
+  document.getElementById('pixArea').classList.remove('hidden');
+  document.getElementById('pixQr').src = pix.qr_image;
+  document.getElementById('pixCode').value = pix.copia_e_cola;
+  window.scrollTo({top:0,behavior:'smooth'});
+  iniciarTimer();
+  iniciarPolling(pix.id);
+}
+
+/* QR fake (só p/ demo visual) — um padrão simples em SVG */
+function gerarQrFake(){
+  let cells='';
+  for(let y=0;y<21;y++)for(let x=0;x<21;x++){
+    if((x*y+x+y)%3===0 || (x<7&&y<7)||(x>13&&y<7)||(x<7&&y>13))
+      cells+='<rect x="'+x+'" y="'+y+'" width="1" height="1"/>';
+  }
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21" fill="#2a2230">'+cells+'</svg>';
+  return 'data:image/svg+xml;utf8,'+encodeURIComponent(svg);
+}
+
+/* ---- copiar código ---- */
+document.getElementById('btnCopy').addEventListener('click', ()=>{
+  const inp = document.getElementById('pixCode');
+  navigator.clipboard?.writeText(inp.value).then(()=>{
+    const b = document.getElementById('btnCopy');
+    b.innerHTML = '<svg class="ico"><use href="#i-check"/></svg> Copiado!';
+    setTimeout(()=>{ b.innerHTML = '<svg class="ico"><use href="#i-copy"/></svg> Copiar'; }, 2000);
+  }).catch(()=>{ inp.select(); document.execCommand('copy'); });
+});
+
+/* ---- timer de expiração ---- */
+function iniciarTimer(){
+  let t = CONFIG.PIX_EXPIRE_MIN*60;
+  const el = document.getElementById('pixClock');
+  const iv = setInterval(()=>{
+    if(t<=0){ clearInterval(iv); el.textContent='Expirado'; return; }
+    t--;
+    el.textContent = String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');
+  },1000);
+}
+
+/* ---- confirmação automática do pagamento ---- */
+function iniciarPolling(id){
+  if(CONFIG.MODO_DEMO){
+    // demo: aprova sozinho em 6s só p/ você ver a tela de sucesso
+    setTimeout(aprovado, 6000);
+    return;
+  }
+  const iv = setInterval(async ()=>{
+    try{
+      const r = await fetch(API + '/api/status?transaction_id='+encodeURIComponent(id));
+      const j = await r.json();
+      if(j.status==='paid'){ clearInterval(iv); aprovado(); }
+      if(j.status==='expired' || j.status==='refunded'){ clearInterval(iv); }
+    }catch(e){}
+  }, 4000);
+}
+
+function aprovado(){
+  document.getElementById('pixArea').classList.add('hidden');
+  document.getElementById('okArea').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(CONFIG.PIXEL_ID && window.fbq){ try{ var _c=dadosCliente(),_n=(_c.name||'').trim().split(/\s+/),_z=function(s){return (s||'').toString().normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();},_am={em:(_c.email||'').trim().toLowerCase(),ph:_c.phone||'',fn:_z(_n[0]),ln:_z(_n.length>1?_n[_n.length-1]:''),ct:_z(_c.cidade).replace(/[^a-z0-9]/g,''),st:_z(_c.estado).replace(/[^a-z]/g,''),zp:_c.cep||'',country:'br',external_id:_c.document||''}; Object.keys(_am).forEach(function(k){ if(!_am[k]) delete _am[k]; }); fbq('init', CONFIG.PIXEL_ID, _am); }catch(e){} } /* Purchase NÃO sai do front-end: a venda entra pelo webhook do Macna configurado no gateway. O fbq('init') acima fica só pela correspondência avançada. */
+}
+</script>
+
+<style>/*ckbar*/
+.ckbar{position:fixed;left:0;right:0;bottom:0;z-index:900;display:none;align-items:center;gap:12px;background:rgba(22,15,19,.97);padding:10px 14px;box-shadow:0 -4px 20px rgba(0,0,0,.28)}
+.ckbar.show{display:flex}
+.ckbar .ck-txt{display:flex;flex-direction:column;line-height:1.2;color:#fff}
+.ckbar .ck-txt span{font-size:.72rem;opacity:.75}
+.ckbar .ck-txt b{font-size:1.05rem;color:#4ade80}
+.ckbar .ck-btn{margin-left:auto;background:#157347;color:#fff;font-weight:800;font-size:.9rem;padding:13px 24px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(21,115,71,.35)}
+body{padding-bottom:76px}
+</style><div class="ckbar" id="ckbar"><div class="ck-txt"><span>Total a pagar</span><b id="ckTotal">R$ 0,00</b></div><button class="ck-btn" id="ckBtn">GERAR PIX</button></div>
+<script>/*ckbar*/(function(){var bar=document.getElementById('ckbar'),btn=document.getElementById('ckBtn'),tot=document.getElementById('ckTotal'),form=document.getElementById('formArea'),real=document.getElementById('btnGerar');if(!bar||!form||!real)return;var t=document.getElementById('totalPagar');if(t)tot.textContent=t.textContent;btn.addEventListener('click',function(){real.click();});function u(){bar.classList.toggle('show',!form.classList.contains('hidden'));}u();new MutationObserver(u).observe(form,{attributes:true,attributeFilter:['class']});})();</script>
+<style>/*pixfix*/
+#pixArea .qr{width:150px;height:150px}
+.pixbig{display:block;width:100%;background:#1fa463;color:#fff;font-weight:800;font-size:1.05rem;padding:16px;border-radius:50px;border:none;cursor:pointer;margin-bottom:12px;box-shadow:0 6px 18px rgba(31,164,99,.42);animation:pxp 2s infinite}
+@keyframes pxp{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.pixhint{background:#fff8e1;border:1px solid #ffe08a;color:#7a5a00;border-radius:10px;padding:11px 13px;font-size:.83rem;line-height:1.5;margin-bottom:12px;text-align:left}
+.pixres{background:#eafaf1;border:1px solid #a7e3c4;color:#12603c;border-radius:10px;padding:10px 12px;font-size:.82rem;font-weight:600;margin-top:12px;text-align:left}
+</style><script>/*pixfix*/(function(){function go(){var pc=document.querySelector('#pixArea .pix-code');if(!pc||document.querySelector('.pixbig'))return;
+var h=document.createElement('div');h.className='pixhint';h.innerHTML='&#128241; <b>No celular?</b> Toque em <b>COPIAR C&Oacute;DIGO PIX</b>, abra o app do seu banco e escolha <b>Pix &rsaquo; Copia e Cola</b>. N&atilde;o precisa escanear o QR.';
+var big=document.createElement('button');big.className='pixbig';big.type='button';big.textContent='COPIAR CODIGO PIX';
+big.addEventListener('click',function(){var b=document.getElementById('btnCopy');if(b)b.click();big.textContent='CODIGO COPIADO!';setTimeout(function(){big.textContent='COPIAR CODIGO PIX';},2200);});
+pc.parentNode.insertBefore(h,pc);pc.parentNode.insertBefore(big,pc);
+var r=document.createElement('div');r.className='pixres';r.innerHTML='&#9989; Assim que o pagamento cair, esta tela muda sozinha e seu pedido &eacute; enviado. N&atilde;o precisa mandar comprovante.';
+var sl=document.querySelector('#pixArea .steps-list');if(sl&&sl.parentNode)sl.parentNode.insertBefore(r,sl.nextSibling);}
+if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);})();</script>
+<style>/*shortck*/
+.endres{background:#f3f8f5;border:1px solid #cfe6da;border-radius:10px;padding:11px 13px;font-size:.86rem;margin-bottom:12px;display:none;line-height:1.45}
+.endres b{display:block}
+.endres a{color:#1fa463;font-weight:700;font-size:.8rem;cursor:pointer;text-decoration:underline}
+.cephint{font-size:.78rem;color:#6b7686;margin:-2px 0 12px}
+</style><script>/*shortck*/(function(){function go(){
+var fld=function(i){var e=document.getElementById(i);return e?e.closest(".field"):null;};
+var W=[fld("estado"),fld("cidade"),fld("bairro"),fld("rua")].filter(Boolean);
+var cep=document.getElementById("cep");if(!cep||W.length<3)return;
+var v=function(i){var e=document.getElementById(i);return e?e.value.trim():"";};
+var row=cep.closest(".field").parentNode;
+var hint=document.createElement("div");hint.className="cephint";hint.textContent="Digite o CEP que preenchemos o endereco pra voce.";
+var box=document.createElement("div");box.className="endres";
+row.parentNode.insertBefore(hint,row.nextSibling);row.parentNode.insertBefore(box,hint.nextSibling);
+function esconder(){W.forEach(function(w){w.style.display="none";});}
+function mostrar(){W.forEach(function(w){w.style.display="";});box.style.display="none";hint.style.display="none";}
+function resumir(){
+  box.innerHTML='<b>'+(v("rua")||"Endereco")+(v("bairro")?", "+v("bairro"):"")+'</b>'+v("cidade")+"/"+v("estado")+' &nbsp;<a>editar</a>';
+  box.querySelector("a").addEventListener("click",mostrar);
+  box.style.display="block";hint.style.display="none";esconder();
+}
+esconder();
+cep.addEventListener("blur",function(){var n=0;var iv=setInterval(function(){n++;
+  if(v("cidade")&&v("estado")){clearInterval(iv);resumir();}
+  else if(n>12){clearInterval(iv);mostrar();}},300);});
+var b=document.getElementById("btnGerar");
+if(b)b.addEventListener("click",function(){setTimeout(function(){
+  var inv=document.querySelector(".field.invalid");
+  if(inv&&inv.style.display==="none"){mostrar();inv.scrollIntoView({behavior:"smooth",block:"center"});}},80);});
+}
+if(document.readyState!=="loading")go();else document.addEventListener("DOMContentLoaded",go);})();</script>
+<style>/*pixback*/
+.japaguei{display:block;width:100%;background:#fff;color:#1fa463;border:1.5px solid #1fa463;font-weight:700;padding:13px;border-radius:50px;cursor:pointer;margin-top:12px;font-size:.92rem}
+.japaguei:disabled{opacity:.7;cursor:default}
+.jpmsg{font-size:.82rem;color:#12603c;background:#eafaf1;border:1px solid #a7e3c4;border-radius:10px;padding:10px;margin-top:10px;display:none;text-align:left;line-height:1.5}
+</style>
+<script>/*pixback*/(function(){function go(){
+var area=document.getElementById("pixArea");if(!area||area.querySelector(".japaguei"))return;
+var orig=document.title,pisca=null;
+document.addEventListener("visibilitychange",function(){
+  var aberto=!area.classList.contains("hidden");
+  if(document.hidden&&aberto){var on=true;if(pisca)clearInterval(pisca);
+    pisca=setInterval(function(){document.title=on?"\u23F0 Falta pagar seu Pix!":orig;on=!on;},1200);}
+  else{if(pisca){clearInterval(pisca);pisca=null;}document.title=orig;}
+});
+var b=document.createElement("button");b.type="button";b.className="japaguei";b.textContent="Ja fiz o pagamento";
+var m=document.createElement("div");m.className="jpmsg";
+b.addEventListener("click",function(){
+  b.disabled=true;b.textContent="Verificando...";
+  var txn=null;try{txn=currentTxn;}catch(e){}
+  var fim=function(t){m.innerHTML=t;m.style.display="block";b.disabled=false;b.textContent="Verificar de novo";};
+  if(!txn){fim("&#9989; Assim que o pagamento cair, esta tela muda sozinha. Pode deixar aberta!");return;}
+  fetch("/api/status?transaction_id="+encodeURIComponent(txn)).then(function(r){return r.json();}).then(function(j){
+    if(j&&j.status==="paid"){m.innerHTML="&#127881; Pagamento confirmado!";m.style.display="block";}
+    else fim("&#9203; Ainda nao caiu no sistema. Se voce acabou de pagar, aguarde alguns segundos \u2014 a tela muda sozinha.");
+  }).catch(function(){fim("&#9989; Assim que o pagamento cair, esta tela muda sozinha.");});
+});
+var sn=area.querySelector(".safenote");
+if(sn&&sn.parentNode){sn.parentNode.insertBefore(b,sn);sn.parentNode.insertBefore(m,sn);}else{area.appendChild(b);area.appendChild(m);}
+}
+if(document.readyState!=="loading")go();else document.addEventListener("DOMContentLoaded",go);})();</script>
+<script>/*abandon*/(function(){var sent=false;
+function grab(){try{var g=function(i){var e=document.getElementById(i);return e?e.value.trim():"";};
+return {name:g("nome"),phone:(g("tel")||"").replace(/\D/g,""),email:g("email"),document:(g("cpf")||"").replace(/\D/g,""),kit:(new URLSearchParams(location.search)).get("kit")||"",sinais:(window.mxSignals?mxSignals():{})};}catch(e){return null;}}
+function fire(){if(sent)return;var pix=false;try{pix=!!currentTxn;}catch(e){}if(pix)return;
+var d=grab();if(!d||d.phone.length<10||d.name.length<3)return;sent=true;
+try{navigator.sendBeacon("/api/abandon",new Blob([JSON.stringify(d)],{type:"text/plain"}));}catch(e){}}
+document.addEventListener("visibilitychange",function(){if(document.hidden)fire();});
+window.addEventListener("pagehide",fire);})();</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"5a254b09e799407fb6d98a0df5d61a00","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
