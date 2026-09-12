@@ -1261,6 +1261,8 @@
     .variant-card { min-height: 60px; }
     .variant-card.is-selected { box-shadow: 0 0 0 2px rgba(18,59,99,.09); }
     .price-box { border-color: #d6e0e8; box-shadow: 0 5px 16px rgba(18,59,102,.055); }
+    .savings-line { display: flex; align-items: center; gap: 6px; margin-top: 8px; color: #17633d; font-size: 11px; font-weight: 800; }
+    .savings-line i { font-size: 10px; }
     .current-price { letter-spacing: -.045em; }
     .cta-group { margin-top: 15px; }
     .btn-primary { box-shadow: 0 4px 11px rgba(18,107,66,.15); }
@@ -1324,6 +1326,7 @@
       .pix-label { margin-left: 3px; padding: 3px 5px; font-size: 10px; }
       .installments { margin-top: 4px; font-size: 10px; }
       .unit-price { margin-top: 3px; font-size: 9px; }
+      .savings-line { margin-top: 7px; font-size: 10px; }
       .cta-group { gap: 8px; margin-top: 13px; }
       .btn, .btn-primary, .btn-secondary { min-height: 50px; border-radius: 9px; font-size: 12px; }
       .cta-group .btn-primary { order: 1; }
@@ -1495,6 +1498,7 @@
             <div class="current-price">R$ <span id="currentPrice">104,90</span><span class="pix-label">no Pix</span></div>
             <div class="installments" id="installments">ou em até 3x de R$ 34,97 sem juros</div>
             <div class="unit-price" id="unitPrice">R$ 17,48 por 100 g</div>
+            <div class="savings-line"><i class="fa-solid fa-piggy-bank" aria-hidden="true"></i><span>Você economiza <strong id="savingsValue">R$ 100,70</strong></span></div>
           </div>
 
           <div class="cta-group" id="mainCta">
@@ -1745,6 +1749,7 @@
         $('#discount').textContent = `${getDiscount(selectedVariant)}% OFF`;
         $('#installments').textContent = `ou em até 3x de ${money(selectedVariant.price / 3)} sem juros`;
         $('#unitPrice').textContent = `${money(getUnitPrice(selectedVariant))} por 100 g`;
+        $('#savingsValue').textContent = money(selectedVariant.oldPrice - selectedVariant.price);
         $('#mobilePrice').textContent = money(selectedVariant.price);
         renderVariants();
         renderGallery();
