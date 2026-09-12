@@ -954,6 +954,146 @@
       .variant-weight { font-size: 9px; }
       .variant-card.is-selected::after { right: 8px; }
     }
+    /* ===== Troca de variante: carregamento suave e informativo ===== */
+    .variant-card.is-loading { pointer-events: none; }
+    .product-info.is-switching .gallery-frame,
+    .product-info.is-switching .price-box,
+    .product-info.is-switching .shipping-preview {
+      position: relative;
+      overflow: hidden;
+    }
+    .product-info.is-switching .gallery-frame::after,
+    .product-info.is-switching .price-box::after,
+    .product-info.is-switching .shipping-preview::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, transparent 18%, rgba(255,255,255,.62) 44%, transparent 70%);
+      transform: translateX(-100%);
+      animation: variantShimmer .7s ease-in-out;
+      pointer-events: none;
+    }
+    .product-info.is-switching .gallery-frame,
+    .product-info.is-switching .price-box {
+      opacity: .72;
+      transition: opacity .16s ease;
+    }
+    .product-info.is-switching .variant-card.is-selected {
+      box-shadow: inset 3px 0 0 #2a638a, 0 0 0 2px rgba(42,99,138,.08);
+    }
+    @keyframes variantShimmer {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .product-info.is-switching .gallery-frame::after,
+      .product-info.is-switching .price-box::after,
+      .product-info.is-switching .shipping-preview::after { animation: none; }
+    }
+    /* Feedback visual nos cards durante a troca */
+    .variant-card { overflow: hidden; }
+    .variant-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -80%;
+      width: 48%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,.58), transparent);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .variant-card.is-loading::after {
+      opacity: 1;
+      animation: variantCardShimmer .62s ease-in-out;
+    }
+    .variant-card.is-loading .variant-copy {
+      opacity: .58;
+      transition: opacity .14s ease;
+    }
+    .variant-card.is-selected {
+      transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+    .variant-card.is-selected:not(.is-loading) {
+      animation: variantSelected .28s ease-out;
+    }
+    @keyframes variantCardShimmer {
+      from { transform: translateX(0); }
+      to { transform: translateX(390%); }
+    }
+    @keyframes variantSelected {
+      0% { transform: scale(.985); }
+      65% { transform: scale(1.012); }
+      100% { transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .variant-card.is-loading::after,
+      .variant-card.is-selected:not(.is-loading) { animation: none; }
+    }
+    /* Estado de processamento: bloqueio breve e claro durante a troca */
+    .variant-card.is-loading,
+    .variant-card.is-loading:hover {
+      opacity: .58;
+      cursor: wait;
+      border-color: #cbd8e1;
+      background: #f5f8fa;
+      box-shadow: none;
+      transform: none;
+    }
+    .variant-card.is-loading::after {
+      left: 0;
+      width: 100%;
+      height: 2px;
+      top: auto;
+      bottom: 0;
+      background: #2a638a;
+      opacity: .7;
+      transform: scaleX(.28);
+      transform-origin: left center;
+      animation: variantProgress .26s ease-out forwards;
+    }
+    .variant-card.is-loading .variant-copy,
+    .variant-card.is-loading .variant-weight {
+      opacity: .72;
+    }
+    @keyframes variantProgress {
+      from { transform: scaleX(.18); }
+      to { transform: scaleX(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .variant-card.is-loading::after { animation: none; transform: scaleX(1); }
+    }
+    /* ===== Carregamento minimalista da variante ===== */
+    .product-info.is-switching .gallery-frame,
+    .product-info.is-switching .price-box,
+    .product-info.is-switching .shipping-preview {
+      opacity: .84;
+      transition: opacity .18s ease;
+    }
+    .product-info.is-switching .gallery-frame::after,
+    .product-info.is-switching .price-box::after,
+    .product-info.is-switching .shipping-preview::after,
+    .variant-card.is-loading::after {
+      display: none;
+    }
+    .variant-card.is-loading,
+    .variant-card.is-loading:hover {
+      opacity: .68;
+      cursor: wait;
+      background: #f7f9fa;
+      border-color: #d2dde4;
+      box-shadow: none;
+      transform: none;
+    }
+    .variant-card.is-loading .variant-copy,
+    .variant-card.is-loading .variant-weight {
+      opacity: .8;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .product-info.is-switching .gallery-frame,
+      .product-info.is-switching .price-box,
+      .product-info.is-switching .shipping-preview { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -1188,6 +1328,7 @@
       let selectedShipping = null;
       let cepRequest = null;
       let toastTimer = null;
+      let variantSwitchTimer = null;
       let lastFocusedElement = null;
 
       const $ = (selector, root = document) => root.querySelector(selector);
@@ -1294,8 +1435,34 @@
       function selectVariant(id) {
         const next = variants.find((variant) => variant.id === id);
         if (!next || next.id === selectedVariant.id) return;
+        const productInfo = $('.product-info');
+        const variantGrid = $('#variantGrid');
+        clearTimeout(variantSwitchTimer);
+        variantGrid?.setAttribute('aria-busy', 'true');
+        productInfo?.classList.add('is-switching');
+        $$('.variant-card', variantGrid).forEach((card) => {
+          card.disabled = true;
+          card.setAttribute('aria-disabled', 'true');
+          card.classList.add('is-loading');
+        });
         selectedVariant = next;
         updateProductView();
+        const updatedGrid = $('#variantGrid');
+        updatedGrid?.setAttribute('aria-busy', 'true');
+        $$('.variant-card', updatedGrid).forEach((card) => {
+          card.disabled = true;
+          card.setAttribute('aria-disabled', 'true');
+          card.classList.add('is-loading');
+        });
+        variantSwitchTimer = setTimeout(() => {
+          productInfo?.classList.remove('is-switching');
+          updatedGrid?.setAttribute('aria-busy', 'false');
+          $$('.variant-card', updatedGrid).forEach((card) => {
+            card.disabled = false;
+            card.removeAttribute('aria-disabled');
+            card.classList.remove('is-loading');
+          });
+        }, 220);
       }
 
       function addSelectedVariant() {
