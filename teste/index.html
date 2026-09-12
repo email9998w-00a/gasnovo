@@ -1777,6 +1777,7 @@
       let variantSwitchTimer = null;
       let lastFocusedElement = null;
       let promoLastFocusedElement = null;
+      let hasUserInteracted = false;
 
       const $ = (selector, root = document) => root.querySelector(selector);
       const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -1831,7 +1832,20 @@
       function maybeOpenEntryPromo() {
         let wasSeen = false;
         try { wasSeen = sessionStorage.getItem(ENTRY_PROMO_SEEN_KEY) === '1'; } catch (_) { /* storage pode estar indisponível */ }
-        if (!wasSeen) setTimeout(openEntryPromo, 420);
+        if (wasSeen) return;
+        document.addEventListener('pointerdown', (event) => {
+          if (!event.target.closest('#entryPromoModal')) hasUserInteracted = true;
+        }, { passive: true });
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 20) hasUserInteracted = true;
+        }, { passive: true });
+        setTimeout(() => {
+          const isEligible = document.visibilityState === 'visible'
+            && !$('#cartOverlay').classList.contains('is-open')
+            && !hasUserInteracted
+            && window.scrollY < 160;
+          if (isEligible) openEntryPromo();
+        }, 5000);
       }
 
       function getUnitPrice(variant) { return variant.price / (variant.weight / 100); }
