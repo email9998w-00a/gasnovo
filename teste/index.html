@@ -168,6 +168,10 @@
     .review-card time { color: #8995a3; font-size: 11px; }
     .review-card .stars { margin: 10px 0 7px; font-size: 12px; }
     .review-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .review-photo-button { width: 100%; margin-top: 13px; padding: 0; border: 0; border-radius: 8px; background: #f6f8fa; overflow: hidden; text-align: left; }
+    .review-photo-button:hover { box-shadow: 0 0 0 2px rgba(31,111,178,.22); }
+    .review-photo { width: 100%; height: 180px; object-fit: cover; }
+
     .faq-list { max-width: 820px; }
     .faq-item { border-bottom: 1px solid #d9e1e8; }
     .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; border: 0; background: transparent; color: var(--text); font-size: 14px; font-weight: 800; text-align: left; }
@@ -803,21 +807,68 @@
         });
       }
 
+      const reviewPhotos = [
+        'https://http2.mlstatic.com/D_NQ_NP_2X_699615-MLA74432480960_022024-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_886374-MLA104440721718_012026-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_835391-MLA83326442374_042025-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_907343-MLA108708097881_032026-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_837363-MLA110631405242_052026-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_768325-MLA98133444073_112025-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_887957-MLA107373859125_022026-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_647134-MLA105218899782_012026-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_657455-MLA76832380979_062024-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_824823-MLA101339668883_122025-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_962779-MLA109778484854_042026-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_830568-MLA97743039611_112025-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_899137-MLA96207863646_102025-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_867384-MLA75632779604_042024-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_928744-MLA103614507450_012026-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_644031-MLA77951496455_072024-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_894858-MLA97250825010_112025-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_820934-MLA98066793364_112025-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_667480-MLA95976591888_102025-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_723265-MLA77705735652_072024-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_874917-MLA74676902820_022024-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_904510-MLA108355490318_032026-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_847207-MLA110894800231_042026-F.webp',
+        'https://http2.mlstatic.com/D_NQ_NP_2X_753204-MLA101339904861_122025-F.webp'
+      ];
+
       const reviews = [
-        { name: 'Gustavo Martins', date: 'Hoje', rating: 5, text: 'Produto excelente e fácil de incluir na rotina. A entrega chegou bem embalada.' },
-        { name: 'Luciana Gomes', date: 'Hoje', rating: 5, text: 'Chegou rápido e muito bem embalado. A validade também veio ótima.' },
-        { name: 'Rodrigo Pedroso', date: 'Ontem', rating: 5, text: 'Gostei do rendimento e da praticidade para preparar no dia a dia.' },
-        { name: 'Viviane Rocha', date: 'Ontem', rating: 5, text: 'Compra simples, atendimento rápido e produto bem protegido na embalagem.' },
-        { name: 'João Costa', date: 'Há 2 dias', rating: 5, text: 'A opção escolhida tem sabor suave e funcionou bem para a minha rotina.' },
-        { name: 'Daiane Santos', date: 'Há 2 dias', rating: 5, text: 'O pote chegou lacrado e dentro do prazo informado.' }
+        { name: 'Gustavo Martins', date: 'Hoje', rating: 5, text: 'TOP Demais! Só usso essa marca. Só comprem e sejam felizes!' },
+        { name: 'Luciana Gomes', date: 'Hoje', rating: 5, text: 'Chegou rápido e muito bem embalado. Realmente é o Equaliv original, validade super longa.' },
+        { name: 'Rodrigo Pedroso', date: 'Hoje', rating: 5, text: 'Produto 100% original, não dá nenhum estufamento e o rendimento é excelente. Recomendo!' },
+        { name: 'Viviane Rocha', date: 'Ontem', rating: 5, text: 'Recomendo, chegou rápido e o preço é justo por um suplemento com tecnologia alemã. Vale cada centavo.' },
+        { name: 'João Costa', date: 'Ontem', rating: 5, text: 'Melhor proteína que já usei nessa faixa de preço. Muito leve para o estômago e não tem aquele gosto forte de Whey.' },
+        { name: 'Rodrigo Oliveira', date: 'Ontem', rating: 4, text: 'Sempre compro aqui, o único lugar que confio que é original. Ótimo para bater com frutas.' },
+        { name: 'Daiane Santos', date: 'Ontem', rating: 5, text: 'Excelente atendimento via WhatsApp. O pote veio super protegido na caixa original e bem lacrado.' },
+        { name: 'Alexandra Teixeira', date: 'Ontem', rating: 5, text: 'Sem sabor marcante, dá para misturar até em receitas quentes sem estragar. Muito satisfeita!' },
+        { name: 'Mateus Costa', date: 'Ontem', rating: 5, text: 'Produto original mesmo. Verifiquei o lote e a qualidade do pó é impecável, bem fininho.' },
+        { name: 'Daiane Santos', date: 'Ontem', rating: 5, text: 'Excelente atendimento via WhatsApp. O pote veio super protegido na caixa original e bem lacrado.' },
+        { name: 'Alexandra Teixeira', date: 'Ontem', rating: 5, text: 'Sem sabor marcante, dá para misturar até em receitas quentes sem estragar. Muito satisfeita!' },
+        { name: 'Mateus Costa', date: 'Ontem', rating: 5, text: 'Produto original mesmo. Verifiquei o lote e a qualidade do pó é impecável, bem fininho.' },
+        { name: 'Thiago S.', date: 'Há 02 dias', rating: 5, text: 'Ótimo produto, original e com garantia. Já é o meu segundo pote de Body Protein, confio muito na marca.' },
+        { name: 'Diego Almeida', date: 'Há 02 dias', rating: 5, text: 'Resultados impecáveis. Senti uma boa evolução na massa magra, a composição pura passa muita confiança.' },
+        { name: 'Samanta Lima', date: 'Há 02 dias', rating: 5, text: 'Produto excelente! Estou usando diariamente no pós-treino e sinto que a recuperação muscular melhorou muito.' },
+        { name: 'Lucas Pedro', date: 'Há 02 dias', rating: 5, text: 'Essa versão sem sabor é outro nível para misturar no suco. Absorção rápida e funciona muito bem no dia a dia. Recomendo!' },
+        { name: 'Bruno Melo', date: 'Há 02 dias', rating: 5, text: 'Melhor preço que encontrei para o Body Protein original. Entrega antes do prazo.' },
+        { name: 'Fernanda Silva', date: 'Há 03 dias', rating: 4, text: 'Chegou dentro do prazo. Produto de qualidade, zero lactose de verdade, recomendo a todos os intolerantes.' },
+        { name: 'Ricardo Souza', date: 'Há 03 dias', rating: 5, text: 'Atendimento nota 10 e produto de extrema qualidade. Parabéns pela agilidade na entrega.' },
+        { name: 'Gabriela Ramos', date: 'Há 03 dias', rating: 5, text: 'Estou usando na minha dieta cetogênica e deu certinho. Não quebra o jejum de carboidratos. Top!' },
+        { name: 'Marcelo Vieira', date: 'Há 03 dias', rating: 5, text: 'O colágeno BODYBALANCE realmente funciona, percebi melhora na força interna e tônus muscular. Ótima aquisição.' },
+        { name: 'Aline Alves', date: 'Há 03 dias', rating: 5, text: 'Comprei para usar no dia a dia e superou as expectativas. Misturo direto no café da manhã e ajuda muito na saciedade.' },
+        { name: 'André Santos', date: 'Há 03 dias', rating: 5, text: 'Comprei, chegou tudo certinho e a qualidade da Equaliv é indiscutível.' },
+        { name: 'Felipe Diniz', date: 'Há 03 dias', rating: 5, text: 'A melhor loja para comprar suplementos. Podem confiar.' }
       ];
 
       function renderReviews() {
         const grid = $('#reviewGrid');
-        reviews.forEach((review) => {
+        reviews.forEach((review, index) => {
           const card = document.createElement('article');
           card.className = 'review-card';
-          card.innerHTML = `<header><strong>${esc(review.name)}</strong><time>${esc(review.date)}</time></header><div class="stars" aria-label="${review.rating} de 5 estrelas">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div><p>${esc(review.text)}</p>`;
+          const photo = reviewPhotos[index % reviewPhotos.length];
+          card.innerHTML = `<header><strong>${esc(review.name)}</strong><time>${esc(review.date)}</time></header><div class="stars" aria-label="${review.rating} de 5 estrelas">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div><p>${esc(review.text)}</p><button class="review-photo-button" type="button" aria-label="Ampliar foto da avaliação de ${esc(review.name)}"><img class="review-photo" src="${esc(photo)}" alt="Foto enviada na avaliação de ${esc(review.name)}" loading="lazy"></button>`;
+          $('.review-photo-button', card).addEventListener('click', () => openLightbox(photo, `Foto enviada na avaliação de ${review.name}`));
           grid.appendChild(card);
         });
       }
