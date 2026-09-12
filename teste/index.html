@@ -1543,11 +1543,47 @@
     }
     @media (prefers-reduced-motion: reduce) { .entry-promo-modal, .entry-promo-card { transition: none; } }
 
+
+    /* Camada de campanha: destaque agressivo sem criar urgência falsa. */
+    .campaign-strip { background: linear-gradient(90deg, #0b2d4e, #123b66); color: #fff; }
+    .campaign-strip-inner { min-height: 39px; display: flex; align-items: center; justify-content: center; gap: 9px; font-size: 11px; }
+    .campaign-strip-inner strong { color: #ffd166; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; }
+    .campaign-strip-inner span:not(.campaign-pulse) { color: #dceaf5; }
+    .campaign-strip-inner a { margin-left: 8px; color: #fff; font-weight: 800; text-underline-offset: 3px; }
+    .campaign-pulse { width: 8px; height: 8px; border-radius: 50%; background: #ffcc66; box-shadow: 0 0 0 5px rgba(255,204,102,.14); }
+    .offer-proof { display: inline-flex; align-items: center; gap: 8px; margin: 11px 0 0; padding: 7px 10px; border-radius: 6px; background: #fff0e8; color: #a43d15; }
+    .offer-proof strong { font-size: 12px; letter-spacing: .03em; }
+    .offer-proof span { font-size: 10px; font-weight: 700; }
+    .rating-row-prominent { margin-bottom: 16px; }
+    .rating-row-prominent .stars { font-size: 14px; }
+    .price-box { border: 2px solid #d7eadf; background: linear-gradient(135deg, #fff, #f6fcf8); box-shadow: 0 8px 22px rgba(21,115,71,.09); }
+    .price-urgency { display: flex; align-items: center; gap: 6px; margin-top: 8px; color: #17633d; font-size: 11px; }
+    .price-urgency i { color: #e58a15; }
+    .offer-validity { display: flex; align-items: center; gap: 6px; margin-top: 9px; color: #8b5e1a; font-size: 10px; font-weight: 700; }
+    .offer-validity i { color: #c47b11; }
+    .btn-primary { background: #138a52; border-color: #138a52; box-shadow: 0 8px 20px rgba(19,138,82,.28); }
+    .btn-primary:hover { background: #0d6f41; border-color: #0d6f41; }
+    #buyNow { min-height: 56px; font-size: 13px; }
+    .conversion-trust { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px; color: #5e7180; font-size: 10px; font-weight: 700; }
+    .conversion-trust i { margin-right: 4px; color: #157347; }
+    .entry-promo-kicker { color: #a43d15; }
+    .entry-promo-price strong { color: #0f6f42; }
+    .entry-promo-price em { background: #fff0e8; color: #a43d15; }
+    @media (max-width: 620px) {
+      .campaign-strip-inner { min-height: 45px; justify-content: flex-start; flex-wrap: wrap; gap: 3px 7px; padding-top: 6px; padding-bottom: 6px; font-size: 9px; line-height: 1.2; }
+      .campaign-strip-inner strong { font-size: 10px; }
+      .campaign-strip-inner span:not(.campaign-pulse) { flex-basis: calc(100% - 17px); }
+      .campaign-strip-inner a { margin-left: 15px; font-size: 10px; }
+      .offer-proof { margin-top: 8px; }
+      .conversion-trust { gap: 5px 9px; font-size: 9px; }
+      #buyNow { min-height: 52px; }
+    }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#product">Ir direto ao produto</a>
-  <div class="announcement"><strong>Compra segura</strong><span aria-hidden="true"> · </span>você revisa tudo antes de pagar<span aria-hidden="true"> · </span>entrega rastreada</div>
+  <div class="announcement"><strong>OFERTA ESPECIAL</strong><span aria-hidden="true"> · </span>até 48% OFF no Pix<span aria-hidden="true"> · </span>condição promocional enquanto durar a disponibilidade</div>
+  <div class="campaign-strip" role="status"><div class="container campaign-strip-inner"><span class="campaign-pulse" aria-hidden="true"></span><strong>Preço promocional ativo agora</strong><span>Economize até R$ 110,30 escolhendo sua opção</span><a href="#product">Garantir meu desconto <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></div>
 
   <header class="site-header">
     <div class="container header-row">
@@ -1586,12 +1622,14 @@
           </div>
 
           <h1 id="productTitle">Body Protein Equaliv BODYBALANCE®</h1>
-          <p class="positioning">Uma forma prática de complementar sua rotina. Escolha sabor e peso, veja o preço no Pix e confira a entrega antes de finalizar.</p>
+          <p class="positioning">Escolha seu sabor e aproveite a condição promocional no Pix. Pedido revisável, pagamento seguro e entrega rastreada.</p>
 
-          <div class="rating-row" aria-label="Avaliação média 4,9 de 5">
+          <div class="offer-proof" aria-label="Resumo da oferta"><strong>ATÉ 48% OFF</strong><span>Preço especial por tempo limitado</span></div>
+
+          <div class="rating-row rating-row-prominent" aria-label="Avaliação média 4,9 de 5">
             <span class="stars" aria-hidden="true">★★★★★</span>
             <strong>4,9/5</strong>
-            <a class="rating-link" href="#reviews">Ver avaliações</a>
+            <a class="rating-link" href="#reviews">4,9/5 · Ver avaliações reais</a>
           </div>
 
           <section class="choice-box" aria-labelledby="choiceTitle">
@@ -1605,16 +1643,19 @@
           <div class="price-box" id="priceBox" aria-live="polite">
             <div class="old-price-row"><span class="old-price">De R$ <span id="oldPrice">205,60</span></span><span class="discount" id="discount">48% OFF</span></div>
             <div class="current-price">R$ <span id="currentPrice">104,90</span><span class="pix-label">no Pix</span></div>
+            <div class="price-urgency"><i class="fa-solid fa-bolt" aria-hidden="true"></i><strong>Você economiza <span id="savingsValueInline">R$ 100,70</span></strong> nesta condição</div>
             <div class="installments" id="installments">ou em até 3x de R$ 34,97 sem juros</div>
             <div class="unit-price" id="unitPrice">R$ 17,48 por 100 g</div>
-            <div class="savings-line"><i class="fa-solid fa-piggy-bank" aria-hidden="true"></i><span>Você economiza <strong id="savingsValue">R$ 100,70</strong></span></div>
+            <div class="savings-line"><i class="fa-solid fa-piggy-bank" aria-hidden="true"></i><span>Economia total: <strong id="savingsValue">R$ 100,70</strong></span></div>
+            <div class="offer-validity"><i class="fa-regular fa-clock" aria-hidden="true"></i> Condição promocional sujeita à disponibilidade</div>
           </div>
 
           <div class="cta-group" id="mainCta">
-            <button class="btn btn-primary" id="buyNow" type="button"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Adicionar e revisar</button>
-            <button class="btn btn-secondary" id="addToCart" type="button"><i class="fa-solid fa-cart-plus" aria-hidden="true"></i> Adicionar ao carrinho</button>
+            <button class="btn btn-primary" id="buyNow" type="button"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Quero garantir meu desconto</button>
+            <button class="btn btn-secondary" id="addToCart" type="button"><i class="fa-solid fa-cart-plus" aria-hidden="true"></i> Escolher e adicionar</button>
           </div>
           <p class="purchase-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Você revisa o pedido e o frete antes de pagar.</p>
+          <div class="conversion-trust"><span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Compra protegida</span><span><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Envio rastreado</span><span><i class="fa-solid fa-credit-card" aria-hidden="true"></i> Pix ou cartão</span></div>
           <div class="decision-points" aria-label="Informações importantes da compra"><span><i class="fa-solid fa-check" aria-hidden="true"></i> Opção selecionada fica visível</span><span><i class="fa-solid fa-check" aria-hidden="true"></i> Quantidade ajustável no carrinho</span></div>
 
           <div class="shipping-preview">
@@ -1711,7 +1752,7 @@
 
   <div class="mobile-cta" id="mobileCta" aria-hidden="true">
     <div class="mobile-cta-info"><span class="mobile-cta-label">Total</span><span class="mobile-cta-price" id="mobilePrice">R$ 104,90</span></div>
-    <button class="btn btn-primary" id="mobileBuy" type="button">Adicionar e revisar</button>
+    <button class="btn btn-primary" id="mobileBuy" type="button">Garantir desconto</button>
   </div>
 
 
@@ -1720,12 +1761,12 @@
       <button class="entry-promo-close" id="closeEntryPromo" type="button" aria-label="Fechar oferta"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
       <div class="entry-promo-media"><img id="entryPromoImage" src="" alt=""></div>
       <div class="entry-promo-content">
-        <span class="entry-promo-kicker"><i class="fa-solid fa-tag" aria-hidden="true"></i> Condição especial</span>
-        <h2 id="entryPromoTitle">Produto em promoção</h2>
+        <span class="entry-promo-kicker"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Seu desconto está disponível</span>
+        <h2 id="entryPromoTitle">Garanta até 48% OFF agora</h2>
         <p class="entry-promo-variant" id="entryPromoVariant">Cacau · 600 g</p>
         <div class="entry-promo-price"><span id="entryPromoOldPrice">De R$ 205,60</span><strong id="entryPromoPrice">R$ 104,90</strong><em id="entryPromoDiscount">48% OFF</em></div>
-        <p class="entry-promo-note">Escolha sua opção e revise o pedido antes de pagar. O frete e o prazo aparecem no checkout.</p>
-        <button class="btn btn-primary entry-promo-cta" id="entryPromoBuy" type="button"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Ver opções e preços</button>
+        <p class="entry-promo-note">Escolha o sabor e aproveite o preço promocional. O frete e o prazo aparecem antes do pagamento.</p>
+        <button class="btn btn-primary entry-promo-cta" id="entryPromoBuy" type="button"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Garantir meu desconto</button>
         <button class="entry-promo-secondary" id="continueWithoutPromo" type="button">Continuar navegando</button>
       </div>
     </div>
@@ -1935,6 +1976,7 @@
         $('#installments').textContent = `ou em até 3x de ${money(selectedVariant.price / 3)} sem juros`;
         $('#unitPrice').textContent = `${money(getUnitPrice(selectedVariant))} por 100 g`;
         $('#savingsValue').textContent = money(selectedVariant.oldPrice - selectedVariant.price);
+        $('#savingsValueInline').textContent = money(selectedVariant.oldPrice - selectedVariant.price);
         $('#mobilePrice').textContent = money(selectedVariant.price);
         renderVariants();
         renderGallery();
