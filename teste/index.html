@@ -620,6 +620,133 @@
       .reviews-section,.faq-section { padding:44px 0; } .reviews-header { margin-bottom:25px; } .review-card { padding:18px; }
       .cart-header,.cart-section,.cart-footer { padding-right:18px; padding-left:18px; }
     }
+    /* ===== Ajuste de contraste e proporção ===== */
+    :root {
+      --brand: #123b63;
+      --brand-strong: #092c4c;
+      --accent: #1c659f;
+      --success: #126b42;
+      --success-dark: #0b5333;
+      --text: #152330;
+      --muted: #536474;
+      --subtle: #f3f6f9;
+      --border: #d3dee7;
+      --shadow-sm: 0 3px 10px rgba(15, 48, 79, .07);
+      --shadow-md: 0 14px 34px rgba(15, 48, 79, .12);
+    }
+
+    body { color: var(--text); background: #fff; }
+    .container { width: min(1160px, calc(100% - 40px)); }
+    .announcement { background: var(--brand-strong); color: #fff; font-size: 11px; font-weight: 600; }
+    .site-header { border-bottom-color: #d6e1e9; }
+    .header-row { min-height: 70px; }
+    .logo { color: var(--brand); font-size: 24px; }
+    .header-links a { color: #4e6171; }
+    .header-links a:hover { color: var(--brand); }
+    .cart-trigger { border-color: #b8c9d7; color: var(--brand); background: #fff; }
+    .cart-count { background: var(--brand); }
+
+    .breadcrumbs { color: #637585; font-size: 12px; }
+    .breadcrumbs span { color: #98a8b5; }
+    .product-shell { grid-template-columns: minmax(0, 1.04fr) minmax(360px, .96fr); gap: clamp(34px, 5vw, 68px); padding-top: 22px; padding-bottom: 68px; }
+    .gallery-frame { border-color: #cddae4; border-radius: 16px; box-shadow: var(--shadow-md); }
+    .gallery-slide { aspect-ratio: 1 / .96; padding: clamp(24px, 4.5vw, 58px); }
+    .gallery-hint { color: #5f7180; font-size: 11px; }
+    .gallery-dot { background: #aebdca; }
+    .gallery-dot.is-active { background: var(--brand); }
+
+    .product-info { max-width: 510px; }
+    .badge { border-width: 1px; font-size: 10px; }
+    .badge.available { border-color: #a8d4bb; background: #eaf7ef; color: #145b38; }
+    .badge.shipping { border-color: #b7d3e8; background: #edf6fc; color: #1b557f; }
+    h1 { color: #142331; font-size: clamp(29px, 3.25vw, 41px); letter-spacing: -.04em; }
+    .positioning { color: #526474; font-size: 14px; }
+    .rating-row { color: #526474; }
+    .rating-link { color: #185f95; }
+
+    .choice-box { border-color: #ccd9e3; background: #f4f7fa; }
+    .choice-heading strong { color: #1b2b39; }
+    .choice-heading span { background: #e5eef5; color: #244f70; }
+    .variant-card { min-height: 62px; border-color: #c7d5df; }
+    .variant-card:hover { border-color: #7396b2; background: #fbfdff; }
+    .variant-card.is-selected { border-color: var(--brand); background: #eaf2f8; box-shadow: 0 0 0 3px rgba(18,59,99,.1); }
+    .variant-check { border-color: #9cafbd; }
+    .variant-name { color: #1b2a37; }
+    .variant-weight { color: #5d6e7d; }
+
+    .price-box { border-color: #c7d8e4; background: linear-gradient(135deg, #fff, #f7fafc); box-shadow: var(--shadow-sm); }
+    .old-price { color: #647686; }
+    .discount, .pix-label { background: #e5f5eb; color: #135f3b; }
+    .current-price { color: var(--brand); font-size: clamp(32px, 3.8vw, 40px); }
+    .installments { color: #536574; }
+    .unit-price { color: #667887; }
+
+    .benefit { border-color: #d5e0e8; color: #465b6d; background: #f8fafc; }
+    .btn { min-height: 52px; }
+    .btn-primary { background: var(--success); border-color: var(--success); box-shadow: 0 5px 14px rgba(18,107,66,.18); }
+    .btn-primary:hover { background: var(--success-dark); border-color: var(--success-dark); }
+    .btn-secondary { border-color: #9db4c7; color: var(--brand); }
+    .purchase-note { color: #617281; }
+    .shipping-preview { border-color: #c9dbe6; background: #f1f7fa; }
+    .shipping-preview strong { color: #203544; }
+    .shipping-preview span { color: #536775; }
+
+    .details { border-top-color: #d3dee7; }
+    .tabs { border-bottom-color: #ccd9e3; }
+    .tab-button { color: #647685; }
+    .tab-button.is-active { color: var(--brand); }
+    .tab-panel p, .tab-panel li { color: #536575; }
+    .highlight-card { border-color: #d3dfe7; background: #f7f9fb; }
+    .highlight-card h3 { color: #1d2d3b; }
+    .spec-list li { border-bottom-color: #d7e1e8; }
+
+    .reviews-section { background: #f3f6f9; border-top-color: #d3dee7; }
+    .reviews-header h2, .section-heading h2 { color: #162633; }
+    .review-card { border-color: #d3dfe7; box-shadow: var(--shadow-sm); }
+    .review-content, .review-card p { color: #4e6272; }
+    .faq-section { background: #eef3f7; }
+    .faq-item { border-bottom-color: #cbd8e1; }
+    .faq-question { color: #1b2b39; }
+
+    footer { background: var(--brand-strong); }
+    footer p, footer a { color: #d0dce5; }
+    footer a:hover { color: #fff; }
+    .footer-bottom { color: #b7c8d4; border-top-color: rgba(255,255,255,.2); }
+
+    .cart-overlay { background: rgba(8, 26, 43, .52); }
+    .cart-drawer { width: min(100%, 440px); }
+    .cart-header { border-bottom-color: #d5e0e8; }
+    .cart-header h2, .cart-section-heading h3, .cart-item-name { color: #172835; }
+    .cart-section + .cart-section { border-top-color: #edf1f4; }
+    .cart-step { background: #e5eef5; color: #234f70; }
+    .cart-item { border-bottom-color: #dce5eb; }
+    .field-input, .field-select { border-color: #b8cad7; }
+    .field-input::placeholder { color: #718391; }
+    .address-status { border-color: #bfd5e3; background: #eff6fa; color: #315670; }
+    .shipping-option { border-color: #c6d6e0; }
+    .shipping-option:hover { border-color: #7095b0; }
+    .shipping-option.is-selected { border-color: var(--accent); background: #edf5fa; box-shadow: 0 0 0 2px rgba(28,101,159,.12); }
+    .cart-footer { border-top-color: #d5e0e8; }
+    .total-label, .cart-footer-note { color: #596d7c; }
+
+    @media (max-width: 860px) {
+      .product-shell { grid-template-columns: 1fr; gap: 28px; }
+      .gallery, .product-info { max-width: none; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 30px, 520px); }
+      .header-row { min-height: 62px; }
+      .product-shell { padding-top: 12px; padding-bottom: 44px; }
+      .gallery-frame { box-shadow: var(--shadow-sm); }
+      .gallery-slide { aspect-ratio: 1 / .98; padding: 20px; }
+      h1 { font-size: 27px; }
+      .positioning { font-size: 13px; line-height: 1.6; }
+      .choice-box, .price-box { border-radius: 12px; }
+      .variant-card { min-height: 56px; }
+      .current-price { font-size: 32px; }
+      .btn { min-height: 50px; }
+      .reviews-section, .faq-section { padding: 46px 0; }
+    }
   </style>
 </head>
 <body>
