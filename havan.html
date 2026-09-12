@@ -628,23 +628,9 @@ function enderecoCompleto() {
   return enderecoBaseCompleto() && document.getElementById('numero').value.trim().length >= 1;
 }
 
-function selecionarFretePadrao() {
-  const option = document.querySelector('.shipping-option[data-shipping="standard"]');
-  if (!selectedShipping && option) {
-    option.classList.add('is-selected');
-    option.querySelector('input').checked = true;
-    selectedShipping = { id: 'standard', price: 0 };
-    updateTotals();
-  }
-}
-
 function liberarDadosPessoais({ scroll = false } = {}) {
   if (!enderecoCompleto()) return;
   document.getElementById('shippingCard').classList.add('is-visible');
-  selecionarFretePadrao();
-  document.getElementById('personalCard').classList.add('is-visible');
-  setStep(2);
-  if (scroll) setTimeout(() => document.getElementById('personalCard').scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
 }
 
 ['estado', 'cidade', 'bairro', 'rua', 'numero'].forEach(id => {
@@ -791,7 +777,8 @@ function validarDados() {
 }
 
 document.getElementById('proceedPayment').addEventListener('click', () => {
-  if (!validarEndereco() || !validarDados()) {
+  if (!validarEndereco() || !validarDados() || !selectedShipping) {
+    if (!selectedShipping) document.getElementById('shippingCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
     document.querySelector('.field.invalid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
@@ -865,7 +852,8 @@ function dadosCliente() {
 }
 
 async function gerarPix() {
-  if (!validarEndereco() || !validarDados()) {
+  if (!validarEndereco() || !validarDados() || !selectedShipping) {
+    if (!selectedShipping) document.getElementById('shippingCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
     document.querySelector('.field.invalid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
