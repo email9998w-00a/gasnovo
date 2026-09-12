@@ -74,7 +74,7 @@ input,select{font:inherit}
 .order-item .info{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;min-width:0}
 .order-item .nome{font-weight:700;font-size:.87rem;line-height:1.25}
 .order-item .variant{color:var(--muted);font-size:.72rem;margin-top:4px}
-.order-item .line-price{flex:none;text-align:right;font-size:.85rem;font-weight:700;color:var(--brand);white-space:nowrap;font-variant-numeric:tabular-nums}
+.order-item .line-price{flex:none;text-align:right;font-size:.8rem;font-weight:600;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
 .order-item .line-price small{display:block;font-weight:500;color:var(--muted);font-size:.68rem;margin-top:2px}
 .order-subtotal{display:flex;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted)}
 .order-subtotal strong{color:var(--brand);font-size:1rem;font-variant-numeric:tabular-nums}
@@ -98,9 +98,6 @@ input,select{font:inherit}
 .row-compact .field.w-num{flex:0 0 84px}
 .row-compact .field.w-num input{text-align:center;padding-inline:6px}
 .row-compact .field:not(.w-num){flex:1 1 auto}
-.field.w-num input:disabled{background:#f1f5f8;color:var(--muted)}
-.no-number-check{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:.72rem;color:var(--muted)}
-.no-number-check input{width:14px;height:14px;accent-color:var(--brand)}
 .privacy-note{display:flex;align-items:center;gap:6px;margin:-2px 0 12px;color:#7b8b95;font-size:.7rem;line-height:1.4}
 .privacy-note .ico{width:13px;height:13px;color:var(--success);flex:none}
 .field-hint{margin:-6px 0 12px;color:var(--muted);font-size:.7rem;line-height:1.4}
@@ -353,7 +350,6 @@ input,select{font:inherit}
             <input id="compl" type="text" placeholder="Apto, bloco, referência">
           </div>
         </div>
-        <label class="no-number-check"><input type="checkbox" id="semNumero"> Este endereço não tem número (S/N)</label>
       </div>
       <div class="shipping-card" id="shippingCard" aria-live="polite">
         <div class="shipping-title"><svg class="ico"><use href="#i-truck"/></svg> Escolha como receber</div>
@@ -387,17 +383,10 @@ input,select{font:inherit}
         <input id="email" type="email" autocomplete="email" inputmode="email" placeholder="seu@email.com">
         <div class="msg">Informe um e-mail válido.</div>
       </div>
-      <div class="row">
-        <div class="field">
-          <label for="tel">Telefone <span class="required-mark">*</span></label>
-          <input id="tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(00) 00000-0000" maxlength="15">
-          <div class="msg">Telefone inválido.</div>
-        </div>
-        <div class="field">
-          <label for="cpf">CPF <span class="required-mark">*</span></label>
-          <input id="cpf" type="tel" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14">
-          <div class="msg">CPF inválido.</div>
-        </div>
+      <div class="field">
+        <label for="cpf">CPF <span class="required-mark">*</span></label>
+        <input id="cpf" type="tel" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14">
+        <div class="msg">CPF inválido.</div>
       </div>
       <p class="field-hint">Exigido pelo Banco Central para identificar quem paga via PIX.</p>
       <button class="section-link-back" id="backToDelivery" type="button"><svg class="ico"><use href="#i-arrow-left"/></svg> Voltar para entrega</button>
@@ -586,26 +575,8 @@ function setStep(n) {
    ===================================================================== */
 const onlyD = s => s.replace(/\D/g, '');
 function mask(el, fn) { el.addEventListener('input', () => { el.value = fn(onlyD(el.value)); }); }
-mask(document.getElementById('tel'), d => d.slice(0, 11).replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2'));
 mask(document.getElementById('cep'), d => d.slice(0, 8).replace(/(\d{5})(\d)/, '$1-$2'));
 mask(document.getElementById('cpf'), d => d.slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2'));
-
-/* =====================================================================
-   "NÃO TEM NÚMERO" — resolve o caso de imóveis rurais/sem numeração, já
-   que o teclado numérico do celular não permite digitar "S/N" no campo.
-   ===================================================================== */
-const numeroInput = document.getElementById('numero');
-const semNumeroCheck = document.getElementById('semNumero');
-semNumeroCheck.addEventListener('change', () => {
-  if (semNumeroCheck.checked) {
-    numeroInput.value = 'S/N';
-    numeroInput.disabled = true;
-    numeroInput.closest('.field').classList.remove('invalid');
-  } else {
-    numeroInput.value = '';
-    numeroInput.disabled = false;
-  }
-});
 
 /* =====================================================================
    BUSCA DE ENDEREÇO PELO CEP (ViaCEP)
@@ -755,7 +726,6 @@ function validarDados() {
   let ok = true;
   ok = setField('nome', g('nome').split(' ').filter(Boolean).length >= 2) && ok;
   ok = setField('email', /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(g('email'))) && ok;
-  ok = setField('tel', onlyD(g('tel')).length >= 10) && ok;
   ok = setField('cpf', validCPF(g('cpf'))) && ok;
   return ok;
 }
@@ -791,7 +761,7 @@ function onEnterAdvance(ids, action) {
   }));
 }
 onEnterAdvance(['numero', 'compl'], () => document.getElementById('shippingCard').scrollIntoView({ behavior: 'smooth', block: 'center' }));
-onEnterAdvance(['nome', 'email', 'tel', 'cpf'], () => document.getElementById('proceedPayment').click());
+onEnterAdvance(['nome', 'email', 'cpf'], () => document.getElementById('proceedPayment').click());
 
 /* =====================================================================
    RASTREAMENTO (UTMs + Pixel)
@@ -828,7 +798,7 @@ let timerInterval = null;
 function dadosCliente() {
   const g = id => document.getElementById(id).value.trim();
   return {
-    name: g('nome'), email: g('email'), document: onlyD(g('cpf')), phone: onlyD(g('tel')),
+    name: g('nome'), email: g('email'), document: onlyD(g('cpf')),
     cep: onlyD(g('cep')), estado: g('estado'), cidade: g('cidade'),
     bairro: g('bairro'), rua: g('rua'), numero: g('numero'), complemento: g('compl')
   };
@@ -848,8 +818,8 @@ async function gerarPix() {
 
   try {
     const cliente = dadosCliente();
-    if (typeof mx === 'function' && (cliente.email || cliente.phone)) {
-      mx('identify', { email: cliente.email || undefined, phone: cliente.phone || undefined, name: cliente.name || undefined });
+    if (typeof mx === 'function' && cliente.email) {
+      mx('identify', { email: cliente.email || undefined, name: cliente.name || undefined });
     }
   } catch (e) { /* rastreamento não deve travar a compra */ }
 
@@ -1001,7 +971,7 @@ function aprovado() {
       const n = (c.name || '').trim().split(/\s+/);
       const z = s => (s || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
       const am = {
-        em: (c.email || '').trim().toLowerCase(), ph: c.phone || '',
+        em: (c.email || '').trim().toLowerCase(),
         fn: z(n[0]), ln: z(n.length > 1 ? n[n.length - 1] : ''),
         ct: z(c.cidade).replace(/[^a-z0-9]/g, ''), st: z(c.estado).replace(/[^a-z]/g, ''),
         zp: c.cep || '', country: 'br', external_id: c.document || ''
@@ -1029,20 +999,21 @@ function aprovado() {
 
 /* =====================================================================
    AVISO DE ABANDONO — só é enviado se o visitante já preencheu nome e
-   telefone; a política de privacidade do rodapé informa esse contato.
+   e-mail; a política de privacidade do rodapé informa esse contato.
    ===================================================================== */
 (function () {
   let sent = false;
+  const validEmail = v => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
   function grab() {
     try {
       const g = id => { const e = document.getElementById(id); return e ? e.value.trim() : ''; };
-      return { name: g('nome'), phone: onlyD(g('tel')), email: g('email') };
+      return { name: g('nome'), email: g('email') };
     } catch (e) { return null; }
   }
   function fire() {
     if (sent || currentTxn) return;
     const d = grab();
-    if (!d || d.phone.length < 10 || d.name.length < 3) return;
+    if (!d || d.name.length < 3 || !validEmail(d.email)) return;
     sent = true;
     try { navigator.sendBeacon(API + '/api/abandon', new Blob([JSON.stringify(d)], { type: 'text/plain' })); } catch (e) { }
   }
