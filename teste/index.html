@@ -1432,6 +1432,72 @@
       .mobile-cta-price { font-size: 14px; }
       .mobile-cta .btn { padding-inline: 8px; font-size: 11px; }
     }
+
+    /* Oferta flutuante: presença discreta, contraste controlado e modal focado. */
+    .promo-fab {
+      position: fixed;
+      right: 18px;
+      bottom: 22px;
+      z-index: 35;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 44px;
+      padding: 10px 13px;
+      border: 1px solid #c9dfd1;
+      border-radius: 999px;
+      background: #effaf3;
+      color: #17633d;
+      box-shadow: 0 7px 20px rgba(18,59,102,.14);
+      font-size: 11px;
+      font-weight: 800;
+      transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+    }
+    .promo-fab:hover { transform: translateY(-2px); background: #e4f6eb; box-shadow: 0 10px 24px rgba(18,59,102,.18); }
+    .promo-fab i { font-size: 13px; }
+    .promo-modal { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; padding: 18px; background: rgba(9,25,40,.48); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s ease, visibility .2s ease; }
+    .promo-modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .promo-modal-card { position: relative; width: min(100%, 440px); display: grid; grid-template-columns: 132px minmax(0,1fr); gap: 20px; padding: 20px; border: 1px solid #d6e2e9; border-radius: 18px; background: #fff; box-shadow: 0 18px 48px rgba(9,25,40,.22); transform: translateY(10px) scale(.98); transition: transform .22s ease; }
+    .promo-modal.is-open .promo-modal-card { transform: translateY(0) scale(1); }
+    .promo-modal-media { display: grid; place-items: center; min-height: 178px; border: 1px solid #e1e9ee; border-radius: 12px; background: #f7fafc; overflow: hidden; }
+    .promo-modal-media img { width: 100%; height: 100%; padding: 12px; object-fit: contain; mix-blend-mode: multiply; }
+    .promo-modal-content { min-width: 0; padding-top: 2px; }
+    .promo-modal-kicker { display: inline-flex; align-items: center; gap: 5px; color: #17633d; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+    .promo-modal-kicker i { font-size: 10px; }
+    .promo-modal-content h2 { margin: 9px 0 5px; color: var(--text); font-size: 21px; line-height: 1.15; letter-spacing: -.035em; }
+    .promo-modal-variant { margin: 0; color: var(--muted); font-size: 11px; }
+    .promo-modal-price { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 4px 8px; margin: 15px 0 10px; }
+    .promo-modal-price span { grid-column: 1 / -1; color: #71808d; font-size: 11px; text-decoration: line-through; }
+    .promo-modal-price strong { color: var(--brand); font-size: 26px; line-height: 1; letter-spacing: -.045em; }
+    .promo-modal-price em { padding: 4px 6px; border-radius: 5px; background: #e5f5eb; color: #135f3b; font-size: 10px; font-style: normal; font-weight: 800; }
+    .promo-modal-note { margin: 0 0 14px; color: var(--muted); font-size: 10px; line-height: 1.45; }
+    .promo-modal-cta { width: 100%; min-height: 46px; border-radius: 9px; font-size: 11px; }
+    .promo-modal-secondary { display: block; width: 100%; margin-top: 8px; padding: 3px; border: 0; background: transparent; color: #647685; font-size: 10px; font-weight: 700; }
+    .promo-modal-secondary:hover { color: var(--brand); }
+    .promo-modal-close { position: absolute; top: 10px; right: 10px; z-index: 1; width: 30px; height: 30px; border: 1px solid #dbe5eb; border-radius: 50%; background: rgba(255,255,255,.9); color: #667887; }
+    .promo-modal-close:hover { background: #f1f5f8; color: var(--brand); }
+    @media (max-width: 620px) {
+      .promo-fab { right: 14px; bottom: calc(78px + env(safe-area-inset-bottom)); min-height: 40px; padding: 9px 11px; font-size: 10px; box-shadow: 0 6px 18px rgba(18,59,102,.14); }
+      .promo-fab i { font-size: 12px; }
+      .promo-modal { align-items: end; padding: 12px; }
+      .promo-modal-card { grid-template-columns: 82px minmax(0,1fr); gap: 13px; width: 100%; padding: 15px; border-radius: 16px; }
+      .promo-modal-media { min-height: 130px; border-radius: 10px; }
+      .promo-modal-media img { padding: 7px; }
+      .promo-modal-content h2 { margin-top: 7px; font-size: 18px; }
+      .promo-modal-price { margin: 11px 0 8px; }
+      .promo-modal-price strong { font-size: 23px; }
+      .promo-modal-note { margin-bottom: 10px; font-size: 9px; }
+      .promo-modal-cta { min-height: 43px; }
+    }
+    @media (max-width: 370px) {
+      .promo-fab-label { display: none; }
+      .promo-fab { width: 40px; height: 40px; justify-content: center; padding: 0; }
+      .promo-modal-card { grid-template-columns: 70px minmax(0,1fr); gap: 10px; padding: 13px; }
+      .promo-modal-media { min-height: 118px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .promo-fab, .promo-modal, .promo-modal-card { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -1600,6 +1666,27 @@
   <div class="mobile-cta" id="mobileCta" aria-hidden="true">
     <div class="mobile-cta-info"><span class="mobile-cta-label">Total</span><span class="mobile-cta-price" id="mobilePrice">R$ 104,90</span></div>
     <button class="btn btn-primary" id="mobileBuy" type="button">Continuar compra</button>
+  </div>
+
+  <button class="promo-fab" id="promoFab" type="button" aria-label="Ver oferta especial" aria-controls="promoModal" aria-expanded="false">
+    <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="promo-fab-label">Oferta</span>
+  </button>
+
+  <div class="promo-modal" id="promoModal" role="dialog" aria-modal="true" aria-labelledby="promoTitle" aria-hidden="true">
+    <div class="promo-modal-card">
+      <button class="promo-modal-close" id="closePromo" type="button" aria-label="Fechar oferta"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div class="promo-modal-media"><img id="promoImage" src="" alt=""></div>
+      <div class="promo-modal-content">
+        <span class="promo-modal-kicker"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Oferta especial</span>
+        <h2 id="promoTitle">Condição especial para você</h2>
+        <p class="promo-modal-variant" id="promoVariant">Cacau · 600 g</p>
+        <div class="promo-modal-price"><span id="promoOldPrice">De R$ 205,60</span><strong id="promoPrice">R$ 104,90</strong><em id="promoDiscount">48% OFF</em></div>
+        <p class="promo-modal-note">Aproveite o preço no Pix. O frete e o prazo aparecem antes do pagamento.</p>
+        <button class="btn btn-primary promo-modal-cta" id="promoBuy" type="button"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Aproveitar oferta</button>
+        <button class="promo-modal-secondary" id="promoContinue" type="button">Continuar navegando</button>
+      </div>
+    </div>
   </div>
 
   <div class="cart-overlay" id="cartOverlay" aria-hidden="true">
@@ -2056,6 +2143,38 @@ https://http2.mlstatic.com/D_NQ_NP_2X_748828-MLA97709975419_112025-F.webp
         observer.observe(mainCta);
       }
 
+      function updatePromoModal() {
+        $('#promoImage').src = selectedVariant.images[0];
+        $('#promoImage').alt = `Body Protein Equaliv ${selectedVariant.name}`;
+        $('#promoVariant').textContent = `${selectedVariant.name} · ${selectedVariant.weight} g`;
+        $('#promoOldPrice').textContent = `De ${money(selectedVariant.oldPrice)}`;
+        $('#promoPrice').textContent = money(selectedVariant.price);
+        $('#promoDiscount').textContent = `${getDiscount(selectedVariant)}% OFF`;
+      }
+
+      function openPromoModal() {
+        updatePromoModal();
+        $('#promoModal').classList.add('is-open');
+        $('#promoModal').setAttribute('aria-hidden', 'false');
+        $('#promoFab').setAttribute('aria-expanded', 'true');
+        document.body.classList.add('no-scroll');
+        setTimeout(() => $('#closePromo').focus(), 30);
+      }
+
+      function closePromoModal() {
+        $('#promoModal').classList.remove('is-open');
+        $('#promoModal').setAttribute('aria-hidden', 'true');
+        $('#promoFab').setAttribute('aria-expanded', 'false');
+        if (!$('#cartOverlay').classList.contains('is-open')) document.body.classList.remove('no-scroll');
+        $('#promoFab').focus();
+      }
+
+      $('#promoFab').addEventListener('click', openPromoModal);
+      $('#closePromo').addEventListener('click', closePromoModal);
+      $('#promoContinue').addEventListener('click', closePromoModal);
+      $('#promoBuy').addEventListener('click', () => { closePromoModal(); addSelectedVariant(); });
+      $('#promoModal').addEventListener('click', (event) => { if (event.target === $('#promoModal')) closePromoModal(); });
+
       $('#addToCart').addEventListener('click', addSelectedVariant);
       $('#buyNow').addEventListener('click', addSelectedVariant);
       $('#mobileBuy').addEventListener('click', addSelectedVariant);
@@ -2087,7 +2206,7 @@ https://http2.mlstatic.com/D_NQ_NP_2X_748828-MLA97709975419_112025-F.webp
       }, { passive: true });
       $('#closeLightbox').addEventListener('click', closeLightbox);
       $('#lightbox').addEventListener('click', (event) => { if (event.target === $('#lightbox')) closeLightbox(); });
-      document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { if ($('#lightbox').classList.contains('is-open')) closeLightbox(); else if ($('#cartOverlay').classList.contains('is-open')) closeCart(); } });
+      document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { if ($('#lightbox').classList.contains('is-open')) closeLightbox(); else if ($('#promoModal').classList.contains('is-open')) closePromoModal(); else if ($('#cartOverlay').classList.contains('is-open')) closeCart(); } });
 
       renderCarousel();
       renderReviews(1);
@@ -2097,6 +2216,7 @@ https://http2.mlstatic.com/D_NQ_NP_2X_748828-MLA97709975419_112025-F.webp
       renderCart();
       renderVariants();
       updateProductView();
+      updatePromoModal();
     })();
   </script>
 </body>
