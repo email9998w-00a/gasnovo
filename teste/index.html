@@ -1253,6 +1253,9 @@
     .header-links { gap: 18px; }
     .product-shell { padding-bottom: 56px; }
     .gallery-frame { box-shadow: 0 8px 24px rgba(18,59,102,.07); }
+    .gallery-slider { min-height: 0; contain: layout paint; }
+    .gallery-slide { min-width: 100%; overflow: hidden; }
+    .gallery-slide img { aspect-ratio: 1 / 1; }
     .gallery-hint { color: #667887; }
     .product-info { max-width: 490px; }
     h1 { letter-spacing: -.035em; }
@@ -1283,6 +1286,7 @@
       .product-shell { padding-bottom: 34px; }
       .decision-points { display: grid; gap: 5px; }
       .gallery-frame { box-shadow: 0 5px 16px rgba(18,59,102,.06); }
+      .gallery-slider { min-height: 0; }
       .reviews-section, .faq-section { padding: 40px 0; }
     }
 
@@ -1695,6 +1699,14 @@
         } catch (_) { return []; }
       }
 
+      function preloadVariantImages() {
+        variants.forEach((variant) => {
+          const image = new Image();
+          image.decoding = 'async';
+          image.src = variant.images[0];
+        });
+      }
+
       function saveCart() {
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch (_) { /* localStorage pode estar indisponível */ }
       }
@@ -1733,7 +1745,10 @@
           const image = document.createElement('img');
           image.src = src;
           image.alt = `Body Protein Equaliv ${selectedVariant.name}, imagem ${index + 1}`;
+          image.width = 1000;
+          image.height = 1000;
           image.loading = index === 0 ? 'eager' : 'lazy';
+          if (index === 0) image.fetchPriority = 'high';
           image.decoding = 'async';
           image.addEventListener('click', () => openLightbox(src, image.alt));
           slide.appendChild(image);
@@ -2099,6 +2114,7 @@ https://http2.mlstatic.com/D_NQ_NP_2X_748828-MLA97709975419_112025-F.webp
       setupTabs();
       setupFaq();
       setupMobileCta();
+      preloadVariantImages();
       renderCart();
       renderVariants();
       updateProductView();
