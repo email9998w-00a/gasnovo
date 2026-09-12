@@ -1203,6 +1203,11 @@
     .total-label { color: #596d7c; font-size: 11px; }
     .total-value { font-size: 22px; }
     .cart-footer .btn { min-height: 48px; border-radius: 9px; }
+    .cart-header-subtitle { margin: 4px 0 0; color: #7b8995; font-size: 10px; line-height: 1.3; }
+    .order-breakdown { display: grid; gap: 7px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e8eef2; }
+    .order-breakdown > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #6e7e8b; font-size: 11px; }
+    .order-breakdown strong { color: #394d5c; font-size: 11px; font-weight: 700; text-align: right; }
+    .order-breakdown > div:last-child strong { color: #71808d; font-size: 10px; font-weight: 600; }
     .checkout-trust { display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 8px; color: #788895; font-size: 9px; font-weight: 600; }
     .checkout-trust i { color: #268052; font-size: 9px; }
     @media (max-width: 620px) {
@@ -1381,12 +1386,12 @@
 
   <div class="cart-overlay" id="cartOverlay" aria-hidden="true">
     <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
-      <header class="cart-header"><div class="cart-title-block"><h2 id="cartTitle">Carrinho</h2></div><button class="close-cart" id="closeCart" type="button" aria-label="Fechar carrinho"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>
+      <header class="cart-header"><div class="cart-title-block"><h2 id="cartTitle">Carrinho</h2><p class="cart-header-subtitle">Revise seu pedido antes de continuar</p></div><button class="close-cart" id="closeCart" type="button" aria-label="Fechar carrinho"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>
       <div class="cart-content">
         <section class="cart-section cart-order-section"><div class="cart-section-heading"><h3>Itens</h3></div><div id="cartItems"></div></section>
 
       </div>
-      <footer class="cart-footer"><p class="cart-error" id="cartError" role="alert"></p><div class="total-row"><div class="total-label">Total</div><div class="total-value" id="cartTotal">R$ 0,00</div></div><button class="btn btn-primary" id="continueCheckout" type="button" disabled>Ir para o checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><div class="checkout-trust"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Checkout seguro</span></div></footer>
+      <footer class="cart-footer"><p class="cart-error" id="cartError" role="alert"></p><div class="order-breakdown"><div><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div><div><span>Entrega</span><strong>A calcular no checkout</strong></div></div><div class="total-row"><div class="total-label">Total</div><div class="total-value" id="cartTotal">R$ 0,00</div></div><button class="btn btn-primary" id="continueCheckout" type="button" disabled>Ir para o checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><div class="checkout-trust"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Checkout seguro</span></div></footer>
     </aside>
   </div>
 
@@ -1616,7 +1621,9 @@
       }
 
       function updateCartTotal() {
-        $('#cartTotal').textContent = money(getSubtotal());
+        const subtotal = getSubtotal();
+        $('#cartSubtotal').textContent = money(subtotal);
+        $('#cartTotal').textContent = money(subtotal);
       }
 
       function updateCheckoutAvailability() {
