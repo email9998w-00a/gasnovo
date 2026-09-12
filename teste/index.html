@@ -1094,6 +1094,76 @@
       .product-info.is-switching .price-box,
       .product-info.is-switching .shipping-preview { transition: none; }
     }
+    /* ===== Feedback de ecommerce: confirmação imediata e transição discreta ===== */
+    .product-info.is-switching .gallery-frame,
+    .product-info.is-switching .price-box,
+    .product-info.is-switching .shipping-preview {
+      opacity: 1;
+      transition: none;
+    }
+    .variant-card.is-loading,
+    .variant-card.is-loading:hover {
+      opacity: .72;
+      cursor: wait;
+      background: #f7f9fa;
+      border-color: #c5d4de;
+      box-shadow: none;
+      transform: none;
+    }
+    .variant-card.is-loading .variant-copy,
+    .variant-card.is-loading .variant-weight { opacity: .82; }
+    .price-box.is-updating {
+      animation: priceRefresh .34s ease-out;
+    }
+    .gallery-frame.is-updating {
+      animation: galleryRefresh .34s ease-out;
+    }
+    @keyframes priceRefresh {
+      0% { opacity: .72; transform: translateY(2px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes galleryRefresh {
+      0% { opacity: .78; }
+      100% { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .price-box.is-updating, .gallery-frame.is-updating { animation: none; }
+    }
+    /* ===== Feedback final: estável, claro e sem salto ===== */
+    .variant-card,
+    .variant-card.is-selected,
+    .variant-card.is-selected:not(.is-loading),
+    .variant-card:hover {
+      transform: none !important;
+      animation: none !important;
+    }
+    .variant-card.is-loading,
+    .variant-card.is-loading:hover {
+      opacity: .62;
+      cursor: wait;
+      background: #f7f9fa;
+      border-color: #d2dde4;
+      box-shadow: none;
+    }
+    .variant-card.is-loading .variant-copy,
+    .variant-card.is-loading .variant-weight { opacity: .78; }
+    .product-info.is-switching .price-box,
+    .product-info.is-switching .gallery-frame {
+      opacity: .84;
+      transition: opacity .16s ease;
+    }
+    .product-info.is-switching .shipping-preview { opacity: 1; }
+    .cta-group.is-switching .btn,
+    .mobile-cta.is-switching .btn {
+      opacity: .58;
+      cursor: wait;
+      box-shadow: none;
+      transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .product-info.is-switching .price-box,
+      .product-info.is-switching .gallery-frame { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -1123,7 +1193,7 @@
 
       <section class="product-shell" id="product" aria-labelledby="productTitle">
         <div class="gallery">
-          <div class="gallery-frame">
+          <div class="gallery-frame" id="galleryFrame">
             <div class="gallery-slider" id="gallerySlider" aria-label="Fotos do produto"></div>
             <div class="gallery-hint">Deslize para ver mais fotos · toque na imagem para ampliar</div>
           </div>
@@ -1148,12 +1218,12 @@
           <section class="choice-box" aria-labelledby="choiceTitle">
             <div class="choice-heading">
               <strong id="choiceTitle">Escolha sua opção</strong>
-              <span id="selectedOptionLabel">Cacau · 600 g</span>
+              <span id="selectedOptionLabel" aria-live="polite">Cacau · 600 g</span>
             </div>
             <div class="variant-grid" id="variantGrid" role="radiogroup" aria-labelledby="choiceTitle"></div>
           </section>
 
-          <div class="price-box" aria-live="polite">
+          <div class="price-box" id="priceBox" aria-live="polite">
             <div class="old-price-row"><span class="old-price">De R$ <span id="oldPrice">205,60</span></span><span class="discount" id="discount">48% OFF</span></div>
             <div class="current-price">R$ <span id="currentPrice">104,90</span><span class="pix-label">no Pix</span></div>
             <div class="installments" id="installments">ou em até 3x de R$ 34,97 sem juros</div>
@@ -1429,6 +1499,12 @@
         $('#mobilePrice').textContent = money(selectedVariant.price);
         renderVariants();
         renderGallery();
+        $('#priceBox')?.classList.add('is-updating');
+        $('#galleryFrame')?.classList.add('is-updating');
+        setTimeout(() => {
+          $('#priceBox')?.classList.remove('is-updating');
+          $('#galleryFrame')?.classList.remove('is-updating');
+        }, 360);
         updateSchema();
       }
 
@@ -1437,13 +1513,20 @@
         if (!next || next.id === selectedVariant.id) return;
         const productInfo = $('.product-info');
         const variantGrid = $('#variantGrid');
+        const actionButtons = [$('#buyNow'), $('#addToCart'), $('#mobileBuy')].filter(Boolean);
         clearTimeout(variantSwitchTimer);
         variantGrid?.setAttribute('aria-busy', 'true');
         productInfo?.classList.add('is-switching');
+        $('#mainCta')?.classList.add('is-switching');
+        $('#mobileCta')?.classList.add('is-switching');
         $$('.variant-card', variantGrid).forEach((card) => {
           card.disabled = true;
           card.setAttribute('aria-disabled', 'true');
           card.classList.add('is-loading');
+        });
+        actionButtons.forEach((button) => {
+          button.disabled = true;
+          button.setAttribute('aria-disabled', 'true');
         });
         selectedVariant = next;
         updateProductView();
@@ -1456,13 +1539,19 @@
         });
         variantSwitchTimer = setTimeout(() => {
           productInfo?.classList.remove('is-switching');
+          $('#mainCta')?.classList.remove('is-switching');
+          $('#mobileCta')?.classList.remove('is-switching');
           updatedGrid?.setAttribute('aria-busy', 'false');
           $$('.variant-card', updatedGrid).forEach((card) => {
             card.disabled = false;
             card.removeAttribute('aria-disabled');
             card.classList.remove('is-loading');
           });
-        }, 220);
+          actionButtons.forEach((button) => {
+            button.disabled = false;
+            button.removeAttribute('aria-disabled');
+          });
+        }, 180);
       }
 
       function addSelectedVariant() {
