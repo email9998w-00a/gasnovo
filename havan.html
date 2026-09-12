@@ -576,7 +576,25 @@ function setStep(n) {
 const onlyD = s => s.replace(/\D/g, '');
 function mask(el, fn) { el.addEventListener('input', () => { el.value = fn(onlyD(el.value)); }); }
 mask(document.getElementById('cep'), d => d.slice(0, 8).replace(/(\d{5})(\d)/, '$1-$2'));
-mask(document.getElementById('cpf'), d => d.slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2'));
+const cpfInput = document.getElementById('cpf');
+cpfInput.addEventListener('input', () => {
+  const digits = onlyD(cpfInput.value).slice(0, 11);
+  cpfInput.value = digits.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+  // Ao completar um CPF válido, tira o foco do campo e fecha o teclado virtual.
+  if (digits.length === 11 && validCPF(cpfInput.value)) {
+    requestAnimationFrame(() => cpfInput.blur());
+  }
+});
+
+const numeroInput = document.getElementById('numero');
+numeroInput.addEventListener('focus', () => {
+  // O rótulo "Nº" continua visível acima; dentro do campo, some ao selecionar.
+  numeroInput.placeholder = '';
+});
+numeroInput.addEventListener('blur', () => {
+  if (!numeroInput.value.trim()) numeroInput.placeholder = 'Nº';
+});
 
 /* =====================================================================
    BUSCA DE ENDEREÇO PELO CEP (ViaCEP)
