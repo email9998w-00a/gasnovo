@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Finalizar compra | Equaliv</title>
 <style>
 /* =====================================================================
@@ -26,7 +27,7 @@
 body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:78px}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-button{font:inherit;cursor:pointer;border:none}
+button{font:inherit;cursor:pointer;border:none;background:none}
 input,select{font:inherit}
 .hidden{display:none!important}
 
@@ -70,8 +71,11 @@ input,select{font:inherit}
 .order-item:last-child{border-bottom:0;padding-bottom:0}
 .order-item .thumb{width:56px;height:56px;border-radius:8px;overflow:hidden;background:#fafcfd;border:1px solid var(--line)}
 .order-item .thumb img{width:100%;height:100%;object-fit:contain}
+.order-item .info{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;min-width:0}
 .order-item .nome{font-weight:700;font-size:.87rem;line-height:1.25}
 .order-item .variant{color:var(--muted);font-size:.72rem;margin-top:4px}
+.order-item .line-price{flex:none;text-align:right;font-size:.85rem;font-weight:700;color:var(--brand);white-space:nowrap;font-variant-numeric:tabular-nums}
+.order-item .line-price small{display:block;font-weight:500;color:var(--muted);font-size:.68rem;margin-top:2px}
 .order-subtotal{display:flex;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted)}
 .order-subtotal strong{color:var(--brand);font-size:1rem;font-variant-numeric:tabular-nums}
 .order-error{background:#fff5f5;border:1px solid #ebc7cc;border-radius:9px;color:var(--danger);padding:12px;font-size:.82rem;line-height:1.4}
@@ -94,6 +98,9 @@ input,select{font:inherit}
 .row-compact .field.w-num{flex:0 0 84px}
 .row-compact .field.w-num input{text-align:center;padding-inline:6px}
 .row-compact .field:not(.w-num){flex:1 1 auto}
+.field.w-num input:disabled{background:#f1f5f8;color:var(--muted)}
+.no-number-check{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:.72rem;color:var(--muted)}
+.no-number-check input{width:14px;height:14px;accent-color:var(--brand)}
 .privacy-note{display:flex;align-items:center;gap:6px;margin:-2px 0 12px;color:#7b8b95;font-size:.7rem;line-height:1.4}
 .privacy-note .ico{width:13px;height:13px;color:var(--success);flex:none}
 .field-hint{margin:-6px 0 12px;color:var(--muted);font-size:.7rem;line-height:1.4}
@@ -114,12 +121,14 @@ input,select{font:inherit}
 .address-summary{display:none;background:#f3f8f5;border:1px solid #cfe6da;border-radius:9px;padding:11px 13px;font-size:.84rem;margin-top:12px;line-height:1.5}
 .address-summary.is-visible{display:block}
 .address-summary b{display:block}
-.address-summary button{color:var(--success);font-weight:700;font-size:.76rem;text-decoration:underline;margin-top:2px;background:none;padding:0}
+.address-summary button{color:var(--success);font-weight:700;font-size:.76rem;text-decoration:underline;margin-top:2px;padding:0}
 
 .address-fields{display:none;margin-top:12px}
 .address-fields.is-visible{display:block}
 .address-number-fields{display:none;margin-top:12px}
 .address-number-fields.is-visible{display:block}
+.manual-address-link{display:none;color:var(--brand);font-weight:700;font-size:.72rem;text-decoration:underline;margin-top:8px}
+.manual-address-link.is-visible{display:inline-block}
 
 /* ---- Entrega ---- */
 .shipping-card{display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
@@ -144,6 +153,9 @@ input,select{font:inherit}
 #deliveryCard{order:1}
 #personalCard{order:2}
 #paymentCard{order:3}
+
+.section-link-back{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:.72rem;font-weight:700;margin:-4px 0 14px}
+.section-link-back:hover{color:var(--brand)}
 
 /* ---- Pagamento PIX ---- */
 .pix-head{display:flex;align-items:center;gap:10px;background:#f1f8f4;border:1.5px solid #b9ddc6;border-radius:9px;padding:11px 13px;margin-bottom:14px}
@@ -178,17 +190,24 @@ input,select{font:inherit}
 .pix-pay{text-align:center;border-top:3px solid var(--success)}
 .pix-pay h2{font-size:1.08rem;margin-bottom:4px}
 .pix-pay .sub{color:var(--muted);font-size:.83rem;margin-bottom:16px}
-.qr{width:190px;height:190px;margin:0 auto 14px;border-radius:11px;border:1.5px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px}
+.qr{width:190px;height:190px;margin:0 auto 14px;border-radius:11px;border:1.5px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px;position:relative}
 .qr img{width:100%;height:100%;object-fit:contain}
+.qr.is-expired img{opacity:.18;filter:grayscale(1)}
+.qr-expired-tag{display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:rgba(255,255,255,.55);color:var(--danger);font-weight:800;font-size:.82rem;text-align:center;padding:10px}
+.qr.is-expired .qr-expired-tag{display:flex}
 .pix-code{display:flex;gap:8px;margin-bottom:12px}
 .pix-code input{flex:1;padding:11px;border:1.5px solid var(--line);border-radius:9px;font-size:.76rem;color:var(--muted);background:#f7f9fb;overflow:hidden;text-overflow:ellipsis}
 .btn-copy-main{margin-bottom:14px}
 .timer-box{background:#f1f8f4;border:1px solid #cce5d4;border-radius:9px;padding:12px;margin-bottom:16px;font-size:.83rem}
+.timer-box.is-expired{background:#fff5f5;border-color:#ebc7cc}
 .timer-box .clock{font-size:1.35rem;font-weight:800;color:var(--success);font-variant-numeric:tabular-nums}
+.timer-box.is-expired .clock{color:var(--danger)}
 .steps-list{text-align:left;font-size:.82rem;color:var(--muted);margin:0 auto 10px;max-width:340px}
 .steps-list li{margin-bottom:6px;padding-left:4px}
 .pix-confirm-note{background:#eafaf1;border:1px solid #a7e3c4;color:#12603c;border-radius:9px;padding:10px 12px;font-size:.78rem;font-weight:600;margin:12px 0;text-align:left}
 .jpmsg{font-size:.78rem;color:#12603c;background:#eafaf1;border:1px solid #a7e3c4;border-radius:9px;padding:10px;margin-top:10px;display:none;text-align:left;line-height:1.5}
+.btn-regenerate{display:none;margin-bottom:10px}
+.btn-regenerate.is-visible{display:flex}
 
 /* ---- Tela aprovado ---- */
 .approved{text-align:center;padding:22px 0;border-top:3px solid var(--success)}
@@ -196,6 +215,8 @@ input,select{font:inherit}
 .approved .check .ico{width:40px;height:40px;stroke-width:3}
 .approved h2{font-size:1.32rem;color:var(--success);margin-bottom:8px}
 .approved p{color:var(--muted);font-size:.88rem;margin-bottom:6px}
+.approved .order-ref{display:none;background:#f1f5f8;border:1px solid var(--line);border-radius:8px;padding:8px 14px;margin:10px 0;font-size:.78rem;color:var(--muted)}
+.approved .order-ref b{color:var(--ink);font-variant-numeric:tabular-nums}
 
 .foot{text-align:center;color:#7a8b97;font-size:.68rem;margin-top:20px;line-height:1.7;padding-bottom:10px}
 .foot a{text-decoration:underline}
@@ -232,6 +253,8 @@ input,select{font:inherit}
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
   <symbol id="i-support" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/></symbol>
   <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v6h-6"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/></symbol>
 </svg>
 
 <div class="securebar"><svg class="ico"><use href="#i-lock"/></svg> Ambiente de pagamento seguro</div>
@@ -280,6 +303,7 @@ input,select{font:inherit}
         <input id="cep" type="tel" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9">
         <div class="msg">CEP inválido.</div>
         <div class="field-status" id="cepStatus" aria-live="polite" role="status"></div>
+        <button type="button" class="manual-address-link" id="manualAddressLink">Não encontrou seu CEP? Preencher endereço manualmente</button>
         <div class="address-summary" id="addressSummary"></div>
       </div>
       <div class="address-fields" id="addressFields">
@@ -321,7 +345,7 @@ input,select{font:inherit}
         <div class="row-compact">
           <div class="field w-num">
             <label for="numero">Nº <span class="required-mark">*</span></label>
-            <input id="numero" type="text" inputmode="numeric" autocomplete="address-line1" placeholder="Nº" maxlength="6">
+            <input id="numero" type="text" inputmode="numeric" autocomplete="off" placeholder="Nº" maxlength="6">
             <div class="msg">Nº</div>
           </div>
           <div class="field">
@@ -329,6 +353,7 @@ input,select{font:inherit}
             <input id="compl" type="text" placeholder="Apto, bloco, referência">
           </div>
         </div>
+        <label class="no-number-check"><input type="checkbox" id="semNumero"> Este endereço não tem número (S/N)</label>
       </div>
       <div class="shipping-card" id="shippingCard" aria-live="polite">
         <div class="shipping-title"><svg class="ico"><use href="#i-truck"/></svg> Escolha como receber</div>
@@ -375,6 +400,7 @@ input,select{font:inherit}
         </div>
       </div>
       <p class="field-hint">Exigido pelo Banco Central para identificar quem paga via PIX.</p>
+      <button class="section-link-back" id="backToDelivery" type="button"><svg class="ico"><use href="#i-arrow-left"/></svg> Voltar para entrega</button>
       <button class="btn btn-proceed" id="proceedPayment" type="button">Ir para o pagamento <span aria-hidden="true">→</span></button>
     </div>
 
@@ -401,6 +427,7 @@ input,select{font:inherit}
         <strong id="totalPagar">R$ 0,00</strong>
       </div>
       <button class="btn success" id="btnGerar" type="button" aria-live="polite"><svg class="ico"><use href="#i-lock"/></svg> Gerar código PIX</button>
+      <button class="section-link-back" id="backToPersonal" type="button" style="justify-content:center;margin-top:10px"><svg class="ico"><use href="#i-arrow-left"/></svg> Voltar e corrigir meus dados</button>
       <div class="safenote"><svg class="ico"><use href="#i-shield"/></svg> Você só paga depois de revisar o total</div>
       <div class="pix-error hidden" id="pixError" role="alert"></div>
     </div>
@@ -411,15 +438,16 @@ input,select{font:inherit}
   <div id="pixArea" class="card pix-pay hidden" aria-live="polite">
     <h2>Pague com PIX para concluir</h2>
     <p class="sub">Escaneie o QR Code pelo app do seu banco ou copie o código abaixo.</p>
-    <div class="qr"><img id="pixQr" src="" alt="QR Code PIX para pagamento"></div>
+    <div class="qr" id="qrBox"><img id="pixQr" src="" alt="QR Code PIX para pagamento"><span class="qr-expired-tag">Código expirado</span></div>
     <div class="pix-code" aria-label="Código PIX copia e cola">
       <input id="pixCode" readonly value="" aria-label="Código PIX copia e cola">
     </div>
     <button class="btn success btn-copy-main" id="btnCopy" type="button"><svg class="ico"><use href="#i-copy"/></svg> Copiar código PIX</button>
-    <div class="timer-box">
+    <div class="timer-box" id="timerBox">
       O código expira em <span class="clock" id="pixClock">30:00</span><br>
-      <small>Após o pagamento, a confirmação é automática.</small>
+      <small id="timerHint">Após o pagamento, a confirmação é automática.</small>
     </div>
+    <button class="btn btn-regenerate" id="btnRegenerate" type="button"><svg class="ico"><use href="#i-refresh"/></svg> Gerar novo código PIX</button>
     <ol class="steps-list">
       <li>Abra o app do seu banco e escolha <strong>Pix &rsaquo; Copia e Cola</strong>.</li>
       <li>Cole o código copiado e confirme o valor <strong id="pixValor">R$ 0,00</strong>.</li>
@@ -437,6 +465,7 @@ input,select{font:inherit}
     <h2>Pedido confirmado</h2>
     <p>Pagamento recebido. Seu pedido já está sendo preparado.</p>
     <p>Enviaremos os detalhes para o e-mail informado.</p>
+    <div class="order-ref" id="orderRef"></div>
     <br>
     <a class="btn outline" href="javascript:history.back()">Voltar à loja</a>
   </div>
@@ -518,7 +547,8 @@ function renderOrderSummary() {
     row.className = 'order-item';
     const img = item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy">` : '<span aria-hidden="true"></span>';
     const details = [item.variant, item.weight ? `${item.weight} g` : '', item.quantity > 1 ? `Qtd ${item.quantity}` : ''].filter(Boolean).join(' · ');
-    row.innerHTML = `<div class="thumb">${img}</div><div><div class="nome">${escapeHtml(item.name)}</div><div class="variant">${escapeHtml(details)}</div></div>`;
+    const unitPrice = item.quantity > 1 ? `<small>${item.quantity} × ${brl(item.price)}</small>` : '';
+    row.innerHTML = `<div class="thumb">${img}</div><div class="info"><div><div class="nome">${escapeHtml(item.name)}</div><div class="variant">${escapeHtml(details)}</div></div><div class="line-price">${brl(item.lineSubtotal)}${unitPrice}</div></div>`;
     list.appendChild(row);
   });
   subtotalEl.textContent = brl(order.subtotal);
@@ -547,7 +577,8 @@ function setStep(n) {
   });
   document.getElementById('stepN1').classList.toggle('is-done', n > 1);
   document.getElementById('stepN2').classList.toggle('is-done', n > 2);
-  document.getElementById('headerStep').textContent = 'Etapa ' + n + ' de 3';
+  const labels = { 1: 'Etapa 1 de 3', 2: 'Etapa 2 de 3', 3: 'Etapa 3 de 3' };
+  document.getElementById('headerStep').textContent = labels[n] || '';
 }
 
 /* =====================================================================
@@ -558,6 +589,23 @@ function mask(el, fn) { el.addEventListener('input', () => { el.value = fn(onlyD
 mask(document.getElementById('tel'), d => d.slice(0, 11).replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2'));
 mask(document.getElementById('cep'), d => d.slice(0, 8).replace(/(\d{5})(\d)/, '$1-$2'));
 mask(document.getElementById('cpf'), d => d.slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2'));
+
+/* =====================================================================
+   "NÃO TEM NÚMERO" — resolve o caso de imóveis rurais/sem numeração, já
+   que o teclado numérico do celular não permite digitar "S/N" no campo.
+   ===================================================================== */
+const numeroInput = document.getElementById('numero');
+const semNumeroCheck = document.getElementById('semNumero');
+semNumeroCheck.addEventListener('change', () => {
+  if (semNumeroCheck.checked) {
+    numeroInput.value = 'S/N';
+    numeroInput.disabled = true;
+    numeroInput.closest('.field').classList.remove('invalid');
+  } else {
+    numeroInput.value = '';
+    numeroInput.disabled = false;
+  }
+});
 
 /* =====================================================================
    BUSCA DE ENDEREÇO PELO CEP (ViaCEP)
@@ -579,6 +627,19 @@ function resetAddressState() {
   setStep(1);
 }
 
+function abrirEnderecoManual() {
+  document.getElementById('addressFields').classList.add('is-visible');
+  document.getElementById('addressSummary').classList.remove('is-visible');
+  document.getElementById('addressNumberFields').classList.add('is-visible');
+  document.getElementById('shippingCard').classList.add('is-visible');
+  const cepStatus = document.getElementById('cepStatus');
+  cepStatus.innerHTML = '';
+  cepStatus.className = 'field-status';
+  document.getElementById('manualAddressLink').classList.remove('is-visible');
+  document.getElementById('estado').focus();
+}
+document.getElementById('manualAddressLink').addEventListener('click', abrirEnderecoManual);
+
 function renderAddressSummary() {
   const g = id => document.getElementById(id).value.trim();
   const box = document.getElementById('addressSummary');
@@ -595,21 +656,27 @@ async function buscarEnderecoPorCep() {
   const cepInput = document.getElementById('cep');
   const d = onlyD(cepInput.value);
   const cepStatus = document.getElementById('cepStatus');
+  const manualLink = document.getElementById('manualAddressLink');
   if (d.length !== 8) {
     lastCepSearched = '';
     resetAddressState();
     cepStatus.textContent = '';
     cepStatus.className = 'field-status';
+    manualLink.classList.remove('is-visible');
     return;
   }
   if (d === lastCepSearched) return;
   lastCepSearched = d;
   cepInput.blur();
+  manualLink.classList.remove('is-visible');
   const startedAt = performance.now();
   cepStatus.innerHTML = '<span class="status-spinner" aria-hidden="true"></span><span><strong>Consultando seu CEP</strong><small>Localizando o endereço...</small></span>';
   cepStatus.className = 'field-status loading';
   try {
-    const r = await fetch('https://viacep.com.br/ws/' + d + '/json/');
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
+    const r = await fetch('https://viacep.com.br/ws/' + d + '/json/', { signal: controller.signal });
+    clearTimeout(timeoutId);
     const j = await r.json();
     if (j.erro) throw new Error('CEP não encontrado');
     if (j.uf) document.getElementById('estado').value = j.uf;
@@ -629,10 +696,12 @@ async function buscarEnderecoPorCep() {
   } catch (e) {
     const elapsed = performance.now() - startedAt;
     if (elapsed < 500) await new Promise(res => setTimeout(res, 500 - elapsed));
-    lastCepSearched = '';
-    resetAddressState();
-    cepStatus.innerHTML = '<svg class="status-icon" aria-hidden="true"><use href="#i-shield"/></svg><span><strong>CEP não encontrado</strong><small>Confira os números e tente novamente.</small></span>';
+    // Em vez de travar o cliente numa tela sem saída quando o ViaCEP falha
+    // ou não conhece o CEP, mantemos o valor digitado e oferecemos o
+    // preenchimento manual do endereço.
+    cepStatus.innerHTML = '<svg class="status-icon" aria-hidden="true"><use href="#i-shield"/></svg><span><strong>Não encontramos esse CEP</strong><small>Confira os números ou preencha manualmente.</small></span>';
     cepStatus.className = 'field-status error';
+    manualLink.classList.add('is-visible');
   }
 }
 document.getElementById('cep').addEventListener('input', buscarEnderecoPorCep);
@@ -701,6 +770,29 @@ document.getElementById('proceedPayment').addEventListener('click', () => {
   setTimeout(() => document.getElementById('paymentCard').scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
 });
 
+/* ---- Navegação "voltar" entre etapas (sem perder o que já foi digitado) ---- */
+document.getElementById('backToDelivery').addEventListener('click', () => {
+  document.getElementById('personalCard').classList.remove('is-visible');
+  document.getElementById('paymentCard').classList.remove('is-visible');
+  setStep(1);
+  document.getElementById('deliveryCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+document.getElementById('backToPersonal').addEventListener('click', () => {
+  document.getElementById('paymentCard').classList.remove('is-visible');
+  setStep(2);
+  document.getElementById('personalCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+/* ---- Enter no teclado avança a etapa, como em qualquer formulário nativo
+   (aqui não há <form> para não correr o risco de disparar um submit). ---- */
+function onEnterAdvance(ids, action) {
+  ids.forEach(id => document.getElementById(id).addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); action(); }
+  }));
+}
+onEnterAdvance(['numero', 'compl'], () => document.getElementById('shippingCard').scrollIntoView({ behavior: 'smooth', block: 'center' }));
+onEnterAdvance(['nome', 'email', 'tel', 'cpf'], () => document.getElementById('proceedPayment').click());
+
 /* =====================================================================
    RASTREAMENTO (UTMs + Pixel)
    ===================================================================== */
@@ -728,7 +820,10 @@ function dadosFb() { return { fbp: getCookie('_fbp'), fbc: getCookie('_fbc') }; 
    ===================================================================== */
 const btnGerar = document.getElementById('btnGerar');
 btnGerar.addEventListener('click', gerarPix);
+document.getElementById('btnRegenerate').addEventListener('click', gerarPix);
 let currentTxn = null;
+let pollingInterval = null;
+let timerInterval = null;
 
 function dadosCliente() {
   const g = id => document.getElementById(id).value.trim();
@@ -744,6 +839,8 @@ async function gerarPix() {
     document.querySelector('.field.invalid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
+  if (pollingInterval) clearInterval(pollingInterval);
+  if (timerInterval) clearInterval(timerInterval);
   btnGerar.disabled = true;
   const errorBox = document.getElementById('pixError');
   errorBox.classList.add('hidden');
@@ -790,9 +887,17 @@ function mostrarPix(pix) {
   document.getElementById('progressBar').classList.add('hidden');
   document.querySelector('.order-card').classList.add('hidden');
   document.querySelector('.trust-strip').classList.add('hidden');
+  document.getElementById('headerStep').textContent = 'Pagamento';
   document.getElementById('pixArea').classList.remove('hidden');
+  document.getElementById('qrBox').classList.remove('is-expired');
+  document.getElementById('timerBox').classList.remove('is-expired');
+  document.getElementById('timerHint').textContent = 'Após o pagamento, a confirmação é automática.';
+  document.getElementById('btnRegenerate').classList.remove('is-visible');
+  document.getElementById('btnCopy').disabled = false;
   document.getElementById('pixQr').src = pix.qr_image;
   document.getElementById('pixCode').value = pix.copia_e_cola;
+  btnGerar.disabled = false;
+  btnGerar.innerHTML = '<svg class="ico"><use href="#i-lock"/></svg> Gerar código PIX';
   window.scrollTo({ top: 0, behavior: 'smooth' });
   iniciarTimer();
   iniciarPolling(pix.id);
@@ -810,6 +915,7 @@ function gerarQrFake() {
 document.getElementById('btnCopy').addEventListener('click', () => {
   const inp = document.getElementById('pixCode');
   const btn = document.getElementById('btnCopy');
+  if (btn.disabled) return;
   navigator.clipboard?.writeText(inp.value).then(() => {
     btn.innerHTML = '<svg class="ico"><use href="#i-check"/></svg> Código copiado!';
     setTimeout(() => { btn.innerHTML = '<svg class="ico"><use href="#i-copy"/></svg> Copiar código PIX'; }, 2200);
@@ -819,21 +925,38 @@ document.getElementById('btnCopy').addEventListener('click', () => {
 function iniciarTimer() {
   let t = CONFIG.PIX_EXPIRE_MIN * 60;
   const el = document.getElementById('pixClock');
-  const iv = setInterval(() => {
-    if (t <= 0) { clearInterval(iv); el.textContent = 'Expirado'; return; }
+  el.textContent = String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0');
+  timerInterval = setInterval(() => {
+    if (t <= 0) {
+      clearInterval(timerInterval);
+      expirarPix();
+      return;
+    }
     t--;
     el.textContent = String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0');
   }, 1000);
 }
 
+/* Quando o código expira, o QR fica esmaecido e oferecemos gerar um novo na
+   hora — evita perder a venda porque o cliente não percebeu a expiração. */
+function expirarPix() {
+  if (pollingInterval) clearInterval(pollingInterval);
+  document.getElementById('pixClock').textContent = 'Expirado';
+  document.getElementById('qrBox').classList.add('is-expired');
+  document.getElementById('timerBox').classList.add('is-expired');
+  document.getElementById('timerHint').textContent = 'Gere um novo código para continuar o pagamento.';
+  document.getElementById('btnRegenerate').classList.add('is-visible');
+  document.getElementById('btnCopy').disabled = true;
+}
+
 function iniciarPolling(id) {
   if (CONFIG.MODO_DEMO) { setTimeout(aprovado, 6000); return; }
-  const iv = setInterval(async () => {
+  pollingInterval = setInterval(async () => {
     try {
       const r = await fetch(API + '/api/status?transaction_id=' + encodeURIComponent(id));
       const j = await r.json();
-      if (j.status === 'paid') { clearInterval(iv); aprovado(); }
-      if (j.status === 'expired' || j.status === 'refunded') { clearInterval(iv); }
+      if (j.status === 'paid') { clearInterval(pollingInterval); aprovado(); }
+      if (j.status === 'expired' || j.status === 'refunded') { clearInterval(pollingInterval); }
     } catch (e) { /* tenta de novo no próximo ciclo */ }
   }, 4000);
 }
@@ -861,8 +984,13 @@ document.getElementById('btnJaPaguei').addEventListener('click', async () => {
 });
 
 function aprovado() {
+  if (pollingInterval) clearInterval(pollingInterval);
+  if (timerInterval) clearInterval(timerInterval);
   document.getElementById('pixArea').classList.add('hidden');
   document.getElementById('okArea').classList.remove('hidden');
+  document.getElementById('headerStep').textContent = 'Concluído';
+  const refBox = document.getElementById('orderRef');
+  if (currentTxn) { refBox.textContent = 'Pedido nº ' + currentTxn; refBox.style.display = 'inline-block'; }
   window.scrollTo({ top: 0, behavior: 'smooth' });
   // Purchase não é disparado no front-end: a venda entra pelo webhook do
   // gateway. O fbq('init') com advanced matching abaixo só melhora a
