@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Finalizar pedido — Equaliv</title>
+<title>Finalizar compra | Equaliv</title>
 <style>
 /* ====== TEMA EQUALIV ====== */
 :root{
@@ -284,6 +284,50 @@ body{background:#f5f8fb}
 <!-- Macna Pixel -->
 <script src="https://macna.ai/px.js" data-token="P59IOULngxyS6D7U9jsALH"></script>
 <script src="/mx-funil.js"></script>
+
+<style id="checkout-final-polish">
+:root{--brand:#123b66;--brand-dark:#0b2945;--accent:#157347;--bg:#f4f7fa;--text:#172b38;--muted:#617482;--border:#d8e3ea;--soft:#f4f8fa}
+body{background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:560px;padding-inline:16px}
+.securebar{background:var(--brand-dark);padding:10px 12px;font-size:.74rem;letter-spacing:.01em}
+.top{padding:20px 0 17px;margin-bottom:18px;border-bottom:1px solid var(--border)}
+.top .logo{color:var(--brand);font-size:1.16rem;letter-spacing:.12em}.top .logo span{color:var(--accent)}
+.top .h{color:var(--muted);font-size:.78rem}.top .back{border-radius:8px;color:var(--brand);box-shadow:0 2px 8px rgba(18,59,102,.08)}
+.checkout-intro{margin:0 2px 17px;color:var(--muted);font-size:.78rem;line-height:1.55}.checkout-intro strong{color:var(--text);font-weight:750}
+.card{border:1px solid var(--border);border-radius:12px;box-shadow:0 4px 18px rgba(18,59,102,.055);padding:20px;margin-bottom:14px}
+.step-h h2{color:var(--text);font-size:.98rem}.step-n{background:var(--brand)}
+.order-card .step-n{background:#e9f5ee;color:var(--accent)}.order-item .thumb{border-color:var(--border);background:#fbfcfd}.order-item .nome{color:var(--text)}.order-item .por,.order-subtotal strong{color:var(--brand)}
+.order-note{font-size:.72rem;color:var(--muted);border-top:1px solid #edf2f5;padding-top:11px}
+.data-note,.field label{color:var(--muted)}.field label{font-size:.75rem;font-weight:700}.field input,.field select{border-color:#cbdbe4;border-radius:8px;min-height:46px;color:var(--text)}
+.field input:focus,.field select:focus{border-color:#4a7b9e;box-shadow:0 0 0 3px rgba(74,123,158,.12)}
+.shipping-card{background:#fbfdfe;border-top-color:var(--border)}.shipping-title{color:var(--text)}.shipping-option{border-color:#d4e1e8;border-radius:9px;min-height:64px}.shipping-option.is-selected{border-color:var(--accent);background:#f2faf5;box-shadow:0 0 0 1px var(--accent)}
+.pix-head{background:#f1f8f4;border-color:#b9ddc6}.pix-head .pixlogo{background:var(--accent)}.payment-card .total-line{border-color:#e0e9ee}.payment-card .total-line:last-of-type strong{color:var(--brand)}
+.btn{border-radius:8px;min-height:52px;font-size:.96rem;font-weight:750}.btn-proceed{background:var(--brand);box-shadow:0 6px 16px rgba(18,59,102,.18)}.btn-proceed:hover{background:var(--brand-dark)}#btnGerar{background:var(--accent);box-shadow:0 6px 16px rgba(21,115,71,.2)}#btnGerar:hover{background:#105c39}
+.safenote{color:var(--muted);font-size:.7rem}.safenote .ico{color:var(--accent)}
+.pix-pay h2{color:var(--text)}.pix-pay .sub{color:var(--muted)}.timer-box{background:#f1f8f4;border-color:#cce5d4}.timer-box .clock{color:var(--accent)}
+.pix-code button{background:var(--brand)}.pixbig{background:var(--accent)!important;animation:none!important;transform:none!important}.pixhint{background:#f7fafc;border-color:#dbe7ed;color:#536a78}.pixres{background:#f1f8f4;border-color:#cce5d4;color:#12603c}
+.foot{color:#7a8b97;font-size:.69rem}
+@media (max-width:480px){.wrap{padding-inline:13px}.card{padding:17px}.top{padding-top:17px}.checkout-intro{font-size:.76rem}}
+</style>
+
+<style id="professional-structure">
+:root{--navy:#123b66;--navy-dark:#0b2945;--emerald:#157347;--ink:#172b38;--muted:#617482;--line:#d8e3ea;--canvas:#f4f7fa;--white:#fff}
+body{background:var(--canvas);color:var(--ink)}
+.wrap{max-width:600px;padding-inline:20px}
+.securebar{background:var(--navy-dark);font-size:.73rem;letter-spacing:.02em;padding:10px 14px}
+.top{display:flex;align-items:center;gap:12px;padding:20px 0 15px;margin-bottom:0;border-bottom:1px solid var(--line)}
+.top .back{flex:0 0 31px}.brand-lockup{min-width:0}.top .logo{font-size:1.18rem;letter-spacing:.14em;line-height:1.1}.brand-caption{margin-top:4px;color:#7b8b96;font-size:.62rem;letter-spacing:.015em}.top .h{display:flex;align-items:center;gap:5px;margin-left:auto;text-align:right;font-size:.68rem;line-height:1.25;color:var(--muted)}.top .h .ico{width:15px;height:15px;color:var(--emerald)}
+.checkout-progress{display:flex;align-items:center;justify-content:center;padding:17px 4px 14px}.progress-step{display:flex;align-items:center;gap:6px;color:#8a99a3;font-size:.65rem;white-space:nowrap}.progress-step span{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid #cbd8df;border-radius:50%;background:#fff;font-size:.68rem;font-weight:750}.progress-step.is-current{color:var(--navy);font-weight:750}.progress-step.is-current span{background:var(--navy);border-color:var(--navy);color:#fff}.checkout-progress i{display:block;width:38px;height:1px;margin:0 8px;background:#cbd8df}
+.checkout-intro{margin:0 3px 16px;padding:0 2px;color:var(--muted);font-size:.77rem;line-height:1.55}.checkout-intro strong{color:var(--ink)}
+.merchant-card{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 13px;margin-bottom:9px;box-shadow:0 3px 12px rgba(18,59,102,.035)}.merchant-mark{display:flex;align-items:center;justify-content:center;flex:0 0 35px;height:35px;border-radius:9px;background:var(--navy);color:#fff;font-size:1.05rem;font-weight:800;letter-spacing:.04em}.merchant-copy{display:flex;flex-direction:column;gap:2px;min-width:0}.merchant-copy strong{font-size:.76rem;color:var(--ink)}.merchant-copy span{font-size:.63rem;line-height:1.35;color:var(--muted)}.merchant-status{display:flex;align-items:center;gap:4px;margin-left:auto;color:var(--emerald);font-size:.59rem;font-weight:750;line-height:1.15;text-align:right}.merchant-status .ico{width:17px;height:17px}
+.trust-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#dce7ec;border:1px solid #dce7ec;border-radius:9px;overflow:hidden;margin-bottom:14px}.trust-strip div{display:flex;align-items:center;justify-content:center;gap:5px;min-height:39px;background:#f9fbfc;color:#536b79;font-size:.59rem;font-weight:700;text-align:center}.trust-strip .ico{width:14px;height:14px;color:var(--emerald)}
+.card{border-radius:12px;border-color:var(--line);box-shadow:0 4px 18px rgba(18,59,102,.055)}.order-card{padding-bottom:15px}.order-note{border-top:1px solid #edf2f5}.total-explain{margin-top:8px;color:#7a8b95;font-size:.62rem;line-height:1.4}
+.step-h h2{font-size:.98rem}.step-h{margin-bottom:15px}.data-note{font-size:.69rem;line-height:1.45}.field label{font-size:.72rem}
+.payment-assurance{display:flex;align-items:flex-start;gap:9px;padding:11px 12px;margin-top:14px;border:1px solid #dbe8df;border-radius:9px;background:#f7fbf8}.assurance-icon{display:flex;align-items:center;justify-content:center;flex:0 0 24px;height:24px;border-radius:50%;background:#e1f1e7;color:var(--emerald)}.assurance-icon .ico{width:14px;height:14px}.payment-assurance div:last-child{display:flex;flex-direction:column;gap:2px}.payment-assurance strong{font-size:.68rem;color:#19563b}.payment-assurance span{font-size:.62rem;line-height:1.4;color:#627b6d}
+#pixArea{border-top:3px solid var(--emerald)}#okArea{border-top:3px solid var(--emerald)}
+.foot{padding-bottom:30px}
+@media(max-width:480px){.wrap{padding-inline:13px}.progress-step{font-size:.6rem}.checkout-progress i{width:22px;margin:0 5px}.merchant-copy span{font-size:.59rem}.trust-strip div{font-size:.55rem;gap:3px}}
+</style>
 </head>
 <body>
 
@@ -297,25 +341,44 @@ body{background:#f5f8fb}
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
 </svg>
 
-<div class="securebar"><svg class="ico"><use href="#i-lock"/></svg> Finalização segura</div>
+<div class="securebar"><svg class="ico"><use href="#i-lock"/></svg> Ambiente seguro para finalizar sua compra</div>
 
 <div class="wrap">
 
   <!-- HEADER -->
   <div class="top">
     <a class="back" href="javascript:history.back()" aria-label="Voltar">‹</a>
-    <div class="logo">EQUALIV</div>
-    <div class="h">Finalizar pedido</div>
+    <div class="brand-lockup">
+      <div class="logo">EQUALIV</div>
+      <div class="brand-caption">Saúde, bem-estar e qualidade</div>
+    </div>
+    <div class="h"><svg class="ico"><use href="#i-lock"/></svg><span>Checkout<br>protegido</span></div>
   </div>
 
-  <p class="checkout-intro">Confira o pedido, informe os dados de entrega e finalize pelo PIX.</p>
+  <div class="checkout-progress" aria-label="Etapas da compra">
+    <div class="progress-step is-current"><span>1</span><b>Dados</b></div>
+    <i></i><div class="progress-step"><span>2</span><b>Pagamento</b></div><i></i><div class="progress-step"><span>3</span><b>Confirmação</b></div>
+  </div>
+  <p class="checkout-intro"><strong>Finalize sua compra com tranquilidade.</strong> Confira os itens, informe o endereço e revise o valor total antes de confirmar pelo PIX.</p>
+
+  <section class="merchant-card" aria-label="Informações da loja">
+    <div class="merchant-mark">E</div>
+    <div class="merchant-copy"><strong>Compra realizada na Equaliv</strong><span>Atendimento e acompanhamento do pedido pelo e-mail informado</span></div>
+    <div class="merchant-status"><svg class="ico"><use href="#i-shield"/></svg><span>Ambiente<br>protegido</span></div>
+  </section>
+
+  <div class="trust-strip" aria-label="Compromissos do checkout">
+    <div><svg class="ico"><use href="#i-lock"/></svg><span>Dados protegidos</span></div>
+    <div><svg class="ico"><use href="#i-truck"/></svg><span>Entrega acompanhada</span></div>
+    <div><svg class="ico"><use href="#i-check"/></svg><span>Valor transparente</span></div>
+  </div>
 
   <!-- RESUMO DO PRODUTO -->
   <div class="card order-card">
     <div class="step-h"><div class="step-n">✓</div><h2>Confira seu pedido</h2></div>
     <div id="orderItems" class="order-items" aria-live="polite"></div>
-    <div class="order-subtotal"><span>Subtotal dos produtos</span><strong id="orderSubtotal">R$ 0,00</strong></div>
-    <p class="order-note"><svg class="ico"><use href="#i-check"/></svg> O pedido será revisado antes da geração do PIX.</p>
+    <div class="order-subtotal"><span>Subtotal dos produtos</span><strong id="orderSubtotal">R$ 0,00</strong></div><p class="total-explain">O frete será calculado e exibido separadamente após a validação do CEP.</p>
+    <p class="order-note"><svg class="ico"><use href="#i-check"/></svg> Revise os itens e o valor total antes de gerar o código PIX.</p>
   </div>
 
   <!-- FORM (etapas) -->
@@ -324,7 +387,7 @@ body{background:#f5f8fb}
     <!-- 2. DADOS PESSOAIS -->
     <div class="card personal-card" id="personalCard">
       <div class="step-h"><div class="step-n">2</div><h2>Seus dados</h2></div>
-      <p class="data-note">Usaremos estas informações para processar e entregar o pedido.</p>
+      <p class="data-note">Preencha os dados exatamente como devem constar na entrega e na confirmação do pedido.</p>
       <div class="field">
         <label for="nome">Nome completo</label>
         <input id="nome" type="text" autocomplete="name" placeholder="Seu nome completo">
@@ -347,7 +410,7 @@ body{background:#f5f8fb}
           <div class="msg">Telefone inválido.</div>
         </div>
       </div>
-      <button class="btn btn-proceed" id="proceedPayment" type="button">Prosseguir para pagamento <span aria-hidden="true">→</span></button>
+      <button class="btn btn-proceed" id="proceedPayment" type="button">Revisar pedido e continuar <span aria-hidden="true">→</span></button>
     </div>
 
     <!-- 1. ENDEREÇO E FRETE -->
@@ -406,20 +469,20 @@ body{background:#f5f8fb}
       </div>
       <div class="shipping-card" id="shippingCard" aria-live="polite">
         <div class="shipping-title"><svg class="ico"><use href="#i-truck"/></svg> Escolha como receber</div>
-        <p class="shipping-subtitle">Opções disponíveis para o CEP informado:</p>
+        <p class="shipping-subtitle">Mostramos abaixo as opções disponíveis para o seu endereço:</p>
         <div class="shipping-options" role="radiogroup" aria-label="Opções de frete">
           <label class="shipping-option" data-shipping="standard">
             <input type="radio" name="shipping" value="standard">
-            <span><strong>Entrega econômica</strong><small>Receba em até 4 dias</small></span>
+            <span><strong>Entrega econômica</strong><small>Prazo estimado: até 4 dias úteis</small></span>
             <span class="shipping-price">Grátis</span>
           </label>
           <label class="shipping-option" data-shipping="express">
             <input type="radio" name="shipping" value="express">
-            <span><strong>Entrega expressa</strong><small>Receba amanhã</small></span>
+            <span><strong>Entrega expressa</strong><small>Prazo estimado: próximo dia útil</small></span>
             <span class="shipping-price express">R$ 9,90</span>
           </label>
         </div>
-        <p class="shipping-note"><svg class="ico" style="width:13px;height:13px;vertical-align:-3px"><use href="#i-check"/></svg> O prazo é contado após a confirmação do pagamento.</p>
+        <p class="shipping-note"><svg class="ico" style="width:13px;height:13px;vertical-align:-3px"><use href="#i-check"/></svg> O prazo começa a contar após a confirmação do pagamento.</p>
       </div>
     </div>
 
@@ -429,8 +492,8 @@ body{background:#f5f8fb}
       <div class="pix-head">
         <div class="pixlogo">PIX</div>
         <div>
-          <strong>PIX seguro e rápido</strong>
-          <small>Você paga somente após revisar o pedido</small>
+          <strong>Pagamento via PIX</strong>
+          <small>Revise o pedido antes de confirmar o pagamento</small>
         </div>
       </div>
       <div class="total-line">
@@ -441,8 +504,12 @@ body{background:#f5f8fb}
         <span>Total a pagar</span>
         <strong id="totalPagar">R$ 0,00</strong>
       </div>
-      <button class="btn" id="btnGerar"><svg class="ico"><use href="#i-lock"/></svg> GERAR PIX SEGURO</button>
-      <div class="safenote"><svg class="ico"><use href="#i-lock"/></svg> Seus dados são protegidos durante o pagamento</div>
+      <button class="btn" id="btnGerar" type="button"><svg class="ico"><use href="#i-lock"/></svg> Gerar código PIX</button>
+      <div class="safenote"><svg class="ico"><use href="#i-lock"/></svg> Conexão protegida · você só paga após revisar o total</div>
+      <div class="payment-assurance">
+        <div class="assurance-icon"><svg class="ico"><use href="#i-shield"/></svg></div>
+        <div><strong>Você mantém o controle</strong><span>O código só é gerado depois da conferência dos seus dados, itens, frete e total.</span></div>
+      </div>
     </div>
 
     <div class="seals">
@@ -454,16 +521,16 @@ body{background:#f5f8fb}
 
   <!-- TELA: PIX GERADO -->
   <div id="pixArea" class="card pix-pay hidden">
-    <h2>Quase lá! Pague com PIX</h2>
-    <p class="sub">Escaneie o QR Code ou copie o código no seu banco.</p>
+    <h2>Seu código PIX está pronto</h2>
+    <p class="sub">Abra o aplicativo do seu banco, escaneie o QR Code ou use o botão de copiar.</p>
     <div class="qr"><img id="pixQr" src="" alt="QR Code PIX"></div>
-    <div class="pix-code">
+    <div class="pix-code" aria-label="Código PIX copia e cola">
       <input id="pixCode" readonly value="">
-      <button id="btnCopy"><svg class="ico"><use href="#i-copy"/></svg> Copiar</button>
+      <button id="btnCopy" type="button"><svg class="ico"><use href="#i-copy"/></svg> Copiar</button>
     </div>
     <div class="timer-box">
       O código expira em <span class="clock" id="pixClock">30:00</span><br>
-      <small>Após o pagamento, a confirmação é automática.</small>
+      <small>A confirmação é automática após a compensação.</small>
     </div>
     <ol class="steps-list">
       <li>Abra o app do seu banco e escolha <strong>PIX</strong>.</li>
@@ -477,16 +544,16 @@ body{background:#f5f8fb}
   <!-- TELA: APROVADO -->
   <div id="okArea" class="card approved hidden">
     <div class="check"><svg class="ico"><use href="#i-check"/></svg></div>
-    <h2>Pagamento aprovado!</h2>
-    <p>Seu pedido foi confirmado com sucesso.</p>
-    <p>Enviamos os detalhes e o código de rastreio para o seu e-mail.</p>
+    <h2>Pagamento confirmado</h2>
+    <p>Recebemos o pagamento e confirmamos o seu pedido.</p>
+    <p>Os próximos detalhes serão enviados para o e-mail informado no checkout.</p>
     <br>
     <a class="btn outline" href="javascript:history.back()">Voltar à loja</a>
   </div>
 
   <div class="foot">
-    EQUALIV · Compra segura.<br>
-    Pagamento via PIX processado conforme as regras do Banco Central.
+    EQUALIV<br>
+    Checkout protegido · Pagamento via PIX
   </div>
 
 </div>
@@ -801,7 +868,7 @@ async function gerarPix(){
   }catch(e){
     alert('Não foi possível gerar o PIX agora. Tente novamente.');
     btnGerar.disabled = false;
-    btnGerar.innerHTML = '<svg class="ico"><use href="#i-lock"/></svg> GERAR PIX SEGURO';
+    btnGerar.innerHTML = '<svg class="ico"><use href="#i-lock"/></svg> Gerar código PIX';
   }
 }
 
@@ -874,14 +941,14 @@ function aprovado(){
 </script>
 
 <style>/*ckbar*/
-.ckbar{position:fixed;left:0;right:0;bottom:0;z-index:900;display:none;align-items:center;gap:12px;background:rgba(22,15,19,.97);padding:10px 14px;box-shadow:0 -4px 20px rgba(0,0,0,.28)}
+.ckbar{position:fixed;left:0;right:0;bottom:0;z-index:900;display:none;align-items:center;gap:12px;background:rgba(11,41,69,.97);padding:10px 14px;box-shadow:0 -4px 20px rgba(0,0,0,.28)}
 .ckbar.show{display:flex}
 .ckbar .ck-txt{display:flex;flex-direction:column;line-height:1.2;color:#fff}
 .ckbar .ck-txt span{font-size:.72rem;opacity:.75}
-.ckbar .ck-txt b{font-size:1.05rem;color:#4ade80}
+.ckbar .ck-txt b{font-size:1.05rem;color:#b9e2c9}
 .ckbar .ck-btn{margin-left:auto;background:#157347;color:#fff;font-weight:800;font-size:.9rem;padding:13px 24px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(21,115,71,.35)}
 body{padding-bottom:76px}
-</style><div class="ckbar" id="ckbar"><div class="ck-txt"><span>Total a pagar</span><b id="ckTotal">R$ 0,00</b></div><button class="ck-btn" id="ckBtn">GERAR PIX</button></div>
+</style><div class="ckbar" id="ckbar"><div class="ck-txt"><span>Total do pedido</span><b id="ckTotal">R$ 0,00</b></div><button class="ck-btn" id="ckBtn">GERAR PIX</button></div>
 <script>/*ckbar*/(function(){var bar=document.getElementById('ckbar'),btn=document.getElementById('ckBtn'),tot=document.getElementById('ckTotal'),form=document.getElementById('formArea'),payment=document.getElementById('paymentCard'),real=document.getElementById('btnGerar');if(!bar||!form||!payment||!real)return;var t=document.getElementById('totalPagar');if(t)tot.textContent=t.textContent;btn.addEventListener('click',function(){real.click();});function u(){bar.classList.toggle('show',!form.classList.contains('hidden')&&payment.classList.contains('is-visible'));}u();new MutationObserver(u).observe(form,{attributes:true,attributeFilter:['class']});new MutationObserver(u).observe(payment,{attributes:true,attributeFilter:['class']});})();</script>
 <style>/*pixfix*/
 #pixArea .qr{width:150px;height:150px}
@@ -891,8 +958,8 @@ body{padding-bottom:76px}
 .pixres{background:#eafaf1;border:1px solid #a7e3c4;color:#12603c;border-radius:10px;padding:10px 12px;font-size:.82rem;font-weight:600;margin-top:12px;text-align:left}
 </style><script>/*pixfix*/(function(){function go(){var pc=document.querySelector('#pixArea .pix-code');if(!pc||document.querySelector('.pixbig'))return;
 var h=document.createElement('div');h.className='pixhint';h.innerHTML='&#128241; <b>No celular?</b> Toque em <b>COPIAR C&Oacute;DIGO PIX</b>, abra o app do seu banco e escolha <b>Pix &rsaquo; Copia e Cola</b>. N&atilde;o precisa escanear o QR.';
-var big=document.createElement('button');big.className='pixbig';big.type='button';big.textContent='COPIAR CODIGO PIX';
-big.addEventListener('click',function(){var b=document.getElementById('btnCopy');if(b)b.click();big.textContent='CODIGO COPIADO!';setTimeout(function(){big.textContent='COPIAR CODIGO PIX';},2200);});
+var big=document.createElement('button');big.className='pixbig';big.type='button';big.textContent='Copiar código PIX';
+big.addEventListener('click',function(){var b=document.getElementById('btnCopy');if(b)b.click();big.textContent='Código copiado';setTimeout(function(){big.textContent='Copiar código PIX';},2200);});
 pc.parentNode.insertBefore(h,pc);pc.parentNode.insertBefore(big,pc);
 var r=document.createElement('div');r.className='pixres';r.innerHTML='&#9989; Assim que o pagamento cair, esta tela muda sozinha e seu pedido &eacute; enviado. N&atilde;o precisa mandar comprovante.';
 var sl=document.querySelector('#pixArea .steps-list');if(sl&&sl.parentNode)sl.parentNode.insertBefore(r,sl.nextSibling);}
