@@ -1462,6 +1462,40 @@
     .product-info:not(.is-switching) .price-box,
     .product-info:not(.is-switching) .gallery-frame { opacity: 1; transition: opacity .16s ease; }
 
+    /* Carrinho final: revisão clara, confiança e próximo passo evidente. */
+    .cart-header { min-height: 82px; padding: 17px 22px 15px; }
+    .cart-title-block { gap: 2px; }
+    .cart-kicker { color: #81909e; font-size: 9px; font-weight: 800; letter-spacing: 1.1px; }
+    .cart-header h2 { color: #17212b; font-size: 20px; letter-spacing: -.04em; }
+    .cart-header-subtitle { display: block !important; margin-top: 4px; color: #71808d; font-size: 10px; }
+    .cart-section { padding: 20px 22px; }
+    .cart-section-heading { align-items: flex-start; gap: 10px; margin-bottom: 16px; }
+    .cart-step { flex: 0 0 24px; width: 24px; height: 24px; background: #eaf1f6; color: #315b7e; font-size: 11px; }
+    .cart-section-heading h3 { margin: 1px 0 0; color: #17212b; font-size: 14px; }
+    .cart-section-heading small, .cart-summary-heading small { display: block; margin-top: 4px; color: #84919c; font-size: 10px; font-weight: 500; line-height: 1.35; }
+    .cart-item { min-height: 88px; padding: 11px; border: 1px solid #dce5eb; border-radius: 12px; background: #fff; box-shadow: 0 2px 8px rgba(18,59,102,.045); }
+    .cart-item:hover { border-color: #c7d7e5; box-shadow: 0 4px 12px rgba(18,59,102,.07); }
+    .cart-footer { padding: 13px 22px 15px; border-top: 1px solid #e1e8ef; background: #fff; box-shadow: 0 -5px 14px rgba(18,59,102,.05); }
+    .cart-summary-heading { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
+    .cart-summary-heading > div { min-width: 0; }
+    .cart-summary-heading strong { display: block; margin-top: 0; color: #17212b; font-size: 13px; }
+    .cart-summary-heading small { margin-top: 2px; }
+    .order-breakdown { gap: 5px; margin-bottom: 9px; padding: 8px 0 9px; border-top: 1px solid #edf1f4; border-bottom: 1px solid #edf1f4; }
+    .order-breakdown > div { font-size: 11px; }
+    .order-breakdown > div:last-child strong { color: #71808d; }
+    .total-row { margin-bottom: 9px; padding-bottom: 0; border-bottom: 0; }
+    .total-label { color: #536574; font-size: 12px; }
+    .total-value { color: var(--brand); font-size: 25px; }
+    .cart-footer .btn-primary { min-height: 48px; border-radius: 9px; font-size: 12px; }
+    .checkout-trust { margin-top: 7px; color: #788895; font-size: 9px; }
+    @media (max-width: 620px) {
+      .cart-header { min-height: 78px; padding: 15px 18px 14px; }
+      .cart-section { padding: 18px; }
+      .cart-footer { padding: 12px 18px calc(13px + env(safe-area-inset-bottom)); }
+      .cart-item { min-height: 88px; }
+      .cart-summary-heading { margin-bottom: 12px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1636,12 +1670,12 @@
 
   <div class="cart-overlay" id="cartOverlay" aria-hidden="true">
     <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
-      <header class="cart-header"><div class="cart-title-block"><h2 id="cartTitle">Carrinho</h2><p class="cart-header-subtitle">Revise seu pedido antes de continuar</p></div><button class="close-cart" id="closeCart" type="button" aria-label="Fechar carrinho"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>
+      <header class="cart-header"><div class="cart-title-block"><span class="cart-kicker">SEU PEDIDO</span><h2 id="cartTitle">Revisar carrinho</h2><p class="cart-header-subtitle">Confira os itens antes de prosseguir</p></div><button class="close-cart" id="closeCart" type="button" aria-label="Fechar carrinho"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>
       <div class="cart-content">
-        <section class="cart-section cart-order-section"><div class="cart-section-heading"><h3>Itens</h3></div><div id="cartItems"></div></section>
+        <section class="cart-section cart-order-section"><div class="cart-section-heading"><span class="cart-step">1</span><div><h3>Confira seus itens</h3><small>Você pode ajustar a quantidade antes de continuar.</small></div></div><div id="cartItems"></div></section>
 
       </div>
-      <footer class="cart-footer"><p class="cart-error" id="cartError" role="alert"></p><div class="order-breakdown"><div><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div><div><span>Entrega</span><strong>A calcular no checkout</strong></div></div><div class="total-row"><div class="total-label">Total</div><div class="total-value" id="cartTotal">R$ 0,00</div></div><button class="btn btn-primary" id="continueCheckout" type="button" disabled>Ir para o checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><div class="checkout-trust"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Checkout seguro</span></div></footer>
+      <footer class="cart-footer"><p class="cart-error" id="cartError" role="alert"></p><div class="cart-summary-heading"><span class="cart-step">2</span><div><strong>Resumo do pedido</strong><small>Entrega e pagamento serão definidos no checkout.</small></div></div><div class="order-breakdown"><div><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div><div><span>Entrega</span><strong>A calcular no checkout</strong></div></div><div class="total-row"><div class="total-label">Total do pedido</div><div class="total-value" id="cartTotal">R$ 0,00</div></div><button class="btn btn-primary" id="continueCheckout" type="button" disabled>Ir para o checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><div class="checkout-trust"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Você revisa tudo antes de pagar</span></div></footer>
     </aside>
   </div>
 
