@@ -164,6 +164,8 @@ input,select{font:inherit}
 .field-status.loading{color:var(--wine)}
 .field-status.error{color:#b3263e}
 .required-mark{color:#b3263e}
+.address-fields{display:none}
+.address-fields.is-visible{display:block}
 /* Refinamento Equaliv: institucional, limpo e orientado à conclusão. */
 :root{--wine:#123b66;--wine-dark:#0c2d4e;--pink:#b9d7ec;--pink-soft:#eef6fb;--pink-bg:#f5f9fc;--teal:#157347;--green:#157347;--ink:#17212b;--muted:#637382;--line:#dfe7ee;--shadow:0 6px 24px rgba(18,59,102,.09)}
 body{background:#f5f8fb}
@@ -277,45 +279,49 @@ body{background:#f5f8fb}
           <div class="msg">CEP inválido.</div>
           <div class="field-status" id="cepStatus" aria-live="polite"></div>
         </div>
+      </div>
+      <div class="address-fields" id="addressFields">
+        <div class="row">
+          <div class="field">
+            <label for="estado">Estado <span class="required-mark">*</span></label>
+            <select id="estado">
+              <option value="">UF</option>
+              <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
+              <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
+              <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
+              <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+              <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
+              <option>SE</option><option>TO</option>
+            </select>
+            <div class="msg">Selecione.</div>
+          </div>
+        </div>
         <div class="field">
-          <label for="estado">Estado</label>
-          <select id="estado">
-            <option value="">UF</option>
-            <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option>
-            <option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option>
-            <option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option>
-            <option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
-            <option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option>
-            <option>SE</option><option>TO</option>
-          </select>
-          <div class="msg">Selecione.</div>
+          <label for="cidade">Cidade <span class="required-mark">*</span></label>
+          <input id="cidade" type="text" placeholder="Sua cidade">
+          <div class="msg">Informe a cidade.</div>
         </div>
-      </div>
-      <div class="field">
-        <label for="cidade">Cidade</label>
-        <input id="cidade" type="text" placeholder="Sua cidade">
-        <div class="msg">Informe a cidade.</div>
-      </div>
-      <div class="field">
-        <label for="bairro">Bairro</label>
-        <input id="bairro" type="text" placeholder="Seu bairro">
-        <div class="msg">Informe o bairro.</div>
-      </div>
-      <div class="row">
         <div class="field">
-          <label for="rua">Rua / Logradouro</label>
-          <input id="rua" type="text" placeholder="Nome da rua">
-          <div class="msg">Informe a rua.</div>
+          <label for="bairro">Bairro <span class="required-mark">*</span></label>
+          <input id="bairro" type="text" placeholder="Seu bairro">
+          <div class="msg">Informe o bairro.</div>
         </div>
-        <div class="field w-num">
-          <label for="numero">Número</label>
-          <input id="numero" type="text" inputmode="numeric" placeholder="Nº">
-          <div class="msg">Nº</div>
+        <div class="row">
+          <div class="field">
+            <label for="rua">Rua / Logradouro <span class="required-mark">*</span></label>
+            <input id="rua" type="text" placeholder="Nome da rua">
+            <div class="msg">Informe a rua.</div>
+          </div>
+          <div class="field w-num">
+            <label for="numero">Número <span class="required-mark">*</span></label>
+            <input id="numero" type="text" inputmode="numeric" placeholder="Nº">
+            <div class="msg">Nº</div>
+          </div>
         </div>
-      </div>
-      <div class="field">
-        <label for="compl">Complemento <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
-        <input id="compl" type="text" placeholder="Apto, bloco, referência">
+        <div class="field">
+          <label for="compl">Complemento <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+          <input id="compl" type="text" placeholder="Apto, bloco, referência">
+        </div>
       </div>
       <div class="shipping-card" id="shippingCard" aria-live="polite">
         <div class="shipping-title"><svg class="ico"><use href="#i-truck"/></svg> Escolha como receber</div>
@@ -568,34 +574,45 @@ mask(document.getElementById('tel'), d => d.slice(0,11)
   .replace(/(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2'));
 mask(document.getElementById('cep'), d => d.slice(0,8).replace(/(\d{5})(\d)/,'$1-$2'));
 
-/* ---- busca endereço pelo CEP (ViaCEP) ---- */
-document.getElementById('cep').addEventListener('blur', async ()=>{
+/* ---- busca automática do endereço ao completar o CEP (ViaCEP) ---- */
+let lastCepSearched = '';
+let cepRequest = null;
+async function buscarEnderecoPorCep(){
   const d = onlyD(document.getElementById('cep').value);
   const cepStatus = document.getElementById('cepStatus');
   if(d.length!==8){
+    lastCepSearched = '';
+    document.getElementById('addressFields').classList.remove('is-visible');
+    document.getElementById('shippingCard').classList.remove('is-visible');
     cepStatus.textContent = '';
     cepStatus.className = 'field-status';
     return;
   }
+  if(d === lastCepSearched) return;
+  lastCepSearched = d;
   cepStatus.textContent = 'Consultando endereço...';
   cepStatus.className = 'field-status loading';
   try{
-    const r = await fetch('https://viacep.com.br/ws/'+d+'/json/');
+    cepRequest = await fetch('https://viacep.com.br/ws/'+d+'/json/');
+    const r = cepRequest;
     const j = await r.json();
     if(j.erro) throw new Error('CEP não encontrado');
     if(j.uf) document.getElementById('estado').value = j.uf;
     if(j.localidade) document.getElementById('cidade').value = j.localidade;
     if(j.bairro) document.getElementById('bairro').value = j.bairro;
     if(j.logradouro) document.getElementById('rua').value = j.logradouro;
+    document.getElementById('addressFields').classList.add('is-visible');
     cepStatus.textContent = 'Endereço localizado. Confira os dados e escolha a entrega.';
     cepStatus.className = 'field-status';
     if(typeof window.showShippingOptions === 'function') window.showShippingOptions();
     document.getElementById('numero').focus();
   }catch(e){
+    lastCepSearched = '';
     cepStatus.textContent = 'Não foi possível localizar este CEP. Confira e tente novamente.';
     cepStatus.className = 'field-status error';
   }
-});
+}
+document.getElementById('cep').addEventListener('input', buscarEnderecoPorCep);
 
 /* =====================================================================
    VALIDAÇÃO
