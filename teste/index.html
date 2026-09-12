@@ -72,14 +72,11 @@
     .gallery-slide { flex: 0 0 100%; display: grid; place-items: center; aspect-ratio: 1 / 1; padding: clamp(20px, 4vw, 54px); scroll-snap-align: start; }
     .gallery-slide img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; cursor: zoom-in; }
     .gallery-hint { padding: 0 12px 13px; color: #7b8792; font-size: 11px; text-align: center; }
-    .thumbs { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
-    .thumb-list { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
-    .thumb-list::-webkit-scrollbar { display: none; }
-    .thumb { flex: 0 0 76px; width: 76px; height: 76px; display: grid; place-items: center; padding: 5px; border: 1px solid var(--border); border-radius: 9px; background: #fff; }
-    .thumb.active { border: 2px solid var(--brand); padding: 4px; }
-    .thumb img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
-    .thumb-nav { flex: 0 0 30px; width: 30px; height: 30px; border: 1px solid var(--border); border-radius: 50%; background: #fff; color: var(--brand); }
-    .thumb-nav:disabled { opacity: .35; cursor: not-allowed; }
+    .gallery-dots { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 30px; margin-top: 10px; }
+    .gallery-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: #c7d2dc; transition: transform .18s ease, background-color .18s ease; }
+    .gallery-dot:hover { background: #8fa5b8; }
+    .gallery-dot.is-active { transform: scale(1.35); background: var(--brand); }
+    .gallery-dot:focus-visible { outline: 3px solid rgba(31, 111, 178, .25); outline-offset: 3px; }
 
     .product-info { min-width: 0; padding-top: 4px; }
     .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
@@ -560,11 +557,7 @@
             <div class="gallery-slider" id="gallerySlider" aria-label="Fotos do produto"></div>
             <div class="gallery-hint">Deslize para ver mais fotos · clique para ampliar</div>
           </div>
-          <div class="thumbs">
-            <button class="thumb-nav" id="thumbPrev" type="button" aria-label="Fotos anteriores"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
-            <div class="thumb-list" id="thumbList"></div>
-            <button class="thumb-nav" id="thumbNext" type="button" aria-label="Próximas fotos"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
-          </div>
+          <div class="gallery-dots" id="galleryDots" aria-label="Selecionar foto"></div>
         </div>
 
         <div class="product-info">
@@ -817,9 +810,9 @@
 
       function renderGallery() {
         const slider = $('#gallerySlider');
-        const thumbList = $('#thumbList');
+        const dots = $('#galleryDots');
         slider.replaceChildren();
-        thumbList.replaceChildren();
+        dots.replaceChildren();
         currentImage = 0;
 
         selectedVariant.images.forEach((src, index) => {
@@ -834,17 +827,13 @@
           slide.appendChild(image);
           slider.appendChild(slide);
 
-          const thumb = document.createElement('button');
-          thumb.type = 'button';
-          thumb.className = `thumb${index === 0 ? ' active' : ''}`;
-          thumb.setAttribute('aria-label', `Ver imagem ${index + 1}`);
-          thumb.addEventListener('click', () => goToImage(index));
-          const thumbImage = document.createElement('img');
-          thumbImage.src = src;
-          thumbImage.alt = '';
-          thumbImage.loading = 'lazy';
-          thumb.appendChild(thumbImage);
-          thumbList.appendChild(thumb);
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = `gallery-dot${index === 0 ? ' is-active' : ''}`;
+          dot.setAttribute('aria-label', `Ver imagem ${index + 1}`);
+          dot.setAttribute('aria-current', String(index === 0));
+          dot.addEventListener('click', () => goToImage(index));
+          dots.appendChild(dot);
         });
         slider.scrollLeft = 0;
         updateThumbNav();
@@ -854,15 +843,15 @@
         const slider = $('#gallerySlider');
         currentImage = Math.max(0, Math.min(index, selectedVariant.images.length - 1));
         slider.scrollTo({ left: slider.clientWidth * currentImage, behavior: 'smooth' });
-        $$('.thumb', $('#thumbList')).forEach((thumb, i) => thumb.classList.toggle('active', i === currentImage));
-        const activeThumb = $('.thumb.active', $('#thumbList'));
-        activeThumb?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        $$('.gallery-dot', $('#galleryDots')).forEach((dot, i) => {
+          const isActive = i === currentImage;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-current', String(isActive));
+        });
       }
 
       function updateThumbNav() {
-        const list = $('#thumbList');
-        $('#thumbPrev').disabled = list.scrollLeft <= 1;
-        $('#thumbNext').disabled = list.scrollLeft + list.clientWidth >= list.scrollWidth - 1;
+        // Os pontos ocupam apenas o papel de indicador; a navegação acontece por arraste ou clique.
       }
 
       function updateProductView() {
@@ -1233,10 +1222,17 @@ https://http2.mlstatic.com/D_NQ_NP_2X_748828-MLA97709975419_112025-F.webp
         saveCart();
         renderCart();
       });
-      $('#thumbPrev').addEventListener('click', () => $('#thumbList').scrollBy({ left: -160, behavior: 'smooth' }));
-      $('#thumbNext').addEventListener('click', () => $('#thumbList').scrollBy({ left: 160, behavior: 'smooth' }));
-      $('#thumbList').addEventListener('scroll', updateThumbNav, { passive: true });
-      $('#gallerySlider').addEventListener('scroll', () => { const index = Math.round($('#gallerySlider').scrollLeft / $('#gallerySlider').clientWidth); if (index !== currentImage) { currentImage = index; $$('.thumb', $('#thumbList')).forEach((thumb, i) => thumb.classList.toggle('active', i === currentImage)); } }, { passive: true });
+      $('#gallerySlider').addEventListener('scroll', () => {
+        const index = Math.round($('#gallerySlider').scrollLeft / $('#gallerySlider').clientWidth);
+        if (index !== currentImage) {
+          currentImage = index;
+          $$('.gallery-dot', $('#galleryDots')).forEach((dot, i) => {
+            const isActive = i === currentImage;
+            dot.classList.toggle('is-active', isActive);
+            dot.setAttribute('aria-current', String(isActive));
+          });
+        }
+      }, { passive: true });
       $('#closeLightbox').addEventListener('click', closeLightbox);
       $('#lightbox').addEventListener('click', (event) => { if (event.target === $('#lightbox')) closeLightbox(); });
       document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { if ($('#lightbox').classList.contains('is-open')) closeLightbox(); else if ($('#cartOverlay').classList.contains('is-open')) closeCart(); } });
