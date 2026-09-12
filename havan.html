@@ -383,6 +383,16 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
 .shipping-note{max-width:390px}.field-status{min-height:16px}
 @media(max-width:480px){.pix-error{font-size:.66rem}}
 </style>
+
+<style id="cep-feedback-polish">
+.field-status{display:flex;align-items:center;gap:6px;min-height:18px;margin-top:6px;font-size:.66rem;line-height:1.35;color:#5f7785;transition:color .2s ease}
+.field-status.loading{color:#315f7a}.field-status.error{color:#a52f3d}.field-status:not(.loading):not(.error){color:#27734d}
+.status-icon{width:14px;height:14px;flex:none;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.status-spinner{width:13px;height:13px;flex:none;border:2px solid #c5d9e4;border-top-color:#39739b;border-radius:50%;animation:cep-spin .75s linear infinite}
+@keyframes cep-spin{to{transform:rotate(360deg)}}
+.delivery-card .field:has(#cep){margin-bottom:4px}
+@media(max-width:480px){.field-status{font-size:.64rem}}
+</style>
 </head>
 <body>
 
@@ -455,7 +465,7 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
           <label for="cep">CEP <span class="required-mark">*</span></label>
           <input id="cep" type="tel" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9">
           <div class="msg">CEP inválido.</div>
-          <div class="field-status" id="cepStatus" aria-live="polite"></div>
+          <div class="field-status" id="cepStatus" aria-live="polite" role="status"></div>
         </div>
       </div>
       <div class="address-fields" id="addressFields">
@@ -769,8 +779,8 @@ async function buscarEnderecoPorCep(){
   if(d === lastCepSearched) return;
   lastCepSearched = d;
   cepInput.blur();
-  cepStatus.textContent = 'Consultando endereço...';
-  cepStatus.className = 'field-status loading';
+    cepStatus.innerHTML = '<span class="status-spinner" aria-hidden="true"></span><span>Buscando seu endereço...</span>';
+    cepStatus.className = 'field-status loading';
   try{
     cepRequest = await fetch('https://viacep.com.br/ws/'+d+'/json/');
     const r = cepRequest;
@@ -781,7 +791,7 @@ async function buscarEnderecoPorCep(){
     if(j.bairro) document.getElementById('bairro').value = j.bairro;
     if(j.logradouro) document.getElementById('rua').value = j.logradouro;
     document.getElementById('addressFields').classList.add('is-visible');
-    cepStatus.textContent = 'Endereço localizado. Confira os dados e escolha a entrega.';
+    cepStatus.innerHTML = '<svg class="status-icon" aria-hidden="true"><use href="#i-check"/></svg><span>Endereço localizado. Confira os dados abaixo.</span>';
     cepStatus.className = 'field-status';
     if(typeof window.showShippingOptions === 'function') window.showShippingOptions();
   }catch(e){
@@ -790,7 +800,7 @@ async function buscarEnderecoPorCep(){
     document.getElementById('shippingCard').classList.remove('is-visible');
     document.getElementById('personalCard').classList.remove('is-visible');
     document.getElementById('paymentCard').classList.remove('is-visible');
-    cepStatus.textContent = 'Não foi possível localizar este CEP. Confira e tente novamente.';
+    cepStatus.innerHTML = '<svg class="status-icon" aria-hidden="true"><use href="#i-shield"/></svg><span>Não encontramos este CEP. Confira os números e tente novamente.</span>';
     cepStatus.className = 'field-status error';
   }
 }
