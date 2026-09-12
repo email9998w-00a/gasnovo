@@ -241,7 +241,6 @@
     .cart-footer .btn { width: 100%; min-height: 51px; }
     .cart-footer-note { margin: 9px 0 0; color: #8995a3; font-size: 9px; line-height: 1.4; text-align: center; }
     .cart-footer-note i { color: var(--success); }
-    .cart-next-step { background: #fff; }
     .checkout-handoff { display: flex; align-items: flex-start; gap: 12px; padding: 13px 14px; border: 1px solid #dce8ef; border-radius: 11px; background: #f8fbfd; }
     .checkout-handoff > i { flex: 0 0 32px; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: #eaf6ef; color: var(--success); }
     .checkout-handoff strong { display: block; color: var(--text); font-size: 12px; }
@@ -1493,10 +1492,11 @@
     .total-value { color: var(--brand); font-size: 25px; }
     .cart-footer .btn-primary { min-height: 48px; border-radius: 9px; font-size: 12px; }
     .checkout-trust { margin-top: 7px; color: #788895; font-size: 9px; }
-    .cart-next-step { display: flex; align-items: flex-start; gap: 10px; margin: 0 22px 20px; padding: 13px 0 0; border-top: 1px solid #edf1f4; background: #fff; }
-    .cart-next-step > div { min-width: 0; }
-    .cart-next-step strong { display: block; margin-top: 2px; color: #17212b; font-size: 12px; }
-    .cart-next-step small { display: block; margin-top: 3px; color: #84919c; font-size: 10px; line-height: 1.35; }
+    .cart-trust-panel { display: flex; align-items: center; gap: 10px; margin: 0 22px 20px; padding: 12px; border: 1px solid #dce8ef; border-radius: 10px; background: #f7fafc; }
+    .cart-trust-icon { flex: 0 0 28px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #e5f5eb; color: #17633d; font-size: 12px; }
+    .cart-trust-panel > div { min-width: 0; }
+    .cart-trust-panel strong { display: block; color: #203544; font-size: 11px; }
+    .cart-trust-panel small { display: block; margin-top: 3px; color: #647685; font-size: 9px; line-height: 1.35; }
     .entry-promo-modal { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; padding: 18px; background: rgba(9,25,40,.48); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s ease, visibility .2s ease; }
     .entry-promo-modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
     .entry-promo-card { position: relative; width: min(100%, 430px); display: grid; grid-template-columns: 132px minmax(0,1fr); gap: 20px; padding: 20px; border: 1px solid #d6e2e9; border-radius: 18px; background: #fff; box-shadow: 0 18px 48px rgba(9,25,40,.22); transform: translateY(8px) scale(.985); transition: transform .2s ease; }
@@ -1520,7 +1520,7 @@
     @media (max-width: 620px) {
       .cart-header { min-height: 78px; padding: 15px 18px 14px; }
       .cart-section { padding: 18px; }
-      .cart-next-step { margin: 0 18px 18px; }
+      .cart-trust-panel { margin: 0 18px 18px; padding: 11px; }
       .cart-footer { padding: 12px 18px calc(13px + env(safe-area-inset-bottom)); }
       .cart-item { min-height: 88px; }
       .cart-summary-heading { margin-bottom: 12px; }
@@ -1733,7 +1733,7 @@
       <header class="cart-header"><div class="cart-title-block"><span class="cart-kicker">SEU PEDIDO</span><h2 id="cartTitle">Revisar carrinho</h2><p class="cart-header-subtitle">Confira os itens antes de prosseguir</p></div><button class="close-cart" id="closeCart" type="button" aria-label="Fechar carrinho"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>
       <div class="cart-content">
         <section class="cart-section cart-order-section"><div class="cart-section-heading"><span class="cart-step">1</span><div><h3>Confira seus itens</h3><small>Você pode ajustar a quantidade antes de continuar.</small></div></div><div id="cartItems"></div></section>
-        <div class="cart-next-step"><span class="cart-step">2</span><div><strong>Pronto para continuar?</strong><small>Informe entrega e pagamento no próximo passo.</small></div></div>
+        <div class="cart-trust-panel"><span class="cart-trust-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span><div><strong>Compra protegida</strong><small>Pagamento seguro, pedido revisável e envio com rastreio.</small></div></div>
 
       </div>
       <footer class="cart-footer"><p class="cart-error" id="cartError" role="alert"></p><div class="order-breakdown"><div><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div><div><span>Entrega</span><strong>A calcular no próximo passo</strong></div></div><div class="total-row"><div class="total-label">Total dos produtos</div><div class="total-value" id="cartTotal">R$ 0,00</div></div><button class="btn btn-primary" id="continueCheckout" type="button" disabled>Continuar para entrega <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><div class="checkout-trust"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Pagamento seguro · pedido revisável</span></div></footer>
