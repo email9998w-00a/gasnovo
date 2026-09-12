@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Finalizar pedido — Equaliv</title>
 <style>
-/* ====== TEMA (igual à loja Kokeshi) ====== */
+/* ====== TEMA EQUALIV ====== */
 :root{
   --wine:#9c0b52;
   --wine-dark:#7d0842;
@@ -137,6 +137,33 @@ input,select{font:inherit}
 .order-subtotal{display:flex;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--muted)}
 .order-subtotal strong{color:var(--wine);font-size:1rem}
 .order-error{background:#fff1f2;border:1px solid #f2a4ad;border-radius:10px;color:#a51d35;padding:12px;font-size:.82rem;line-height:1.4}
+/* Opções de entrega exibidas após a validação do CEP. */
+.shipping-card{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.shipping-card.is-visible{display:block}
+.shipping-title{display:flex;align-items:center;gap:7px;margin-bottom:9px;color:var(--ink);font-size:.83rem;font-weight:800}
+.shipping-title .ico{width:17px;height:17px;color:var(--teal)}
+.shipping-subtitle{margin:-4px 0 10px;color:var(--muted);font-size:.72rem}
+.shipping-options{display:grid;gap:8px}
+.shipping-option{position:relative;display:grid;grid-template-columns:20px minmax(0,1fr) auto;align-items:center;gap:9px;width:100%;padding:11px 10px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);text-align:left;transition:.15s}
+.shipping-option:hover{border-color:#9eb4c8;background:#f9fbfd}
+.shipping-option.is-selected{border-color:var(--teal);background:#f2faf5;box-shadow:0 0 0 2px rgba(21,115,71,.08)}
+.shipping-option input{width:16px;height:16px;accent-color:var(--teal)}
+.shipping-option strong{display:block;font-size:.8rem}
+.shipping-option small{display:block;margin-top:2px;color:var(--muted);font-size:.69rem}
+.shipping-price{color:var(--teal);font-size:.78rem;font-weight:800;white-space:nowrap}
+.shipping-price.express{color:var(--wine)}
+.shipping-note{margin-top:8px;color:var(--muted);font-size:.68rem;line-height:1.4}
+.checkout-progress{display:flex;align-items:center;gap:7px;margin:0 0 14px;padding:10px 12px;border:1px solid #dce7ee;border-radius:10px;background:#f9fbfc;color:#7b8b98;font-size:.68rem;font-weight:700}
+.checkout-progress .progress-step{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.checkout-progress .progress-step.is-active{color:var(--wine)}
+.checkout-progress .progress-number{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#e7eef3;color:#5d7180;font-size:.65rem}
+.checkout-progress .is-active .progress-number{background:var(--wine);color:#fff}
+.checkout-progress .progress-line{height:1px;flex:1;background:#dce7ee}
+.checkout-intro{margin:-3px 2px 14px;color:var(--muted);font-size:.75rem;line-height:1.45}
+.field-status{min-height:0;margin-top:5px;color:var(--muted);font-size:.7rem}
+.field-status.loading{color:var(--wine)}
+.field-status.error{color:#b3263e}
+.required-mark{color:#b3263e}
 /* Refinamento Equaliv: institucional, limpo e orientado à conclusão. */
 :root{--wine:#123b66;--wine-dark:#0c2d4e;--pink:#b9d7ec;--pink-soft:#eef6fb;--pink-bg:#f5f9fc;--teal:#157347;--green:#157347;--ink:#17212b;--muted:#637382;--line:#dfe7ee;--shadow:0 6px 24px rgba(18,59,102,.09)}
 body{background:#f5f8fb}
@@ -194,6 +221,15 @@ body{background:#f5f8fb}
     <div class="h">Revisar pedido</div>
   </div>
 
+  <div class="checkout-progress" aria-label="Etapas do checkout">
+    <span class="progress-step is-active"><span class="progress-number">1</span> Dados</span>
+    <span class="progress-line"></span>
+    <span class="progress-step"><span class="progress-number">2</span> Entrega</span>
+    <span class="progress-line"></span>
+    <span class="progress-step"><span class="progress-number">3</span> PIX</span>
+  </div>
+  <p class="checkout-intro">Preencha seus dados, escolha a entrega e revise o valor final antes de gerar o PIX.</p>
+
   <!-- RESUMO DO PRODUTO -->
   <div class="card order-card">
     <div class="step-h"><div class="step-n">✓</div><h2>Resumo do pedido</h2></div>
@@ -236,9 +272,10 @@ body{background:#f5f8fb}
       <div class="step-h"><div class="step-n">2</div><h2>Endereço de entrega</h2></div>
       <div class="row">
         <div class="field w-cep">
-          <label for="cep">CEP</label>
+          <label for="cep">CEP <span class="required-mark">*</span></label>
           <input id="cep" type="tel" inputmode="numeric" placeholder="00000-000" maxlength="9">
           <div class="msg">CEP inválido.</div>
+          <div class="field-status" id="cepStatus" aria-live="polite"></div>
         </div>
         <div class="field">
           <label for="estado">Estado</label>
@@ -280,6 +317,23 @@ body{background:#f5f8fb}
         <label for="compl">Complemento <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
         <input id="compl" type="text" placeholder="Apto, bloco, referência">
       </div>
+      <div class="shipping-card" id="shippingCard" aria-live="polite">
+        <div class="shipping-title"><svg class="ico"><use href="#i-truck"/></svg> Escolha como receber</div>
+        <p class="shipping-subtitle">Opções disponíveis para o CEP informado:</p>
+        <div class="shipping-options" role="radiogroup" aria-label="Opções de frete">
+          <label class="shipping-option is-selected" data-shipping="standard">
+            <input type="radio" name="shipping" value="standard" checked>
+            <span><strong>Entrega econômica</strong><small>Receba em até 4 dias</small></span>
+            <span class="shipping-price">Grátis</span>
+          </label>
+          <label class="shipping-option" data-shipping="express">
+            <input type="radio" name="shipping" value="express">
+            <span><strong>Entrega expressa</strong><small>Receba amanhã</small></span>
+            <span class="shipping-price express">R$ 9,90</span>
+          </label>
+        </div>
+        <p class="shipping-note"><svg class="ico" style="width:13px;height:13px;vertical-align:-3px"><use href="#i-check"/></svg> O prazo é contado após a confirmação do pagamento.</p>
+      </div>
     </div>
 
     <!-- 3. PAGAMENTO -->
@@ -296,6 +350,10 @@ body{background:#f5f8fb}
         <div><svg class="ico"><use href="#i-bolt"/></svg>IMEDIATO</div>
         <div><svg class="ico"><use href="#i-check"/></svg>SIMPLES</div>
         <div><svg class="ico"><use href="#i-shield"/></svg>SEGURO</div>
+      </div>
+      <div class="total-line">
+        <span>Frete</span>
+        <strong id="shippingPagar">Grátis</strong>
       </div>
       <div class="total-line">
         <span>Total a pagar</span>
@@ -357,7 +415,7 @@ body{background:#f5f8fb}
    ===================================================================== */
 const CONFIG = {
   PIXEL_ID:  '1838038347359216',  // ID do Pixel (Meta)
-  API_BASE:  '',            // Vazio = mesmo servidor que serve a página. Ou URL fixa, ex: 'https://kokeshi.com.br'
+  API_BASE:  '',            // Vazio = mesmo servidor que serve a página. Ou URL fixa do backend Equaliv.
   PIX_EXPIRE_MIN: 30,       // minutos até o PIX expirar
   MODO_DEMO: false          // true = só simula o visual. false = PIX real pelo backend.
 };
@@ -407,6 +465,7 @@ const order = {
   shipping: numberOr(rawOrder?.shipping, numberOr(params.get('shipping'), 0)),
   total: numberOr(rawOrder?.total, numberOr(params.get('total'), calculatedSubtotal))
 };
+let selectedShipping = { id:'standard', label:'Entrega econômica', price:0, delivery:'Até 4 dias' };
 const kitKey = orderItems[0]?.id || 'equaliv-body-protein';
 const kit = {
   nome: orderItems[0]?.name || 'Pedido Equaliv',
@@ -440,6 +499,38 @@ renderOrderSummary();
 document.getElementById('totalPagar').textContent = brl(order.total);
 document.getElementById('pixValor').textContent = brl(order.total);
 document.getElementById('pixCode').value = '';
+
+function updateShippingTotal(){
+  order.shipping = selectedShipping.price;
+  order.shippingMethod = selectedShipping.id;
+  order.shippingLabel = selectedShipping.label;
+  order.shippingDelivery = selectedShipping.delivery;
+  order.total = order.subtotal + order.shipping;
+  document.getElementById('shippingPagar').textContent = selectedShipping.price ? brl(selectedShipping.price) : 'Grátis';
+  document.getElementById('totalPagar').textContent = brl(order.total);
+  document.getElementById('pixValor').textContent = brl(order.total);
+  const fixedTotal = document.getElementById('ckTotal');
+  if(fixedTotal) fixedTotal.textContent = brl(order.total);
+}
+
+function setupShipping(){
+  const card = document.getElementById('shippingCard');
+  document.querySelectorAll('.shipping-option').forEach(option => option.addEventListener('click', () => {
+    document.querySelectorAll('.shipping-option').forEach(item => item.classList.remove('is-selected'));
+    option.classList.add('is-selected');
+    const express = option.dataset.shipping === 'express';
+    selectedShipping = express
+      ? { id:'express', label:'Entrega expressa', price:9.90, delivery:'Amanhã' }
+      : { id:'standard', label:'Entrega econômica', price:0, delivery:'Até 4 dias' };
+    updateShippingTotal();
+  }));
+  window.showShippingOptions = () => { card.classList.add('is-visible'); setProgressStep(2); };
+}
+function setProgressStep(step){
+  document.querySelectorAll('.progress-step').forEach((item, index) => item.classList.toggle('is-active', index === step - 1));
+}
+setupShipping();
+updateShippingTotal();
 
 // captura UTMs / click-ids da URL p/ atribuição de vendas
 const tracking = {};
@@ -480,17 +571,30 @@ mask(document.getElementById('cep'), d => d.slice(0,8).replace(/(\d{5})(\d)/,'$1
 /* ---- busca endereço pelo CEP (ViaCEP) ---- */
 document.getElementById('cep').addEventListener('blur', async ()=>{
   const d = onlyD(document.getElementById('cep').value);
-  if(d.length!==8) return;
+  const cepStatus = document.getElementById('cepStatus');
+  if(d.length!==8){
+    cepStatus.textContent = '';
+    cepStatus.className = 'field-status';
+    return;
+  }
+  cepStatus.textContent = 'Consultando endereço...';
+  cepStatus.className = 'field-status loading';
   try{
     const r = await fetch('https://viacep.com.br/ws/'+d+'/json/');
     const j = await r.json();
-    if(j.erro) return;
+    if(j.erro) throw new Error('CEP não encontrado');
     if(j.uf) document.getElementById('estado').value = j.uf;
     if(j.localidade) document.getElementById('cidade').value = j.localidade;
     if(j.bairro) document.getElementById('bairro').value = j.bairro;
     if(j.logradouro) document.getElementById('rua').value = j.logradouro;
+    cepStatus.textContent = 'Endereço localizado. Confira os dados e escolha a entrega.';
+    cepStatus.className = 'field-status';
+    if(typeof window.showShippingOptions === 'function') window.showShippingOptions();
     document.getElementById('numero').focus();
-  }catch(e){}
+  }catch(e){
+    cepStatus.textContent = 'Não foi possível localizar este CEP. Confira e tente novamente.';
+    cepStatus.className = 'field-status error';
+  }
 });
 
 /* =====================================================================
@@ -594,6 +698,7 @@ async function gerarPix(){
 
 function mostrarPix(pix){
   currentTxn = pix.id;
+  setProgressStep(3);
   document.getElementById('formArea').classList.add('hidden');
   document.getElementById('pixArea').classList.remove('hidden');
   document.getElementById('pixQr').src = pix.qr_image;
