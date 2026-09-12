@@ -540,22 +540,22 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
 
   <!-- TELA: PIX GERADO -->
   <div id="pixArea" class="card pix-pay hidden">
-    <h2>Código PIX gerado</h2>
-    <p class="sub">Pague pelo app do seu banco usando o QR Code ou Copia e Cola.</p>
-    <div class="qr"><img id="pixQr" src="" alt="QR Code PIX"></div>
+    <h2>Quase lá! Pague com PIX</h2>
+    <p class="sub">Escaneie o QR Code ou copie o código no seu banco.</p>
+    <div class="qr"><img id="pixQr" src="" alt="QR Code PIX para pagamento"></div>
     <div class="pix-code" aria-label="Código PIX copia e cola">
-      <input id="pixCode" readonly value="">
+      <input id="pixCode" readonly value="" aria-label="Código PIX copia e cola">
       <button id="btnCopy" type="button"><svg class="ico"><use href="#i-copy"/></svg> Copiar</button>
     </div>
     <div class="timer-box">
       O código expira em <span class="clock" id="pixClock">30:00</span><br>
-      <small>A confirmação acontece automaticamente após o pagamento.</small>
+      <small>Após o pagamento, a confirmação é automática.</small>
     </div>
     <ol class="steps-list">
       <li>Abra o app do seu banco e escolha <strong>PIX</strong>.</li>
       <li>Selecione <strong>Pagar com QR Code</strong> ou <strong>Copia e Cola</strong>.</li>
       <li>Confirme o valor <strong id="pixValor">R$ 0,00</strong> e finalize.</li>
-      <li>Pronto! A tela vira sozinha quando o pagamento cair.</li>
+      <li>A tela será atualizada automaticamente após a confirmação.</li>
     </ol>
     <div class="safenote"><svg class="ico"><use href="#i-shield"/></svg> Pagamento processado com segurança</div>
   </div>
