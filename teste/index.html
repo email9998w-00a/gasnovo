@@ -1497,6 +1497,9 @@
     .cart-trust-panel > div { min-width: 0; }
     .cart-trust-panel strong { display: block; color: #203544; font-size: 11px; }
     .cart-trust-panel small { display: block; margin-top: 3px; color: #647685; font-size: 9px; line-height: 1.35; }
+    .cart-footer[hidden], .cart-trust-panel[hidden] { display: none; }
+    .empty-cart-action { min-height: 40px; margin-top: 16px; padding: 9px 16px; border: 1px solid #9db4c7; border-radius: 8px; background: #fff; color: var(--brand); font-size: 11px; font-weight: 800; }
+    .empty-cart-action:hover { border-color: var(--brand); background: #f4f8fc; }
     .entry-promo-modal { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; padding: 18px; background: rgba(9,25,40,.48); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s ease, visibility .2s ease; }
     .entry-promo-modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
     .entry-promo-card { position: relative; width: min(100%, 430px); display: grid; grid-template-columns: 132px minmax(0,1fr); gap: 20px; padding: 20px; border: 1px solid #d6e2e9; border-radius: 18px; background: #fff; box-shadow: 0 18px 48px rgba(9,25,40,.22); transform: translateY(8px) scale(.985); transition: transform .2s ease; }
@@ -1733,10 +1736,10 @@
       <header class="cart-header"><div class="cart-title-block"><span class="cart-kicker">SEU PEDIDO</span><h2 id="cartTitle">Revisar carrinho</h2><p class="cart-header-subtitle">Confira os itens antes de prosseguir</p></div><button class="close-cart" id="closeCart" type="button" aria-label="Fechar carrinho"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>
       <div class="cart-content">
         <section class="cart-section cart-order-section"><div class="cart-section-heading"><span class="cart-step">1</span><div><h3>Confira seus itens</h3><small>Você pode ajustar a quantidade antes de continuar.</small></div></div><div id="cartItems"></div></section>
-        <div class="cart-trust-panel"><span class="cart-trust-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span><div><strong>Compra protegida</strong><small>Pagamento seguro, pedido revisável e envio com rastreio.</small></div></div>
+        <div class="cart-trust-panel" id="cartTrustPanel"><span class="cart-trust-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span><div><strong>Compra protegida</strong><small>Pagamento seguro, pedido revisável e envio com rastreio.</small></div></div>
 
       </div>
-      <footer class="cart-footer"><p class="cart-error" id="cartError" role="alert"></p><div class="order-breakdown"><div><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div><div><span>Entrega</span><strong>A calcular no próximo passo</strong></div></div><div class="total-row"><div class="total-label">Total dos produtos</div><div class="total-value" id="cartTotal">R$ 0,00</div></div><button class="btn btn-primary" id="continueCheckout" type="button" disabled>Continuar para entrega <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><div class="checkout-trust"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Pagamento seguro · pedido revisável</span></div></footer>
+      <footer class="cart-footer" id="cartFooter"><p class="cart-error" id="cartError" role="alert"></p><div class="order-breakdown"><div><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div><div><span>Entrega</span><strong>A calcular no próximo passo</strong></div></div><div class="total-row"><div class="total-label">Total dos produtos</div><div class="total-value" id="cartTotal">R$ 0,00</div></div><button class="btn btn-primary" id="continueCheckout" type="button" disabled>Continuar para entrega <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><div class="checkout-trust"><i class="fa-solid fa-lock" aria-hidden="true"></i><span>Pagamento seguro · pedido revisável</span></div></footer>
     </aside>
   </div>
 
@@ -1989,11 +1992,15 @@
         const items = $('#cartItems');
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         $('#cartCount').textContent = String(totalItems);
+        const hasItems = cart.length > 0;
+        $('#cartTrustPanel').hidden = !hasItems;
+        $('#cartFooter').hidden = !hasItems;
         items.replaceChildren();
         if (!cart.length) {
           const empty = document.createElement('div');
           empty.className = 'empty-cart';
-          empty.innerHTML = '<i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><strong>Seu carrinho está vazio</strong><span>Escolha uma opção do produto para começar.</span>';
+          empty.innerHTML = '<i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><strong>Seu carrinho está vazio</strong><span>Escolha uma opção do produto para começar.</span><button class="empty-cart-action" type="button">Ver opções</button>';
+          $('.empty-cart-action', empty).addEventListener('click', () => { closeCart(); $('#product').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
           items.appendChild(empty);
         } else {
           cart.forEach((item, index) => {
