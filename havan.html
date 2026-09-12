@@ -177,11 +177,19 @@ input,select{font:inherit}
 .total-line{margin-bottom:12px}
 .total-line:last-of-type{margin-bottom:15px}
 .btn{min-height:50px;font-size:.98rem}
+.btn-proceed{margin-top:4px;background:var(--wine);box-shadow:0 6px 16px rgba(18,59,102,.2);font-size:.9rem}
+.btn-proceed:hover{background:var(--wine-dark)}
 @media (min-width:621px){.ckbar{display:none!important}}
 .address-fields{display:none}
 .address-fields.is-visible{display:block}
 .payment-card{display:none}
 .payment-card.is-visible{display:block}
+.personal-card{display:none}
+.personal-card.is-visible{display:block}
+#formArea{display:flex;flex-direction:column}
+#deliveryCard{order:1}
+#personalCard{order:2}
+#paymentCard{order:3}
 /* Refinamento Equaliv: institucional, limpo e orientado à conclusão. */
 :root{--wine:#123b66;--wine-dark:#0c2d4e;--pink:#b9d7ec;--pink-soft:#eef6fb;--pink-bg:#f5f9fc;--teal:#157347;--green:#157347;--ink:#17212b;--muted:#637382;--line:#dfe7ee;--shadow:0 6px 24px rgba(18,59,102,.09)}
 body{background:#f5f8fb}
@@ -251,9 +259,9 @@ body{background:#f5f8fb}
   <!-- FORM (etapas) -->
   <div id="formArea">
 
-    <!-- 1. DADOS PESSOAIS -->
-    <div class="card">
-      <div class="step-h"><div class="step-n">1</div><h2>Seus dados</h2></div>
+    <!-- 2. DADOS PESSOAIS -->
+    <div class="card personal-card" id="personalCard">
+      <div class="step-h"><div class="step-n">2</div><h2>Seus dados</h2></div>
       <div class="field">
         <label for="nome">Nome completo</label>
         <input id="nome" type="text" autocomplete="name" placeholder="Seu nome completo">
@@ -276,11 +284,12 @@ body{background:#f5f8fb}
           <div class="msg">Telefone inválido.</div>
         </div>
       </div>
+      <button class="btn btn-proceed" id="proceedPayment" type="button">Prosseguir para pagamento <span aria-hidden="true">→</span></button>
     </div>
 
-    <!-- 2. ENDEREÇO -->
-    <div class="card">
-      <div class="step-h"><div class="step-n">2</div><h2>Onde entregar?</h2></div>
+    <!-- 1. ENDEREÇO E FRETE -->
+    <div class="card delivery-card" id="deliveryCard">
+      <div class="step-h"><div class="step-n">1</div><h2>Onde entregar?</h2></div>
       <div class="row">
         <div class="field w-cep">
           <label for="cep">CEP <span class="required-mark">*</span></label>
@@ -525,7 +534,7 @@ function updateShippingTotal(){
 
 function setupShipping(){
   const card = document.getElementById('shippingCard');
-  const paymentCard = document.getElementById('paymentCard');
+  const personalCard = document.getElementById('personalCard');
   document.querySelectorAll('.shipping-option').forEach(option => option.addEventListener('click', () => {
     document.querySelectorAll('.shipping-option').forEach(item => item.classList.remove('is-selected'));
     option.classList.add('is-selected');
@@ -534,8 +543,8 @@ function setupShipping(){
       ? { id:'express', label:'Entrega expressa', price:9.90, delivery:'Amanhã' }
       : { id:'standard', label:'Entrega econômica', price:0, delivery:'Até 4 dias' };
     updateShippingTotal();
-    paymentCard.classList.add('is-visible');
-    setTimeout(() => paymentCard.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
+    personalCard.classList.add('is-visible');
+    setTimeout(() => personalCard.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
   }));
   window.showShippingOptions = () => card.classList.add('is-visible');
 }
@@ -582,12 +591,14 @@ mask(document.getElementById('cep'), d => d.slice(0,8).replace(/(\d{5})(\d)/,'$1
 let lastCepSearched = '';
 let cepRequest = null;
 async function buscarEnderecoPorCep(){
-  const d = onlyD(document.getElementById('cep').value);
+  const cepInput = document.getElementById('cep');
+  const d = onlyD(cepInput.value);
   const cepStatus = document.getElementById('cepStatus');
   if(d.length!==8){
     lastCepSearched = '';
     document.getElementById('addressFields').classList.remove('is-visible');
     document.getElementById('shippingCard').classList.remove('is-visible');
+    document.getElementById('personalCard').classList.remove('is-visible');
     document.getElementById('paymentCard').classList.remove('is-visible');
     cepStatus.textContent = '';
     cepStatus.className = 'field-status';
@@ -595,6 +606,7 @@ async function buscarEnderecoPorCep(){
   }
   if(d === lastCepSearched) return;
   lastCepSearched = d;
+  cepInput.blur();
   cepStatus.textContent = 'Consultando endereço...';
   cepStatus.className = 'field-status loading';
   try{
@@ -610,11 +622,11 @@ async function buscarEnderecoPorCep(){
     cepStatus.textContent = 'Endereço localizado. Confira os dados e escolha a entrega.';
     cepStatus.className = 'field-status';
     if(typeof window.showShippingOptions === 'function') window.showShippingOptions();
-    document.getElementById('numero').focus();
   }catch(e){
     lastCepSearched = '';
     document.getElementById('addressFields').classList.remove('is-visible');
     document.getElementById('shippingCard').classList.remove('is-visible');
+    document.getElementById('personalCard').classList.remove('is-visible');
     document.getElementById('paymentCard').classList.remove('is-visible');
     cepStatus.textContent = 'Não foi possível localizar este CEP. Confira e tente novamente.';
     cepStatus.className = 'field-status error';
@@ -653,6 +665,15 @@ function validar(){
   ok = setField('numero',g('numero').length>=1) && ok;
   return ok;
 }
+
+document.getElementById('proceedPayment').addEventListener('click', () => {
+  if(!validar()){
+    document.querySelector('.field.invalid')?.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  document.getElementById('paymentCard').classList.add('is-visible');
+  setTimeout(() => document.getElementById('paymentCard').scrollIntoView({behavior:'smooth',block:'start'}), 80);
+});
 
 /* =====================================================================
    GERAR PIX
