@@ -65,22 +65,19 @@ input,select{font:inherit}
 .section-icon .ico{width:14px;height:14px}
 
 /* ---- Resumo do pedido ---- */
-.order-items{display:grid;gap:12px}
-.order-item{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center;padding-bottom:12px;border-bottom:1px solid #edf2f5}
+.order-items{display:grid;gap:11px}
+.order-item{display:grid;grid-template-columns:56px minmax(0,1fr);gap:11px;align-items:center;padding-bottom:11px;border-bottom:1px solid #edf2f5}
 .order-item:last-child{border-bottom:0;padding-bottom:0}
-.order-item .thumb{width:64px;height:64px;border-radius:9px;overflow:hidden;background:#fafcfd;border:1px solid var(--line)}
+.order-item .thumb{width:56px;height:56px;border-radius:8px;overflow:hidden;background:#fafcfd;border:1px solid var(--line)}
 .order-item .thumb img{width:100%;height:100%;object-fit:contain}
 .order-item .nome{font-weight:700;font-size:.87rem;line-height:1.25}
-.order-item .variant{color:var(--muted);font-size:.74rem;margin-top:3px}
-.order-item .meta{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:6px}
-.order-item .qty{color:var(--muted);font-size:.74rem}
-.order-item .por{color:var(--brand);font-weight:800;font-size:.92rem}
+.order-item .meta{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:5px}
+.order-item .variant{color:var(--muted);font-size:.72rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.order-item .por{color:var(--brand);font-weight:800;font-size:.92rem;white-space:nowrap;flex:none}
 .order-item .de{color:var(--muted);text-decoration:line-through;font-size:.68rem;margin-left:5px}
 .order-subtotal{display:flex;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.8rem;color:var(--muted)}
 .order-subtotal strong{color:var(--brand);font-size:1rem}
 .order-error{background:#fff5f5;border:1px solid #ebc7cc;border-radius:9px;color:var(--danger);padding:12px;font-size:.82rem;line-height:1.4}
-.order-note{display:flex;align-items:flex-start;gap:6px;margin-top:12px;padding-top:11px;border-top:1px solid #edf2f5;color:var(--muted);font-size:.7rem;line-height:1.4}
-.order-note .ico{width:14px;height:14px;color:var(--success);margin-top:1px}
 
 /* ---- Formulário ---- */
 .field{margin-bottom:12px}
@@ -217,7 +214,8 @@ input,select{font:inherit}
 @media (max-width:480px){
   .wrap{padding-inline:13px}
   .card{padding:16px}
-  .order-item .thumb{width:58px;height:58px}
+  .order-item{grid-template-columns:50px minmax(0,1fr)}
+  .order-item .thumb{width:50px;height:50px}
   .qr{width:170px;height:170px}
   .total-line.grand strong{font-size:1.4rem}
 }
@@ -265,8 +263,7 @@ input,select{font:inherit}
   <div class="card order-card">
     <div class="step-h"><div class="section-icon"><svg class="ico"><use href="#i-bag"/></svg></div><h2>Resumo do pedido</h2></div>
     <div id="orderItems" class="order-items" aria-live="polite"></div>
-    <div class="order-subtotal"><span>Subtotal dos produtos</span><strong id="orderSubtotal">R$ 0,00</strong></div>
-    <p class="order-note"><svg class="ico"><use href="#i-check"/></svg> Confira os itens e o total antes de continuar.</p>
+    <div class="order-subtotal"><span>Subtotal</span><strong id="orderSubtotal">R$ 0,00</strong></div>
   </div>
 
   <div class="trust-strip">
@@ -524,7 +521,8 @@ function renderOrderSummary() {
     row.className = 'order-item';
     const img = item.image ? `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy">` : '<span aria-hidden="true"></span>';
     const old = item.oldPrice > item.price ? `<span class="de">${brl(item.oldPrice * item.quantity)}</span>` : '';
-    row.innerHTML = `<div class="thumb">${img}</div><div><div class="nome">${escapeHtml(item.name)}</div><div class="variant">${escapeHtml(item.variant)}${item.weight ? ` · ${item.weight} g` : ''}</div><div class="meta"><span class="qty">Quantidade: ${item.quantity}</span><span class="por">${brl(item.lineSubtotal)}${old}</span></div></div>`;
+    const details = [item.variant, item.weight ? `${item.weight} g` : '', item.quantity > 1 ? `Qtd ${item.quantity}` : ''].filter(Boolean).join(' · ');
+    row.innerHTML = `<div class="thumb">${img}</div><div><div class="nome">${escapeHtml(item.name)}</div><div class="meta"><span class="variant">${escapeHtml(details)}</span><span class="por">${brl(item.lineSubtotal)}${old}</span></div></div>`;
     list.appendChild(row);
   });
   subtotalEl.textContent = brl(order.subtotal);
