@@ -376,10 +376,12 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
 @media(max-width:480px){.personal-card .field input{min-height:46px}.personal-card .btn{min-height:51px}}
 </style>
 
-<style id="two-field-conversion">
-/* Formulário essencial: apenas os dados necessários para contato e confirmação. */
-.personal-card .data-note{max-width:390px}.personal-card .field{margin-bottom:12px}.personal-card .privacy-note{margin-bottom:12px}
-@media(max-width:480px){.personal-card .field input{min-height:47px}.personal-card .btn{min-height:52px}}
+<style id="final-ux-polish">
+/* Refinamento final: clareza, recuperação de erro e conforto no celular. */
+.payment-card[aria-live],#pixArea[aria-live]{scroll-margin-top:18px}
+.pix-error{display:flex;flex-direction:column;gap:2px;margin-top:12px;padding:10px 12px;border:1px solid #e7b8bd;border-radius:8px;background:#fff5f5;color:#8e2635;font-size:.68rem;line-height:1.4;text-align:left}.pix-error span{color:#9b5a62}
+.shipping-note{max-width:390px}.field-status{min-height:16px}
+@media(max-width:480px){.pix-error{font-size:.66rem}}
 </style>
 </head>
 <body>
@@ -407,7 +409,7 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
     <div class="h">Finalizar compra</div>
   </div>
 
-  <p class="checkout-intro">Resumo do pedido e informe os dados de entrega.</p>
+  <p class="checkout-intro">Confira o pedido e informe os dados de entrega.</p>
 
   <!-- RESUMO DO PRODUTO -->
   <div class="card order-card">
@@ -423,8 +425,8 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
     <!-- 2. DADOS PESSOAIS -->
     <div class="card personal-card" id="personalCard">
       <div class="step-h"><div class="step-n">2</div><h2>Seus dados</h2></div>
-      <p class="data-note">Usaremos estes dados para confirmar a compra e enviar os detalhes do pedido.</p>
-      <p class="privacy-note"><svg class="ico"><use href="#i-lock"/></svg> Usaremos estes dados apenas para processar e confirmar esta compra.</p>
+      <p class="data-note">Usaremos estes dados para entregar o pedido e enviar a confirmação.</p>
+      <p class="privacy-note"><svg class="ico"><use href="#i-lock"/></svg> Usaremos estes dados apenas para processar e acompanhar esta compra.</p>
       <div class="field">
         <label for="nome">Nome completo <span class="required-mark">*</span></label>
         <input id="nome" type="text" autocomplete="name" placeholder="Seu nome completo">
@@ -436,6 +438,11 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
         <div class="msg">Informe um e-mail válido.</div>
       </div>
       <div class="row">
+        <div class="field">
+          <label for="tel">Telefone <span class="required-mark">*</span></label>
+          <input id="tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(00) 00000-0000" maxlength="15">
+          <div class="msg">Telefone inválido.</div>
+        </div>
       </div>
       <button class="btn btn-proceed" id="proceedPayment" type="button">Continuar <span aria-hidden="true">→</span></button>
     </div>
@@ -446,7 +453,7 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
       <div class="row">
         <div class="field w-cep">
           <label for="cep">CEP <span class="required-mark">*</span></label>
-          <input id="cep" type="tel" inputmode="numeric" placeholder="00000-000" maxlength="9">
+          <input id="cep" type="tel" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9">
           <div class="msg">CEP inválido.</div>
           <div class="field-status" id="cepStatus" aria-live="polite"></div>
         </div>
@@ -469,23 +476,23 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
         </div>
         <div class="field">
           <label for="cidade">Cidade <span class="required-mark">*</span></label>
-          <input id="cidade" type="text" placeholder="Sua cidade">
+          <input id="cidade" type="text" autocomplete="address-level2" placeholder="Sua cidade">
           <div class="msg">Informe a cidade.</div>
         </div>
         <div class="field">
           <label for="bairro">Bairro <span class="required-mark">*</span></label>
-          <input id="bairro" type="text" placeholder="Seu bairro">
+          <input id="bairro" type="text" autocomplete="address-line2" placeholder="Seu bairro">
           <div class="msg">Informe o bairro.</div>
         </div>
         <div class="row">
           <div class="field">
             <label for="rua">Rua / Logradouro <span class="required-mark">*</span></label>
-            <input id="rua" type="text" placeholder="Nome da rua">
+            <input id="rua" type="text" autocomplete="address-line1" placeholder="Nome da rua">
             <div class="msg">Informe a rua.</div>
           </div>
           <div class="field w-num">
             <label for="numero">Número <span class="required-mark">*</span></label>
-            <input id="numero" type="text" inputmode="numeric" placeholder="Nº">
+            <input id="numero" type="text" inputmode="numeric" autocomplete="address-line1" placeholder="Nº">
             <div class="msg">Nº</div>
           </div>
         </div>
@@ -533,6 +540,7 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
       </div>
       <button class="btn" id="btnGerar" type="button" aria-live="polite"><svg class="ico"><use href="#i-lock"/></svg> Continuar para o PIX</button>
       <div class="safenote"><svg class="ico"><use href="#i-lock"/></svg> Você só paga após revisar o total</div>
+      <div class="pix-error" id="pixError" role="alert" hidden></div>
     </div>
 
     <div class="seals">
@@ -543,7 +551,7 @@ body{background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,syste
   </div>
 
   <!-- TELA: PIX GERADO -->
-  <div id="pixArea" class="card pix-pay hidden">
+  <div id="pixArea" class="card pix-pay hidden" aria-live="polite">
     <h2>Quase lá! Pague com PIX</h2>
     <p class="sub">Escaneie o QR Code ou copie o código no seu banco.</p>
     <div class="qr"><img id="pixQr" src="" alt="QR Code PIX para pagamento"></div>
@@ -734,6 +742,8 @@ initPixel();
    ===================================================================== */
 const onlyD = s => s.replace(/\D/g,'');
 function mask(el, fn){ el.addEventListener('input', ()=>{ el.value = fn(onlyD(el.value)); }); }
+mask(document.getElementById('tel'), d => d.slice(0,11)
+  .replace(/(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2'));
 mask(document.getElementById('cep'), d => d.slice(0,8).replace(/(\d{5})(\d)/,'$1-$2'));
 
 /* ---- busca automática do endereço ao completar o CEP (ViaCEP) ---- */
@@ -807,6 +817,7 @@ function validar(){
   const g = id => document.getElementById(id).value.trim();
   ok = setField('nome',  g('nome').split(' ').length>=2) && ok;
   ok = setField('email', /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(g('email'))) && ok;
+  ok = setField('tel',   onlyD(g('tel')).length>=10) && ok;
   ok = setField('cep',   onlyD(g('cep')).length===8) && ok;
   ok = setField('estado',!!g('estado')) && ok;
   ok = setField('cidade',g('cidade').length>1) && ok;
@@ -822,7 +833,7 @@ document.getElementById('proceedPayment').addEventListener('click', () => {
     return;
   }
   document.getElementById('paymentCard').classList.add('is-visible');
-  setTimeout(() => document.getElementById('paymentCard').scrollIntoView({behavior:'smooth',block:'start'}), 80);
+  setTimeout(() => document.getElementById('paymentCard').scrollIntoView({behavior:'smooth',block:'center',inline:'nearest'}), 80);
 });
 
 /* =====================================================================
@@ -834,7 +845,7 @@ btnGerar.addEventListener('click', gerarPix);
 function dadosCliente(){
   const g = id => document.getElementById(id).value.trim();
   return {
-    name:g('nome'), email:g('email'), document:'', phone:'',
+    name:g('nome'), email:g('email'), document:'', phone:onlyD(g('tel')),
     cep:onlyD(g('cep')), estado:g('estado'), cidade:g('cidade'),
     bairro:g('bairro'), rua:g('rua'), numero:g('numero'), complemento:g('compl')
   };
@@ -850,6 +861,8 @@ async function gerarPix(){
     return;
   }
   btnGerar.disabled = true;
+  const errorBox = document.getElementById('pixError');
+  if(errorBox) errorBox.hidden = true;
   btnGerar.textContent = 'Gerando PIX...';
   /* AddPaymentInfo agora sai pelo Macna — removido daqui pra não contar 2x. */
   /* Identifica a pessoa assim que temos e-mail/telefone: é o que liga o clique
@@ -886,9 +899,13 @@ async function gerarPix(){
 
     mostrarPix(pix);
   }catch(e){
-    alert('Não foi possível gerar o PIX agora. Tente novamente.');
+    const errorBox = document.getElementById('pixError');
+    if(errorBox){
+      errorBox.hidden = false;
+      errorBox.innerHTML = '<strong>Não foi possível gerar o PIX agora.</strong><span>Seus dados foram preservados. Tente novamente em alguns instantes.</span>';
+    }
     btnGerar.disabled = false;
-    btnGerar.innerHTML = '<svg class="ico"><use href="#i-lock"/></svg> Continuar para o PIX';
+    btnGerar.innerHTML = '<svg class="ico"><use href="#i-lock"/></svg> Tentar novamente';
   }
 }
 
