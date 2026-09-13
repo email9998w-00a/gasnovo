@@ -1632,6 +1632,37 @@
       .reviews-section, .faq-section { padding: 42px 0; }
       .reviews-header h2 { font-size: 24px; }
     }
+
+    /* ===== Ajuste solicitado: avaliações originais + descrições mais completas ===== */
+    .reviews-section { padding: 64px 0; background: #f7f9fb; }
+    .reviews-header { margin-bottom: 34px; }
+    .reviews-header > div:first-child { display: block; margin-bottom: 24px !important; }
+    .reviews-header > div:first-child h3 { margin: 0 0 12px !important; color: var(--text) !important; font-size: 20px !important; }
+    .carousel-container { display: flex; gap: 12px; overflow-x: auto; padding: 4px 0 12px; scrollbar-width: thin; }
+    .carousel-item { flex: 0 0 122px; height: 122px; overflow: hidden; border: 1px solid #d3dfe7; border-radius: 12px; background: #fff; cursor: zoom-in; }
+    .carousel-item img { width: 100%; height: 100%; object-fit: cover; }
+    .reviews-header h2 { margin-bottom: 12px; font-size: 30px; }
+    .reviews-grid { gap: 16px; }
+    .review-card { min-height: 250px; padding: 22px; border-radius: 14px; }
+    .review-content, .review-card p { font-size: 14px; line-height: 1.7; }
+    .positioning { max-width: 520px; font-size: 15px; line-height: 1.72; }
+    .tab-panel p, .tab-panel li { max-width: 850px; font-size: 15px; line-height: 1.85; }
+    .tab-panel h2 { font-size: 28px; }
+    .highlight-card p { font-size: 13px; line-height: 1.7; }
+    .section-heading p { font-size: 15px; line-height: 1.7; }
+    .faq-answer p { font-size: 14px; line-height: 1.8; }
+    @media (max-width: 620px) {
+      .reviews-section { padding: 48px 0; }
+      .reviews-header > div:first-child { margin-bottom: 20px !important; }
+      .reviews-header > div:first-child h3 { font-size: 18px !important; }
+      .carousel-item { flex-basis: 96px; height: 96px; }
+      .reviews-header h2 { font-size: 25px; }
+      .review-card { min-height: 0; padding: 19px; }
+      .review-content, .review-card p { font-size: 13px; line-height: 1.65; }
+      .positioning { font-size: 14px; line-height: 1.65; }
+      .tab-panel p, .tab-panel li { font-size: 14px; line-height: 1.75; }
+      .tab-panel h2 { font-size: 23px; }
+    }
   </style>
 </head>
 <body>
