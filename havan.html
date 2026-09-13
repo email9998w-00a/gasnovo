@@ -368,7 +368,7 @@ input,select{font:inherit}
         <div class="shipping-options" role="radiogroup" aria-label="Opções de frete">
           <label class="shipping-option" data-shipping="standard">
             <input type="radio" name="shipping" value="standard">
-            <span><strong>Até 3 dias úteis</strong><small>Entrega Economica</small></span>
+            <span><strong>Entrega em 3 Dias</strong><small>Entrega Economica</small></span>
             <span class="shipping-price">Grátis</span>
           </label>
           <label class="shipping-option" data-shipping="express">
@@ -577,7 +577,7 @@ function updateTotals() {
   if (deliveryTitle && deliveryDetail) {
     deliveryTitle.textContent = selectedShipping ? selectedShipping.promise : 'Selecione uma opção de frete';
     deliveryDetail.textContent = selectedShipping
-      ? `${selectedShipping.name} · prazo contado após a confirmação do pagamento.`
+      ? `${selectedShipping.name} · Entrega Garantida.`
       : 'O prazo é contado após a confirmação do pagamento.';
   }
 }
@@ -764,7 +764,7 @@ document.querySelectorAll('.shipping-option').forEach(option => option.addEventL
   const express = option.dataset.shipping === 'express';
   selectedShipping = express
     ? { id: 'express', price: 9.90, name: 'Entrega expressa', promise: 'Receba amanhã' }
-    : { id: 'standard', price: 0, name: 'Entrega econômica', promise: 'Até 3 dias úteis' };
+    : { id: 'standard', price: 0, name: 'Entrega econômica', promise: 'Entrega em 3 Dias' };
   updateTotals();
   if (enderecoCompleto()) {
     document.getElementById('personalCard').classList.add('is-visible');
