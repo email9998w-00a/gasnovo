@@ -1663,11 +1663,38 @@
       .tab-panel p, .tab-panel li { font-size: 14px; line-height: 1.75; }
       .tab-panel h2 { font-size: 23px; }
     }
+
+    /* ===== Camada CRO final: pressão clara, sem ruído ou escassez artificial ===== */
+    .offer-proof { display:flex; align-items:center; gap:9px; width:fit-content; margin:14px 0 4px; padding:8px 10px; border:1px solid #b9dfc8; border-radius:8px; background:#effaf3; color:#17633d; }
+    .offer-proof strong { font-size:11px; letter-spacing:.02em; }
+    .offer-proof span { color:#557365; font-size:10px; }
+    .choice-helper { display:inline-flex; align-items:center; gap:4px; color:#647685 !important; background:transparent !important; padding:0 !important; font-size:10px !important; font-weight:600 !important; }
+    .choice-helper i { color:var(--accent); font-size:9px; }
+    .price-urgency { display:flex; align-items:center; gap:6px; margin-top:9px; color:#17633d; font-size:11px; }
+    .price-urgency i { font-size:10px; }
+    .offer-validity { display:flex; align-items:center; gap:5px; margin-top:9px; padding-top:9px; border-top:1px solid #e3edf2; color:#687987; font-size:10px; }
+    .offer-validity i { color:#6d8190; }
+    .conversion-trust { display:flex; flex-wrap:wrap; gap:7px 13px; margin-top:10px; color:#536a79; font-size:10px; font-weight:700; }
+    .conversion-trust span { display:inline-flex; align-items:center; gap:5px; }
+    .conversion-trust i { color:var(--success); font-size:9px; }
+    .cta-group .btn-primary { box-shadow:0 7px 16px rgba(18,107,66,.22); }
+    .cta-group .btn-primary:hover { box-shadow:0 9px 20px rgba(18,107,66,.28); }
+    @media (max-width:620px) {
+      .offer-proof { width:100%; justify-content:center; margin:11px 0 3px; padding:7px 8px; }
+      .offer-proof strong { font-size:10px; }
+      .offer-proof span { font-size:9px; }
+      .choice-helper { font-size:9px !important; }
+      .price-urgency { font-size:10px; }
+      .conversion-trust { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; font-size:9px; }
+      .conversion-trust span { justify-content:center; text-align:center; line-height:1.25; }
+      .decision-points { margin-top:7px; }
+    }
+
   </style>
 </head>
 <body>
   <a class="skip-link" href="#product">Ir direto ao produto</a>
-  <div class="announcement"><strong>OFERTA ESPECIAL</strong><span aria-hidden="true"> · </span>até 48% OFF no Pix<span aria-hidden="true"> · </span>condição promocional enquanto durar a disponibilidade</div>
+  <div class="announcement"><strong>CONDIÇÃO ESPECIAL NO PIX</strong><span aria-hidden="true"> · </span>até 48% OFF<span aria-hidden="true"> · </span>consulte frete e prazo antes de pagar</div>
 <header class="site-header">
     <div class="container header-row">
       <a class="logo" href="/" aria-label="EQUALIV — página inicial">EQUALIV</a>
@@ -1705,19 +1732,19 @@
           </div>
 
           <h1 id="productTitle">Body Protein Equaliv BODYBALANCE®</h1>
-          <p class="positioning">Escolha seu sabor e aproveite a condição promocional no Pix. Pedido revisável, pagamento seguro e entrega rastreada.</p>
+          <p class="positioning">Proteína prática para sua rotina, com até 48% OFF no Pix. Escolha a versão ideal, revise frete e prazo e finalize com segurança.</p>
 
-          <div class="offer-proof" aria-label="Resumo da oferta"><strong>ATÉ 48% OFF</strong><span>Preço especial por tempo limitado</span></div>
+          <div class="offer-proof" aria-label="Resumo da oferta"><strong>ATÉ 48% OFF NO PIX</strong><span>Desconto aplicado conforme a opção escolhida</span></div>
 
           <div class="rating-row rating-row-prominent" aria-label="Avaliação média 4,9 de 5">
             <span class="stars" aria-hidden="true">★★★★★</span>
             <strong>4,9/5</strong>
-            <a class="rating-link" href="#reviews">4,9/5 · Ver avaliações reais</a>
+            <a class="rating-link" href="#reviews">Ver avaliações e fotos de clientes</a>
           </div>
 
           <section class="choice-box" aria-labelledby="choiceTitle">
             <div class="choice-heading">
-              <strong id="choiceTitle">Escolha sua opção</strong>
+              <strong id="choiceTitle">Escolha sua opção</strong><span class="choice-helper"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> compare pesos e sabores</span>
               <span id="selectedOptionLabel" aria-live="polite">Cacau · 600 g</span>
             </div>
             <div class="variant-grid" id="variantGrid" role="radiogroup" aria-labelledby="choiceTitle"></div>
@@ -1734,12 +1761,12 @@
           </div>
 
           <div class="cta-group" id="mainCta">
-            <button class="btn btn-primary" id="buyNow" type="button"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Quero garantir meu desconto</button>
-            <button class="btn btn-secondary" id="addToCart" type="button"><i class="fa-solid fa-cart-plus" aria-hidden="true"></i> Escolher e adicionar</button>
+            <button class="btn btn-primary" id="buyNow" type="button"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Garantir oferta no Pix</button>
+            <button class="btn btn-secondary" id="addToCart" type="button"><i class="fa-solid fa-cart-plus" aria-hidden="true"></i> Adicionar ao carrinho</button>
           </div>
-          <p class="purchase-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Você revisa o pedido e o frete antes de pagar.</p>
+          <p class="purchase-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Leva menos de 1 minuto para revisar pedido, frete e pagamento.</p>
           <div class="conversion-trust"><span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Compra protegida</span><span><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Envio rastreado</span><span><i class="fa-solid fa-credit-card" aria-hidden="true"></i> Pix ou cartão</span></div>
-          <div class="decision-points" aria-label="Informações importantes da compra"><span><i class="fa-solid fa-check" aria-hidden="true"></i> Opção selecionada fica visível</span><span><i class="fa-solid fa-check" aria-hidden="true"></i> Quantidade ajustável no carrinho</span></div>
+          <div class="decision-points" aria-label="Informações importantes da compra"><span><i class="fa-solid fa-check" aria-hidden="true"></i> Opção selecionada fica visível</span><span><i class="fa-solid fa-check" aria-hidden="true"></i> Quantidade ajustável no carrinho</span><span><i class="fa-solid fa-check" aria-hidden="true"></i> Sem pagamento nesta etapa</span></div>
 
           <div class="shipping-preview">
             <div class="shipping-preview-icon"><i class="fa-solid fa-truck" aria-hidden="true"></i></div>
@@ -1835,7 +1862,7 @@
 
   <div class="mobile-cta" id="mobileCta" aria-hidden="true">
     <div class="mobile-cta-info"><span class="mobile-cta-label">Total</span><span class="mobile-cta-price" id="mobilePrice">R$ 104,90</span></div>
-    <button class="btn btn-primary" id="mobileBuy" type="button">Garantir desconto</button>
+    <button class="btn btn-primary" id="mobileBuy" type="button">Garantir oferta</button>
   </div>
 
 
