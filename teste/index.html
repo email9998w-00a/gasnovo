@@ -1690,6 +1690,18 @@
       .decision-points { margin-top:7px; }
     }
 
+
+    /* CTA principal integrado ao bloco de preço */
+    .price-cta { width:100%; margin-top:14px; min-height:56px; font-size:13px; }
+    .price-box .price-cta { box-shadow:0 7px 16px rgba(18,107,66,.22); }
+    .price-box .price-cta:hover { box-shadow:0 9px 20px rgba(18,107,66,.28); }
+    .cta-group { margin-top:8px; }
+    .cta-group .btn-secondary { width:100%; min-height:42px; }
+    @media (max-width:620px) {
+      .price-cta { margin-top:12px; min-height:53px; font-size:12px; }
+      .cta-group { margin-top:6px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1758,10 +1770,10 @@
             <div class="unit-price" id="unitPrice">R$ 17,48 por 100 g</div>
             <div class="savings-line"><i class="fa-solid fa-piggy-bank" aria-hidden="true"></i><span>Economia total: <strong id="savingsValue">R$ 100,70</strong></span></div>
             <div class="offer-validity"><i class="fa-regular fa-clock" aria-hidden="true"></i> Condição promocional sujeita à disponibilidade</div>
+            <button class="btn btn-primary price-cta" id="buyNow" type="button"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Garantir oferta no Pix</button>
           </div>
 
           <div class="cta-group" id="mainCta">
-            <button class="btn btn-primary" id="buyNow" type="button"><i class="fa-solid fa-bolt" aria-hidden="true"></i> Garantir oferta no Pix</button>
             <button class="btn btn-secondary" id="addToCart" type="button"><i class="fa-solid fa-cart-plus" aria-hidden="true"></i> Adicionar ao carrinho</button>
           </div>
           <p class="purchase-note"><i class="fa-solid fa-lock" aria-hidden="true"></i> Leva menos de 1 minuto para revisar pedido, frete e pagamento.</p>
