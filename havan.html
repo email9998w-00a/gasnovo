@@ -577,7 +577,7 @@ function updateTotals() {
   if (deliveryTitle && deliveryDetail) {
     deliveryTitle.textContent = selectedShipping ? selectedShipping.promise : 'Selecione uma opção de frete';
     deliveryDetail.textContent = selectedShipping
-      ? `${selectedShipping.name} · Entrega Garantida.`
+      ? `${selectedShipping.name}`
       : 'O prazo é contado após a confirmação do pagamento.';
   }
 }
