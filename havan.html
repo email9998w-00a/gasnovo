@@ -42,7 +42,7 @@ input,select{font:inherit}
 /* ---- Header ---- */
 .top{display:flex;align-items:center;gap:12px;padding:18px 0 15px;border-bottom:1px solid var(--line);margin-bottom:14px}
 .top .back{width:31px;height:31px;border-radius:8px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--brand);font-size:1.15rem;flex:none}
-.top .back:disabled{opacity:.45;cursor:not-allowed}
+.top .back:hover{background:#f4f8fb}
 .top .logo{font-size:1.16rem;font-weight:800;color:var(--brand);letter-spacing:.1em}
 .top .h{margin-left:auto;text-align:right;font-size:.72rem;font-weight:700;color:var(--muted)}
 
@@ -266,7 +266,7 @@ input,select{font:inherit}
 
   <!-- HEADER -->
   <div class="top">
-    <button class="back" type="button" aria-label="Voltar" disabled aria-disabled="true">‹</button>
+    <button class="back" id="topBack" type="button" aria-label="Voltar uma etapa">‹</button>
     <div class="logo">EQUALIV</div>
     <div class="h" id="headerStep">Etapa 1 de 3</div>
   </div>
@@ -822,6 +822,16 @@ document.getElementById('backToPersonal').addEventListener('click', () => {
   document.getElementById('paymentCard').classList.remove('is-visible');
   setStep(2);
   document.getElementById('personalCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+document.getElementById('topBack').addEventListener('click', () => {
+  if (!document.getElementById('pixArea').classList.contains('hidden') || !document.getElementById('okArea').classList.contains('hidden')) return;
+  if (document.getElementById('paymentCard').classList.contains('is-visible')) {
+    document.getElementById('backToPersonal').click();
+  } else if (document.getElementById('personalCard').classList.contains('is-visible')) {
+    document.getElementById('backToDelivery').click();
+  } else {
+    document.getElementById('deliveryCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 });
 
 /* ---- Enter no teclado avança a etapa, como em qualquer formulário nativo
