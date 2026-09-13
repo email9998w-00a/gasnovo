@@ -162,8 +162,9 @@ input,select{font:inherit}
 .pix-head .pixlogo{width:34px;height:34px;border-radius:8px;background:var(--success);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.7rem;flex:none}
 .pix-head strong{font-size:.9rem}
 .pix-head small{color:var(--muted);font-size:.75rem;display:block}
-.delivery-summary{margin:-3px 0 9px;padding:0;color:var(--muted);font-size:.7rem;line-height:1.35}
-.delivery-summary .delivery-copy{display:block}
+.delivery-summary{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:-3px 0 9px;padding:0;color:var(--muted);font-size:.7rem;line-height:1.35}
+.delivery-summary .delivery-copy{display:flex;flex-direction:column;min-width:0}
+.delivery-summary .delivery-copy:last-child{text-align:right;align-items:flex-end}
 .delivery-summary .delivery-label{font-weight:700}
 .delivery-summary strong{color:var(--success);font-size:.72rem;font-weight:800}
 .delivery-summary small{display:block;margin-top:1px;color:var(--muted);font-size:.64rem}
@@ -418,15 +419,14 @@ input,select{font:inherit}
         <span>Subtotal</span>
         <strong id="subtotalPagar">R$ 0,00</strong>
       </div>
-      <div class="total-line">
-        <span>Frete</span>
-        <strong id="shippingPagar">Selecione</strong>
-      </div>
       <div class="delivery-summary" id="deliverySummary" aria-live="polite">
         <div class="delivery-copy">
-          <span class="delivery-label">Prazo</span>
+          <span class="delivery-label">Frete</span>
+          <strong id="shippingPagar">Selecione</strong>
+        </div>
+        <div class="delivery-copy">
           <strong id="deliverySummaryTitle">Selecione uma opção de frete</strong>
-          <small id="deliverySummaryDetail">O prazo é contado após a confirmação do pagamento.</small>
+          <small id="deliverySummaryDetail">Selecione uma opção</small>
         </div>
       </div>
       <div class="total-line grand">
@@ -578,7 +578,7 @@ function updateTotals() {
     deliveryTitle.textContent = selectedShipping ? selectedShipping.promise : 'Selecione uma opção de frete';
     deliveryDetail.textContent = selectedShipping
       ? `${selectedShipping.name}`
-      : 'O prazo é contado após a confirmação do pagamento.';
+      : 'Selecione uma opção';
   }
 }
 updateTotals();
