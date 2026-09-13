@@ -458,16 +458,17 @@ input,select{font:inherit}
   </div>
 
   <!-- TELA: PIX GERADO -->
+  <div id="pixOrderSummary" class="card pix-purchase-summary hidden" aria-label="Resumo da compra">
+    <h3>Resumo do pedido</h3>
+    <div class="pix-purchase-items" id="pixPurchaseItems"></div>
+    <div class="pix-purchase-meta"><span>Frete</span><strong id="pixShippingSummary">Selecione</strong></div>
+    <div class="pix-purchase-meta"><span>Prazo de entrega</span><strong id="pixDeliverySummary">Selecione uma opção</strong></div>
+    <div class="pix-purchase-total"><span>Total pago</span><strong id="pixTotalSummary">R$ 0,00</strong></div>
+  </div>
+
   <div id="pixArea" class="card pix-pay hidden" aria-live="polite">
     <h2>Pague com PIX para concluir</h2>
     <p class="sub">Escaneie o QR Code pelo app do seu banco ou copie o código abaixo.</p>
-    <div class="pix-purchase-summary" aria-label="Resumo da compra">
-      <h3>Resumo da compra</h3>
-      <div class="pix-purchase-items" id="pixPurchaseItems"></div>
-      <div class="pix-purchase-meta"><span>Frete</span><strong id="pixShippingSummary">Selecione</strong></div>
-      <div class="pix-purchase-meta"><span>Prazo de entrega</span><strong id="pixDeliverySummary">Selecione uma opção</strong></div>
-      <div class="pix-purchase-total"><span>Total pago</span><strong id="pixTotalSummary">R$ 0,00</strong></div>
-    </div>
     <div class="pix-page-error" id="pixPageError" role="alert"></div>
     <div class="qr" id="qrBox"><img id="pixQr" src="" alt="QR Code PIX para pagamento"><span class="qr-expired-tag">Código expirado</span></div>
     <div class="pix-code" aria-label="Código PIX copia e cola">
@@ -1009,6 +1010,7 @@ function mostrarPixErro() {
   const pageError = document.getElementById('pixPageError');
   pageError.innerHTML = '<strong>O código PIX ainda não está disponível.</strong><br>Você pode tentar gerar novamente. Seus dados e o pedido foram preservados.';
   pageError.classList.add('is-visible');
+  document.getElementById('pixOrderSummary').classList.remove('hidden');
   document.getElementById('formArea').classList.add('hidden');
   document.getElementById('progressBar').classList.add('hidden');
   document.querySelector('.order-card').classList.add('hidden');
@@ -1030,6 +1032,7 @@ function mostrarPixErro() {
 
 document.getElementById('btnRetryPage').addEventListener('click', () => {
   document.getElementById('pixArea').classList.add('hidden');
+  document.getElementById('pixOrderSummary').classList.add('hidden');
   document.getElementById('pixPageError').classList.remove('is-visible');
   document.getElementById('formArea').classList.remove('hidden');
   document.getElementById('progressBar').classList.remove('hidden');
@@ -1042,6 +1045,7 @@ document.getElementById('btnRetryPage').addEventListener('click', () => {
 
 function mostrarPix(pix) {
   currentTxn = pix.id;
+  document.getElementById('pixOrderSummary').classList.remove('hidden');
   document.getElementById('formArea').classList.add('hidden');
   document.getElementById('progressBar').classList.add('hidden');
   document.querySelector('.order-card').classList.add('hidden');
@@ -1148,6 +1152,7 @@ function aprovado() {
   if (pollingInterval) clearInterval(pollingInterval);
   if (timerInterval) clearInterval(timerInterval);
   document.getElementById('pixArea').classList.add('hidden');
+  document.getElementById('pixOrderSummary').classList.add('hidden');
   document.getElementById('okArea').classList.remove('hidden');
   document.getElementById('headerStep').textContent = 'Concluído';
   const refBox = document.getElementById('orderRef');
