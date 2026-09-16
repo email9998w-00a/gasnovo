@@ -150,7 +150,8 @@
     .ticket-disclaimer{margin:0;color:var(--steel);font-size:.86rem}
     .free-delivery{display:inline-flex;align-items:center;gap:7px;background:#e7f7ef;color:#147346;border:1px solid #b9e8ce;border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:900;line-height:1.2}
     .free-delivery::before{content:"✓";display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem}
-    .p13-cta{grid-area:cta;width:100%;margin:0 auto}
+    .p13-cta{grid-area:cta;width:100%;margin:0 auto;text-align:center}
+    .product-cta-label{display:block;color:var(--navy);font-size:.82rem;font-weight:900;margin:0 0 8px}
     .p13-cta .btn{box-shadow:0 14px 30px rgba(23,105,209,.24)}
     .cta-note{display:block;color:var(--steel);font-size:.78rem;text-align:center;margin-top:9px}
 
@@ -373,7 +374,8 @@
       .ticket-bottom{padding:17px;gap:11px}
       .free-delivery{font-size:.72rem;padding:7px 9px}
       .ticket-disclaimer{font-size:.78rem}
-      .p13-cta .btn{font-size:.9rem}
+      .p13-cta .btn{font-size:.92rem;box-shadow:0 12px 24px rgba(23,105,209,.2)}
+      .product-cta-label{font-size:.78rem;margin-bottom:7px}
       .cta-note{font-size:.72rem}
 
       .trust-item{padding:19px 0;gap:11px}
@@ -468,6 +470,7 @@
           </div>
         </a>
         <div class="p13-cta">
+          <span class="product-cta-label">Veja o valor e a disponibilidade no seu endereço</span>
           <a class="btn btn-primary btn-block" href="/vejaamanda" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total para este produto">Consultar agora →</a>
           <span class="cta-note">Consulta gratuita · sem compromisso</span>
           <span class="cta-note">Consulte também a <a href="politica-privacidade.html">Política de privacidade</a>.</span>
