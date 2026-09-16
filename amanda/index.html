@@ -149,6 +149,8 @@
     .ticket-bottom{padding:22px 26px 26px;display:flex;flex-direction:column;gap:16px}
     .ticket-disclaimer{margin:0;color:var(--steel);font-size:.86rem}
     .ticket-inline-cta{margin-top:2px}
+    .ticket-inline-cta{background:var(--navy);box-shadow:0 12px 24px rgba(16,26,46,.18)}
+    .ticket-inline-cta:hover{background:#1d3158;box-shadow:0 14px 28px rgba(16,26,46,.22)}
     .free-delivery{display:inline-flex;align-items:center;gap:7px;background:#e7f7ef;color:#147346;border:1px solid #b9e8ce;border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:900;line-height:1.2}
     .free-delivery::before{content:"✓";display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem}
     .p13-cta{grid-area:cta;width:100%;margin:0 auto;text-align:center}
@@ -423,6 +425,13 @@
     .quick-action{box-shadow:0 5px 18px rgba(16,26,46,.05)}
     .quick-action .btn,.section-action .btn,.steps-action .btn{min-width:290px}
     .mobile-cta .btn{font-size:.95rem;font-weight:900}
+    /* Diferenciação visual: principal azul, reforço contornado, ações de seção em marinho. */
+    .p13-cta > .btn-primary{background:var(--white);color:var(--blue-dark);border:2px solid var(--blue);box-shadow:none}
+    .p13-cta > .btn-primary:hover{background:var(--blue-tint);color:var(--blue-dark);box-shadow:none}
+    .quick-action .btn-primary{background:var(--safety);color:var(--navy);box-shadow:0 8px 18px rgba(255,198,54,.25)}
+    .quick-action .btn-primary:hover{background:#eab329;color:var(--navy);box-shadow:0 10px 22px rgba(234,179,41,.28)}
+    .section-action .btn-primary,.steps-action .btn-primary{background:var(--navy);box-shadow:0 10px 22px rgba(16,26,46,.2)}
+    .section-action .btn-primary:hover,.steps-action .btn-primary:hover{background:#1d3158;box-shadow:0 12px 26px rgba(16,26,46,.24)}
     @media(max-width:620px){
       .hero-actions .btn-primary,.quick-action .btn,.section-action .btn,.steps-action .btn{min-width:0}
       .hero-secondary{min-height:42px;padding-top:8px;padding-bottom:8px}
