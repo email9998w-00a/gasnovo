@@ -148,6 +148,7 @@
     .ticket-divider::after{right:-11px}
     .ticket-bottom{padding:22px 26px 26px;display:flex;flex-direction:column;gap:16px}
     .ticket-disclaimer{margin:0;color:var(--steel);font-size:.86rem}
+    .ticket-inline-cta{margin-top:2px}
     .free-delivery{display:inline-flex;align-items:center;gap:7px;background:#e7f7ef;color:#147346;border:1px solid #b9e8ce;border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:900;line-height:1.2}
     .free-delivery::before{content:"✓";display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--green);color:#fff;font-size:.7rem}
     .p13-cta{grid-area:cta;width:100%;margin:0 auto;text-align:center}
@@ -374,6 +375,7 @@
       .ticket-bottom{padding:17px;gap:11px}
       .free-delivery{font-size:.72rem;padding:7px 9px}
       .ticket-disclaimer{font-size:.78rem}
+      .ticket-inline-cta{min-height:50px;font-size:.92rem}
       .p13-cta .btn{font-size:.92rem;box-shadow:0 12px 24px rgba(23,105,209,.2)}
       .product-cta-label{font-size:.78rem;margin-bottom:7px}
       .cta-note{font-size:.72rem}
@@ -439,7 +441,7 @@
     <div class="container nav-inner">
       <a class="brand" href="#inicio" aria-label="68.900.948 Amanda Cristina Carvalho Damasceno — início">
         <span class="brand-mark" aria-hidden="true">DG</span>
-        <span class="brand-text"><strong>Disk Gás e Água</strong><small>Revenda independente</small></span>
+        <span class="brand-text"><strong>Disk Gás e Água</strong><small>Revenda independente · Jatobá do Piauí/PI</small></span>
       </a>
       <div class="nav-links">
         <a href="#como-funciona">Como funciona</a>
@@ -453,7 +455,7 @@
   <main id="inicio">
     <section class="hero">
       <div class="container hero-grid">
-        <a class="ticket ticket-link" href="/vejaamanda" data-cta="p13-card" aria-label="Consultar disponibilidade e valor total do botijão P13">
+        <div class="ticket">
           <div class="ticket-top">
             <div class="ticket-photo">
               <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png" alt="Botijão de gás GLP P13 de 13 kg" width="500" height="500" loading="eager" decoding="async">
@@ -467,8 +469,9 @@
           <div class="ticket-bottom">
             <span class="free-delivery">Entrega 100% gratuita nos endereços atendidos</span>
             <p class="ticket-disclaimer">Preço de referência. Disponibilidade, condições e valor total são confirmados para o endereço antes do pedido. Nos endereços atendidos, a entrega é gratuita.</p>
+            <a class="btn btn-primary btn-block ticket-inline-cta" href="/vejaamanda" data-cta="p13-card" aria-label="Consultar disponibilidade e valor total do botijão P13">Consultar agora →</a>
           </div>
-        </a>
+        </div>
         <div class="p13-cta">
           <span class="product-cta-label">Veja o valor e a disponibilidade no seu endereço</span>
           <a class="btn btn-primary btn-block" href="/vejaamanda" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total para este produto">Consultar agora →</a>
