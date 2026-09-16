@@ -334,6 +334,81 @@
       .quick-action-inner span{display:block;margin-bottom:12px}
       .quick-action-inner .btn{width:100%}
     }
+
+
+    /* Refinamento visual e responsivo — mobile first */
+    .hero-copy{max-width:620px}
+    .hero-copy .eyebrow{margin-bottom:14px}
+    .hero-note{line-height:1.45}
+    .product-link{min-height:36px}
+    @media(max-width:620px){
+      .container{width:calc(100% - 32px)}
+      .topbar .container{width:calc(100% - 24px)}
+      .nav-inner{min-height:64px}
+      .brand{gap:9px}
+      .brand-text strong{font-size:.88rem;letter-spacing:-.01em}
+      .brand-text small{font-size:.64rem}
+      .nav > .container > .btn{min-height:40px;padding:9px 13px;font-size:.76rem}
+
+      /* On small screens the value proposition comes before the product card. */
+      .hero-grid{grid-template-areas:"copy" "ticket" "cta";gap:20px}
+      .hero{padding:30px 0 38px}
+      .hero h1{font-size:clamp(2.05rem,10vw,2.55rem);line-height:1.03;max-width:15ch}
+      .hero-lead{font-size:1rem;margin:15px 0 20px}
+      .hero-actions{display:grid;grid-template-columns:1fr;gap:9px}
+      .hero-actions .btn{width:100%}
+      .hero-benefits{gap:9px;margin-top:20px;font-size:.86rem}
+      .hero-note{font-size:.75rem;margin-top:16px}
+
+      .ticket{border-radius:17px}
+      .ticket-top{padding:16px 17px 0}
+      .ticket-photo,.ticket-photo img{height:196px}
+      .ticket-photo img{width:min(220px,78%)}
+      .ticket-caption{padding-bottom:15px;align-items:flex-end}
+      .ticket-caption .price{font-size:1.28rem}
+      .ticket-caption .label{font-size:.68rem}
+      .ticket-caption>.status-badge{font-size:.67rem;max-width:45%}
+      .ticket-divider{margin:0 -17px}
+      .ticket-bottom{padding:17px;gap:11px}
+      .free-delivery{font-size:.72rem;padding:7px 9px}
+      .ticket-disclaimer{font-size:.78rem}
+      .p13-cta .btn{font-size:.9rem}
+      .cta-note{font-size:.72rem}
+
+      .trust-item{padding:19px 0;gap:11px}
+      .trust-item svg{width:22px;height:22px}
+      .trust-item strong{font-size:.88rem}
+      .trust-item span{font-size:.78rem;line-height:1.45}
+      .quick-action-inner{min-height:0;padding:16px 0}
+      .quick-action-inner span{font-size:.86rem;margin-bottom:10px}
+
+      section{padding:48px 0}
+      .section-head{margin-bottom:23px}
+      .eyebrow{font-size:.7rem;margin-bottom:9px}
+      .section-title{font-size:1.7rem;line-height:1.08}
+      .section-copy{font-size:.9rem;line-height:1.5}
+      .product{border-radius:14px;padding:17px}
+      .product-tag{margin-bottom:11px}
+      .product-weight strong{font-size:2rem}
+      .product-price{margin-top:13px;padding-top:12px}
+      .product-link{margin-top:10px;font-size:.82rem}
+      .step{padding:20px;border-radius:14px}
+      .step-grid{gap:10px;margin-top:23px}
+      .step-num{width:32px;height:32px;border-radius:9px;margin-bottom:14px}
+      .step h3{font-size:.94rem}
+      .step p{font-size:.82rem}
+      .steps-action{margin-top:24px}
+      .reassurance-panel,.info-panel{padding:20px;border-radius:16px}
+      .company{gap:9px;margin-top:17px}
+      .company div{padding:12px}
+      .faq-grid{gap:9px}
+      .faq-q{padding:16px;font-size:.86rem}
+      .faq-answer p{padding:0 16px 16px;font-size:.83rem}
+      .section-action{margin-top:25px;padding-top:21px}
+      .footer{padding:42px 0 20px}
+      .footer-grid{gap:28px}
+      .footer p,.footer li,.footer a{font-size:.78rem}
+    }
   </style>
 </head>
 <body>
@@ -347,7 +422,7 @@
     <div class="container nav-inner">
       <a class="brand" href="#inicio" aria-label="68.900.948 Amanda Cristina Carvalho Damasceno — início">
         <span class="brand-mark" aria-hidden="true">DG</span>
-        <span class="brand-text"><strong>68.900.948 Amanda Cristina Carvalho Damasceno</strong><small>Disk Gás e Água</small></span>
+        <span class="brand-text"><strong>Disk Gás e Água</strong><small>Revenda independente · Jatobá do Piauí/PI</small></span>
       </a>
       <div class="nav-links">
         <a href="#como-funciona">Como funciona</a>
@@ -436,7 +511,6 @@
             <p class="section-copy">Preços de referência. A entrega é totalmente gratuita nos endereços atendidos, sem taxa de entrega ou cobrança adicional relacionada à entrega. A disponibilidade, a modalidade e as condições do produto são confirmadas para o seu endereço na próxima etapa.</p>
           </div>
         </div>
-        <p class="section-copy" style="margin:-16px 0 24px">Os valores exibidos são referências do produto e podem variar conforme disponibilidade, modalidade e condições comerciais. A entrega é sempre 100% gratuita nos endereços atendidos, sem taxa de entrega ou cobrança adicional relacionada à entrega.</p>
         <div class="product-grid">
           <article class="product">
             <span class="product-tag">GLP</span>
@@ -603,7 +677,7 @@
       <div>
         <a class="brand" href="#inicio">
           <span class="brand-mark" aria-hidden="true">DG</span>
-          <span class="brand-text"><strong>68.900.948 Amanda Cristina Carvalho Damasceno</strong><small>Disk Gás e Água · Revenda independente</small></span>
+          <span class="brand-text"><strong>Disk Gás e Água</strong><small>Revenda independente · Jatobá do Piauí/PI</small></span>
         </a>
         <p style="margin-top:14px">68.900.948 Amanda Cristina Carvalho Damasceno, CNPJ 68.900.948/0001-37. Revenda independente de GLP. “Disk Gás e Água” é o nome comercial utilizado nesta página. Disponibilidade, área atendida, prazo, modalidade de venda ou troca e eventuais condições do produto são confirmados antes da conclusão. A entrega é 100% gratuita, sem taxa de entrega ou cobrança adicional relacionada à entrega.</p>
       </div>
