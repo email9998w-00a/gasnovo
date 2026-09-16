@@ -6,6 +6,7 @@
   <meta name="description" content="Informe seu endereço e veja na hora se atendemos sua região, a disponibilidade, o prazo e as condições do produto com entrega 100% gratuita, sem taxa de entrega ou cobrança adicional relacionada à entrega.">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#101a2e">
+  <meta name="robots" content="index,follow">
 
   <title>Consulte Entrega de Gás no seu Endereço | Disk Gás e Água</title>
   <script type="application/ld+json">
@@ -350,8 +351,8 @@
       .brand-text small{font-size:.64rem}
       .nav > .container > .btn{min-height:40px;padding:9px 13px;font-size:.76rem}
 
-      /* On small screens the value proposition comes before the product card. */
-      .hero-grid{grid-template-areas:"copy" "ticket" "cta";gap:20px}
+      /* No mobile, o produto permanece como primeiro bloco visual e conduz à consulta. */
+      .hero-grid{grid-template-areas:"ticket" "copy" "cta";gap:20px}
       .hero{padding:30px 0 38px}
       .hero h1{font-size:clamp(2.05rem,10vw,2.55rem);line-height:1.03;max-width:15ch}
       .hero-lead{font-size:1rem;margin:15px 0 20px}
@@ -409,12 +410,26 @@
       .footer-grid{gap:28px}
       .footer p,.footer li,.footer a{font-size:.78rem}
     }
+
+    /* Otimização de conversão: uma ação principal clara em todos os pontos */
+    .btn-primary{min-height:56px;letter-spacing:-.01em}
+    .hero-actions .btn-primary{min-width:350px}
+    .hero-secondary{color:var(--steel);border-color:transparent;padding-left:12px;padding-right:12px}
+    .hero-secondary:hover{border-color:var(--line);color:var(--navy)}
+    .quick-action{box-shadow:0 5px 18px rgba(16,26,46,.05)}
+    .quick-action .btn,.section-action .btn,.steps-action .btn{min-width:290px}
+    .mobile-cta .btn{font-size:.95rem;font-weight:900}
+    @media(max-width:620px){
+      .hero-actions .btn-primary,.quick-action .btn,.section-action .btn,.steps-action .btn{min-width:0}
+      .hero-secondary{min-height:42px;padding-top:8px;padding-bottom:8px}
+      .mobile-cta{padding-top:9px}
+    }
   </style>
 </head>
 <body>
   <div class="topbar">
     <div class="container">
-      <a href="/vejaamanda" data-cta="topbar" aria-label="Consultar atendimento e valor total">Consultar atendimento e valor total →</a>
+      <a href="/vejaamanda" data-cta="topbar" aria-label="Consultar atendimento e valor total">Ver disponibilidade e valor →</a>
     </div>
   </div>
 
@@ -429,7 +444,7 @@
         <a href="#produtos">Produtos</a>
         <a href="#duvidas">Dúvidas frequentes</a>
       </div>
-      <a class="btn btn-primary nav-cta" href="/vejaamanda" data-cta="nav" style="padding:12px 18px;min-height:0"><span class="nav-cta-full">Ver valor e disponibilidade</span><span class="nav-cta-short">Consultar</span></a>
+      <a class="btn btn-primary nav-cta" href="/vejaamanda" data-cta="nav" style="padding:12px 18px;min-height:0"><span class="nav-cta-full">Consultar agora</span><span class="nav-cta-short">Consultar</span></a>
     </div>
   </nav>
 
@@ -453,7 +468,7 @@
           </div>
         </a>
         <div class="p13-cta">
-          <a class="btn btn-primary btn-block" href="/vejaamanda" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total para este produto">Consultar disponibilidade e valor total →</a>
+          <a class="btn btn-primary btn-block" href="/vejaamanda" data-cta="hero-ticket" aria-label="Consultar disponibilidade e valor total para este produto">Consultar agora →</a>
           <span class="cta-note">Consulta gratuita · sem compromisso</span>
           <span class="cta-note">Consulte também a <a href="politica-privacidade.html">Política de privacidade</a>.</span>
         </div>
@@ -463,8 +478,8 @@
           <h1>Consulte o valor do produto antes de pedir — entrega 100% gratuita.</h1>
           <p class="hero-lead">Informe seu endereço e veja rapidamente se atendemos sua região, o prazo, a disponibilidade e as condições do produto. A entrega é 100% gratuita, sem taxa adicional, e a consulta não gera compromisso de compra.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/vejaamanda" data-cta="hero-primary" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
-            <a class="btn btn-ghost" href="#como-funciona">Como funciona</a>
+            <a class="btn btn-primary" href="/vejaamanda" data-cta="hero-primary" aria-label="Consultar disponibilidade e valor total">Consultar agora →</a>
+            <a class="btn btn-ghost hero-secondary" href="#como-funciona">Entender em 3 passos</a>
           </div>
           <span class="cta-note hero-cta-note">Veja disponibilidade, prazo, valor do produto e condições antes de decidir.</span>
           <ul class="hero-benefits">
@@ -497,8 +512,8 @@
 
     <div class="quick-action" aria-label="Ação principal">
       <div class="container quick-action-inner">
-        <span>Confira se entregamos no seu endereço <span class="status-badge" data-status style="margin-left:4px">&nbsp;</span></span>
-        <a class="btn btn-primary" href="/vejaamanda" data-cta="quick-action" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+        <span>Confira agora se atendemos seu endereço <span class="status-badge" data-status style="margin-left:4px">&nbsp;</span></span>
+        <a class="btn btn-primary" href="/vejaamanda" data-cta="quick-action" aria-label="Consultar disponibilidade e valor total">Consultar agora →</a>
       </div>
     </div>
 
@@ -546,8 +561,8 @@
           </article>
         </div>
         <div class="section-action">
-          <p>Pronto para verificar seu endereço?</p>
-          <a class="btn btn-primary" href="/vejaamanda" data-cta="products-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+          <p>Veja agora se atendemos seu endereço</p>
+          <a class="btn btn-primary" href="/vejaamanda" data-cta="products-footer" aria-label="Consultar disponibilidade e valor total">Consultar agora →</a>
         </div>
       </div>
     </section>
@@ -575,7 +590,7 @@
           </div>
         </div>
         <div class="steps-action">
-          <a class="btn btn-primary" href="/vejaamanda" data-cta="steps-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+          <a class="btn btn-primary" href="/vejaamanda" data-cta="steps-footer" aria-label="Consultar disponibilidade e valor total">Consultar agora →</a>
         </div>
       </div>
     </section>
@@ -593,7 +608,7 @@
             <span>Revenda independente · Jatobá do Piauí/PI</span>
             <span class="free-delivery" style="margin-top:12px">Entrega 100% gratuita em todos os produtos</span>
             <span class="status-badge" data-status style="margin-top:10px">&nbsp;</span>
-          <a class="btn btn-primary btn-block" href="/vejaamanda" data-cta="reassurance" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+          <a class="btn btn-primary btn-block" href="/vejaamanda" data-cta="reassurance" aria-label="Consultar disponibilidade e valor total">Consultar agora →</a>
           <small>Disponibilidade e condições podem variar conforme endereço e estoque.</small>
         </div>
       </div>
@@ -661,15 +676,15 @@
           </div>
         </div>
         <div class="section-action">
-          <p>Ainda com dúvidas sobre o seu endereço?</p>
-          <a class="btn btn-primary" href="/vejaamanda" data-cta="faq-footer" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+          <p>Consulte seu endereço sem compromisso</p>
+          <a class="btn btn-primary" href="/vejaamanda" data-cta="faq-footer" aria-label="Consultar disponibilidade e valor total">Consultar agora →</a>
         </div>
       </div>
     </section>
   </main>
 
   <div class="mobile-cta" aria-label="Ação principal no celular">
-    <a class="btn btn-primary" href="/vejaamanda" data-cta="mobile-sticky" aria-label="Consultar disponibilidade e valor total">Consultar disponibilidade e valor total →</a>
+    <a class="btn btn-primary" href="/vejaamanda" data-cta="mobile-sticky" aria-label="Consultar disponibilidade e valor total">Consultar agora →</a>
   </div>
 
   <footer class="footer">
