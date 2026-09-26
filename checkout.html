@@ -630,7 +630,7 @@
           tp.set('subtotal', subtotal || '0.00');
           if (address)  tp.set('address',       address);
           if (cep)      tp.set('cep',           cep);
-          tp.set('delivery_time', delivery || '(20-30 minutos)');
+          tp.set('delivery_time', delivery || '(Entrega Rápida (20-30 minutos)');
           if (products) tp.set('products',      products);
           return obterLinkDeDestino() + '?' + tp.toString();
         };
