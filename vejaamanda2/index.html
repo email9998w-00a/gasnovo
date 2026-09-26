@@ -961,7 +961,7 @@ function proceedToSummary() {
 backToCart.addEventListener('click', resetToCartView);
 
 confirmPaymentBtn.addEventListener('click', () => {
-    showLoading('Finalizando seu pedido...');
+    showLoading('Preparando seu pedido...');
 
     const subtotal       = cart.reduce((s,i) => s + i.price * i.qty, 0);
     const addrNumber     = document.getElementById('addr-number').value;
