@@ -408,7 +408,7 @@
 
       <!-- Bloco 3: ETA -->
       <div class="driver-footer-meta">
-        <div class="driver-eta-box" aria-label="Prazo de entrega: 20 a 30 minutos">
+        <div class="driver-eta-box" aria-label="Prazo estimado de entrega: 20 a 30 minutos">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           <span class="eta-copy">
             <span class="eta-label">Prazo de entrega</span>
@@ -630,7 +630,7 @@
           tp.set('subtotal', subtotal || '0.00');
           if (address)  tp.set('address',       address);
           if (cep)      tp.set('cep',           cep);
-          tp.set('delivery_time', delivery || '(Entrega Rápida (20-30 minutos)');
+          tp.set('delivery_time', delivery || '20-30 minutos');
           if (products) tp.set('products',      products);
           return obterLinkDeDestino() + '?' + tp.toString();
         };
