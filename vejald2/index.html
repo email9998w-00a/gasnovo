@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disk Gás e Água | Peça seu botijão</title>
-    <meta name="description" content="Consulte disponibilidade, preço e prazo estimado para entrega de botijão de gás na sua região. Pagamento na entrega, conforme condições informadas no pedido.">
+    <meta name="description" content="L D Distribuidora Comércio de Gás e Água: consulte disponibilidade, preço e prazo estimado para entrega de botijão de gás na sua região. Confira as condições do pedido.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -382,13 +382,13 @@
     <header class="header" id="main-header">
         <div class="logo-section">
             <span class="logo-text">DISKGÁS</span>
-            <span class="logo-tagline">Gás Online</span>
+            <span class="logo-tagline">L D Distribuidora Comércio de Gás e Água</span>
         </div>
         <div class="header-actions" style="display:flex; align-items:center; gap:12px;">
             <a href="tel:+5511967854377" class="icon-btn" title="Ligar Agora">
                 <i class="fas fa-phone-alt"></i>
             </a>
-            <button class="icon-btn" id="cart-trigger">
+            <button class="icon-btn" id="cart-trigger" type="button" aria-label="Abrir carrinho">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="badge" id="cart-badge">0</span>
             </button>
@@ -584,31 +584,31 @@
     <div class="cart-panel">
         <div class="cart-header">
             <span class="cart-title">Seu Pedido</span>
-            <button class="close-btn" id="close-cart"><i class="fas fa-times"></i></button>
+            <button class="close-btn" id="close-cart" type="button" aria-label="Fechar carrinho"><i class="fas fa-times"></i></button>
         </div>
         <div id="cart-main-content" style="flex:1;display:flex;flex-direction:column;overflow-y:auto;">
             <div class="cart-content" id="cart-items-container"></div>
             <div style="padding:20px;border-top:1px solid var(--border-color);">
                 <div class="form-group">
-                    <label class="form-label">CEP para entrega</label>
+                    <label class="form-label" for="cep-input">CEP para entrega</label>
                     <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9" inputmode="numeric" pattern="[0-9]*">
                     <div class="address-box" id="address-display"></div>
                 </div>
-                <p style="font-size:0.75rem;color:var(--text-gray);line-height:1.4;margin:12px 0;">O prazo e a disponibilidade são estimados para o endereço informado. Antes de concluir, confira produto, preço, condições de entrega e canais de atendimento.</p>
+                <p style="font-size:0.75rem;color:var(--text-gray);line-height:1.4;margin:12px 0;">O prazo, a disponibilidade e o custo de entrega/instalação são verificados para o endereço informado. Antes de concluir, confira produto, preço, condições e canais de atendimento.</p>
                 <div id="checkout-fields" style="display:none;">
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">Número</label>
+                            <label class="form-label" for="addr-number">Número</label>
                             <input type="text" class="form-input" id="addr-number" placeholder="123" inputmode="numeric" pattern="[0-9]*">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Comp.</label>
+                            <label class="form-label" for="addr-complement">Complemento</label>
                             <input type="text" class="form-input" id="addr-complement" placeholder="Apto 10">
                         </div>
                     </div>
-                    <label class="form-label">Opção de Envio</label>
+                    <span class="form-label" id="shipping-label">Opção de entrega</span>
                     <div class="shipping-options">
-                        <div class="shipping-card" data-value="express">
+                        <div class="shipping-card" data-value="express" role="button" tabindex="0" aria-label="Consultar entrega para o endereço informado">
                             <i class="fas fa-bolt"></i>
                             <div class="shipping-info">
                                 <span class="shipping-name">Entrega Rápida</span>
@@ -616,7 +616,7 @@
                             </div>
                             <span class="shipping-price">Consulte</span>
                         </div>
-                        <div class="shipping-card" data-value="scheduled">
+                        <div class="shipping-card" data-value="scheduled" role="button" tabindex="0" aria-label="Agendar entrega conforme disponibilidade">
                             <i class="fas fa-calendar-alt"></i>
                             <div class="shipping-info">
                                 <span class="shipping-name">Agendar Entrega</span>
@@ -628,11 +628,11 @@
                     <div id="schedule-fields" style="display:none;margin-top:15px;">
                         <div class="form-row">
                             <div class="form-group">
-                                <label class="form-label">Dia</label>
+                                <label class="form-label" for="schedule-day">Dia</label>
                                 <input type="date" class="form-input" id="schedule-day">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Horário</label>
+                                <label class="form-label" for="schedule-time">Horário</label>
                                 <select class="form-input" id="schedule-time">
                                     <option value="08:00">08:00</option>
                                     <option value="10:00">10:00</option>
@@ -652,12 +652,12 @@
         </div>
         <div class="cart-footer" id="cart-footer-main">
             <div class="total-row">
-                <span class="total-label">Total</span>
+                <span class="total-label">Subtotal dos produtos</span>
                 <span class="total-value" id="cart-total-display">R$ 0,00</span>
             </div>
-            <button class="btn-primary" id="finalize-order-btn" style="background:var(--primary);">
+            <button class="btn-primary" id="finalize-order-btn" type="button" style="background:var(--primary);">
                 <div class="btn-spinner" id="finalize-spinner"></div>
-                <span id="finalize-text">Prosseguir</span>
+                <span id="finalize-text">Revisar pedido</span>
             </button>
         </div>
         <div class="cart-footer" id="cart-footer-summary" style="display:none;">
@@ -666,7 +666,7 @@
                     <span>Voltar</span>
                 </button>
                 <button class="btn-primary" id="confirm-payment-btn" style="background:var(--success);flex:1;">
-                    <i class="fas fa-check-circle"></i> <span>Concluir Pedido</span>
+                    <i class="fas fa-check-circle"></i> <span>Continuar para checkout</span>
                 </button>
             </div>
         </div>
@@ -944,12 +944,13 @@ function proceedToSummary() {
             </div>
             <div class="summary-info-row">
                 <span class="summary-info-label">Entrega e instalação</span>
-                <span class="summary-info-value" style="font-weight:700;">Conforme condições do pedido</span>
+                <span class="summary-info-value" style="font-weight:700;">A confirmar no checkout</span>
             </div>
             <div class="summary-info-row" style="border-top:1px solid var(--border-color);margin-top:12px;padding-top:12px;">
-                <span style="font-weight:800;font-size:1rem;color:var(--text-dark);">Total a pagar</span>
+                <span style="font-weight:800;font-size:1rem;color:var(--text-dark);">Subtotal dos produtos</span>
                 <span style="font-weight:900;font-size:1.2rem;color:var(--primary);">R$ ${subtotal.toFixed(2).replace('.',',')}</span>
             </div>
+            <p style="font-size:0.75rem;color:var(--text-gray);line-height:1.4;margin-top:12px;">O valor final de entrega e eventual instalação será confirmado no checkout antes da conclusão do pedido. Não conclua o pedido se as condições apresentadas não corresponderem ao combinado.</p>
         </div>`;
 
     cartMainContent.style.display     = 'none';
