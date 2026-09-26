@@ -93,7 +93,7 @@
             font-size: 0.7rem; font-weight: 600;
         }
         .trust-bar span { display: flex; align-items: center; gap: 5px; }
-        .trust-bar i { color: var(--accent); }
+        .trust-bar i { color: #7FD39A; } /* verde suave para transmitir credibilidade */
         .hero {
             padding: 20px; text-align: center;
             background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -550,7 +550,7 @@
         <div class="faq-item">
             <div class="faq-question">Como cancelar meu pedido? <i class="fas fa-chevron-down"></i></div>
             <div class="faq-answer">
-                <p style="margin-bottom:8px;">Você pode cancelar seu pedido entrando em contato conosco pelo telefone <strong>(11) 9850-1170</strong> ou pelo e-mail <strong>emmail987a@gmail.com</strong>.</p>
+                <p style="margin-bottom:8px;">Você pode cancelar seu pedido entrando em contato conosco pelo telefone <strong>(11) 98501-170</strong> ou pelo e-mail <strong>emmail987a@gmail.com</strong>.</p>
                 <p style="margin-bottom:8px;"><strong>Compras online:</strong> pedidos de cancelamento e solicitações relacionadas ao direito de arrependimento serão tratados conforme a legislação aplicável e as condições da oferta.</p>
                 <p>Entre em contato pelos canais informados na página para receber as orientações de cancelamento, devolução e eventual reembolso.</p>
             </div>
@@ -584,7 +584,7 @@
                 <h3>Contato</h3>
                 <ul class="contact-info">
                     <li><i class="fas fa-envelope"></i><span>emmail987a@gmail.com</span></li>
-                    <li><i class="fas fa-phone-alt"></i><span>(11) 9850-1170</span></li>
+                    <li><i class="fas fa-phone-alt"></i><span>(11) 98501-170</span></li>
                     <li>
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
@@ -974,13 +974,13 @@ function proceedToSummary() {
             </div>
             <div class="summary-info-row">
                 <span class="summary-info-label">Entrega</span>
-                <span class="summary-info-value" style="font-weight:700;">Frete calculado conforme o CEP</span>
+                <span class="summary-info-value" style="font-weight:700;">A confirmar</span>
             </div>
             <div class="summary-info-row" style="border-top:1px solid var(--border-color);margin-top:12px;padding-top:12px;">
                 <span style="font-weight:800;font-size:1rem;color:var(--text-dark);">Subtotal</span>
                 <span style="font-weight:900;font-size:1.2rem;color:var(--primary);">R$ ${subtotal.toFixed(2).replace('.',',')}</span>
             </div>
-            <p style="font-size:0.75rem;color:var(--text-gray);line-height:1.4;margin-top:12px;">O frete será calculado conforme o CEP e a disponibilidade da região, sendo informado antes da confirmação do pedido. Eventual instalação também será apresentada separadamente, quando disponível. Não conclua o pedido se as condições apresentadas não corresponderem ao combinado.</p>
+            <p style="font-size:0.75rem;color:var(--text-gray);line-height:1.4;margin-top:12px;">O valor final de entrega e eventual instalação será confirmado no checkout antes da conclusão do pedido. Não conclua o pedido se as condições apresentadas não corresponderem ao combinado.</p>
         </div>`;
 
     cartMainContent.style.display     = 'none';
