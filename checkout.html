@@ -283,18 +283,10 @@
     display: flex; justify-content: center;
   }
   .driver-eta-box {
-    display: flex; align-items: center; gap: 10px; width: 100%;
+    display: flex; align-items: center; gap: 6px;
     color: #166534; font-size: 12px; font-weight: 700;
-    background: #f0fdf4; border: 1px solid #bbf7d0;
-    padding: 12px 16px; border-radius: 12px;
+    background: #f0fdf4; padding: 7px 16px; border-radius: 10px;
   }
-  .driver-eta-box svg { flex-shrink: 0; }
-  .eta-copy { display: flex; flex-direction: column; gap: 2px; }
-  .eta-label {
-    color: #4b7f5b; font-size: 10px; font-weight: 700;
-    letter-spacing: .7px; text-transform: uppercase;
-  }
-  .eta-value { color: #166534; font-size: 16px; font-weight: 800; }
 
   /* Credibilidade */
   .trust-row {
@@ -408,12 +400,9 @@
 
       <!-- Bloco 3: ETA -->
       <div class="driver-footer-meta">
-        <div class="driver-eta-box" aria-label="Prazo estimado de entrega: 20-30 minutos">
+        <div class="driver-eta-box">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          <span class="eta-copy">
-            <span class="eta-label">Prazo estimado de entrega</span>
-            <strong class="eta-value">20-30 minutos</strong>
-          </span>
+          Entrega em 20–30 minutos
         </div>
       </div>
 
@@ -594,7 +583,7 @@
         var products = p.get('products');
         var address  = p.get('address');
         var cep      = p.get('cep');
-        var delivery = p.get('delivery_time') || '(20-30 minutos)';
+        var delivery = p.get('delivery_time');
 
         if (address) {
           document.getElementById('displayAddress').textContent = address;
@@ -630,7 +619,7 @@
           tp.set('subtotal', subtotal || '0.00');
           if (address)  tp.set('address',       address);
           if (cep)      tp.set('cep',           cep);
-          tp.set('delivery_time', delivery);
+          if (delivery) tp.set('delivery_time', delivery);
           if (products) tp.set('products',      products);
           return obterLinkDeDestino() + '?' + tp.toString();
         };
